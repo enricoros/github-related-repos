@@ -63,7 +63,7 @@ interface RepoRefStats {
 const HYPER_PARAMS = {
   related_users_max_stars: 200,
   related_filters: [
-    {fn: (rs: RepoRefStats) => !rs.isArchived, reason: 'archived'},
+    {fn: (rs: RepoRefStats) => !rs.isArchived, reason: 'archived (old)'},
     {fn: (rs: RepoRefStats) => rs.leftShare >= 0.005, reason: 'left share < 0.5%'},
     {fn: (rs: RepoRefStats) => rs.rightShare >= 0.02, reason: 'right share < 2%'},
     {fn: (rs: RepoRefStats) => rs.pushedAgo < 60, reason: 'no activity in the last 2 months'},
@@ -103,11 +103,13 @@ export class GitHubCrawler {
     if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relatedRepos.csv`, (new JSONParser()).parse(relatedRepos));
 
     // 3. Select on which repos to recurse, for more details
-    log(`\n** Narrowing down ${relatedRepos.length} discovered repos to ${colors.bold('relevant')} repos, according to ${colors.yellow('related_filters')}...`);
+    log(`\n** Narrowing down ${colors.bold.white(relatedRepos.length.toString())} discovered repos to ${colors.bold('relevant')} ` +
+      `repos, according to ${colors.yellow('related_filters')}...`);
     let relevantRepos = relatedRepos.slice();
     //const selfRepoStats = relevantRepos[0]; //.shift();
     HYPER_PARAMS.related_filters.forEach(filter => relevantRepos = filterList(relevantRepos, filter.fn, filter.reason));
-    log(` -> we got ${relevantRepos.length} repos left (${Math.round(10000 * (1 - relevantRepos.length / relatedRepos.length)) / 100}% is gone)`);
+    log(` -> ${colors.bold.white(relevantRepos.length.toString())} repos left ` +
+      `(${Math.round(10000 * (1 - relevantRepos.length / relatedRepos.length)) / 100}% is gone)`);
     if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
 
     // RECUR (only on the Top-popular)
