@@ -28,19 +28,19 @@ which case you can follow these instructions:
    ```
 1. Either: use the downloaded 'ts-node' executable to transpile TS -> JS and Run in node directly:
    ```shell
-   ./node_modules/.bin/ts-node src/index.ts
+   ./node_modules/.bin/ts-node index.ts
    ```
 1. Or: compile TypeScript to JavaScript and run it with ```Node.JS```, for instance:
    ```shell
    npm run tsc
-   node src/index.js
+   node index.js
    ```
 
 ## Configuration
 
 All the source code is in the [src](src) folder. The following can be edited to configure the application:
 
-* [src/index.ts](src/index.ts) for  ```repoFullName```, the name of the target repository
+* [index.ts](index.ts) for  ```repoFullName```, the name of the target repository
 * [src/GitHubUtils.ts](src/GitHubUtils.ts) for ```WRITE_OUTPUT_FILES``` and a couple of debug flags and more importantly for _ranking_ and _
   filtering_ criteria.
 

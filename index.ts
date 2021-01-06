@@ -2,8 +2,8 @@
  * Main
  */
 
-import {GitHubCrawler, GitHubUtils} from "./GitHubUtils";
-import {log, secondsSinceStart} from "./utils";
+import {GitHubCrawler, GitHubUtils} from "./src/GitHubUtils";
+import {log, secondsSinceStart} from "./src/utils";
 
 // Configuration
 const repoFullName = 'huggingface/transformers';
