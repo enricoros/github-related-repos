@@ -16,7 +16,7 @@ Users_ of GitHub.
 This is a Node.JS application written in TypeScript; you can use your favorite IDE to Load and run it, or proceed from the command line, in
 which case you can follow these instructions:
 
-1. Install the required code dependencies (axios, json2csv, minimist, redis) by running:
+1. Install the required code dependencies (axios, json2csv, redis, yargs) by running:
    ```shell
    npm install
    ```
@@ -28,19 +28,24 @@ which case you can follow these instructions:
    ```
 1. Either: use the downloaded 'ts-node' executable to transpile TS -> JS and Run in node directly:
    ```shell
-   ./node_modules/.bin/ts-node index.ts
+   ./node_modules/.bin/ts-node src/github-analyzer.ts
    ```
 1. Or: compile TypeScript to JavaScript and run it with ```Node.JS```, for instance:
    ```shell
    npm run tsc
-   node index.js
+   node src/github-analyzer.js
    ```
+
+On both 3. or 4 above, for finding related repositories, for example to 'github/roadmap', use the following options:
+```shell
+src/github-analyzer.ts related --repo github/roadmap
+```
 
 ## Configuration
 
 All the source code is in the [src](src) folder. The following can be edited to configure the application:
 
-* [index.ts](index.ts) for  ```repoFullName```, the name of the target repository
+* [src/github-analyzer.ts](src/github-analyzer.ts) for  ```repoFullName```, the name of the target repository
 * [src/GitHubUtils.ts](src/GitHubUtils.ts) for ```WRITE_OUTPUT_FILES``` and a couple of debug flags and more importantly for _ranking_ and _
   filtering_ criteria.
 

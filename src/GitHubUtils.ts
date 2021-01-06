@@ -237,10 +237,10 @@ const HYPER_PARAMS = {
 }
 
 export class GitHubCrawler {
-  private readonly githubAPI: GitHubUtils;
+  private readonly githubAPI: GitHubAPI;
   private readonly redisCache: RedisCache;
 
-  constructor(githubAPI: GitHubUtils) {
+  constructor(githubAPI: GitHubAPI) {
     this.githubAPI = githubAPI;
     this.redisCache = new RedisCache('GitHubCrawler');
   }
@@ -285,7 +285,7 @@ export class GitHubCrawler {
 
   private async resolveRepoStarrings(repoId: string): Promise<CrawlerTypes.Starring[]> {
     // get Repo data
-    const repoApiPath = GitHubUtils.pathFromId(repoId);
+    const repoApiPath = GitHubAPI.pathFromId(repoId);
     // @ts-ignore
     const repoData: GHTypes.Repo = await this.redisCache.cachedGetJSON('data-' + repoApiPath, 3600 * 24 * 14,
       async () => removeUnusedGitHubProps(await this.githubAPI.safeGetData(repoApiPath)),
@@ -299,7 +299,7 @@ export class GitHubCrawler {
 
     // get Starrings data
     const ghStarrings: GHTypes.Starring[] = await this.getDataArrayWithPagination<GHTypes.Starring>(
-      GitHubUtils.pathFromId(repoId) + '/stargazers', GitHubUtils.stargazerHeaders);
+      GitHubAPI.pathFromId(repoId) + '/stargazers', GitHubAPI.stargazerHeaders);
 
     // match star expectations
     if (ghStarrings.length < expectedStars) {
@@ -454,7 +454,7 @@ export interface ShortResponse<T = any> {
   headers: any;
 }
 
-export class GitHubUtils {
+export class GitHubAPI {
   private readonly axiosInstance: AxiosInstance;
   private static defaultHeaders = {
     Accept: 'application/vnd.github.v3+json',
@@ -482,7 +482,7 @@ export class GitHubUtils {
 
   async safeRequest(path: string, headers?: Object): Promise<ShortResponse> {
     const axiosConfig = {
-      headers: Object.assign({}, GitHubUtils.defaultHeaders, headers || {}),
+      headers: Object.assign({}, GitHubAPI.defaultHeaders, headers || {}),
     }
     try {
       const start_time = Date.now();
