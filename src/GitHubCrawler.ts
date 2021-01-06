@@ -1,5 +1,5 @@
 /**
- * GitHubUtils: classes and utility functions for GitHub.
+ * GitHubCrawler: classes and utility functions for GitHub.
  *
  * A bit too tangled for now, but cleaning it is not the highest priority.
  *
@@ -10,6 +10,7 @@
  */
 
 import assert from "assert";
+import colors from "colors";
 import fs from "fs";
 import {Parser as JSONParser} from "json2csv";
 import {RedisCache} from "./RedisCache";
@@ -37,12 +38,12 @@ const removeOwnerProps = [
 
 const allRemovedProps = [...removeOwnerProps, ...removeRepoProps];
 
-export interface Starring extends GHTypes.Starring {
+interface Starring extends GHTypes.Starring {
   n: number,
   ts: number,
 }
 
-export interface RepoRefStats {
+interface RepoRefStats {
   // static
   fullName: string,
   isArchived: boolean,
@@ -82,8 +83,8 @@ export class GitHubCrawler {
     const outFileName = repoId.replace('/', '_').replace('.', '_')
       + '-' + HYPER_PARAMS.related_users_max_stars;
 
-    // 1. Repo -> Stars(t)
-    log(`*** Resolving stars(t) for '${repoId}' (recursion level: ${recursionLevel}/${recursionLimit})...`);
+    // 1. Repo -> Stars(t)f
+    log(`*** Resolving starrings for '${colors.cyan(repoId)}' (recursion level: ${recursionLevel}/${recursionLimit})...`);
     const starrings: Starring[] = await this.resolveRepoStarrings(repoId);
     if (!starrings)
       return log(`W: issues finding stars(t) of '${repoId}`);
@@ -94,24 +95,22 @@ export class GitHubCrawler {
       return;
 
     // 2. Related repos: All Users -> Accumulate user's Starred repos
-    log(`** Finding the starred repos of ${starrings.length} users (that starred '${repoId}')...`);
+    log(`\n** Found ${colors.red(starrings.length.toString())} users that starred '${repoId}'. Next, finding all the starred repos of those users...`);
     const userLogins: string[] = starrings.map(starring => starring.user.login);
     const relatedRepos: RepoRefStats[] = await this.resolveUsersStarredRepos(userLogins, HYPER_PARAMS.related_users_max_stars);
     if (!relatedRepos || relatedRepos.length < 1)
       return log(`W: issues finding related repos`);
-    // if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relatedRepos.json`, JSON.stringify(relatedRepos, null, 2));
     if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relatedRepos.csv`, (new JSONParser()).parse(relatedRepos));
 
     // 3. Select on which repos to recurse, for more details
-    log(`** Narrowing down the ${relatedRepos.length} related repositories to relevant repositories...`);
+    log(`\n** Narrowing down the ${relatedRepos.length} related repositories to relevant repositories...`);
     //const selfRepoStats = relatedRepos[0]; //.shift();
     let relevantRepos = relatedRepos.slice();
     HYPER_PARAMS.related_filters.forEach(filter => relevantRepos = filterList(relevantRepos, filter.fn, filter.reason));
-    // if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relevantRepos.json`, JSON.stringify(relevantRepos, null, 2));
     if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
 
     // RECUR (only on the Top-popular)
-    log(`>> Recurring into ${relevantRepos.length} repositories (most starred by the ${userLogins.length} users of ${repoId}`);
+    log(`\n>> Recurring into ${relevantRepos.length} repositories (most starred by the ${userLogins.length} users of ${repoId})`);
     for (const repo of relevantRepos)
       await this.resolveWave(repo.fullName, recursionLevel + 1, recursionLimit);
   }
@@ -167,9 +166,9 @@ export class GitHubCrawler {
     const initialUsersCount = userLogins.length;
     let processedUsersCount = 0;
     for (let i = 0; i < initialUsersCount; i++) {
-      if (i % 5000 === 0) log(` * Fetching user ${i}`);
+      if (i % 5000 === 0) log(` - Fetching all stars of user ${colors.red((i + 1).toString())}/${initialUsersCount} ...`);
       const userName = userLogins[i];
-      if (VERBOSE_LOGIC) log(`** Fetching all stars of user ${i + 1}/${initialUsersCount}: ${userName} ...`);
+      if (VERBOSE_LOGIC) log(` - Fetching all stars of user ${i + 1}/${initialUsersCount}: ${userName} ...`);
 
       // get all repos starred by each User
       const userStarredRepos: GHTypes.RepoBasics[] = await this.getDataArrayWithPagination<GHTypes.RepoBasics>(
@@ -222,7 +221,7 @@ export class GitHubCrawler {
     }
 
     // sort top starred repos for the provided group of users
-    popularReposRefs.sort((a, b) => b.usersStars - a.usersStars);
+    popularReposRefs.sort((a, b) => b.relevance - a.relevance);
     return popularReposRefs;
   }
 
@@ -235,9 +234,7 @@ export class GitHubCrawler {
     // paged-fetch function
     const maxPerPage = 100;
     const fetchPageResponse = async (pageIdx): Promise<ShortResponse> => {
-      const pageUrl = (page) => apiEndpoint + '?page=' + page + '&per_page=' + maxPerPage;
-      // use cached response, if present
-      const pageApiPath = pageUrl(pageIdx);
+      const pageApiPath = apiEndpoint + '?page=' + pageIdx + '&per_page=' + maxPerPage;
       return <ShortResponse>await this.redisCache.cachedGetJSON('response-' + pageApiPath, 3600 * 24 * 14,
         async () => removeProperties(await this.githubAPI.getResponse(pageApiPath, extraGetHeaders), allRemovedProps),
       );
