@@ -1,0 +1,23 @@
+{
+  // https://www.typescriptlang.org/tsconfig
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2019",
+    "lib": [
+      "ES2019"
+    ],
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+//    "allowJs": false,
+    "skipLibCheck": true
+//    "moduleResolution": "node",
+//    "resolveJsonModule": true,
+//    "strict": false,
+//    "strictNullChecks": true,
+//    "isolatedModules": false
+  },
+  "include": [
+    "src"
+  ]
+}
