@@ -14,7 +14,7 @@ import fs from "fs";
 import {Parser as JSONParser} from "json2csv";
 import {RedisCache} from "./RedisCache";
 import {GHTypes, GitHubAPI, ShortResponse} from "./GitHubAPI";
-import {log, unixTimeNow, removePropertiesRecursively} from "./Utils";
+import {log, removeProperties, unixTimeISO, unixTimeStart} from "./Utils";
 
 // Configuration of this module
 const VERBOSE_LOGIC = false;
@@ -37,57 +37,35 @@ const removeOwnerProps = [
 
 const allRemovedProps = [...removeOwnerProps, ...removeRepoProps];
 
-function removeUnusedGitHubProps(obj: object): object {
-  removePropertiesRecursively(obj, allRemovedProps);
-  return obj;
+export interface Starring extends GHTypes.Starring {
+  n: number,
+  ts: number,
 }
 
-
-namespace CrawlerTypes {
-  export interface Starring extends GHTypes.Starring {
-    n: number,
-    ts: number,
-  }
-
-  export interface RepoRefStats {
-    // static
-    fullName: string,
-    isArchived: boolean,
-    isFork: boolean,
-    description: string,
-    createdAgo: number,
-    pushedAgo: number,
-    repoStars: number,
-    // dynamic
-    usersStars: number,
-    rightShare: number,
-    leftShare: number,
-    relevance: number,
-    scale: number,
-  }
+export interface RepoRefStats {
+  // static
+  fullName: string,
+  isArchived: boolean,
+  isFork: boolean,
+  description: string,
+  createdAgo: number,
+  pushedAgo: number,
+  repoStars: number,
+  // dynamic
+  usersStars: number,
+  rightShare: number,
+  leftShare: number,
+  relevance: number,
+  scale: number,
 }
-
-const filterWithReason = (list: any[], filterFn, reason) => {
-  const initialSize = list.length;
-  const smallerList = list.filter(filterFn);
-  const finalSize = smallerList.length;
-  log(` -- removed ${initialSize - finalSize} elements: ${reason}. Initial size ${initialSize}, final: ${finalSize}.`);
-  return smallerList;
-}
-
-const unixTimeISO = (isoTime: string) => ~~(new Date(isoTime).getTime() / 1000);
-const unixTimeStart = unixTimeNow();
-// const unixTime1YearAgo = unixTimeStart - 60 * 60 * 24 * 365;
-// const unixTime2MonthsAgo = unixTimeStart - 60 * 60 * 24 * 30 * 2;
 
 const HYPER_PARAMS = {
   related_users_max_stars: 200,
   related_filters: [
-    rsList => filterWithReason(rsList, (rs: CrawlerTypes.RepoRefStats) => !rs.isArchived, 'archived'),
-    // rsList => filterWithReason(rsList, (rs: CrawlerTypes.RepoRefStats) => rs.updatedTs > unixTime2MonthsAgo, 'no activity in the last 2 months'),
-    rsList => filterWithReason(rsList, (rs: CrawlerTypes.RepoRefStats) => rs.leftShare >= 0.005, 'left share < 0.5%'),
-    rsList => filterWithReason(rsList, (rs: CrawlerTypes.RepoRefStats) => rs.rightShare >= 0.02, 'right share < 2%'),
-    rsList => filterWithReason(rsList, (rs: CrawlerTypes.RepoRefStats) => rs.pushedAgo < 60, 'no activity in the last 2 months'),
+    {fn: (rs: RepoRefStats) => !rs.isArchived, reason: 'archived'},
+    {fn: (rs: RepoRefStats) => rs.leftShare >= 0.005, reason: 'left share < 0.5%'},
+    {fn: (rs: RepoRefStats) => rs.rightShare >= 0.02, reason: 'right share < 2%'},
+    {fn: (rs: RepoRefStats) => rs.pushedAgo < 60, reason: 'no activity in the last 2 months'},
   ],
 }
 
@@ -106,7 +84,7 @@ export class GitHubCrawler {
 
     // 1. Repo -> Stars(t)
     log(`*** Resolving stars(t) for '${repoId}' (recursion level: ${recursionLevel}/${recursionLimit})...`);
-    const starrings: CrawlerTypes.Starring[] = await this.resolveRepoStarrings(repoId);
+    const starrings: Starring[] = await this.resolveRepoStarrings(repoId);
     if (!starrings)
       return log(`W: issues finding stars(t) of '${repoId}`);
     if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
@@ -118,18 +96,18 @@ export class GitHubCrawler {
     // 2. Related repos: All Users -> Accumulate user's Starred repos
     log(`** Finding the starred repos of ${starrings.length} users (that starred '${repoId}')...`);
     const userLogins: string[] = starrings.map(starring => starring.user.login);
-    const relatedRepos: CrawlerTypes.RepoRefStats[] = await this.resolveUsersStarredRepos(userLogins, HYPER_PARAMS.related_users_max_stars);
+    const relatedRepos: RepoRefStats[] = await this.resolveUsersStarredRepos(userLogins, HYPER_PARAMS.related_users_max_stars);
     if (!relatedRepos || relatedRepos.length < 1)
       return log(`W: issues finding related repos`);
-    if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relatedRepos.json`, JSON.stringify(relatedRepos, null, 2));
+    // if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relatedRepos.json`, JSON.stringify(relatedRepos, null, 2));
     if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relatedRepos.csv`, (new JSONParser()).parse(relatedRepos));
 
     // 3. Select on which repos to recurse, for more details
     log(`** Narrowing down the ${relatedRepos.length} related repositories to relevant repositories...`);
     //const selfRepoStats = relatedRepos[0]; //.shift();
     let relevantRepos = relatedRepos.slice();
-    HYPER_PARAMS.related_filters.forEach(filter => relevantRepos = filter(relevantRepos));
-    if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relevantRepos.json`, JSON.stringify(relevantRepos, null, 2));
+    HYPER_PARAMS.related_filters.forEach(filter => relevantRepos = filterList(relevantRepos, filter.fn, filter.reason));
+    // if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relevantRepos.json`, JSON.stringify(relevantRepos, null, 2));
     if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
 
     // RECUR (only on the Top-popular)
@@ -138,36 +116,35 @@ export class GitHubCrawler {
       await this.resolveWave(repo.fullName, recursionLevel + 1, recursionLimit);
   }
 
-  private async resolveRepoStarrings(repoId: string): Promise<CrawlerTypes.Starring[]> {
-    // get Repo data
-    const repoApiPath = GitHubAPI.pathFromRepoId(repoId);
-    // @ts-ignore
-    const repoData: GHTypes.Repo = await this.redisCache.cachedGetJSON('data-' + repoApiPath, 3600 * 24 * 14,
-      async () => removeUnusedGitHubProps(await this.githubAPI.safeGetData(repoApiPath)),
-      // removeUnusedGitHubProps // DISABLE if not re-processing the DB
+  private async resolveRepoStarrings(repoId: string): Promise<Starring[]> {
+    // get Repo data, which includes the expected number of stars
+    const repoApiPath = GitHubAPI.apiRepoPath(repoId);
+    const repoResponse: ShortResponse<GHTypes.Repo> = <ShortResponse>await this.redisCache.cachedGetJSON('response-' + repoApiPath, 3600 * 24 * 14,
+      async () => removeProperties(await this.githubAPI.getResponse(repoApiPath), allRemovedProps),
     );
-    if (!repoData) {
+    let expectedCount = repoResponse?.data?.stargazers_count;
+    if (!expectedCount) {
       log(`GitHubAPI.resolveRepoStarrings: issue accessing ${repoId}. Skipping.`);
       return null;
     }
-    let expectedStars = repoData.stargazers_count;
 
     // get Starrings data
     const ghStarrings: GHTypes.Starring[] = await this.getDataArrayWithPagination<GHTypes.Starring>(
-      GitHubAPI.pathFromRepoId(repoId) + '/stargazers', GitHubAPI.stargazerHeaders);
+      repoApiPath + '/stargazers', GitHubAPI.stargazerHeaders);
 
     // match star expectations
-    if (ghStarrings.length < expectedStars) {
-      if (VERBOSE_LOGIC) log(`GitHubAPI.resolveRepoStarrings: fetched fewer than the full stars: got ${ghStarrings.length}, expected ${expectedStars}`);
-    } else if (ghStarrings.length > expectedStars) {
-      log(`GitHubAPI.resolveRepoStarrings: fetched more than expected stars. adjusting expectation by ${ghStarrings.length - expectedStars}`)
-      expectedStars = ghStarrings.length;
+    const fetchedCount = ghStarrings.length;
+    if (fetchedCount < expectedCount) {
+      if (VERBOSE_LOGIC) log(`GitHubAPI.resolveRepoStarrings: fetched fewer stars than expected: ${fetchedCount}. Needed ${expectedCount - fetchedCount} more`);
+    } else if (fetchedCount > expectedCount) {
+      log(`GitHubAPI.resolveRepoStarrings: fetched more than expected stars. Increasing expectations by ${fetchedCount - expectedCount}`);
+      expectedCount = fetchedCount;
     }
 
     // map to local objects
-    const starrings: CrawlerTypes.Starring[] = [];
-    let decreasingStarNumber = expectedStars;
-    for (let iRev = ghStarrings.length - 1; iRev >= 0; iRev--) {
+    const starrings: Starring[] = [];
+    let decreasingStarNumber = expectedCount;
+    for (let iRev = fetchedCount - 1; iRev >= 0; iRev--) {
       starrings.unshift({
         n: decreasingStarNumber--,
         ts: unixTimeISO(ghStarrings[iRev].starred_at),
@@ -176,14 +153,14 @@ export class GitHubCrawler {
     }
 
     // done with this repo
-    if (VERBOSE_LOGIC) log(`    ${repoId}, fetched ${ghStarrings.length} starrings, expected ${expectedStars}`);
+    if (VERBOSE_LOGIC) log(`    ${repoId}, fetched ${fetchedCount} starrings, expected ${expectedCount}`);
     return starrings;
   }
 
-  private async resolveUsersStarredRepos(userLogins: string[], maxStarsPerUser = 200): Promise<CrawlerTypes.RepoRefStats[]> {
+  private async resolveUsersStarredRepos(userLogins: string[], maxStarsPerUser = 200): Promise<RepoRefStats[]> {
     // accumulator for counting all referred-to repos
     const repoStatsAccumulator: {
-      [repoFullName: string]: CrawlerTypes.RepoRefStats,
+      [repoFullName: string]: RepoRefStats,
     } = {};
 
     // get starred repositories for all the provided user logins
@@ -236,7 +213,7 @@ export class GitHubCrawler {
 
     // add the couple of fields that were missing
     const shareAdjustment = processedUsersCount ? (initialUsersCount / processedUsersCount) : 1;
-    const popularReposRefs: CrawlerTypes.RepoRefStats[] = Object.values(repoStatsAccumulator);
+    const popularReposRefs: RepoRefStats[] = Object.values(repoStatsAccumulator);
     for (let repo of popularReposRefs) {
       repo.rightShare = shareAdjustment * repo.usersStars / repo.repoStars;
       repo.leftShare = shareAdjustment * repo.usersStars / initialUsersCount;
@@ -257,19 +234,17 @@ export class GitHubCrawler {
 
     // paged-fetch function
     const maxPerPage = 100;
-    const fetchPage = async (pageIdx): Promise<ShortResponse> => {
+    const fetchPageResponse = async (pageIdx): Promise<ShortResponse> => {
       const pageUrl = (page) => apiEndpoint + '?page=' + page + '&per_page=' + maxPerPage;
       // use cached response, if present
       const pageApiPath = pageUrl(pageIdx);
-      // @ts-ignore
-      return await this.redisCache.cachedGetJSON('response-' + pageApiPath, 3600 * 24 * 14,
-        async () => removeUnusedGitHubProps(await this.githubAPI.safeRequest(pageApiPath, extraGetHeaders)),
-        // removeUnusedGitHubProps // DISABLE if not re-processing the DB
+      return <ShortResponse>await this.redisCache.cachedGetJSON('response-' + pageApiPath, 3600 * 24 * 14,
+        async () => removeProperties(await this.githubAPI.getResponse(pageApiPath, extraGetHeaders), allRemovedProps),
       );
     }
 
     // get the first page, check if it has a multi-paged structure
-    const page1Response: ShortResponse = await fetchPage(1);
+    const page1Response: ShortResponse = await fetchPageResponse(1);
     if (!page1Response) {
       if (VERBOSE_LOGIC) log(` < error processing ${apiEndpoint}. stopping multi-paged data request.`);
       return null;
@@ -287,7 +262,7 @@ export class GitHubCrawler {
       }
       // note: we scan down from 'page=pageCount' to 'page=2' - since page=1 is already fetched
       for (let pageIdx = pagesCount; pageIdx > 1; --pageIdx) {
-        const pageData: T[] = (await fetchPage(pageIdx)).data;
+        const pageData: T[] = (await fetchPageResponse(pageIdx)).data;
         // prepend block
         allData.unshift(...pageData);
       }
@@ -300,4 +275,12 @@ export class GitHubCrawler {
     // at this point, the data is all in sequence, older to newer
     return allData;
   }
+}
+
+const filterList = (list: any[], filterFn, reason): any[] => {
+  const initialSize = list.length;
+  const filteredList = list.filter(filterFn);
+  const finalSize = filteredList.length;
+  log(` -- removed ${initialSize - finalSize} elements: ${reason}. (${initialSize} -> ${finalSize})`);
+  return filteredList;
 }

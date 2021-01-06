@@ -33,6 +33,7 @@ export namespace GHTypes {
   }
 
   // endpoint: /users/${login}
+  // noinspection JSUnusedGlobalSymbols
   export interface User extends OwnerBasics {
     name: string, // "Enrico Ros",
     company?: string, // null
@@ -188,19 +189,23 @@ export class GitHubAPI {
     });
   }
 
-  //
-  static pathFromRepoId(repoId: any) {
-    return isNaN(repoId) ? `/repos/${repoId}` : `/repositories/${repoId}`;
+  // repo IDs should be 'fullNames' (org/name), but could also be numbers, in which case we change the base
+  static apiRepoPath(repoSpec: any) {
+    return isNaN(repoSpec) ? `/repos/${repoSpec}` : `/repositories/${repoSpec}`;
   }
 
-  async safeRequest(path: string, headers?: Object): Promise<ShortResponse> {
+  /**
+   * @param path
+   * @param headers
+   */
+  async getResponse<T>(path: string, headers?: Object): Promise<ShortResponse> {
     const axiosConfig = {
       headers: Object.assign({}, GitHubAPI.defaultHeaders, headers || {}),
     }
     try {
       const start_time = Date.now();
       const axiosResponse: AxiosResponse = await this.axiosInstance.get(path, axiosConfig);
-      const response: ShortResponse = {
+      const response: ShortResponse<T> = {
         data: axiosResponse.data,
         headers: axiosResponse.headers,
         status: axiosResponse.status,
@@ -255,11 +260,6 @@ export class GitHubAPI {
         err(`GitHubAPI.safeRequest: ${path} GET error:`, e);
       return null;
     }
-  }
-
-  async safeGetData<T>(path: string, headers?: Object): Promise<T> {
-    const response = await this.safeRequest(path, headers);
-    return response ? response.data : response;
   }
 
 }
