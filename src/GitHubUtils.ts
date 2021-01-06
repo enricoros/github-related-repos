@@ -15,9 +15,9 @@ import axios, {AxiosInstance, AxiosResponse} from "axios";
 import {Agent as HttpsAgent} from "https";
 import {Parser as JSONParser} from "json2csv";
 import {RedisCache} from "./RedisCache";
-import {err, log, removePropertiesRecursively} from "./utils";
+import {err, log, removePropertiesRecursively} from "./Utils";
 import RepoRefStats = CrawlerTypes.RepoRefStats;
-import {unixTimeNow} from "./utils";
+import {unixTimeNow} from "./Utils";
 
 // Configuration of this module
 const VERBOSE_LOGIC = false;
