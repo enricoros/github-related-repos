@@ -11,7 +11,7 @@ on top of the list. In other words, we rely on the wisdom of the original repo's
 This project uses the [GitHub REST PI](https://docs.github.com/en/free-pro-team@latest/rest) to query information about _Repositories_ and _
 Users_ of GitHub.
 
-## Run
+## Running
 
 This is a Node.JS application written in TypeScript; you can use your favorite IDE to Load and run it, or proceed from the command line, in
 which case you can follow these instructions:
