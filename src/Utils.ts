@@ -2,9 +2,11 @@
  * Utility functions
  */
 
+import colors from "colors";
+
 // shortcuts
 export const log = console.log;
-export const err = console.error;
+export const err = (...args) => console.error(args.map((arg, idx) => (idx == 0) ? colors.bold.red(arg) : arg));
 
 // timing helpers, optional
 export const unixTimeNow = () => ~~(Date.now() / 1000);
