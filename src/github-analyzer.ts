@@ -5,8 +5,10 @@
 import colors from "colors";
 import yargs from "yargs";
 import {hideBin} from "yargs/helpers";
-import {GitHubCrawler, GitHubAPI} from "./GitHubUtils";
+import {GitHubAPI} from "./GitHubAPI";
+import {GitHubCrawler} from "./GitHubUtils";
 import {log, secondsSinceStart} from "./Utils";
+
 
 async function findRelatedRepositories(repoFullName: string) {
   log(`== ${colors.bold.cyan('GitHub-Analyzer')}: working on ${colors.cyan(repoFullName)} ==\n`);

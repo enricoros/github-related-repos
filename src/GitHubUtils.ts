@@ -11,160 +11,15 @@
 
 import assert from "assert";
 import fs from "fs";
-import axios, {AxiosInstance, AxiosResponse} from "axios";
-import {Agent as HttpsAgent} from "https";
 import {Parser as JSONParser} from "json2csv";
 import {RedisCache} from "./RedisCache";
-import {err, log, removePropertiesRecursively} from "./Utils";
-import RepoRefStats = CrawlerTypes.RepoRefStats;
-import {unixTimeNow} from "./Utils";
+import {GHTypes, GitHubAPI, ShortResponse} from "./GitHubAPI";
+import {log, unixTimeNow, removePropertiesRecursively} from "./Utils";
 
 // Configuration of this module
 const VERBOSE_LOGIC = false;
-const VERBOSE_FETCHES = true;
 const WRITE_OUTPUT_FILES = true;
 
-
-// Generate your Personal Access Token here: https://github.com/settings/tokens
-const GITHUB_PA_TOKEN = process.env.GITHUB_PA_TOKEN || '';
-if (GITHUB_PA_TOKEN === '') {
-  err(`No GITHUB_PA_TOKEN environment variable provided.`);
-  process.exit(1);
-}
-
-// NOTE: commented-out props are deemed not useful and removed from the returned objects
-namespace GHTypes {
-  export interface Starring {
-    starred_at: string, //
-    user: OwnerBasics,
-  }
-
-  // endpoints: /users/${login}
-  /*interface User extends OwnerBasics {
-    name: string, // "Enrico Ros",
-    company?: string, // null
-    blog?: string, // "https://www.enricoros.com",
-    location?: string, // null,
-    email?: string, // null,
-    hireable?: string, // null,
-    bio?: string, // null,
-    twitter_username?: string, // null,
-    public_repos: number, // 46,
-    public_gists: number, // 6,
-    followers: number, // 17,
-    following: number, // 7,
-    created_at: string, // "2008-11-06T15:55:25Z",
-    updated_at: string, // "2020-12-21T23:21:39Z"
-  }*/
-
-
-  export interface Repo extends RepoBasics {
-    /*"temp_clone_token": "",*/
-    "organization": OwnerBasics,
-    "network_count": number, // 301,
-    "subscribers_count": number, // 77
-  }
-
-  export interface RepoBasics {
-    "id": number, // 219035799,
-    "node_id": string, // "MDEwOlJlcG9zaXRvcnkyMTkwMzU3OTk=",
-    "name": string, // "tokenizers",
-    "full_name": string, // "huggingface/tokenizers",
-    "private": boolean, // false,
-    "owner": OwnerBasics,
-
-    "html_url": string, // "https://github.com/huggingface/tokenizers",
-    "description": string, // "💥 Fast State-of-the-Art Tokenizers optimized for Research and Production",
-    "fork": boolean, // false,
-    /*"url": "https://api.github.com/repos/huggingface/tokenizers",
-    "forks_url": "https://api.github.com/repos/huggingface/tokenizers/forks",
-    "keys_url": "https://api.github.com/repos/huggingface/tokenizers/keys{/key_id}",
-    "collaborators_url": "https://api.github.com/repos/huggingface/tokenizers/collaborators{/collaborator}",
-    "teams_url": "https://api.github.com/repos/huggingface/tokenizers/teams",
-    "hooks_url": "https://api.github.com/repos/huggingface/tokenizers/hooks",
-    "issue_events_url": "https://api.github.com/repos/huggingface/tokenizers/issues/events{/number}",
-    "events_url": "https://api.github.com/repos/huggingface/tokenizers/events",
-    "assignees_url": "https://api.github.com/repos/huggingface/tokenizers/assignees{/user}",
-    "branches_url": "https://api.github.com/repos/huggingface/tokenizers/branches{/branch}",
-    "tags_url": "https://api.github.com/repos/huggingface/tokenizers/tags",
-    "blobs_url": "https://api.github.com/repos/huggingface/tokenizers/git/blobs{/sha}",
-    "git_tags_url": "https://api.github.com/repos/huggingface/tokenizers/git/tags{/sha}",
-    "git_refs_url": "https://api.github.com/repos/huggingface/tokenizers/git/refs{/sha}",
-    "trees_url": "https://api.github.com/repos/huggingface/tokenizers/git/trees{/sha}",
-    "statuses_url": "https://api.github.com/repos/huggingface/tokenizers/statuses/{sha}",
-    "languages_url": "https://api.github.com/repos/huggingface/tokenizers/languages",
-    "stargazers_url": "https://api.github.com/repos/huggingface/tokenizers/stargazers",
-    "contributors_url": "https://api.github.com/repos/huggingface/tokenizers/contributors",
-    "subscribers_url": "https://api.github.com/repos/huggingface/tokenizers/subscribers",
-    "subscription_url": "https://api.github.com/repos/huggingface/tokenizers/subscription",
-    "commits_url": "https://api.github.com/repos/huggingface/tokenizers/commits{/sha}",
-    "git_commits_url": "https://api.github.com/repos/huggingface/tokenizers/git/commits{/sha}",
-    "comments_url": "https://api.github.com/repos/huggingface/tokenizers/comments{/number}",
-    "issue_comment_url": "https://api.github.com/repos/huggingface/tokenizers/issues/comments{/number}",
-    "contents_url": "https://api.github.com/repos/huggingface/tokenizers/contents/{+path}",
-    "compare_url": "https://api.github.com/repos/huggingface/tokenizers/compare/{base}...{head}",
-    "merges_url": "https://api.github.com/repos/huggingface/tokenizers/merges",
-    "archive_url": "https://api.github.com/repos/huggingface/tokenizers/{archive_format}{/ref}",
-    "downloads_url": "https://api.github.com/repos/huggingface/tokenizers/downloads",
-    "issues_url": "https://api.github.com/repos/huggingface/tokenizers/issues{/number}",
-    "pulls_url": "https://api.github.com/repos/huggingface/tokenizers/pulls{/number}",
-    "milestones_url": "https://api.github.com/repos/huggingface/tokenizers/milestones{/number}",
-    "notifications_url": "https://api.github.com/repos/huggingface/tokenizers/notifications{?since,all,participating}",
-    "labels_url": "https://api.github.com/repos/huggingface/tokenizers/labels{/name}",
-    "releases_url": "https://api.github.com/repos/huggingface/tokenizers/releases{/id}",
-    "deployments_url": "https://api.github.com/repos/huggingface/tokenizers/deployments",*/
-    "created_at": string, // "2019-11-01T17:52:20Z",
-    "updated_at": string, // "2020-12-24T09:36:35Z",
-    "pushed_at": string, // "2020-12-23T17:25:34Z",
-    /*"git_url": "git://github.com/huggingface/tokenizers.git",
-    "ssh_url": "git@github.com:huggingface/tokenizers.git",
-    "clone_url": "https://github.com/huggingface/tokenizers.git",
-    "svn_url": "https://github.com/huggingface/tokenizers",*/
-    "homepage": string, // "https://huggingface.co/docs/tokenizers",
-    "size": number, // 4334,
-    "stargazers_count": number, // 4102,
-    "watchers_count": number, // 4102,
-    "language": string, // "Rust",
-    "has_issues": boolean, // true,
-    "has_projects": boolean, // true,
-    "has_downloads": boolean, // true,
-    "has_wiki": boolean, // true,
-    "has_pages": boolean, // false,
-    "forks_count": number, // 301,
-    /*"mirror_url": null,*/
-    "archived": boolean, // false,
-    "disabled": boolean, // false,
-    "open_issues_count": number, // 81,
-    /*"license": {},*/
-    // "forks": number, // 301,
-    // "open_issues": number, // 81,
-    // "watchers": number, // 4102,
-    "default_branch": string, // "master",
-    /*"permissions": {},*/
-  }
-
-  interface OwnerBasics {
-    login: string, // "enricoros",
-    id: number, // 32999,
-    node_id: number, // "MDQ6VXNlcjMyOTk5",
-    avatar_url: string, // "https://avatars0.githubusercontent.com/u/32999?v=4",
-    // gravatar_id: string, // "",
-    url: string, // "https://api.github.com/users/enricoros",
-    // html_url: string, // "https://github.com/enricoros",
-    // followers_url: string, // "https://api.github.com/users/enricoros/followers",
-    // following_url: string, // "https://api.github.com/users/enricoros/following{/other_user}",
-    // gists_url: string, // "https://api.github.com/users/enricoros/gists{/gist_id}",
-    // starred_url: string, // "https://api.github.com/users/enricoros/starred{/owner}{/repo}",
-    // subscriptions_url: string, // "https://api.github.com/users/enricoros/subscriptions",
-    // organizations_url: string, // "https://api.github.com/users/enricoros/orgs",
-    // repos_url: string, // "https://api.github.com/users/enricoros/repos",
-    // events_url: string, // "https://api.github.com/users/enricoros/events{/privacy}",
-    // received_events_url: string, // "https://api.github.com/users/enricoros/received_events",
-    type: string, // "User", "Organization"
-    site_admin: boolean, // false
-  }
-
-}
 
 const removeRepoProps = [
   'url', 'forks_url', 'keys_url', 'collaborators_url', 'teams_url', 'hooks_url', 'issue_events_url', 'events_url',
@@ -228,11 +83,11 @@ const unixTimeStart = unixTimeNow();
 const HYPER_PARAMS = {
   related_users_max_stars: 200,
   related_filters: [
-    rsList => filterWithReason(rsList, (rs: RepoRefStats) => !rs.isArchived, 'archived'),
-    // rsList => filterWithReason(rsList, (rs: RepoRefStats) => rs.updatedTs > unixTime2MonthsAgo, 'no activity in the last 2 months'),
-    rsList => filterWithReason(rsList, (rs: RepoRefStats) => rs.leftShare >= 0.005, 'left share < 0.5%'),
-    rsList => filterWithReason(rsList, (rs: RepoRefStats) => rs.rightShare >= 0.02, 'right share < 2%'),
-    rsList => filterWithReason(rsList, (rs: RepoRefStats) => rs.pushedAgo < 60, 'no activity in the last 2 months'),
+    rsList => filterWithReason(rsList, (rs: CrawlerTypes.RepoRefStats) => !rs.isArchived, 'archived'),
+    // rsList => filterWithReason(rsList, (rs: CrawlerTypes.RepoRefStats) => rs.updatedTs > unixTime2MonthsAgo, 'no activity in the last 2 months'),
+    rsList => filterWithReason(rsList, (rs: CrawlerTypes.RepoRefStats) => rs.leftShare >= 0.005, 'left share < 0.5%'),
+    rsList => filterWithReason(rsList, (rs: CrawlerTypes.RepoRefStats) => rs.rightShare >= 0.02, 'right share < 2%'),
+    rsList => filterWithReason(rsList, (rs: CrawlerTypes.RepoRefStats) => rs.pushedAgo < 60, 'no activity in the last 2 months'),
   ],
 }
 
@@ -285,7 +140,7 @@ export class GitHubCrawler {
 
   private async resolveRepoStarrings(repoId: string): Promise<CrawlerTypes.Starring[]> {
     // get Repo data
-    const repoApiPath = GitHubAPI.pathFromId(repoId);
+    const repoApiPath = GitHubAPI.pathFromRepoId(repoId);
     // @ts-ignore
     const repoData: GHTypes.Repo = await this.redisCache.cachedGetJSON('data-' + repoApiPath, 3600 * 24 * 14,
       async () => removeUnusedGitHubProps(await this.githubAPI.safeGetData(repoApiPath)),
@@ -299,7 +154,7 @@ export class GitHubCrawler {
 
     // get Starrings data
     const ghStarrings: GHTypes.Starring[] = await this.getDataArrayWithPagination<GHTypes.Starring>(
-      GitHubAPI.pathFromId(repoId) + '/stargazers', GitHubAPI.stargazerHeaders);
+      GitHubAPI.pathFromRepoId(repoId) + '/stargazers', GitHubAPI.stargazerHeaders);
 
     // match star expectations
     if (ghStarrings.length < expectedStars) {
@@ -416,7 +271,7 @@ export class GitHubCrawler {
     // get the first page, check if it has a multi-paged structure
     const page1Response: ShortResponse = await fetchPage(1);
     if (!page1Response) {
-      if (VERBOSE_FETCHES) log(` < error processing ${apiEndpoint}. stopping multi-paged data request.`);
+      if (VERBOSE_LOGIC) log(` < error processing ${apiEndpoint}. stopping multi-paged data request.`);
       return null;
     }
     const isMultiPage = page1Response.headers.hasOwnProperty('link');
@@ -445,108 +300,4 @@ export class GitHubCrawler {
     // at this point, the data is all in sequence, older to newer
     return allData;
   }
-}
-
-
-export interface ShortResponse<T = any> {
-  data: T;
-  status: number;
-  headers: any;
-}
-
-export class GitHubAPI {
-  private readonly axiosInstance: AxiosInstance;
-  private static defaultHeaders = {
-    Accept: 'application/vnd.github.v3+json',
-    Authorization: GITHUB_PA_TOKEN ? `token ${GITHUB_PA_TOKEN}` : undefined,
-  }
-  // This special data type adds the 'starred_at' property on results ('https://docs.github.com/en/free-pro-team@latest/rest/reference/activity#starring')
-  static stargazerHeaders = {
-    Accept: 'application/vnd.github.v3.star+json',
-  }
-
-  constructor() {
-    // Recyclable AXIOS instance
-    this.axiosInstance = axios.create({
-      baseURL: 'https://api.github.com/',
-      httpsAgent: new HttpsAgent({keepAlive: true}),
-      timeout: 60000,
-      maxContentLength: 10 * 1024 * 1024, // 10MB
-    });
-  }
-
-  //
-  static pathFromId(repoId: any) {
-    return isNaN(repoId) ? `/repos/${repoId}` : `/repositories/${repoId}`;
-  }
-
-  async safeRequest(path: string, headers?: Object): Promise<ShortResponse> {
-    const axiosConfig = {
-      headers: Object.assign({}, GitHubAPI.defaultHeaders, headers || {}),
-    }
-    try {
-      const start_time = Date.now();
-      const axiosResponse: AxiosResponse = await this.axiosInstance.get(path, axiosConfig);
-      const response: ShortResponse = {
-        data: axiosResponse.data,
-        headers: axiosResponse.headers,
-        status: axiosResponse.status,
-      };
-      const fetchElapsed = Date.now() - start_time;
-      if (VERBOSE_FETCHES)
-        log(` ${path}: ${fetchElapsed} ms`);
-
-      // safety checks
-      if (response.status !== 200) err(`GitHubAPI.safeRequest: status is not 200 for: ${path}: ${response}`);
-
-      // API limiter: sleep to meet quotas
-      const hasRateLimiter =
-        response.headers.hasOwnProperty('x-ratelimit-limit') &&
-        response.headers.hasOwnProperty('x-ratelimit-remaining') &&
-        response.headers.hasOwnProperty('x-ratelimit-reset');
-      if (hasRateLimiter) {
-        const currentTs = unixTimeNow();
-        const resetTs = parseInt(response.headers['x-ratelimit-reset']);
-        const secondsRemaining = resetTs - currentTs + 10;
-        const callsRemaining = parseInt(response.headers['x-ratelimit-remaining']);
-        // sleep to delay
-        if (secondsRemaining > 0 && callsRemaining >= 0 && secondsRemaining <= 3700 && callsRemaining <= 20000) {
-          let forcedDelayMs = 0;
-          if (callsRemaining > 0) {
-            const aggressiveness = 2; // 1: even spacing, 2: more towards the beginning, etc..
-            forcedDelayMs = -fetchElapsed + ~~(1000 * secondsRemaining / callsRemaining / aggressiveness);
-          } else {
-            // if there are no calls left after this one, sleep for whatever time remaining +1s
-            forcedDelayMs = 1000 * secondsRemaining + 1000;
-          }
-          if (forcedDelayMs > 0) {
-            await new Promise(resolve => setTimeout(resolve, forcedDelayMs))
-            if (VERBOSE_FETCHES)
-              log(`   ...slept ${forcedDelayMs} ms (${callsRemaining} left for ${secondsRemaining}s)`);
-          }
-        } else
-          err(`GitHubAPI.safeRequest: bad rate limiter (${callsRemaining}, in ${secondsRemaining}s) for: ${path}`)
-      } else
-        err(`GitHubAPI.safeRequest: no rate limiter for: ${path}`);
-
-      // proceed
-      return response;
-    } catch (e) {
-      if (e.response && e.response.status === 401)
-        err(`GitHubAPI.safeRequest: 401: while accessing ${path}. Likely cause: INVALID GitHub Personal Access Token.`);
-      else if (e.response && e.response.status === 404)
-        log(`GitHubAPI.safeRequest: 404: ${path} not found (anymore). ret: null.`);
-      else if (e.response && e.response.status === 451)
-        log(`GitHubAPI.safeRequest: 451: ${path} repo access blocked (dmca?). ret: null.`);
-      else
-        err(`GitHubAPI.safeRequest: ${path} GET error:`, e);
-      return null;
-    }
-  }
-
-  async safeGetData<T>(path: string, headers?: Object): Promise<T> {
-    const response = await this.safeRequest(path, headers);
-    return response ? response.data : response;
-  }
-
 }
