@@ -16,7 +16,7 @@ Users_ of GitHub.
 This is a Node.JS application written in TypeScript; you can use your favorite IDE to Load and run it, or proceed from the command line, in
 which case you can follow these instructions:
 
-1. Install the required code dependencies (axios, json2csv, redis) by running:
+1. Install the required code dependencies (axios, json2csv, minimist, redis) by running:
    ```shell
    npm install
    ```

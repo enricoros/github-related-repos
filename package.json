@@ -11,9 +11,11 @@
   "license": "BSD",
   "dependencies": {
     "@types/async-redis": "^1.1.1",
+    "@types/axios": "^0.14.0",
     "async-redis": "^1.1.7",
     "axios": "^0.21.1",
     "json2csv": "^5.0.5",
+    "minimist": "^1.2.5",
     "typescript": "^4.1.3"
   },
   "devDependencies": {
