@@ -103,11 +103,11 @@ export class GitHubCrawler {
     if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relatedRepos.csv`, (new JSONParser()).parse(relatedRepos));
 
     // 3. Select on which repos to recurse, for more details
-    log(`\n** Narrowing down the ${relatedRepos.length} related repositories to relevant repositories...`);
+    log(`\n** Narrowing down ${relatedRepos.length} discovered repos to ${colors.bold('relevant')} repos, according to ${colors.yellow('related_filters')}...`);
     let relevantRepos = relatedRepos.slice();
     //const selfRepoStats = relevantRepos[0]; //.shift();
     HYPER_PARAMS.related_filters.forEach(filter => relevantRepos = filterList(relevantRepos, filter.fn, filter.reason));
-    log(` -> we got ${relevantRepos.length} repos left (${Math.round(100 * (1 - relevantRepos.length / relatedRepos.length))}% is gone)`);
+    log(` -> we got ${relevantRepos.length} repos left (${Math.round(10000 * (1 - relevantRepos.length / relatedRepos.length)) / 100}% is gone)`);
     if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
 
     // RECUR (only on the Top-popular)
