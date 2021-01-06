@@ -2,14 +2,14 @@
  * Main
  */
 
+import colors from "colors";
 import yargs from "yargs";
 import {hideBin} from "yargs/helpers";
 import {GitHubCrawler, GitHubAPI} from "./GitHubUtils";
 import {log, secondsSinceStart} from "./Utils";
 
-
 async function findRelatedRepositories(repoFullName: string) {
-  log(`== ${'GitHub-Analyzer'}: working on ${repoFullName} ==\n`);
+  log(`== ${colors.bold.cyan('GitHub-Analyzer')}: working on ${colors.cyan(repoFullName)} ==\n`);
   const ghAPI = new GitHubAPI();
   const crawler = new GitHubCrawler(ghAPI);
   await crawler.resolveWave(repoFullName, 0, 1);
