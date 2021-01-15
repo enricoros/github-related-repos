@@ -132,7 +132,7 @@ export class GitHubCrawler {
 
     // get Starrings data
     const ghStarrings: GHTypes.Starring[] = await this.getDataArrayWithPagination<GHTypes.Starring>(
-      repoApiPath + '/stargazers', GitHubAPI.stargazerHeaders);
+      repoApiPath + '/stargazers', ['direction=desc'], GitHubAPI.stargazerHeaders, null);
 
     // match star expectations
     const fetchedCount = ghStarrings.length;
@@ -175,7 +175,7 @@ export class GitHubCrawler {
 
       // get all repos starred by each User
       const userStarredRepos: GHTypes.RepoBasics[] = await this.getDataArrayWithPagination<GHTypes.RepoBasics>(
-        `/users/${userName}/starred`, null, maxStarsPerUser);
+        `/users/${userName}/starred`, null, null, maxStarsPerUser);
       // user skipped - likely too many likes for this fellow, or user deleted
       if (!userStarredRepos)
         continue;
@@ -231,13 +231,14 @@ export class GitHubCrawler {
   /**
    * Multi-Page fetching function for GitHub Array-like data
    */
-  private async getDataArrayWithPagination<T>(apiEndpoint: string, extraGetHeaders?: Object, maxEntries?: number): Promise<T[]> {
+  private async getDataArrayWithPagination<T>(apiEndpoint: string, extraGetQuery?: string[], extraGetHeaders?: Object, maxEntries?: number): Promise<T[]> {
     assert.ok(apiEndpoint.indexOf('?') === -1, 'endpoint assumed without parameters');
 
     // paged-fetch function
     const maxPerPage = 100;
+    const querySuffix = extraGetQuery ? `&${extraGetQuery.join('&')}` : '';
     const fetchPageResponse = async (pageIdx): Promise<ShortResponse> => {
-      const pageApiPath = apiEndpoint + '?page=' + pageIdx + '&per_page=' + maxPerPage;
+      const pageApiPath = `${apiEndpoint}?page=${pageIdx}&per_page=${maxPerPage}${querySuffix}`;
       return <ShortResponse>await this.redisCache.cachedGetJSON('response-' + pageApiPath, 3600 * 24 * 14,
         async () => removeProperties(await this.githubAPI.getResponse(pageApiPath, extraGetHeaders), allRemovedProps),
       );
