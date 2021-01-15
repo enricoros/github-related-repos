@@ -134,7 +134,7 @@ export class GitHubCrawler {
 
   private async resolveRepoStarrings(repoId: string): Promise<Starring[]> {
     // get Repo data, which includes the expected number of stars
-    const repoApiPath = GitHubAPI.apiRepoPath(repoId);
+    const repoApiPath = GitHubAPI.apiRepoPath(repoId) + '';
     const repoResponse: ShortResponse<GHTypes.Repo> = <ShortResponse>await this.redisCache.cachedGetJSON('response-' + repoApiPath, 3600 * 24 * 14,
       async () => removeProperties(await this.githubAPI.getResponse(repoApiPath), allRemovedProps),
     );
