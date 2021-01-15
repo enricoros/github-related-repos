@@ -196,11 +196,11 @@ export class GitHubAPI {
 
   /**
    * @param path
-   * @param headers
+   * @param extraHeaders
    */
-  async getResponse<T>(path: string, headers?: Object): Promise<ShortResponse> {
+  async getResponse<T>(path: string, extraHeaders?: Object): Promise<ShortResponse> {
     const axiosConfig = {
-      headers: Object.assign({}, GitHubAPI.defaultHeaders, headers || {}),
+      headers: Object.assign({}, GitHubAPI.defaultHeaders, extraHeaders || {}),
     }
     try {
       const start_time = Date.now();

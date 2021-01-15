@@ -20,7 +20,7 @@ import {statClip, statComputeSlopes, statGetBounds} from "./Statistics";
 
 // Configuration of this module
 const VERBOSE_LOGIC = false;
-const WRITE_OUTPUT_FILES = true;
+const WRITE_OUTPUT_FILES = false;
 
 
 const removeRepoProps = [
