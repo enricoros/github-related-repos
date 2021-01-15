@@ -15,7 +15,8 @@ import fs from "fs";
 import {Parser as JSONParser} from "json2csv";
 import {RedisCache} from "./RedisCache";
 import {GHTypes, GitHubAPI, ShortResponse} from "./GitHubAPI";
-import {err, log, removeProperties, secondsPerDay, unixTimeFromISOString, unixTimeProgramStart, unixTimeStartOfWeek} from "./Utils";
+import {log, removeProperties, unixTimeFromISOString, unixTimeProgramStart, unixTimeStartOfWeek} from "./Utils";
+import {statClip, statComputeSlopes, statGetBounds} from "./Statistics";
 
 // Configuration of this module
 const VERBOSE_LOGIC = false;
@@ -72,6 +73,7 @@ const HYPER_PARAMS = {
   ],
 }
 
+
 export class GitHubCrawler {
   private readonly githubAPI: GitHubAPI;
   private readonly redisCache: RedisCache;
@@ -126,9 +128,50 @@ export class GitHubCrawler {
         log(`W: issues finding stars(t) of '${relatedRepo}: ${starrings?.length}`);
         continue;
       }
-      log(`Statistics for ${starrings.length} stars...`)
+      // log(`Statistics for ${starrings.length} stars...`)
       const starStats = GitHubCrawler.computeStarringStats(starrings);
-      log(starStats);
+      // log(starStats);
+    }
+  }
+
+
+  private static computeStarringStats(starrings: Starring[]) {
+    // to XYList
+    let xys = starrings.map(s => ({x: s.ts, y: s.n}));
+
+    // remove everything before the start of the week
+    xys = statClip(xys, null, unixTimeStartOfWeek, null, null, 'remove partial current week');
+
+    // some basic stats
+    const {first, last, left: xMin, right: xMax, bottom: yMin, top: yMax} = statGetBounds(xys);
+    {
+      const firstAgo = unixTimeProgramStart - xMin;
+      const lastAgo = unixTimeProgramStart - xMax;
+      log(` - last star was ${Math.round(lastAgo / 3600)} hours ago (#${yMax}), ` +
+        `the first (#${yMin}) was ${Math.round(100 * firstAgo / 3600 / 24 / 365) / 100} years ago`);
+    }
+
+    // compute growth in Y at different X bases
+    const Bases = [
+      {name: 'T1W', days: 7, slope: undefined},
+      {name: 'T2W', days: 7 * 2, slope: undefined},
+      {name: 'T1M', days: 365 / 12, slope: undefined},
+      {name: 'T3M', days: 365 / 4, slope: undefined},
+      {name: 'T6M', days: 365 / 2, slope: undefined},
+      {name: 'T1Y', days: 365, slope: undefined},
+      {name: 'T2Y', days: 365 * 2, slope: undefined},
+      {name: 'T5Y', days: 365 * 5, slope: undefined},
+      {name: 'TI', days: -1, slope: undefined}, // special: -1 means xMin
+    ]
+    statComputeSlopes(xys, Bases, unixTimeStartOfWeek, xMin);
+
+    // TODO: compute Weekly numbers
+    // TODO: compute histograms on Starrings, for Excel charts, then merged across all of the repos later
+
+    // return stats
+    return {
+      slopes: Bases,
+      weekly: undefined,
     }
   }
 
