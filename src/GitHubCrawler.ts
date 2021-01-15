@@ -15,7 +15,7 @@ import fs from "fs";
 import {Parser as JSONParser} from "json2csv";
 import {RedisCache} from "./RedisCache";
 import {GHTypes, GitHubAPI, ShortResponse} from "./GitHubAPI";
-import {log, removeProperties, unixTimeISO, unixTimeStart} from "./Utils";
+import {err, log, removeProperties, secondsPerDay, unixTimeFromISOString, unixTimeProgramStart, unixTimeStartOfWeek} from "./Utils";
 
 // Configuration of this module
 const VERBOSE_LOGIC = false;
@@ -79,7 +79,7 @@ export class GitHubCrawler {
     this.redisCache = new RedisCache('GitHubCrawler');
   }
 
-  async resolveWave(repoId: string, recursionLevel: number, recursionLimit: number) {
+  async analyzeRelatedRepos(repoId: string) {
     const outFileName = repoId.replace('/', '_').replace('.', '_')
       + '-' + HYPER_PARAMS.related_users_max_stars;
 
@@ -149,7 +149,7 @@ export class GitHubCrawler {
     for (let iRev = fetchedCount - 1; iRev >= 0; iRev--) {
       starrings.unshift({
         n: decreasingStarNumber--,
-        ts: unixTimeISO(ghStarrings[iRev].starred_at),
+        ts: unixTimeFromISOString(ghStarrings[iRev].starred_at),
         ...ghStarrings[iRev],
       });
     }
@@ -193,8 +193,8 @@ export class GitHubCrawler {
             isArchived: userStarredRepo.archived,
             isFork: userStarredRepo.fork,
             description: (userStarredRepo.description || '').slice(0, 50),
-            createdAgo: (unixTimeStart - unixTimeISO(userStarredRepo.created_at)) / 3600 / 24,
-            pushedAgo: (unixTimeStart - unixTimeISO(userStarredRepo.pushed_at)) / 3600 / 24,
+            createdAgo: (unixTimeProgramStart - unixTimeFromISOString(userStarredRepo.created_at)) / 3600 / 24,
+            pushedAgo: (unixTimeProgramStart - unixTimeFromISOString(userStarredRepo.pushed_at)) / 3600 / 24,
             repoStars: userStarredRepo.stargazers_count,
             // dynamic, to be populated later
             usersStars: 0,

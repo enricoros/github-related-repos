@@ -7,15 +7,15 @@ import yargs from "yargs";
 import {hideBin} from "yargs/helpers";
 import {GitHubAPI} from "./GitHubAPI";
 import {GitHubCrawler} from "./GitHubCrawler";
-import {log, secondsSinceStart} from "./Utils";
+import {log, unixTimeProgramElapsed} from "./Utils";
 
 
 async function findRelatedRepositories(repoFullName: string) {
   log(`== ${colors.bold.cyan('GitHub-Analyzer')}: finding related repositories to ${colors.cyan(repoFullName)} ==\n`);
   const ghAPI = new GitHubAPI();
   const crawler = new GitHubCrawler(ghAPI);
-  await crawler.resolveWave(repoFullName, 0, 1);
-  log(`\nAnalysis complete in ${secondsSinceStart()} seconds.`);
+  await crawler.analyzeRelatedRepos(repoFullName);
+  log(`\nAnalysis complete in ${unixTimeProgramElapsed()} seconds.`);
 }
 
 
