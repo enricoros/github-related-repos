@@ -6,7 +6,7 @@ import colors from "colors";
 
 // shortcuts
 export const log = console.log;
-export const err = (...args) => console.error(args.map((arg, idx) => (idx == 0) ? colors.bold.red(arg) : arg));
+export const err = (...args) => console.error(args.map((arg, idx) => (idx == 0) ? colors.bold.red(arg) : arg).join());
 
 // timing helpers
 export const secondsPerDay = 60 * 60 * 24;

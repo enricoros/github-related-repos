@@ -6,7 +6,7 @@
  * Uses Axios for REST API calls.
  */
 
-import axios, {AxiosInstance, AxiosResponse} from "axios";
+import axios, {AxiosError, AxiosInstance, AxiosResponse} from "axios";
 import {Agent as HttpsAgent} from "https";
 import {err, log, unixTimeNow} from "./Utils";
 
@@ -198,68 +198,132 @@ export class GitHubAPI {
    * @param path
    * @param extraHeaders
    */
-  async getResponse<T>(path: string, extraHeaders?: Object): Promise<ShortResponse> {
-    const axiosConfig = {
+  async getResponse<T>(path: string, extraHeaders?: Object): Promise<ShortResponse<T>> {
+    const axiosRequestConfig = {
       headers: Object.assign({}, GitHubAPI.defaultHeaders, extraHeaders || {}),
     }
     try {
-      const start_time = Date.now();
-      const axiosResponse: AxiosResponse = await this.axiosInstance.get(path, axiosConfig);
-      const response: ShortResponse<T> = {
+      const fetchStart = Date.now();
+      const axiosResponse: AxiosResponse = await this.axiosInstance.get(path, axiosRequestConfig);
+      const fetchElapsed = Date.now() - fetchStart;
+      if (VERBOSE_FETCHES) log(` ${path}: ${fetchElapsed} ms`);
+      GitHubAPI.validateAxiosResponse(axiosResponse, path);
+      await GitHubAPI.handleGitHubRateLimiter(axiosResponse.headers, path, fetchElapsed);
+      return {
         data: axiosResponse.data,
         headers: axiosResponse.headers,
         status: axiosResponse.status,
       };
-      const fetchElapsed = Date.now() - start_time;
-      if (VERBOSE_FETCHES)
-        log(` ${path}: ${fetchElapsed} ms`);
-
-      // safety checks
-      if (response.status !== 200) err(`GitHubAPI.safeRequest: status is not 200 for: ${path}: ${response}`);
-
-      // API limiter: sleep to meet quotas
-      const hasRateLimiter =
-        response.headers.hasOwnProperty('x-ratelimit-limit') &&
-        response.headers.hasOwnProperty('x-ratelimit-remaining') &&
-        response.headers.hasOwnProperty('x-ratelimit-reset');
-      if (hasRateLimiter) {
-        const currentTs = unixTimeNow();
-        const resetTs = parseInt(response.headers['x-ratelimit-reset']);
-        const secondsRemaining = resetTs - currentTs + 10;
-        const callsRemaining = parseInt(response.headers['x-ratelimit-remaining']);
-        // sleep to delay
-        if (secondsRemaining > 0 && callsRemaining >= 0 && secondsRemaining <= 3700 && callsRemaining <= 20000) {
-          let forcedDelayMs = 0;
-          if (callsRemaining > 0) {
-            const aggressiveness = 2; // 1: even spacing, 2: more towards the beginning, etc..
-            forcedDelayMs = -fetchElapsed + ~~(1000 * secondsRemaining / callsRemaining / aggressiveness);
-          } else {
-            // if there are no calls left after this one, sleep for whatever time remaining +1s
-            forcedDelayMs = 1000 * secondsRemaining + 1000;
-          }
-          if (forcedDelayMs > 0) {
-            await new Promise(resolve => setTimeout(resolve, forcedDelayMs))
-            if (VERBOSE_FETCHES)
-              log(`   ...slept ${forcedDelayMs} ms (${callsRemaining} left for ${secondsRemaining}s)`);
-          }
-        } else
-          err(`GitHubAPI.safeRequest: bad rate limiter (${callsRemaining}, in ${secondsRemaining}s) for: ${path}`)
-      } else
-        err(`GitHubAPI.safeRequest: no rate limiter for: ${path}`);
-
-      // proceed
-      return response;
     } catch (e) {
-      if (e.response && e.response.status === 401)
-        err(`GitHubAPI.safeRequest: 401: while accessing ${path}. Likely cause: INVALID GitHub Personal Access Token.`);
-      else if (e.response && e.response.status === 404)
-        log(`GitHubAPI.safeRequest: 404: ${path} not found (anymore). ret: null.`);
-      else if (e.response && e.response.status === 451)
-        log(`GitHubAPI.safeRequest: 451: ${path} repo access blocked (dmca?). ret: null.`);
-      else
-        err(`GitHubAPI.safeRequest: ${path} GET error:`, e);
-      return null;
+      return GitHubAPI.handleAxiosException(e, path);
     }
   }
 
+  /**
+   * Performs a GraphQL query - which is just a POST with some GraphQL validation of the response
+   * @param qlQuery
+   * @param extraHeaders
+   */
+  async graphQL<T>(qlQuery: string | object, extraHeaders?: Object): Promise<T> {
+    const path = '/graphql';
+    const axiosRequestConfig = {
+      headers: Object.assign({}, GitHubAPI.defaultHeaders, extraHeaders || {}),
+    }
+    try {
+      const fetchStart = Date.now();
+      const axiosResponse: AxiosResponse = await this.axiosInstance.post(path, qlQuery, axiosRequestConfig);
+      const fetchElapsed = Date.now() - fetchStart;
+      if (VERBOSE_FETCHES) log(` ${path}: ${fetchElapsed} ms`);
+      GitHubAPI.validateAxiosResponse(axiosResponse, path);
+      await GitHubAPI.handleGitHubRateLimiter(axiosResponse.headers, path, fetchElapsed);
+      // GraphQL-specific
+      if (GitHubAPI.handleGraphQLErrors(axiosResponse.data))
+        return null;
+      return axiosResponse.data['data'];
+    } catch (e) {
+      return GitHubAPI.handleAxiosException(e, path);
+    }
+  }
+
+  // Static Helpers
+
+  private static validateAxiosResponse(axiosResponse: AxiosResponse, path: string) {
+    if (axiosResponse.status !== 200)
+      err(`GitHubAPI.safeRequest: status is not 200 for: ${path}: ${axiosResponse}`);
+  }
+
+  /**
+   * Helps with Rate Limiting, communicated by GitHub via HTTP response headers
+   * @param headers the HTTP headers of the response
+   * @param path the HTTP path of the response
+   * @param fetchElapsed the amount of time already elapsed for the Fetching of the data - to shorten a possible rate limiting delay
+   */
+  private static async handleGitHubRateLimiter(headers: object, path: string, fetchElapsed: number) {
+    // API limiter: sleep to meet quotas
+    const hasRateLimiter =
+      headers.hasOwnProperty('x-ratelimit-limit') &&
+      headers.hasOwnProperty('x-ratelimit-remaining') &&
+      headers.hasOwnProperty('x-ratelimit-reset');
+    if (hasRateLimiter) {
+      const currentTs = unixTimeNow();
+      const resetTs = parseInt(headers['x-ratelimit-reset']);
+      const secondsRemaining = resetTs - currentTs + 10;
+      const callsRemaining = parseInt(headers['x-ratelimit-remaining']);
+      // sleep to delay
+      if (secondsRemaining > 0 && callsRemaining >= 0 && secondsRemaining <= 3700 && callsRemaining <= 20000) {
+        let forcedDelayMs = 0;
+        if (callsRemaining > 0) {
+          const aggressiveness = 2; // 1: even spacing, 2: more towards the beginning, etc..
+          forcedDelayMs = -fetchElapsed + ~~(1000 * secondsRemaining / callsRemaining / aggressiveness);
+        } else {
+          // if there are no calls left after this one, sleep for whatever time remaining +1s
+          forcedDelayMs = 1000 * secondsRemaining + 1000;
+        }
+        if (forcedDelayMs > 0) {
+          await new Promise(resolve => setTimeout(resolve, forcedDelayMs))
+          if (VERBOSE_FETCHES)
+            log(`   ...slept ${forcedDelayMs} ms (${callsRemaining} left for ${secondsRemaining}s)`);
+        }
+      } else
+        err(`GitHubAPI.safeRequest: bad rate limiter (${callsRemaining}, in ${secondsRemaining}s) for: ${path}`)
+    } else
+      err(`GitHubAPI.safeRequest: no rate limiter for: ${path}`);
+  }
+
+  /**
+   * Explains an Axios Exception
+   */
+  private static handleAxiosException(e: any, path): null {
+    // handle Axios errors
+    if (e.response) {
+      const axiosError = e as AxiosError;
+      if (axiosError.response.status === 401)
+        err(`GitHubAPI.safeRequest: 401: while accessing ${path}. Likely cause: INVALID GitHub Personal Access Token.`);
+      else if (axiosError.response.status === 404)
+        log(`GitHubAPI.safeRequest: 404: ${path} not found (anymore). ret: null.`);
+      else if (axiosError.response.status === 451)
+        log(`GitHubAPI.safeRequest: 451: ${path} repo access blocked (dmca?). ret: null.`);
+      else
+        err(`GitHubAPI.safeRequest: ${path} GET error:`, e);
+      if (axiosError?.response?.data)
+        log(`server-response:`, axiosError?.response?.data);
+      return null;
+    }
+    // handle other errors
+    err(`GitHubAPI.safeRequest: ${path} GET error:`, e);
+    return null;
+  }
+
+  /**
+   * Detects and explains a GraphQL query Error
+   */
+  private static handleGraphQLErrors(responseData: any): boolean {
+    const hasErrors = responseData.hasOwnProperty('errors');
+    if (hasErrors)
+      log(`GitHubAPI.safeRequest: GraphQL errors:`, responseData['errors']);
+    const missesData = !responseData.hasOwnProperty('data') || typeof responseData['data'] !== 'object';
+    if (missesData)
+      err(`GitHubAPI.safeRequest: GraphQL missing data in the response`);
+    return hasErrors || missesData;
+  }
 }

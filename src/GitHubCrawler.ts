@@ -9,6 +9,7 @@
  * Uses Axios for REST API calls.
  */
 
+import 'graphql-import-node-as-string';
 import assert from "assert";
 import colors from "colors";
 import fs from "fs";
@@ -332,6 +333,22 @@ export class GitHubCrawler {
 
     // at this point, the data is all in sequence, older to newer
     return allData;
+  }
+
+  async testGraphQL(repoFullName: string) {
+    // example query string: "query { viewer { login }}"
+    const graphQlQuery = {
+      query: require('./graphql/get-repo-starrings.graphql'),
+      variables: {
+        owner: 'tensorflow',
+        name: 'tensorflow',
+        after: 'Y3Vyc29yOnYyOpO5MjAyMS0wMS0xMlQxMjowNjowNy0wODowMADODz8kZQ==',
+      },
+    };
+
+    const data = await this.githubAPI.graphQL(graphQlQuery);
+    log(data);
+
   }
 }
 
