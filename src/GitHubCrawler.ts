@@ -58,11 +58,13 @@ interface RepoRefStats {
   leftShare: number,
   relevance: number,
   scale: number,
+  // stats...
+
 }
 
 const HYPER_PARAMS = {
   related_users_max_stars: 200,
-  related_filters: [
+  relevant_filters: [
     {fn: (rs: RepoRefStats) => !rs.isArchived, reason: 'archived (old)'},
     {fn: (rs: RepoRefStats) => rs.leftShare >= 0.005, reason: 'left share < 0.5%'},
     {fn: (rs: RepoRefStats) => rs.rightShare >= 0.02, reason: 'right share < 2%'},
@@ -83,16 +85,13 @@ export class GitHubCrawler {
     const outFileName = repoId.replace('/', '_').replace('.', '_')
       + '-' + HYPER_PARAMS.related_users_max_stars;
 
-    // 1. Repo -> Stars(t)f
-    log(`*** Resolving starrings for '${colors.cyan(repoId)}' (recursion level: ${recursionLevel}/${recursionLimit})...`);
+    // 1. Repo -> Stars(t)
+    log(`*** Resolving starrings for '${colors.cyan(repoId)}' ...`);
     const starrings: Starring[] = await this.resolveRepoStarrings(repoId);
-    if (!starrings)
-      return log(`W: issues finding stars(t) of '${repoId}`);
-    if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
-
-    // stop recursion if done with the current task
-    if (recursionLevel >= recursionLimit)
-      return;
+    if (!starrings || starrings.length < 10)
+      return log(`W: issues finding stars(t) of '${repoId}: ${starrings?.length}`);
+    if (WRITE_OUTPUT_FILES)
+      fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
 
     // 2. Related repos: All Users -> Accumulate user's Starred repos
     log(`\n** Found ${colors.red(starrings.length.toString())} users that starred '${repoId}'. Next, finding all the starred repos of those users...`);
@@ -100,22 +99,37 @@ export class GitHubCrawler {
     const relatedRepos: RepoRefStats[] = await this.resolveUsersStarredRepos(userLogins, HYPER_PARAMS.related_users_max_stars);
     if (!relatedRepos || relatedRepos.length < 1)
       return log(`W: issues finding related repos`);
-    if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relatedRepos.csv`, (new JSONParser()).parse(relatedRepos));
+    if (WRITE_OUTPUT_FILES)
+      fs.writeFileSync(`out-${outFileName}-relatedRepos.csv`, (new JSONParser()).parse(relatedRepos));
 
-    // 3. Select on which repos to recurse, for more details
-    log(`\n** Narrowing down ${colors.bold.white(relatedRepos.length.toString())} discovered repos to ${colors.bold('relevant')} ` +
-      `repos, according to ${colors.yellow('related_filters')}...`);
+    // 3. Find Relevant repos, by filtering all Related repos
+    log(`\n** Discovered ${colors.bold.white(relatedRepos.length.toString())} related repos to '${repoId}'. Next, narrowing down ` +
+      `${colors.bold('relevant')} repos, according to ${colors.yellow('relevant_filters')}...`);
+
     let relevantRepos = relatedRepos.slice();
-    //const selfRepoStats = relevantRepos[0]; //.shift();
-    HYPER_PARAMS.related_filters.forEach(filter => relevantRepos = filterList(relevantRepos, filter.fn, filter.reason));
-    log(` -> ${colors.bold.white(relevantRepos.length.toString())} repos left ` +
+    HYPER_PARAMS.relevant_filters.forEach(filter => relevantRepos = filterList(relevantRepos, filter.fn, filter.reason));
+    log(` -> ${colors.bold.white(relevantRepos.length.toString())} ${colors.bold('relevant')} repos left ` +
       `(${Math.round(10000 * (1 - relevantRepos.length / relatedRepos.length)) / 100}% is gone)`);
-    if (WRITE_OUTPUT_FILES) fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
 
-    // RECUR (only on the Top-popular)
-    log(`\n>> Recurring into ${relevantRepos.length} repositories (most starred by the ${userLogins.length} users of ${repoId})`);
-    for (const repo of relevantRepos)
-      await this.resolveWave(repo.fullName, recursionLevel + 1, recursionLimit);
+    if (WRITE_OUTPUT_FILES)
+      fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
+
+    // 4. Find starrings for Relevant repos
+    log(`\n>> Finding starrings of ${relevantRepos.length} repositories (most starred by the ${userLogins.length} users of ${repoId})`);
+    for (const repo of relevantRepos) {
+      const relatedRepo = repo.fullName;
+      log(`*** 2-Resolving starrings for '${colors.cyan(relatedRepo)}' ...`);
+      if (relatedRepo === 'tensorflow/tensorflow')
+        log();
+      const starrings: Starring[] = await this.resolveRepoStarrings(relatedRepo);
+      if (!starrings || starrings.length < 10) {
+        log(`W: issues finding stars(t) of '${relatedRepo}: ${starrings?.length}`);
+        continue;
+      }
+      log(`Statistics for ${starrings.length} stars...`)
+      const starStats = GitHubCrawler.computeStarringStats(starrings);
+      log(starStats);
+    }
   }
 
   private async resolveRepoStarrings(repoId: string): Promise<Starring[]> {
