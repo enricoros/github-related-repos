@@ -132,7 +132,7 @@ export class GitHubCrawler {
 
     // get Starrings data
     const ghStarrings: GHTypes.Starring[] = await this.getDataArrayWithPagination<GHTypes.Starring>(
-      repoApiPath + '/stargazers', ['direction=desc'], GitHubAPI.stargazerHeaders, null);
+      repoApiPath + '/stargazers', null, GitHubAPI.stargazerHeaders, null);
 
     // match star expectations
     const fetchedCount = ghStarrings.length;
