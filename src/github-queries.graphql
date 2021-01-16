@@ -1,0 +1,46 @@
+query RepoStarsCount ($owner: String!, $name: String!) {
+  repository(name: $name, owner: $owner) {
+    stargazerCount
+  }
+}
+query StarringsForRepo ($owner: String!, $name: String!, $after: String) {
+  repository(name: $name, owner: $owner) {
+    stargazers(first: 100, orderBy: {field: STARRED_AT, direction: DESC}, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        starredAt
+      }
+      nodes {
+        login
+      }
+    }
+  }
+}
+query StarringsForUser ($login: String!, $after: String) {
+  user(login: $login) {
+    starredRepositories(first: 100, orderBy: {field: STARRED_AT, direction: DESC}, after: $after) {
+      totalCount
+      edges {
+        starredAt
+        node {
+          nameWithOwner
+          isArchived
+          isFork
+          isDisabled
+          isPrivate
+          description
+          createdAt
+          pushedAt
+          stargazerCount
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}

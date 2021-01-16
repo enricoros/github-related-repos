@@ -27,24 +27,3 @@ export const unixTimeStartOfWeek = (() => {
 
 export const unixTimeProgramStart = unixTimeNow();
 export const unixTimeProgramElapsed = () => unixTimeNow() - unixTimeProgramStart;
-
-// JS remove set of properties from an object, recursively.
-// NOTE: Adapted from https://stackoverflow.com/a/31729247
-export const removeProperties = (obj, keysToRemove) => {
-  if (obj === null || obj === undefined)
-    return obj;
-  if (obj instanceof Array) {
-    obj.forEach(item => removeProperties(item, keysToRemove));
-  } else if (typeof obj === 'object') {
-    Object.getOwnPropertyNames(obj).forEach((key) => {
-      if (keysToRemove.indexOf(key) !== -1)
-        delete obj[key];
-      else {
-        const value = obj[key];
-        if (value && typeof value === 'object')
-          removeProperties(value, keysToRemove);
-      }
-    });
-  }
-  return obj;
-}

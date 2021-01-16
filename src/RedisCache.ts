@@ -42,11 +42,11 @@ export class RedisCache {
    * @param objectResolver An Async function that resolves the object, if missing from the cache
    * @param cacheTransformer (optional) Re-processes (and saves) cached objects - used from time to time to migrate/clean the DB
    */
-  async cachedGetJSON(uid: string, ttl: number, objectResolver: () => Promise<object>, cacheTransformer?: (input: object) => object): Promise<object> {
+  async cachedGetJSON<T>(uid: string, ttl: number, objectResolver: () => Promise<T>, cacheTransformer?: (input: object) => object): Promise<T> {
     const key = `cache:${this.scopeName}:${uid}`;
     const currentUnixTime = ~~(Date.now() / 1000);
 
-    // use the cached object, if present
+    // use the cached object, if present and fresh
     const uidAlreadyPResent = Boolean(await this.redisClient.exists(key));
     if (uidAlreadyPResent) {
       const ts: number = parseInt(String(await this.redisClient.hget(key, 'ts')));
@@ -72,7 +72,7 @@ export class RedisCache {
     }
 
     // resolve the non-cached result (and bail if null)
-    let result = await objectResolver();
+    let result: T = await objectResolver();
     if (result == null)
       return result;
     // if (cacheTransformer) {
