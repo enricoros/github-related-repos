@@ -236,6 +236,11 @@ export class GitHubCrawler {
         const s = data.repository.stargazers;
         assert(s.edges.length === s.nodes.length, `Expected as many users as stars ${s.nodes.length}, ${s.edges.length}`);
         for (let i = 0; i < s.edges.length; i++) {
+          // sometimes a node (user) can be null.. maybe deleted in the meantime?
+          if (!s.edges[i] || !s.nodes[i]) {
+            err(` < skipping starring ${allStarrings.length + i} of repo '${owner}/${name}' (${!s.edges[i]}, ${!s.nodes[i]})`);
+            continue;
+          }
           allStarrings.push({
             n: descendingN--,
             starredAt: s.edges[i].starredAt,
