@@ -26,16 +26,21 @@ interface Basis {
 // Statistics functions
 
 export const statGetBounds = (xyList: XYList, checkMonotonic: boolean = true) => {
-  const xList = xyList.map(xy => xy.x);
-  const yList = xyList.map(xy => xy.y);
   const bounds = {
     first: xyList[0],
     last: xyList[xyList.length - 1],
-    left: Math.min(...xList),
-    right: Math.max(...xList),
-    bottom: Math.min(...yList),
-    top: Math.max(...yList),
+    left: undefined,
+    right: undefined,
+    bottom: undefined,
+    top: undefined,
   }
+  // had a nicer syntax earlier, but array destructuring can exceed stack size here
+  xyList.forEach(xy => {
+    if (bounds.left === undefined || xy.x < bounds.left) bounds.left = xy.x;
+    if (bounds.right === undefined || xy.x > bounds.right) bounds.right = xy.x;
+    if (bounds.bottom === undefined || xy.y < bounds.bottom) bounds.bottom = xy.y;
+    if (bounds.top === undefined || xy.y > bounds.top) bounds.top = xy.y;
+  });
   if (checkMonotonic && (bounds.left !== xyList[0].x || bounds.right != xyList[xyList.length - 1].x || bounds.bottom !== xyList[0].y || bounds.top != xyList[xyList.length - 1].y))
     log(`statBounds: list not monotonic (bounds: ${bounds}`);
   return bounds;

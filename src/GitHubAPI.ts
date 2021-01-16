@@ -279,13 +279,13 @@ export class GitHubAPI {
       else if (axiosError.response.status === 451)
         log(`GitHubAPI.safeRequest: 451: ${path} repo access blocked (dmca?). ret: null.`);
       else
-        err(`GitHubAPI.safeRequest: ${path} GET error:`, e);
+        err(`GitHubAPI.safeRequest: ${axiosError.response.status}: ${path} GET error:`, e);
       if (axiosError?.response?.data)
         log(`server-response:`, axiosError?.response?.data);
       return null;
     }
     // handle other errors
-    err(`GitHubAPI.safeRequest: ${path} GET error:`, e);
+    err(`GitHubAPI.safeRequest: ${path} GET (non-Axios) error:`, e);
     return null;
   }
 

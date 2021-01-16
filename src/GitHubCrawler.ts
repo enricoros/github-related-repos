@@ -74,21 +74,23 @@ export class GitHubCrawler {
     // 3. Find Relevant repos, by filtering all Related repos
     log(`\n** Discovered ${colors.bold.white(relatedRepos.length.toString())} related repos to '${repoId}'. Next, narrowing down ` +
       `${colors.bold('relevant')} repos, according to ${colors.yellow('relevant_filters')}...`);
-    let relevantRepos: RepoRefStats[];
+    let relevantRepos: RepoRefStats[], relevantCount: number;
     {
       relevantRepos = relatedRepos.slice();
       HYPER_PARAMS.relevant_filters.forEach(filter => relevantRepos = verboseFilterList(relevantRepos, filter.fn, filter.reason));
-      log(` -> ${colors.bold.white(relevantRepos.length.toString())} ${colors.bold('relevant')} repos left ` +
-        `(${Math.round(10000 * (1 - relevantRepos.length / relatedRepos.length)) / 100}% is gone)`);
+      relevantCount = relevantRepos.length;
+      log(` -> ${colors.bold.white(relevantCount.toString())} ${colors.bold('relevant')} repos left ` +
+        `(${Math.round(10000 * (1 - relevantCount / relatedRepos.length)) / 100}% is gone)`);
       if (WRITE_OUTPUT_FILES)
         fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
     }
 
     // 4. Find starrings for Relevant repos
-    log(`\n>> Finding starrings of ${relevantRepos.length} repositories (most starred by the ${userLogins.length} users of '${repoId}')`);
-    for (const repo of relevantRepos) {
+    log(`\n>> Finding starrings of ${relevantCount} repositories (most starred by the ${userLogins.length} users of '${repoId}')`);
+    for (let i = 0; i < relevantCount; i++) {
+      let repo = relevantRepos[i];
       const relatedRepo = repo.fullName;
-      log(`*** 2-Resolving starrings for '${colors.cyan(relatedRepo)}' ...`);
+      log(`*** Resolving starrings for '${colors.cyan(relatedRepo)}' (${i + 1}/${relevantCount}) ...`);
       const {owner: relatedOwner, name: relatedName} = GitHubAPI.repoFullNameToParts(relatedRepo);
       const starrings = await this.getRepoStarringsDecreasingCached(relatedOwner, relatedName);
       starrings.reverse();
@@ -109,7 +111,7 @@ export class GitHubCrawler {
     let xys = starrings.map(s => ({x: s.ts, y: s.n}));
 
     // remove everything before the start of the week
-    xys = statClip(xys, null, unixTimeStartOfWeek, null, null, 'remove partial current week');
+    // xys = statClip(xys, null, unixTimeStartOfWeek, null, null, 'remove partial current week');
 
     // some basic stats
     const {first, last, left: xMin, right: xMax, bottom: yMin, top: yMax} = statGetBounds(xys);
