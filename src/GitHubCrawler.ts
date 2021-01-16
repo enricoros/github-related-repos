@@ -20,7 +20,7 @@ import {statClip, statComputeSlopes, statGetBounds} from "./Statistics";
 
 // Configuration of this module
 const VERBOSE_LOGIC = false;
-const WRITE_OUTPUT_FILES = true;
+const WRITE_OUTPUT_FILES = false;
 
 const HYPER_PARAMS = {
   related_users_max_stars: 200,
@@ -47,35 +47,42 @@ export class GitHubCrawler {
       + '-' + HYPER_PARAMS.related_users_max_stars;
 
     // 1. Repo -> Stars(t)
-    log(`*** Resolving starrings for '${colors.cyan(repoId)}' ...`);
-    const {owner: repoOwner, name: repoName} = GitHubAPI.repoFullNameToParts(repoId);
-    const starrings = await this.getRepoStarringsCached(repoOwner, repoName);
-    if (!starrings || starrings.length < 10)
-      return log(`W: issues finding stars(t) of '${repoId}: ${starrings?.length}`);
-    if (WRITE_OUTPUT_FILES)
-      fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
+    log(`*** Resolving users that starred '${colors.cyan(repoId)}' ...`);
+    let userLogins: string[];
+    {
+      const {owner: repoOwner, name: repoName} = GitHubAPI.repoFullNameToParts(repoId);
+      const starrings = await this.getRepoStarringsDecreasingCached(repoOwner, repoName);
+      if (!starrings || starrings.length < 10)
+        return log(`W: issues finding stars(t) of '${repoId}: ${starrings?.length}`);
+      if (WRITE_OUTPUT_FILES)
+        fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
+      userLogins = starrings.map(starring => starring.userLogin);
+    }
 
     // 2. Related repos: All Users -> Accumulate user's Starred repos
-    log(`\n** Found ${colors.red(starrings.length.toString())} users that starred '${repoId}'. Next, finding all the starred repos of those users...`);
-    const userLogins: string[] = starrings.map(starring => starring.userLogin);
-    userLogins.forEach(login => assert(typeof login === 'string'));
-    const relatedRepos: RepoRefStats[] = await this.getUsersStarredRepos(userLogins, HYPER_PARAMS.related_users_max_stars);
-    if (!relatedRepos || relatedRepos.length < 1)
-      return log(`W: issues finding related repos`);
-    if (WRITE_OUTPUT_FILES)
-      fs.writeFileSync(`out-${outFileName}-relatedRepos.csv`, (new JSONParser()).parse(relatedRepos));
+    log(`\n** Found ${colors.red(userLogins.length.toString())} users that starred '${repoId}'. Next, finding all the starred repos of those users...`);
+    let relatedRepos: RepoRefStats[];
+    {
+      userLogins.forEach(login => assert(typeof login === 'string'));
+      relatedRepos = await this.getUsersStarredRepos(userLogins, HYPER_PARAMS.related_users_max_stars);
+      if (!relatedRepos || relatedRepos.length < 1)
+        return log(`W: issues finding related repos`);
+      if (WRITE_OUTPUT_FILES)
+        fs.writeFileSync(`out-${outFileName}-relatedRepos.csv`, (new JSONParser()).parse(relatedRepos));
+    }
 
     // 3. Find Relevant repos, by filtering all Related repos
     log(`\n** Discovered ${colors.bold.white(relatedRepos.length.toString())} related repos to '${repoId}'. Next, narrowing down ` +
       `${colors.bold('relevant')} repos, according to ${colors.yellow('relevant_filters')}...`);
-
-    let relevantRepos = relatedRepos.slice();
-    HYPER_PARAMS.relevant_filters.forEach(filter => relevantRepos = verboseFilterList(relevantRepos, filter.fn, filter.reason));
-    log(` -> ${colors.bold.white(relevantRepos.length.toString())} ${colors.bold('relevant')} repos left ` +
-      `(${Math.round(10000 * (1 - relevantRepos.length / relatedRepos.length)) / 100}% is gone)`);
-
-    if (WRITE_OUTPUT_FILES)
-      fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
+    let relevantRepos: RepoRefStats[];
+    {
+      relevantRepos = relatedRepos.slice();
+      HYPER_PARAMS.relevant_filters.forEach(filter => relevantRepos = verboseFilterList(relevantRepos, filter.fn, filter.reason));
+      log(` -> ${colors.bold.white(relevantRepos.length.toString())} ${colors.bold('relevant')} repos left ` +
+        `(${Math.round(10000 * (1 - relevantRepos.length / relatedRepos.length)) / 100}% is gone)`);
+      if (WRITE_OUTPUT_FILES)
+        fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
+    }
 
     // 4. Find starrings for Relevant repos
     log(`\n>> Finding starrings of ${relevantRepos.length} repositories (most starred by the ${userLogins.length} users of '${repoId}')`);
@@ -83,7 +90,8 @@ export class GitHubCrawler {
       const relatedRepo = repo.fullName;
       log(`*** 2-Resolving starrings for '${colors.cyan(relatedRepo)}' ...`);
       const {owner: relatedOwner, name: relatedName} = GitHubAPI.repoFullNameToParts(relatedRepo);
-      const starrings = await this.getRepoStarringsCached(relatedOwner, relatedName);
+      const starrings = await this.getRepoStarringsDecreasingCached(relatedOwner, relatedName);
+      starrings.reverse();
       if (!starrings || starrings.length < 10) {
         log(`W: issues finding stars(t) of '${relatedRepo}: ${starrings?.length}`);
         continue;
@@ -148,7 +156,7 @@ export class GitHubCrawler {
     const usersCount = userLogins.length;
     let validUsersCount = 0;
     for (let i = 0; i < usersCount; i++) {
-      if (i % 100 === 0) log(` - Fetching up to ${maxStarsPerUser} stars for user ${colors.red((i + 1).toString())}/${usersCount} ...`);
+      if (i % 1000 === 0) log(` - Fetching up to ${maxStarsPerUser} stars for user ${colors.red((i + 1).toString())}/${usersCount} ...`);
       const userLogin = userLogins[i];
       if (VERBOSE_LOGIC) log(` - Fetching all stars of user ${i + 1}/${usersCount}: ${userLogin} ...`);
 
@@ -205,11 +213,11 @@ export class GitHubCrawler {
     return popularReposRefs;
   }
 
-  private getRepoStarringsCached = async (owner, name): Promise<Starring[]> =>
+  private getRepoStarringsDecreasingCached = async (owner, name): Promise<Starring[]> =>
     await this.redisCache.cachedGetJSON(`starrings-${owner}/${name}`, 3600 * 24 * 14,
-      async () => await this.getRepoStarrings(owner, name));
+      async () => await this.getRepoStarringsDecreasing(owner, name));
 
-  private async getRepoStarrings(owner: string, name: string): Promise<Starring[]> {
+  private async getRepoStarringsDecreasing(owner: string, name: string): Promise<Starring[]> {
     // get the total number of stars only at the beginning (could be in the paged query, but then it would be live and slow)
     const repoStarsCount = await this.githubAPI.gqlRepoStarsCount(owner, name);
     const stargazersCount = repoStarsCount.repository.stargazerCount;
