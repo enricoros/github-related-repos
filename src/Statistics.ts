@@ -1,7 +1,7 @@
 /**
  * Statistic helper functions. They revolve around {x,y} points.
  */
-import {err, log, secondsPerDay} from "./Utils";
+import {err, log, roundToDecimals, secondsPerDay} from "./Utils";
 
 // Configuration of this module
 const VERBOSE_STATS = false;
@@ -48,7 +48,7 @@ export function statClip(xyList: XYPoint[], left?: number, right?: number, botto
   const finalListSize = filteredList.length;
   if (VERBOSE_STATS && initialListSize !== finalListSize && initialListSize) {
     if (finalListSize) {
-      const removedPercent = Math.round((1 - (finalListSize / initialListSize)) * 100 * 100) / 100;
+      const removedPercent = roundToDecimals((1 - (finalListSize / initialListSize)) * 100, 2);
       log(`statFilterBounds: removed ${initialListSize - finalListSize} (${removedPercent}%), ${finalListSize} left${reason ? ', because: ' + reason : ''}`);
     } else
       log(`statFilterBounds: removed all ${initialListSize} points${reason ? ', because: ' + reason : ''}`);
@@ -78,5 +78,5 @@ export function statComputeSlope(xyList: XYPoint[], left: number, right: number,
     return undefined;
   }
   // round the slope to 2 decimals
-  return Math.round(100 * dY_stars / dX_days) / 100;
+  return roundToDecimals(dY_stars / dX_days, 2);
 }

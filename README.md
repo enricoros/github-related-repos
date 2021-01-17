@@ -4,12 +4,15 @@ Find related GitHub projects to a target, and understand their success.
 
 #### Working principle
 
-We find all the GitHub stars of the target project (up to 40K). Each star belongs to a user. We then descend recursively into each user to
-find all their starred projects - and the theory is that when accumulating and ranking all the starred projects, the related project will be
-on top of the list. In other words, we rely on the wisdom of the original repo's crowd.
+We find all the GitHub stars of the target project. Each star belongs to a user. We then descend recursively into each user to find all
+their starred projects - and the theory is that when accumulating and ranking all the starred projects, the related project will be on top
+of the list. In other words, we rely on the wisdom of the original repo's crowd.
 
-This project uses the [GitHub REST PI](https://docs.github.com/en/free-pro-team@latest/rest) to query information about _Repositories_ and _
-Users_ of GitHub.
+This project uses the [GitHub GraphQL API](https://docs.github.com/en/graphql) to query information about _Repositories_ and
+_Users_ of GitHub.
+
+#### Changelog
+* Jan 17, 2021: Migrated to the GraphQL API
 
 ## Running
 
@@ -37,6 +40,7 @@ which case you can follow these instructions:
    ```
 
 On both 3. or 4 above, for finding related repositories, for example to 'github/roadmap', use the following options:
+
 ```shell
 src/github-analyzer.ts related --repo github/roadmap
 ```
@@ -46,14 +50,15 @@ src/github-analyzer.ts related --repo github/roadmap
 All the source code is in the [src](src) folder. The following can be edited to configure the application:
 
 * [src/github-analyzer.ts](src/github-analyzer.ts) for  ```repoFullName```, the name of the target repository
-* [src/GitHubAnalyzer.ts](src/GitHubAnalyzer.ts) for ```WRITE_OUTPUT_FILES``` and a couple of debug flags and more importantly for _ranking_ and _
+* [src/GitHubAnalyzer.ts](src/GitHubAnalyzer.ts) for ```WRITE_OUTPUT_FILES``` and a couple of debug flags and more importantly for _ranking_
+  and _
   filtering_ criteria.
 
 ### Advanced: Filtering & Ranking
 
 Sorry it's all in the code so far, but basically you want to change the ```HYPER_PARAMS``` variable
-inside [src/GitHubAnalyzer.ts](src/GitHubAnalyzer.ts) for changing filtering criteria, followed by the function that sets ```repo.relevance``` in
-the ```resolveUsersStarredRepos(...)``` function.
+inside [src/GitHubAnalyzer.ts](src/GitHubAnalyzer.ts) for changing filtering criteria, followed by the function that
+sets ```repo.relevance``` in the ```resolveUsersStarredRepos(...)``` function.
 
 ## Acknowledgements
 

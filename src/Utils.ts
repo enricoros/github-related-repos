@@ -27,3 +27,6 @@ export const unixTimeStartOfWeek = (() => {
 
 export const unixTimeProgramStart = unixTimeNow();
 export const unixTimeProgramElapsed = () => unixTimeNow() - unixTimeProgramStart;
+
+// others
+export const roundToDecimals = (n: number, decimals: number) => +n.toFixed(decimals);

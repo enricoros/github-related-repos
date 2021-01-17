@@ -15,7 +15,7 @@ async function findRelatedRepositories(repoFullName: string) {
   const ghAPI = new GitHubAPI();
   const crawler = new GitHubAnalyzer(ghAPI);
   await crawler.findAndAnalyzeRelatedRepos(repoFullName);
-  log(`\nAnalysis complete in ${unixTimeProgramElapsed()} seconds.`);
+  log(`\nAnalysis of '${repoFullName}' complete in ${unixTimeProgramElapsed()} seconds.`);
 }
 
 

@@ -15,7 +15,7 @@ import fs from "fs";
 import {Parser as JSONParser} from "json2csv";
 import {RedisCache} from "./RedisCache";
 import {GitHubAPI, GQL} from "./GitHubAPI";
-import {err, log, secondsPerDay, unixTimeFromISOString, unixTimeProgramStart, unixTimeStartOfWeek} from "./Utils";
+import {err, log, roundToDecimals, secondsPerDay, unixTimeFromISOString, unixTimeProgramStart, unixTimeStartOfWeek} from "./Utils";
 import {statComputeSlope, statGetBounds, XYPoint} from "./Statistics";
 
 // Configuration of this module
@@ -65,8 +65,8 @@ export class GitHubAnalyzer {
       const starrings = await this.getRepoStarringsDESCCached(repoOwner, repoName);
       if (starrings.length < 10)
         return log(`W: issues finding stars(t) of '${initialRepoId}: ${starrings?.length}`);
-      if (WRITE_OUTPUT_FILES)
-        fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
+      // if (WRITE_OUTPUT_FILES)
+      //   fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
       userLogins = starrings.map(starring => starring.userLogin);
     }
 
@@ -79,7 +79,7 @@ export class GitHubAnalyzer {
       if (!relatedRepos || relatedRepos.length < 1)
         return log(`W: issues finding related repos`);
       if (WRITE_OUTPUT_FILES)
-        fs.writeFileSync(`out-${outFileName}-relatedRepos.csv`, (new JSONParser()).parse(relatedRepos));
+        fs.writeFileSync(`out-${outFileName}-related.csv`, (new JSONParser()).parse(relatedRepos));
     }
 
     // 3. Find Relevant repos, by filtering all Related repos
@@ -91,9 +91,9 @@ export class GitHubAnalyzer {
       SEARCH_HYPER_PARAMS.relevant_filters.forEach(filter => relevantRepos = verboseFilterList(relevantRepos, filter.fn, filter.reason));
       relevantCount = relevantRepos.length;
       log(` -> ${colors.bold.white(relevantCount.toString())} ${colors.bold('relevant')} repos left ` +
-        `(${Math.round(10000 * (1 - relevantCount / relatedRepos.length)) / 100}% is gone)`);
-      if (WRITE_OUTPUT_FILES)
-        fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
+        `(${roundToDecimals(100 * (1 - relevantCount / relatedRepos.length), 2)}% is gone)`);
+      // if (WRITE_OUTPUT_FILES)
+      //   fs.writeFileSync(`out-${outFileName}-relevant.csv`, (new JSONParser()).parse(relevantRepos));
     }
 
     // 4. Process all Relevant repos
@@ -114,7 +114,7 @@ export class GitHubAnalyzer {
       // print basic stats (bounds)
       const {first, last, left: xMin, right: xMax, bottom: yMin, top: yMax} = statGetBounds(xyList);
       log(` - last star was ${Math.round((unixTimeProgramStart - xMax) / 3600)} hours ago (#${yMax}), ` +
-        `the first (#${yMin}) was ${Math.round(100 * (unixTimeProgramStart - xMin) / 3600 / 24 / 365) / 100} years ago`);
+        `the first (#${yMin}) was ${roundToDecimals((unixTimeProgramStart - xMin) / 3600 / 24 / 365, 2)} years ago`);
 
       // TODO: could do weekly samplings here of each repo, to plot trend lines, exported as a separate output
 
@@ -130,7 +130,7 @@ export class GitHubAnalyzer {
     const unusedAttributes = ['isArchived'];
     relevantRepos.forEach(r => unusedAttributes.forEach(u => delete r[u]));
     if (WRITE_OUTPUT_FILES)
-      fs.writeFileSync(`out-${outFileName}-relevantReposStats.csv`, (new JSONParser()).parse(relevantRepos));
+      fs.writeFileSync(`out-${outFileName}-stats.csv`, (new JSONParser()).parse(relevantRepos));
   }
 
   /// Parsers of GitHub GQL data into our own data types
@@ -199,6 +199,7 @@ export class GitHubAnalyzer {
     // get starred repositories for all the provided user logins
     const usersCount = userLogins.length;
     let validUsersCount = 0;
+    const ellipsize = (text) => text.length > 200 ? (text.slice(0, 200) + '...') : text;
     for (let i = 0; i < usersCount; i++) {
       if (i % 1000 === 0) log(` - Fetching up to ${maxStarsPerUser} stars for user ${colors.red((i + 1).toString())}/${usersCount} ...`);
       const userLogin = userLogins[i];
@@ -219,9 +220,9 @@ export class GitHubAnalyzer {
         if (!repoStatsAccumulator.hasOwnProperty(repoFullName)) {
           repoStatsAccumulator[repoFullName] = {
             fullName: repoFullName,
-            description: (r.description || '').slice(0, 60),
-            createdAgo: (unixTimeProgramStart - unixTimeFromISOString(r.createdAt)) / 3600 / 24,
-            pushedAgo: (unixTimeProgramStart - unixTimeFromISOString(r.pushedAt)) / 3600 / 24,
+            description: ellipsize(r.description || ''),
+            createdAgo: roundToDecimals((unixTimeProgramStart - unixTimeFromISOString(r.createdAt)) / 3600 / 24, 1),
+            pushedAgo: roundToDecimals((unixTimeProgramStart - unixTimeFromISOString(r.pushedAt)) / 3600 / 24, 1),
             isArchived: r.isArchived,
             isFork: r.isFork ? 1 : undefined,
             repoStars: r.stargazerCount,
@@ -245,9 +246,9 @@ export class GitHubAnalyzer {
     const shareAdjustment = validUsersCount ? (usersCount / validUsersCount) : 1;
     const popularReposRefs: RepoRefStats[] = Object.values(repoStatsAccumulator);
     for (let repo of popularReposRefs) {
-      repo.rightShare = shareAdjustment * repo.usersStars / repo.repoStars;
-      repo.leftShare = shareAdjustment * repo.usersStars / usersCount;
-      repo.relevance = Math.pow(repo.rightShare * repo.rightShare * repo.leftShare, 1 / 3);
+      repo.rightShare = roundToDecimals(shareAdjustment * repo.usersStars / repo.repoStars, 4);
+      repo.leftShare = roundToDecimals(shareAdjustment * repo.usersStars / usersCount, 4);
+      repo.relevance = roundToDecimals(Math.pow(repo.rightShare * repo.rightShare * repo.leftShare, 1 / 3), 4);
     }
 
     // sort top starred repos for the provided group of users
