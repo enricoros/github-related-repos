@@ -1,5 +1,5 @@
 /**
- * GitHubCrawler: classes and utility functions for GitHub.
+ * GitHubAnalyzer: classes and utility functions for GitHub.
  *
  * A bit too tangled for now, but cleaning it is not the highest priority.
  *
@@ -15,25 +15,36 @@ import fs from "fs";
 import {Parser as JSONParser} from "json2csv";
 import {RedisCache} from "./RedisCache";
 import {GitHubAPI, GQL} from "./GitHubAPI";
-import {err, log, unixTimeFromISOString, unixTimeProgramStart, unixTimeStartOfWeek} from "./Utils";
-import {statClip, statComputeSlopes, statGetBounds} from "./Statistics";
+import {err, log, secondsPerDay, unixTimeFromISOString, unixTimeProgramStart, unixTimeStartOfWeek} from "./Utils";
+import {statComputeSlope, statGetBounds, XYPoint} from "./Statistics";
 
 // Configuration of this module
 const VERBOSE_LOGIC = false;
-const WRITE_OUTPUT_FILES = false;
+const WRITE_OUTPUT_FILES = true;
+const STAT_INTERVALS = [
+  {name: 'T1W', weekMinus: 7},
+  {name: 'T2W', weekMinus: 7 * 2},
+  {name: 'T1M', weekMinus: 365 / 12},
+  {name: 'T3M', weekMinus: 365 / 4},
+  {name: 'T6M', weekMinus: 365 / 2},
+  {name: 'T1Y', weekMinus: 365},
+  {name: 'T2Y', weekMinus: 365 * 2},
+  {name: 'T5Y', weekMinus: 365 * 5},
+  {name: 'TI', weekMinus: -1}, // special: -1 means xMin
+];
 
-const HYPER_PARAMS = {
+const SEARCH_HYPER_PARAMS = {
   related_users_max_stars: 200,
   relevant_filters: [
     {fn: (rs: RepoRefStats) => !rs.isArchived, reason: 'archived (old)'},
     {fn: (rs: RepoRefStats) => rs.leftShare >= 0.005, reason: 'left share < 0.5%'},
     {fn: (rs: RepoRefStats) => rs.rightShare >= 0.02, reason: 'right share < 2%'},
-    {fn: (rs: RepoRefStats) => rs.pushedAgo < 60, reason: 'no activity in the last 2 months'},
+    {fn: (rs: RepoRefStats) => rs.pushedAgo < 42, reason: 'no activity in the last 6 weeks'},
   ],
 }
 
 
-export class GitHubCrawler {
+export class GitHubAnalyzer {
   private readonly githubAPI: GitHubAPI;
   private readonly redisCache: RedisCache;
 
@@ -42,29 +53,29 @@ export class GitHubCrawler {
     this.redisCache = new RedisCache('GitHubCrawler');
   }
 
-  async analyzeRelatedRepos(repoId: string) {
-    const outFileName = repoId.replace('/', '_').replace('.', '_')
-      + '-' + HYPER_PARAMS.related_users_max_stars;
+  async findAndAnalyzeRelatedRepos(initialRepoId: string) {
+    const outFileName = initialRepoId.replace('/', '_').replace('.', '_')
+      + '-' + SEARCH_HYPER_PARAMS.related_users_max_stars;
 
-    // 1. Repo -> Stars(t)
-    log(`*** Resolving users that starred '${colors.cyan(repoId)}' ...`);
+    // 1. Repo -> Users[]
+    log(`*** Resolving Users that starred '${colors.cyan(initialRepoId)}' ...`);
     let userLogins: string[];
     {
-      const {owner: repoOwner, name: repoName} = GitHubAPI.repoFullNameToParts(repoId);
-      const starrings = await this.getRepoStarringsDecreasingCached(repoOwner, repoName);
-      if (!starrings || starrings.length < 10)
-        return log(`W: issues finding stars(t) of '${repoId}: ${starrings?.length}`);
+      const {owner: repoOwner, name: repoName} = GitHubAPI.repoFullNameToParts(initialRepoId);
+      const starrings = await this.getRepoStarringsDESCCached(repoOwner, repoName);
+      if (starrings.length < 10)
+        return log(`W: issues finding stars(t) of '${initialRepoId}: ${starrings?.length}`);
       if (WRITE_OUTPUT_FILES)
         fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
       userLogins = starrings.map(starring => starring.userLogin);
     }
 
-    // 2. Related repos: All Users -> Accumulate user's Starred repos
-    log(`\n** Found ${colors.red(userLogins.length.toString())} users that starred '${repoId}'. Next, finding all the starred repos of those users...`);
+    // 2. Related repos: Users[] -> Accumulate user's Starred repos
+    log(`\n** Found ${colors.red(userLogins.length.toString())} users that starred '${initialRepoId}'. Next, finding all the starred repos of those users...`);
     let relatedRepos: RepoRefStats[];
     {
       userLogins.forEach(login => assert(typeof login === 'string'));
-      relatedRepos = await this.getUsersStarredRepos(userLogins, HYPER_PARAMS.related_users_max_stars);
+      relatedRepos = await this.getUsersStarredRepos(userLogins, SEARCH_HYPER_PARAMS.related_users_max_stars);
       if (!relatedRepos || relatedRepos.length < 1)
         return log(`W: issues finding related repos`);
       if (WRITE_OUTPUT_FILES)
@@ -72,12 +83,12 @@ export class GitHubCrawler {
     }
 
     // 3. Find Relevant repos, by filtering all Related repos
-    log(`\n** Discovered ${colors.bold.white(relatedRepos.length.toString())} related repos to '${repoId}'. Next, narrowing down ` +
+    log(`\n** Discovered ${colors.bold.white(relatedRepos.length.toString())} related repos to '${initialRepoId}'. Next, narrowing down ` +
       `${colors.bold('relevant')} repos, according to ${colors.yellow('relevant_filters')}...`);
     let relevantRepos: RepoRefStats[], relevantCount: number;
     {
       relevantRepos = relatedRepos.slice();
-      HYPER_PARAMS.relevant_filters.forEach(filter => relevantRepos = verboseFilterList(relevantRepos, filter.fn, filter.reason));
+      SEARCH_HYPER_PARAMS.relevant_filters.forEach(filter => relevantRepos = verboseFilterList(relevantRepos, filter.fn, filter.reason));
       relevantCount = relevantRepos.length;
       log(` -> ${colors.bold.white(relevantCount.toString())} ${colors.bold('relevant')} repos left ` +
         `(${Math.round(10000 * (1 - relevantCount / relatedRepos.length)) / 100}% is gone)`);
@@ -85,137 +96,53 @@ export class GitHubCrawler {
         fs.writeFileSync(`out-${outFileName}-relevantRepos.csv`, (new JSONParser()).parse(relevantRepos));
     }
 
-    // 4. Find starrings for Relevant repos
-    log(`\n>> Finding starrings of ${relevantCount} repositories (most starred by the ${userLogins.length} users of '${repoId}')`);
+    // 4. Process all Relevant repos
+    log(`\n>> Finding starrings of ${relevantCount} repositories (most starred by the ${userLogins.length} users of '${initialRepoId}')`);
     for (let i = 0; i < relevantCount; i++) {
-      let repo = relevantRepos[i];
-      const relatedRepo = repo.fullName;
-      log(`*** Resolving starrings for '${colors.cyan(relatedRepo)}' (${i + 1}/${relevantCount}) ...`);
-      const {owner: relatedOwner, name: relatedName} = GitHubAPI.repoFullNameToParts(relatedRepo);
-      const starrings = await this.getRepoStarringsDecreasingCached(relatedOwner, relatedName);
-      starrings.reverse();
-      if (!starrings || starrings.length < 10) {
-        log(`W: issues finding stars(t) of '${relatedRepo}: ${starrings?.length}`);
+      const repo = relevantRepos[i];
+
+      log(`*** Resolving starrings for '${colors.cyan(repo.fullName)}' (${i + 1}/${relevantCount}) ...`);
+      const starrings = await this.getRepoStarringsASCCached(repo.fullName);
+      if (starrings.length < 10) {
+        log(`W: issues finding stars(t) of '${repo.fullName}: ${starrings?.length}`);
         continue;
       }
-      // log(`Statistics for ${starrings.length} stars...`)
-      const starStats = GitHubCrawler.computeStarringStats(starrings);
-      log(starStats);
+
+      // Compute statistics for various time intervals that end at the beginning of the current week
+      let xyList: XYPoint[] = starrings.map(s => ({x: s.ts, y: s.n}));
+
+      // print basic stats (bounds)
+      const {first, last, left: xMin, right: xMax, bottom: yMin, top: yMax} = statGetBounds(xyList);
+      log(` - last star was ${Math.round((unixTimeProgramStart - xMax) / 3600)} hours ago (#${yMax}), ` +
+        `the first (#${yMin}) was ${Math.round(100 * (unixTimeProgramStart - xMin) / 3600 / 24 / 365) / 100} years ago`);
+
+      // TODO: could do weekly samplings here of each repo, to plot trend lines, exported as a separate output
+
+      // compute interval stats, and add them to the repo object
+      const intervalStats = {};
+      for (const interval of STAT_INTERVALS) {
+        const right = unixTimeStartOfWeek;
+        const left = (interval.weekMinus === -1) ? xMin : right - secondsPerDay * interval.weekMinus;
+        repo[interval.name] = intervalStats[interval.name] = statComputeSlope(xyList, left, right, xMin, interval.name);
+      }
     }
-  }
-
-  /// Statistical functions
-
-  private static computeStarringStats(starrings: Starring[]) {
-    // to XYList
-    let xys = starrings.map(s => ({x: s.ts, y: s.n}));
-
-    // remove everything before the start of the week
-    // xys = statClip(xys, null, unixTimeStartOfWeek, null, null, 'remove partial current week');
-
-    // some basic stats
-    const {first, last, left: xMin, right: xMax, bottom: yMin, top: yMax} = statGetBounds(xys);
-    {
-      const firstAgo = unixTimeProgramStart - xMin;
-      const lastAgo = unixTimeProgramStart - xMax;
-      log(` - last star was ${Math.round(lastAgo / 3600)} hours ago (#${yMax}), ` +
-        `the first (#${yMin}) was ${Math.round(100 * firstAgo / 3600 / 24 / 365) / 100} years ago`);
-    }
-
-    // compute growth in Y at different X bases
-    const Bases = [
-      {name: 'T1W', days: 7, slope: undefined},
-      {name: 'T2W', days: 7 * 2, slope: undefined},
-      {name: 'T1M', days: 365 / 12, slope: undefined},
-      {name: 'T3M', days: 365 / 4, slope: undefined},
-      {name: 'T6M', days: 365 / 2, slope: undefined},
-      {name: 'T1Y', days: 365, slope: undefined},
-      {name: 'T2Y', days: 365 * 2, slope: undefined},
-      {name: 'T5Y', days: 365 * 5, slope: undefined},
-      {name: 'TI', days: -1, slope: undefined}, // special: -1 means xMin
-    ]
-    statComputeSlopes(xys, Bases, unixTimeStartOfWeek, xMin);
-
-    // TODO: compute Weekly numbers
-    // TODO: compute histograms on Starrings, for Excel charts, then merged across all of the repos later
-
-    // return stats
-    return {
-      slopes: Bases,
-      weekly: undefined,
-    }
+    // remove unused attributes for the export
+    const unusedAttributes = ['isArchived'];
+    relevantRepos.forEach(r => unusedAttributes.forEach(u => delete r[u]));
+    if (WRITE_OUTPUT_FILES)
+      fs.writeFileSync(`out-${outFileName}-relevantReposStats.csv`, (new JSONParser()).parse(relevantRepos));
   }
 
   /// Parsers of GitHub GQL data into our own data types
 
-  private async getUsersStarredRepos(userLogins: string[], maxStarsPerUser: number): Promise<RepoRefStats[]> {
-    // accumulator for counting all referred-to repos
-    const repoStatsAccumulator: {
-      [repoFullName: string]: RepoRefStats,
-    } = {};
+  /// Repository > Starrings
 
-    // get starred repositories for all the provided user logins
-    const usersCount = userLogins.length;
-    let validUsersCount = 0;
-    for (let i = 0; i < usersCount; i++) {
-      if (i % 1000 === 0) log(` - Fetching up to ${maxStarsPerUser} stars for user ${colors.red((i + 1).toString())}/${usersCount} ...`);
-      const userLogin = userLogins[i];
-      if (VERBOSE_LOGIC) log(` - Fetching all stars of user ${i + 1}/${usersCount}: ${userLogin} ...`);
-
-      // get the data from every user, skip users under threshold
-      const repoMinInfos = await this.getUserStarredReposCached(userLogin, HYPER_PARAMS.related_users_max_stars);
-      if (repoMinInfos.length < 1)
-        continue;
-
-      // accumulate the data into the RepoRefStats format
-      for (const r of repoMinInfos) {
-        const repoFullName = r.nameWithOwner;
-        // sanity check: log special conditions (assumed always false)
-        if (r.isDisabled || r.isPrivate)
-          log(` special repo ${repoFullName}: disabled: ${r.isDisabled}, private: ${r.isPrivate}`);
-        // create repo reference if needed (with invariant properties across users)
-        if (!repoStatsAccumulator.hasOwnProperty(repoFullName)) {
-          repoStatsAccumulator[repoFullName] = {
-            fullName: repoFullName,
-            isArchived: r.isArchived,
-            isFork: r.isFork,
-            description: (r.description || '').slice(0, 50),
-            createdAgo: (unixTimeProgramStart - unixTimeFromISOString(r.createdAt)) / 3600 / 24,
-            pushedAgo: (unixTimeProgramStart - unixTimeFromISOString(r.pushedAt)) / 3600 / 24,
-            repoStars: r.stargazerCount,
-            // dynamic, to be populated later
-            usersStars: 0,
-            rightShare: undefined,
-            leftShare: undefined,
-            relevance: undefined,
-            scale: undefined,
-          }
-        }
-        // integrate stats for this repo
-        const repoReference = repoStatsAccumulator[repoFullName];
-        repoReference.usersStars++;
-      }
-
-      // the real number of users (less the skipped)
-      validUsersCount++;
-    }
-
-    // add the couple of fields that were missing
-    const shareAdjustment = validUsersCount ? (usersCount / validUsersCount) : 1;
-    const popularReposRefs: RepoRefStats[] = Object.values(repoStatsAccumulator);
-    for (let repo of popularReposRefs) {
-      repo.rightShare = shareAdjustment * repo.usersStars / repo.repoStars;
-      repo.leftShare = shareAdjustment * repo.usersStars / usersCount;
-      repo.relevance = Math.pow(repo.rightShare * repo.rightShare * repo.leftShare, 1 / 3);
-      repo.scale = shareAdjustment;
-    }
-
-    // sort top starred repos for the provided group of users
-    popularReposRefs.sort((a, b) => b.relevance - a.relevance);
-    return popularReposRefs;
+  private getRepoStarringsASCCached = async (repoFullName: string): Promise<Starring[]> => {
+    const {owner: relatedOwner, name: relatedName} = GitHubAPI.repoFullNameToParts(repoFullName);
+    return (await this.getRepoStarringsDESCCached(relatedOwner, relatedName)).reverse();
   }
 
-  private getRepoStarringsDecreasingCached = async (owner, name): Promise<Starring[]> =>
+  private getRepoStarringsDESCCached = async (owner, name): Promise<Starring[]> =>
     await this.redisCache.cachedGetJSON(`starrings-${owner}/${name}`, 3600 * 24 * 14,
       async () => await this.getRepoStarringsDecreasing(owner, name));
 
@@ -259,6 +186,73 @@ export class GitHubCrawler {
       ]
     );
     return allStarrings;
+  }
+
+  /// User(s) Starrings
+
+  private async getUsersStarredRepos(userLogins: string[], maxStarsPerUser: number): Promise<RepoRefStats[]> {
+    // accumulator for counting all referred-to repos
+    const repoStatsAccumulator: {
+      [repoFullName: string]: RepoRefStats,
+    } = {};
+
+    // get starred repositories for all the provided user logins
+    const usersCount = userLogins.length;
+    let validUsersCount = 0;
+    for (let i = 0; i < usersCount; i++) {
+      if (i % 1000 === 0) log(` - Fetching up to ${maxStarsPerUser} stars for user ${colors.red((i + 1).toString())}/${usersCount} ...`);
+      const userLogin = userLogins[i];
+      if (VERBOSE_LOGIC) log(` - Fetching all stars of user ${i + 1}/${usersCount}: ${userLogin} ...`);
+
+      // get the data from every user, skip users under threshold
+      const repoMinInfos = await this.getUserStarredReposCached(userLogin, SEARCH_HYPER_PARAMS.related_users_max_stars);
+      if (repoMinInfos.length < 1)
+        continue;
+
+      // accumulate the data into the RepoRefStats format
+      for (const r of repoMinInfos) {
+        const repoFullName = r.nameWithOwner;
+        // sanity check: log special conditions (assumed always false)
+        if (r.isDisabled || r.isPrivate)
+          log(` special repo ${repoFullName}: disabled: ${r.isDisabled}, private: ${r.isPrivate}`);
+        // create repo reference if needed (with invariant properties across users)
+        if (!repoStatsAccumulator.hasOwnProperty(repoFullName)) {
+          repoStatsAccumulator[repoFullName] = {
+            fullName: repoFullName,
+            description: (r.description || '').slice(0, 60),
+            createdAgo: (unixTimeProgramStart - unixTimeFromISOString(r.createdAt)) / 3600 / 24,
+            pushedAgo: (unixTimeProgramStart - unixTimeFromISOString(r.pushedAt)) / 3600 / 24,
+            isArchived: r.isArchived,
+            isFork: r.isFork ? 1 : undefined,
+            repoStars: r.stargazerCount,
+            // dynamic, to be populated later
+            usersStars: 0,
+            rightShare: undefined,
+            leftShare: undefined,
+            relevance: undefined,
+          }
+        }
+        // integrate stats for this repo
+        const repoReference = repoStatsAccumulator[repoFullName];
+        repoReference.usersStars++;
+      }
+
+      // the real number of users (less the skipped)
+      validUsersCount++;
+    }
+
+    // add the couple of fields that were missing
+    const shareAdjustment = validUsersCount ? (usersCount / validUsersCount) : 1;
+    const popularReposRefs: RepoRefStats[] = Object.values(repoStatsAccumulator);
+    for (let repo of popularReposRefs) {
+      repo.rightShare = shareAdjustment * repo.usersStars / repo.repoStars;
+      repo.leftShare = shareAdjustment * repo.usersStars / usersCount;
+      repo.relevance = Math.pow(repo.rightShare * repo.rightShare * repo.leftShare, 1 / 3);
+    }
+
+    // sort top starred repos for the provided group of users
+    popularReposRefs.sort((a, b) => b.relevance - a.relevance);
+    return popularReposRefs;
   }
 
   private getUserStarredReposCached = async (login, starsMaximum): Promise<GQL.RepoMinInfo[]> =>
@@ -312,19 +306,18 @@ export interface Starring {
 }
 
 interface RepoRefStats {
-  // static
+  // static (read from GitHub)
   fullName: string,
-  isArchived: boolean,
-  isFork: boolean,
   description: string,
+  isArchived: boolean,
+  isFork: number | undefined,
   createdAgo: number,
   pushedAgo: number,
   repoStars: number,
-  // dynamic
+  // dynamic (computed based on the analysis)
   usersStars: number,
   rightShare: number,
   leftShare: number,
   relevance: number,
-  scale: number,
-  // stats...
+  // NOTE: Statistics are added subsequently, for export to CSV reasons
 }

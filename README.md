@@ -46,13 +46,13 @@ src/github-analyzer.ts related --repo github/roadmap
 All the source code is in the [src](src) folder. The following can be edited to configure the application:
 
 * [src/github-analyzer.ts](src/github-analyzer.ts) for  ```repoFullName```, the name of the target repository
-* [src/GitHubCrawler.ts](src/GitHubCrawler.ts) for ```WRITE_OUTPUT_FILES``` and a couple of debug flags and more importantly for _ranking_ and _
+* [src/GitHubAnalyzer.ts](src/GitHubAnalyzer.ts) for ```WRITE_OUTPUT_FILES``` and a couple of debug flags and more importantly for _ranking_ and _
   filtering_ criteria.
 
 ### Advanced: Filtering & Ranking
 
 Sorry it's all in the code so far, but basically you want to change the ```HYPER_PARAMS``` variable
-inside [src/GitHubCrawler.ts](src/GitHubCrawler.ts) for changing filtering criteria, followed by the function that sets ```repo.relevance``` in
+inside [src/GitHubAnalyzer.ts](src/GitHubAnalyzer.ts) for changing filtering criteria, followed by the function that sets ```repo.relevance``` in
 the ```resolveUsersStarredRepos(...)``` function.
 
 ## Acknowledgements
