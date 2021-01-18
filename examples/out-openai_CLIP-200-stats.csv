@@ -1,0 +1,282 @@
+"fullName","description","createdAgo","pushedAgo","isFork","repoStars","usersStars","rightShare","leftShare","relevance","T1W","T2W","T1M","T3M","T6M","T1Y","T2Y","T5Y","TI"
+"openai/CLIP","Contrastive Language-Image Pretraining",32.5,5,,1368,609,0.9787,0.9984,0.9852,58.14,,,,,,,,119.59
+"lucidrains/DALLE-pytorch","Implementation / replication of DALL-E, OpenAI's Text to Image Transformer, in Pytorch",12.1,0,,1722,112,0.143,0.1836,0.1554,80.86,,,,,,,,152.39
+"EleutherAI/gpt-neox","An implementation of model parallel GPT-3-like models on GPUs, based on the DeepSpeed library. Designed to be able to train models in the hundreds of billions of parameters or larger.",26.4,0.1,,104,11,0.2325,0.018,0.0991,1.71,4.29,,,,,,,3.98
+"HumamAlwassel/XDC","Self-Supervised Learning by Cross-Modal Audio-Video Clustering (NeurIPS 2020)",46,4.5,,26,4,0.3382,0.0066,0.0911,0.14,0.14,0.13,,,,,,0.56
+"cvlab-columbia/hyperfuture","Code for the paper Learning the Predictability of the Future",16.4,3.2,,39,5,0.2818,0.0082,0.0867,1.43,,,,,,,,3.11
+"CompVis/taming-transformers","",31.4,5.5,,334,19,0.1251,0.0311,0.0787,7.57,19.36,,,,,,,11.35
+"google-research/vision_transformer","",88.5,2.2,,1512,50,0.0727,0.082,0.0757,11.14,14.07,10.39,,,,,,17.16
+"lucidrains/linear-attention-transformer","Transformer based on a variant of attention that is linear complexity in respect to sequence length",227.1,15.9,,183,12,0.1442,0.0197,0.0743,0.71,1,0.69,0.55,0.64,,,,0.81
+"linjieli222/HERO","Research code for EMNLP 2020 paper ""HERO: Hierarchical Encoder for Video+Language Omni-representation Pre-training""",110.2,38.9,,65,6,0.2029,0.0098,0.0739,,0.14,0.2,0.37,,,,,0.58
+"yucornetto/MGMatting","This repository includes the official project of Mask Guided (MG) Matting, presented in our paper: Mask Guided Matting via Progressive Refinement Network",47,28.2,,36,4,0.2443,0.0066,0.0733,,0.21,0.69,,,,,,1.07
+"priyankavergadia/GCPSketchnote","If you are looking to become a Google Cloud Engineer , then you are at the right place. GCPSketchnote is series where I share Google Cloud concepts in quick and easy to learn format.",18.8,17.8,,1335,42,0.0692,0.0689,0.0691,46.71,,,,,,,,106.76
+"facebookresearch/deit","Official DeiT repository",25.2,1.5,,1201,39,0.0714,0.0639,0.0688,14.43,21.07,,,,,,,48.71
+"lucidrains/pixel-level-contrastive-learning","Implementation of Pixel-level Contrastive Learning, proposed in the paper ""Propagate Yourself"", in Pytorch",58.3,11,,81,6,0.1628,0.0098,0.0638,1.57,1.29,1.41,,,,,,1.4
+"lucidrains/vit-pytorch","Implementation of Vision Transformer, a simple way to achieve SOTA in vision classification with only a single transformer encoder, in Pytorch",106,5.4,,2246,54,0.0529,0.0885,0.0628,19.86,48.79,31,17.23,,,,,21.18
+"open-mmlab/mmtracking","OpenMMLab Video Perception Toolbox. It supports Single Object Tracking (SOT), Multiple Object Tracking (MOT), Video Object Detection (VID) with a unified framework.",141.7,2.6,,1124,34,0.0665,0.0557,0.0627,13.57,,,,,,,,89.45
+"naver-ai/relabel_imagenet","",4.7,3.7,,65,5,0.1691,0.0082,0.0617,,,,,,,,,18.23
+"HobbitLong/PyContrast","PyTorch implementation of Contrastive Learning methods; List of awesome-contrastive-learning papers",242,23.3,,973,30,0.0678,0.0492,0.0609,1.14,1.64,1.97,2.55,2.45,,,,4.03
+"lucidrains/byol-pytorch","Usable Implementation of ""Bootstrap Your Own Latent"" self-supervised learning, from Deepmind, in Pytorch",215.2,5.8,,654,23,0.0773,0.0377,0.0608,2.14,3.43,2.76,3.22,2.61,,,,3.05
+"devsuperior/sds2","",19.5,3.4,,617,22,0.0784,0.0361,0.0605,9.14,42.93,,,,,,,33.64
+"boomyjee/bergamot","TeaCSS/CommonJS capable simple and blazing fast bundler without AST transforms",287,19.7,,50,4,0.1759,0.0066,0.0589,,,,0.53,0.26,,,,0.22
+"hila-chefer/Transformer-Explainability","Official Pytorch implementation for Transformer Interpretability Beyond Attention Visualization, a novel method to visualize classifications by Transformer based networks.",55.1,12.6,,116,7,0.1327,0.0115,0.0587,2.29,1.93,,,,,,,3.78
+"gupta-abhay/ViT","An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",106.1,15.1,,151,8,0.1165,0.0131,0.0562,1,0.86,0.76,1.13,,,,,1.45
+"CompVis/net2net","Network-to-Network Translation with Conditional Invertible Neural Networks",88.4,29.5,,99,6,0.1332,0.0098,0.0558,,0.36,0.53,,,,,,1.17
+"TengdaHan/CoCLR","[NeurIPS'20] Self-supervised Co-Training for Video Representation Learning. Tengda Han, Weidi Xie, Andrew Zisserman.",106.5,4.4,,153,8,0.1149,0.0131,0.0557,0.14,0.21,0.46,1.17,,,,,1.44
+"xinke-wang/Awesome-Text-VQA","",412.6,39.9,,76,5,0.1446,0.0082,0.0556,,,0.1,0.08,0.15,,,,0.21
+"gingsi/coot-videotext","COOT: Cooperative Hierarchical Transformer for Video-Text Representation Learning",95.6,4.6,,100,6,0.1319,0.0098,0.0555,0.86,1,0.92,,,,,,1.31
+"yinboc/liif","Learning Continuous Image Representation with Local Implicit Image Function",32.3,22.8,,362,14,0.085,0.023,0.055,2,2.21,10.55,,,,,,11.59
+"EleutherAI/gpt-neo","An implementation of model parallel GPT2& GPT3-like models, with the ability to scale up to full GPT3 sizes (and possibly more!), using the mesh-tensorflow library.",196.6,2,,225,10,0.0977,0.0164,0.0539,7.43,8,5.19,2.49,,,,,1.33
+"facebookresearch/DepthContrast","DepthContrast self-supervised learning for 3D",45.2,9.9,,58,4,0.1516,0.0066,0.0533,3.57,,,,,,,,4.59
+"ajabri/videowalk","Repository for ""Space-Time Correspondence as a Contrastive Random Walk"" (NeurIPS 2020)",207.8,40.7,,106,6,0.1244,0.0098,0.0533,,0.14,0.3,0.76,0.47,,,,0.53
+"allenai/unifiedqa","UnifiedQA: Crossing Format Boundaries With a Single QA System",269.3,41.2,,134,7,0.1148,0.0115,0.0533,0.43,0.36,0.39,0.64,0.5,,,,0.52
+"facebookresearch/swav","PyTorch implementation of SwAV https//arxiv.org/abs/2006.09882",185.1,13.5,,806,23,0.0627,0.0377,0.0529,2.71,2,1.94,2.26,4.28,,,,4.37
+"facebookresearch/GENRE","Autoregressive Entity Retrieval",104.2,4.5,,62,4,0.1418,0.0066,0.051,10.43,,,,,,,,8.94
+"yuewang-cuhk/awesome-vision-language-pretraining-papers","Recent Advances in Vision and Language PreTrained Models (VL-PTMs)",298.6,34.7,,284,11,0.0851,0.018,0.0507,1.14,1.36,1.08,1.24,1.02,,,,0.94
+"fudan-zvg/SETR","Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers",18.6,16.9,,177,8,0.0994,0.0131,0.0506,3.29,7.43,,,,,,,9.85
+"openai/image-gpt","",255.1,21,,1240,29,0.0514,0.0475,0.0501,3.86,4.71,3.32,2.28,3.89,,,,5.8
+"RameenAbdal/StyleFlow","StyleFlow: Attribute-conditioned Exploration of StyleGAN-generated Images using  Conditional Continuous Normalizing Flows",235.9,6.3,,1128,27,0.0526,0.0443,0.0497,66.86,67.86,31.59,11.12,,,,,6.83
+"facebookresearch/detr","End-to-End Object Detection with Transformers",236,1.4,,5921,80,0.0297,0.1311,0.0487,11.29,11.64,10.42,10.77,9.03,,,,25.14
+"lucidrains/performer-pytorch","An implementation of Performer, a linear attention-based transformer, in Pytorch",106.8,0.9,,456,14,0.0675,0.023,0.0471,1.43,1.64,1.61,4.68,,,,,4.28
+"google-research/simclr","SimCLRv2 - Big Self-Supervised Models are Strong Semi-Supervised Learners",313.3,30,,1827,35,0.0421,0.0574,0.0467,3.86,3.5,2.76,3.73,4.37,,,,5.83
+"lucidrains/x-transformers","A simple but complete full-attention transformer with a set of promising experimental features from various papers",85.1,2.7,,132,6,0.0999,0.0098,0.0461,2.29,3.14,2.27,,,,,,1.56
+"microsoft/Oscar","Oscar: Object-Semantics Aligned Pre-training for Vision-Language Tasks",248.2,4.1,,285,10,0.0771,0.0164,0.046,1.71,1.14,1.02,0.99,1.01,,,,1.16
+"kdexd/virtex","Code for the paper ""VirTex: Learning Visual Representations from Textual Annotations""",489.2,31.4,,288,10,0.0763,0.0164,0.0457,0.43,0.36,0.23,0.36,0.44,,,,1.31
+"princeton-nlp/LM-BFF","",17.5,4.4,,102,5,0.1078,0.0082,0.0457,5.71,6.64,,,,,,,6.62
+"ronikobrosly/causal-curve","A python package with tools to perform causal inference using observational data when the treatment of interest is continuous.",277.2,0,,136,6,0.097,0.0098,0.0452,0.86,0.79,2.2,1.29,0.68,,,,0.55
+"open-mmlab/mmaction2","OpenMMLab's Next Generation Action Understanding Toolbox and Benchmark",190.7,0.6,,489,14,0.0629,0.023,0.045,2.86,3.14,2.2,2.18,2.04,,,,2.57
+"justinpinkney/awesome-pretrained-stylegan2","A collection of pre-trained StyleGAN 2 models to download ",264.1,2.1,,340,11,0.0711,0.018,0.045,1.71,1.5,1.12,1.28,1.46,,,,1.28
+"KaihuaTang/Long-Tailed-Recognition.pytorch","[NeurIPS 2020] This project provides a strong single-stage baseline for Long-Tailed Classification, Detection, and Instance Segmentation (LVIS).  It is also a PyTorch implementation of the NeurIPS 202...",115.7,27.6,,299,10,0.0735,0.0164,0.0446,1.29,1.29,1.12,1.37,,,,,2.61
+"lowlighter/metrics","📊 An image generator with 20+ metrics about your GitHub account such as activity, community, repositories, coding habits, website performances, music played, starred topics, etc. that you can put on ...",131.3,2.2,,1973,35,0.039,0.0574,0.0444,117.14,131.14,61.25,21.25,,,,,16.29
+"mdbench/The-Freedom-Wrapper-Project","This is the Original Freedom Wrapper Project repository. It is developed and maintained by Matthew Benchimol. The Freedom Wrapper Project is an Open Source and Free Android source code project. The pr...",112.2,14.8,,78,4,0.1127,0.0066,0.0438,,,2.43,0.82,,,,,0.69
+"WebKit/WebKit","Official git mirror of the WebKit repository, https://svn.webkit.org/repository/webkit, future canonical repository.",37.3,0.1,,263,9,0.0752,0.0148,0.0437,6,12.36,7.5,,,,,,7.41
+"dbolya/tide","A General Toolbox for Identifying Object Detection Errors",185.2,4.7,,264,9,0.0749,0.0148,0.0436,0.57,1.14,0.89,0.95,,,,,1.75
+"vsitzmann/awesome-implicit-representations","A curated list of resources on implicit neural representations.",20.2,17.3,,468,13,0.0611,0.0213,0.043,4.57,6.79,,,,,,,24.3
+"yenchenlin/awesome-NeRF","A curated list of awesome neural radiance fields papers",52.3,3.2,,529,14,0.0582,0.023,0.0427,3.29,3.86,5.06,,,,,,10.2
+"fundamentalvision/Deformable-DETR","Deformable DETR: Deformable Transformers for End-to-End Object Detection.",48.6,41.6,,594,15,0.0555,0.0246,0.0423,3,4.43,5.13,,,,,,12.43
+"open-mmlab/OpenSelfSup","Self-Supervised Learning Toolbox and Benchmark",219.8,23.6,,1138,23,0.0444,0.0377,0.042,2.43,1.86,1.84,1.9,2.03,,,,5.19
+"wzhe06/SparrowRecSys","A Deep Learning Recommender System",257.8,7.7,,553,14,0.0557,0.023,0.0415,6.14,17.43,9.57,4.84,,,,,4.57
+"yue-zhongqi/ifsl","[NeurIPS 2020] Released code for Interventional Few-Shot Learning",113.8,38.9,,86,4,0.1022,0.0066,0.041,0.29,0.29,0.26,0.67,,,,,0.76
+"airsplay/vokenization","PyTorch code for EMNLP 2020 Paper ""Vokenization: Improving Language Understanding with Visual Supervision""",97,34.4,,121,5,0.0908,0.0082,0.0407,,,0.2,0.83,,,,,1.27
+"jason718/awesome-self-supervised-learning","A curated list of awesome self-supervised methods",1072.9,12.2,,3297,45,0.03,0.0738,0.0405,2.86,4.07,3.81,4.6,4.98,5.26,4.04,,3.07
+"DirtyHarryLYL/HAKE","HAKE: Human Activity Knowledge Engine (CVPR'18/19/20, NeurIPS'20)",581.6,3.2,,122,5,0.0901,0.0082,0.0405,0.29,0.29,0.23,0.19,0.2,0.2,,,0.21
+"asheeshcric/awesome-contrastive-self-supervised-learning","A comprehensive list of awesome contrastive self-supervised learning papers.",221.2,23.3,,208,7,0.074,0.0115,0.0398,,0.43,1.35,2.26,1.13,,,,1
+"PyTorchLightning/deep-learning-project-template","Pytorch Lightning code guideline for conferences",513.3,40.2,,468,12,0.0564,0.0197,0.0397,1,1.21,1.15,1.38,1.16,0.92,,,0.91
+"forence/Awesome-Visual-Captioning","This repository focus on Image Captioning & Video Captioning & Seq-to-Seq Learning & NLP",734.6,12.7,,166,6,0.0795,0.0098,0.0396,,0.36,0.36,0.27,0.3,0.35,,,0.23
+"facebookresearch/KILT","Library for Knowledge Intensive Language Tasks",222.2,10.4,,413,11,0.0586,0.018,0.0395,0.43,0.71,0.56,0.64,2.25,,,,1.87
+"yikaiw/CEN","[NeurIPS 2020] Code release for paper ""Deep Multimodal Fusion by Channel Exchanging""",110.7,16.8,,92,4,0.0956,0.0066,0.0392,,0.07,0.46,0.98,,,,,0.83
+"Fang-Haoshu/Halpe-FullBody","Halpe: full body human pose estimation and human-object interaction detection dataset",155.4,26.4,,92,4,0.0956,0.0066,0.0392,,0.07,0.2,0.18,,,,,0.59
+"p-lambda/wilds","A machine learning benchmark of in-the-wild distribution shifts, with data loaders, evaluators, and default models.",38.2,2.4,,130,5,0.0846,0.0082,0.0389,1.43,1.57,2.63,,,,,,3.63
+"LasCC/Hack-Tools","The all-in-one Red Team extension for Web Pentester 🛠",209.1,4.6,,1839,29,0.0347,0.0475,0.0385,32.29,64.71,31.73,11.69,9.86,,,,8.8
+"pbaylies/stylegan2","StyleGAN2 - Official TensorFlow Implementation with practical improvements",358.3,27.1,1,223,7,0.069,0.0115,0.038,0.14,0.29,0.2,0.19,0.27,,,,0.62
+"rwightman/pytorch-image-models","PyTorch image models, scripts, pretrained weights -- (SE)ResNet/ResNeXT, DPN, EfficientNet, MixNet, MobileNet-V3/V2, MNASNet, Single-Path NAS, FBNet, and more",715.7,0.9,,6616,67,0.0223,0.1098,0.0379,22.71,26.07,21.6,18.94,13.54,12.3,,,10.54
+"lucidrains/lightweight-gan","Implementation of 'lightweight' GAN, proposed in ICLR 2021, in Pytorch. High resolution image generations that can be trained within a day or two",67.3,1,,381,10,0.0577,0.0164,0.0379,2.86,2.93,3.42,,,,,,5.71
+"PyTorchLightning/pytorch-lightning-bolts","Toolbox of models, callbacks, and datasets for AI/ML researchers.",298.3,0,,716,15,0.0461,0.0246,0.0374,2.57,2.71,2.27,2.64,3.34,,,,2.4
+"BachiLi/diffvg","Differentiable Vector Graphics Rasterization",135.9,25.2,,235,7,0.0655,0.0115,0.0367,9.86,5.5,4.64,2.32,,,,,1.72
+"lijiaman/awesome-transformer-for-vision","",15.8,10.2,,186,6,0.0709,0.0098,0.0367,1.57,12.86,,,,,,,12.63
+"EleutherAI/the-pile","",144,18,,301,8,0.0584,0.0131,0.0355,1.57,5,2.89,2.83,,,,,2.28
+"ashishpatel26/500-AI-Machine-learning-Deep-learning-Computer-vision-NLP-Projects-with-code","500 AI Machine learning Deep learning Computer vision NLP Projects with code",15.5,11.1,,3164,38,0.0264,0.0623,0.0351,69.29,221.36,,,,,,,215.31
+"krasserm/fairseq-image-captioning","Transformer-based image captioning extension for pytorch/fairseq",462.6,30.6,,154,5,0.0714,0.0082,0.0347,0.57,0.79,0.69,0.53,0.44,0.4,,,0.37
+"facebookresearch/PointContrast","Code for paper <PointContrast: Unsupervised Pretraining for 3D Point Cloud Understanding>",139.3,6.2,,113,4,0.0778,0.0066,0.0342,0.29,0.64,0.79,,,,,,1.63
+"fabien-h/acta","Super light and dead simple state manager and event dispatcher for react.",544.7,26.3,,159,5,0.0691,0.0082,0.034,,,,,0.03,,,,0.68
+"NVlabs/stylegan2-ada","StyleGAN2 with adaptive discriminator augmentation (ADA) - Official TensorFlow implementation",102.3,29.1,,920,16,0.0382,0.0262,0.0337,4.57,5,5,6.38,,,,,9.1
+"facebookresearch/ActivityNet-Entities","A Dataset for Grounded Video Description",760.2,4.2,,117,4,0.0752,0.0066,0.0334,,,0.07,0.08,0.07,0.11,,,0.16
+"NVlabs/imaginaire","NVIDIA PyTorch GAN library with distributed and mixed precision support",186.9,19,,1937,26,0.0295,0.0426,0.0333,2.57,3.14,2.96,4.66,10.54,,,,10.43
+"gquittet/graceful-server","Tiny (~5k), KISS, dependency-free Node.JS library to make your API more graceful",334.9,31.4,,165,5,0.0666,0.0082,0.0331,,,0.36,1.71,0.85,,,,0.49
+"kili-technology/kili-playground","Simplest and fastest image and text annotation tool.",564.4,3.6,,167,5,0.0658,0.0082,0.0329,,,,0.05,0.12,0.44,,,0.3
+"dmlc/decord","An efficient video loader for deep learning with smart shuffling that's super easy to digest",730,14.7,,478,10,0.046,0.0164,0.0326,1,1.29,1.08,0.8,0.91,0.99,,,0.74
+"facebookresearch/esm","Evolutionary Scale Modeling (esm): Pretrained language models for proteins",139.3,2,,169,5,0.065,0.0082,0.0326,0.29,0.57,1.05,0.92,,,,,1.22
+"EleutherAI/DALLE-mtf","Open-AI's DALL-E for large scale training in mesh-tensorflow.",8.2,3.6,,123,4,0.0715,0.0066,0.0323,16,,,,,,,,17.47
+"majusko/pulsar-java-spring-boot-starter","Simple pulsar spring boot starter with annotation based consumer/producer registration.",432,2.2,,123,4,0.0715,0.0066,0.0323,,,,0.01,0.62,,,,0.37
+"alpersonalwebsite/react","React[0] + Redux[0] > A brief introduction to React and Redux",937.1,24.7,,173,5,0.0635,0.0082,0.0321,,,,,,,,,0.32
+"KaihuaTang/Scene-Graph-Benchmark.pytorch","A new codebase for popular Scene Graph Generation methods (2020). Visualization & Scene Graph Extraction on custom images/datasets are provided. It's also a PyTorch implementation of paper “Unbiased S...",332.6,35.5,,429,9,0.0461,0.0148,0.0316,0.43,0.71,0.66,0.98,0.94,,,,1.29
+"Adapter-Hub/adapter-transformers","Huggingface Transformers + Adapters = ❤️",271.3,3.1,,297,7,0.0518,0.0115,0.0314,0.86,0.57,0.85,0.9,1.34,,,,1.12
+"allenai/longformer","Longformer: The Long-Document Transformer",292.1,4.1,,936,15,0.0352,0.0246,0.0312,1.14,0.79,1.15,1.38,1.6,,,,3.35
+"evanzd/ICLR2021-OpenReviewData","Crawl & visualize ICLR papers and reviews.",67.9,4.8,,185,5,0.0594,0.0082,0.0307,4.14,2.36,1.84,,,,,,2.79
+"default-services/components","Default, open-source, component library for React.",236.2,26,,134,4,0.0656,0.0066,0.0305,,,,,0.44,,,,0.66
+"clovaai/rexnet","Official Pytorch implementation of ReXNet (Rank eXpansion Network) with pretrained models",200.5,37.7,,249,6,0.053,0.0098,0.0302,,0.21,0.16,0.2,0.33,,,,1.25
+"google-research/arxiv-latex-cleaner","arXiv LaTeX Cleaner: Easily clean the LaTeX code of your paper to submit to arXiv",740.7,7.3,,2007,24,0.0263,0.0393,0.0301,2,1.5,1.45,1.44,2.25,2.5,2.56,,2.71
+"peteanderson80/Matterport3DSimulator","AI Research Platform for Reinforcement Learning from Real Panoramic Images.",1206.9,38.1,,252,6,0.0523,0.0098,0.0299,,0.14,0.16,0.23,0.2,0.2,0.21,,0.22
+"openai/summarize-from-feedback","Code for ""Learning to summarize from human feedback""",137.3,3.9,,195,5,0.0564,0.0082,0.0297,0.57,0.43,0.39,0.58,,,,,1.47
+"datawhalechina/team-learning-data-mining","主要存储Datawhale组队学习中“数据挖掘/机器学习”方向的资料。",173.4,1.8,,324,7,0.0475,0.0115,0.0296,3,8.71,4.44,2.32,,,,,1.9
+"tomohideshibata/BERT-related-papers","BERT-related papers",585.5,13.8,,1468,19,0.0285,0.0311,0.0293,0.86,1.07,1.02,1.65,1.7,3.03,,,2.51
+"rosinality/stylegan2-pytorch","Implementation of Analyzing and Improving the Image Quality of StyleGAN (StyleGAN 2) in PyTorch",402,6.2,,836,13,0.0342,0.0213,0.0292,2.29,2,1.84,1.99,2.13,1.89,,,2.08
+"neuml/tldrstory","AI-powered understanding of headlines and story text",104.3,4.3,,199,5,0.0552,0.0082,0.0292,0.14,0.21,0.26,1.73,,,,,1.92
+"phurwicz/hover",":speedboat: Human-Oriented Visual ExploRation",73.4,2.4,,144,4,0.0611,0.0066,0.0291,,0.07,1.22,,,,,,2.58
+"facebookresearch/SlowFast","PySlowFast: video understanding codebase from FAIR for reproducing state-of-the-art video models.",516,10.2,,3265,32,0.0215,0.0525,0.029,3.29,3.36,2.83,3.15,3.28,4.09,,,7.27
+"princeton-vl/RAFT","",296.9,19.3,,1054,15,0.0313,0.0246,0.0289,3.71,4.43,4.04,3.16,5.28,,,,3.55
+"DirtyHarryLYL/Transferable-Interactiveness-Network","Code for Transferable Interactiveness Knowledge for Human-Object Interaction Detection. (CVPR 2019)",666.6,3.3,,146,4,0.0602,0.0066,0.0288,,0.07,0.07,0.07,0.08,0.13,,,0.22
+"qonversion/qonversion-ios-sdk","In-app purchases and subscriptions implementation, analytics, growth.",518.6,2.5,,203,5,0.0541,0.0082,0.0288,0.29,0.21,0.72,1.56,0.85,0.55,,,0.49
+"celer-network/goCeler-oss","Celer state channel network",342.1,33.9,,147,4,0.0598,0.0066,0.0287,,,,0.02,0.02,,,,0.43
+"google-research/robustness_metrics","",135.6,41.6,,268,6,0.0492,0.0098,0.0287,0.14,0.21,0.53,2.9,,,,,1.98
+"pliang279/awesome-multimodal-ml","Reading list for research topics in multimodal machine learning",601,2.1,,1649,20,0.0267,0.0328,0.0286,7.14,6.29,4.08,3.39,3,2.76,,,2.86
+"clovaai/AdamP","AdamP: Slowing Down the Slowdown for Momentum Optimizers on Scale-invariant Weights (ICLR 2021)",216.9,4.7,,270,6,0.0489,0.0098,0.0286,1.57,0.79,0.53,0.41,0.65,,,,1.25
+"jalammar/ecco","Visualize and explore NLP language models. Ecco creates interactive visualizations directly in Jupyter notebooks explaining the behavior of Transformer-based language models (like GPT2).",71.6,2.2,,586,10,0.0375,0.0164,0.0285,36,36.57,18.61,,,,,,9.77
+"facebookresearch/pycls","Codebase for Image Classification Research, written in PyTorch.",587,3.1,,1412,18,0.028,0.0295,0.0285,0.86,0.79,0.82,1.05,1.14,2.45,,,2.42
+"yoshitomo-matsubara/torchdistill","PyTorch-based modular, configuration-driven framework for knowledge distillation. 🏆18 methods including SOTA are implemented so far. 🎁 Trained models, training logs and configurations are available ...",396.3,2.6,,150,4,0.0586,0.0066,0.0283,0.14,0.29,2.66,,,,,,2.87
+"ha-lins/MetaLearning4NLP-Papers","A list of recent papers about Meta / few-shot learning methods applied in NLP areas.",275.3,19.6,,151,4,0.0582,0.0066,0.0282,,0.14,0.23,0.42,0.3,,,,0.55
+"rll/deepul","",357.1,39.4,,510,9,0.0388,0.0148,0.0281,0.71,0.79,0.66,0.54,0.65,,,,1.45
+"dk-liang/Awesome-Visual-Transformer","Collect some papers about transformer with vision. Awesome Transformer with Computer Vision (CV)",45.8,2.6,,152,4,0.0579,0.0066,0.0281,14,8.86,4.67,,,,,,3.34
+"sxyu/pixel-nerf","PixelNeRF Official Repository (WIP)",47.9,11.1,,280,6,0.0471,0.0098,0.0279,2.14,2,1.61,,,,,,6.33
+"davidbau/rewriting","Rewriting a Deep Generative Model, ECCV 2020 (oral).  Interactive tool to directly edit the rules of a GAN to synthesize scenes with objects added, removed, or altered.  Change StyleGANv2 to make extr...",172.3,34.1,,433,8,0.0406,0.0131,0.0278,0.14,0.5,0.69,0.66,,,,,2.52
+"Confusezius/Revisiting_Deep_Metric_Learning_PyTorch","(ICML 2020) This repo contains code for our paper ""Revisiting Training Strategies and Generalization Performance in Deep Metric Learning"" (https://arxiv.org/abs/2002.08473) to facilitate consistent re...",253.4,41.1,,155,4,0.0567,0.0066,0.0277,,0.21,0.2,0.39,0.56,,,,0.62
+"snap-stanford/ogb","Benchmark datasets, data loaders, and evaluators for graph machine learning",422.1,2.2,,711,11,0.034,0.018,0.0275,1.71,1.64,1.55,1.32,1.48,1.56,,,1.77
+"lucidrains/alphafold2","To eventually become an unofficial Pytorch implementation of Alphafold2, as details of the architecture get released",47.7,2.3,,157,4,0.056,0.0066,0.0275,0.86,2.07,1.71,,,,,,3.34
+"google-research/pegasus","",298.8,9.6,,919,13,0.0311,0.0213,0.0274,0.71,0.86,1.28,1.15,1.74,,,,3.08
+"google-research/language","Shared repository for open-sourced projects from the Google AI Language team.",824.9,4.2,,815,12,0.0324,0.0197,0.0274,1,0.79,0.85,0.7,1.26,1.14,1.01,,0.99
+"LiyuanLucasLiu/Transformer-Clinic","Understanding the Difficulty of Training Transformers",291.3,6.1,,158,4,0.0557,0.0066,0.0274,0.86,2.07,1.08,0.85,0.66,,,,0.58
+"facebookincubator/submitit","Python 3.6+ toolbox for submitting jobs to Slurm",268.7,2.4,,290,6,0.0455,0.0098,0.0273,0.57,0.86,0.79,0.68,0.8,,,,1.16
+"facebookresearch/ClassyVision","An end-to-end PyTorch framework for image and video classification",492,2.1,,1044,14,0.0295,0.023,0.0272,0.43,1.71,2.07,1.39,1.14,1.4,,,2.56
+"Megvii-BaseDetection/DeFCN","End-to-End Object Detection with Fully Convolutional Network",41.6,30.7,,293,6,0.045,0.0098,0.0271,2.71,2.29,2.24,,,,,,7.32
+"wpeebles/hessian_penalty","Code for the Hessian Penalty: A Weak Prior for Unsupervised Disentanglement (ECCV 2020 Spotlight)",146,8.9,,160,4,0.055,0.0066,0.0271,,,0.03,0.2,,,,,1.1
+"google-research/multilingual-t5","",87.2,4.2,,544,9,0.0364,0.0148,0.027,0.57,0.86,1.15,,,,,,6.3
+"LuoweiZhou/VLP","Vision-Language Pre-training for Image Captioning and Question Answering",480.9,8.8,,226,5,0.0486,0.0082,0.0269,0.29,0.21,0.16,0.31,0.31,0.32,,,0.47
+"google/uncertainty-baselines","High-quality implementations of standard and SOTA methods on a variety of tasks.",185.9,0.9,,229,5,0.048,0.0082,0.0266,0.86,1,1.41,1.75,1.24,,,,1.24
+"Sense-X/X-Temporal","A general video understanding codebase from SenseTime X-Lab",346.6,17.6,,384,7,0.0401,0.0115,0.0264,,0.5,0.33,0.91,0.61,,,,1.35
+"google-research-datasets/conceptual-captions","Conceptual Captions is a dataset containing (image-URL, caption) pairs designed for the training and evaluation of machine learned image captioning systems. ",983.1,4.2,,235,5,0.0468,0.0082,0.0262,,0.07,0.13,0.19,0.13,0.13,0.2,,0.24
+"sthalles/SimCLR","PyTorch implementation of SimCLR: A Simple Framework for Contrastive Learning of Visual Representations",335.2,0.3,,662,10,0.0332,0.0164,0.0262,1.14,1.07,1.15,1.51,1.42,,,,1.98
+"clovaai/assembled-cnn","Tensorflow implementation of ""Compounding the Performance Improvements of Assembled Techniques in a Convolutional Neural Network""",366.7,0.4,,310,6,0.0425,0.0098,0.0261,,0.07,0.07,0.16,0.19,,,,0.85
+"PatrickHua/SimSiam","A pytorch implementation for paper 'Exploring Simple Siamese Representation Learning'",51.4,6.7,,238,5,0.0462,0.0082,0.026,2.43,3,3.09,,,,,,4.67
+"weihaox/awesome-image-translation","A collection of awesome resources image-to-image translation.",515.7,0.5,,311,6,0.0424,0.0098,0.026,3.29,2.29,1.55,1.27,1.06,0.71,,,0.63
+"danqi/acl2020-openqa-tutorial","ACL2020 Tutorial: Open-Domain Question Answering",268.4,16.4,,482,8,0.0365,0.0131,0.0259,1.29,1.57,1.22,1.24,1.11,,,,1.79
+"facebookresearch/svoice","We provide a PyTorch implementation of the paper Voice Separation with an Unknown Number of Multiple Speakers In which, we present a new method for separating a mixed audio sequence, in which multiple...",59.3,0.5,,678,10,0.0324,0.0164,0.0258,4.29,4.64,20.81,,,,,,12.39
+"shenzhenjinma/sn_jd_tb_tm_maotai_seckill","苏宁 京东 淘宝 天猫 茅台秒杀脚本 基于chrome浏览器插件",11.8,2.6,,323,6,0.0408,0.0098,0.0254,20.29,,,,,,,,29.62
+"ydataai/ydata-synthetic","Open repository with GAN architectures for tabular data implemented using Tensorflow 2.0. ",258.3,2.5,,177,4,0.0497,0.0066,0.0254,6.43,3.43,1.64,1.75,0.93,,,,0.73
+"google/neural-tangents","Fast and Easy Infinite Neural Networks in Python",650.3,8,,1284,15,0.0257,0.0246,0.0253,2.29,1.79,1.61,1.47,1.48,2.52,,,2
+"szq0214/MEAL-V2","MEAL V2: Boosting Vanilla ResNet-50 to 80%+ Top-1 Accuracy on ImageNet without Tricks",145.9,32.2,,505,8,0.0348,0.0131,0.0251,1,0.71,0.92,1.16,,,,,4.16
+"icoz69/DeepEMD","Code for paper ""DeepEMD: Few-Shot Image Classification with Differentiable Earth Mover's Distance and Structured Classifiers"", CVPR2020",308.6,14.7,,250,5,0.044,0.0082,0.0251,0.71,0.64,0.69,0.73,0.8,,,,0.81
+"RUCAIBox/TextBox","TextBox is an open-source library for building text generation system.",70.7,6.4,,180,4,0.0489,0.0066,0.0251,25.57,13,5.98,,,,,,3.35
+"arogozhnikov/einops","Deep learning operations reinvented (for pytorch, tensorflow, jax and others)",849,8.2,,2161,21,0.0214,0.0344,0.0251,6.57,7.64,7.76,6.71,7.25,3.98,2.32,,2.67
+"google-research/fixmatch","A simple method to perform semi-supervised learning with limited data.",362,32.1,,607,9,0.0326,0.0148,0.0251,0.29,0.71,0.76,0.84,0.84,,,,1.68
+"fast-ide/fast-ide","🕺Fast Integrated Development Environment  😻",795.3,8.7,,180,4,0.0489,0.0066,0.0251,,,,0.02,0.03,0.49,,,0.45
+"microsoft/unilm","UniLM - Unified Language Model Pre-training / Pre-training for NLP and Beyond",544.8,10,,1740,18,0.0227,0.0295,0.0248,2.57,2.71,2.04,2.74,2.94,3.46,,,3.66
+"facebookresearch/cc_net","Tools to download and cleanup Common Crawl data",446,39.3,,334,6,0.0395,0.0098,0.0248,0.86,0.57,0.46,0.99,0.68,0.7,,,0.76
+"genforce/genforce","GenForce: an efficient PyTorch library for deep generative modeling (StyleGANv1v2, PGGAN, etc)",114.8,39.9,,514,8,0.0342,0.0131,0.0248,1.29,0.93,0.82,1.71,,,,,4.51
+"Tencent/TurboTransformers","a fast and user-friendly runtime for transformer inference (Bert, Albert, GPT2, Decoders, etc) on CPU and GPU.",272.6,3.9,,726,10,0.0303,0.0164,0.0247,0.57,1,1.22,1.44,1.88,,,,2.68
+"royorel/Lifespan_Age_Transformation_Synthesis","Lifespan Age Transformation Synthesis code",283.1,17.6,,257,5,0.0428,0.0082,0.0247,0.43,0.93,1.68,1.93,,,,,1.49
+"kkhoot/PAA","A PyTorch implementation of the paper `Probabilistic Anchor Assignment with IoU Prediction for Object Detection` ECCV 2020 (https://arxiv.org/abs/2007.08103)",197.5,28.9,,185,4,0.0475,0.0066,0.0246,0.57,0.43,0.59,0.54,0.85,,,,0.94
+"snap-stanford/deepsnap","Python library assists deep learning on graphs",225.1,7.4,,185,4,0.0475,0.0066,0.0246,1.14,1.29,0.69,0.55,0.44,,,,0.87
+"lucidrains/stylegan2-pytorch","Simplest working implementation of Stylegan2, state of the art generative adversarial network, in Pytorch. Enabling everyone to experience disentanglement",374.2,2.2,,1643,17,0.0227,0.0279,0.0243,4.57,4.93,4.24,6.19,5.22,4.46,,,4.39
+"ml-tooling/best-of-ml-python","🏆 A ranked list of awesome machine learning Python libraries. Updated weekly.",49.2,2.3,,532,8,0.0331,0.0131,0.0243,103.43,54.93,25.48,,,,,,17.06
+"harskish/ganspace","Discovering Interpretable GAN Controls [NeurIPS 2020]",290.6,34.5,,533,8,0.033,0.0131,0.0243,0.57,0.64,0.85,0.87,0.89,,,,1.87
+"facebookresearch/fairscale","PyTorch extensions for high performance and large scale training.",194.2,1.6,,637,9,0.0311,0.0148,0.0243,2.14,2.21,2.73,3.06,3.17,,,,3.44
+"Spijkervet/SimCLR","PyTorch implementation of SimCLR: A Simple Framework for Contrastive Learning of Visual Representations by T. Chen et al.",313.5,10.6,,265,5,0.0415,0.0082,0.0242,0.43,0.43,0.36,0.52,0.64,,,,0.84
+"eladrich/pixel2style2pixel","Official Implementation for ""Encoding in Style: a StyleGAN Encoder for Image-to-Image Translation""",108.5,20.2,,1118,13,0.0256,0.0213,0.0241,5.57,4,3.29,7.27,,,,,10.3
+"MILVLG/openvqa","A lightweight, scalable, and general framework for visual question answering research",563.8,25.9,,191,4,0.046,0.0066,0.0241,,0.07,0.13,0.18,0.26,0.28,,,0.34
+"d-li14/mobilenetv2.pytorch","72.8% MobileNetV2 1.0 model on ImageNet and a spectrum of pre-trained MobileNetV2 models",879.3,2.9,,352,6,0.0375,0.0098,0.024,0.57,0.43,0.46,0.53,0.5,0.51,0.47,,0.41
+"google-research-datasets/Objectron","Objectron is a dataset of short, object-centric video clips. In addition, the videos also contain AR session metadata including camera poses, sparse point-clouds and planes. In each video, the camera ...",90.1,27.2,,1269,14,0.0243,0.023,0.0239,1.71,3.07,3.19,,,,,,17.38
+"NVIDIA/MinkowskiEngine","Minkowski Engine is an auto-diff neural network library for high-dimensional sparse tensors",654.9,4.7,,1014,12,0.026,0.0197,0.0237,1.71,1.64,1.28,1.38,1.55,1.52,,,1.64
+"PeizeSun/OneNet","OneNet: End-to-End One-Stage Object Detection",44.4,35.5,,459,7,0.0335,0.0115,0.0235,3,5.64,5.13,,,,,,10.46
+"okcashpro/okcash","Okcash Core integration/staging tree.",1509.8,11.5,,276,5,0.0398,0.0082,0.0235,,0.14,3.72,1.25,0.62,0.32,0.17,,0.18
+"POSTECH-CVLab/PyTorch-StudioGAN","StudioGAN is a Pytorch library providing implementations of representative Generative Adversarial Networks (GANs) for conditional/unconditional image generation.",212.8,1.4,,368,6,0.0358,0.0098,0.0232,1,1.07,0.99,2.24,1.32,,,,1.73
+"jiupinjia/stylized-neural-painting","Official Pytorch implementation of the preprint paper ""Stylized Neural Painting"", in arXiv:2011.08114.",62.2,16,,575,8,0.0306,0.0131,0.0231,1.29,2.93,3.62,,,,,,9.46
+"QData/TextAttack","TextAttack 🐙  is a Python framework for adversarial attacks, data augmentation, and model training in NLP",461,2.3,,1186,13,0.0241,0.0213,0.0231,1.43,1.86,1.68,2.74,3.07,,,,4.31
+"openai/robogym","Robotics Gym Environments",90,11,,203,4,0.0433,0.0066,0.0231,0.57,0.57,1.08,,,,,,3.1
+"bert-nmt/bert-nmt","",480.7,3.9,,205,4,0.0429,0.0066,0.023,0.29,0.43,0.33,0.45,0.42,0.47,,,0.43
+"ruotianluo/ImageCaptioning.pytorch","I decide to sync up this repo and self-critical.pytorch. (The old master is in old master branch for archive)",1437.6,13.2,,936,11,0.0258,0.018,0.0229,0.29,0.29,0.43,0.67,0.67,0.6,0.58,,0.65
+"neuml/txtai","AI-powered search engine",161.2,3.1,,708,9,0.0279,0.0148,0.0226,3.86,2.43,2.73,2.73,,,,,4.43
+"yanchokraev/grayshift","A lightweight front-end component library for developing fast and powerful web interfaces.",450.3,28.4,,293,5,0.0375,0.0082,0.0226,,,0.26,0.41,1.03,0.65,,,0.65
+"gordicaleksa/pytorch-original-transformer","My implementation of the original transformer model (Vaswani et al.). I've additionally included the playground.py file for visualizing otherwise seemingly hard concepts. Currently included IWSLT pret...",90.2,21.5,,386,6,0.0342,0.0098,0.0225,,0.36,0.46,,,,,,5.46
+"google/flax","Flax is a neural network ecosystem for JAX that is designed for flexibility.",373.6,0.6,,1386,14,0.0222,0.023,0.0225,3.57,3.71,2.96,3.36,2.42,3.76,,,3.7
+"pfnet/pfrl","PFRL: a PyTorch-based deep reinforcement learning library",207.6,5.1,,488,7,0.0315,0.0115,0.0225,1.43,1.5,1.25,2.16,,,,,2.85
+"NVlabs/NVAE","The Official PyTorch Implementation of ""NVAE: A Deep Hierarchical Variational Autoencoder"" (NeurIPS 2020 spotlight paper)",152.2,20.4,,494,7,0.0312,0.0115,0.0224,0.71,2.21,2.01,2.29,,,,,3.63
+"facebookresearch/DPR","Dense Passage Retriever - is a set of tools and models for open domain Q&A task.",249.9,32.5,,395,6,0.0334,0.0098,0.0222,1.14,1.14,1.02,1.27,1.12,,,,1.59
+"facebookresearch/vizseq","An Analysis Toolkit for Natural Language Generation (Translation, Captioning, Summarization, etc.)",510.4,35.2,,300,5,0.0366,0.0082,0.0222,0.14,0.14,0.2,0.19,0.22,0.37,,,0.68
+"acantril/learn-cantrill-io-labs","Standard and Advanced Demos for learn.cantrill.io courses",207,19.1,,620,8,0.0284,0.0131,0.0219,1.14,4.36,3.72,3.25,3.28,,,,3.06
+"jamstack-cms/jamstack-ecommerce","A starter project for building performant ECommerce applications with Next.js and React",341.9,4.3,,1294,13,0.0221,0.0213,0.0218,5.57,22.36,10.72,4.05,2.92,,,,3.81
+"safe-waters/docker-lock","Automatically manage image digests in Dockerfiles, docker-compose files, and Kubernetes manifests by tracking them in a separate Lockfile",545.3,2.9,,310,5,0.0355,0.0082,0.0218,0.71,3.29,2.1,1.45,0.76,0.42,,,0.59
+"ymcui/cmrc2018","A Span-Extraction Dataset for Chinese Machine Reading Comprehension  (CMRC 2018)",1109.9,40.7,,225,4,0.0391,0.0066,0.0216,,0.21,0.3,0.34,0.29,0.26,0.27,,0.2
+"lucidrains/reformer-pytorch","Reformer, the efficient Transformer, in Pytorch",374.1,37.2,,1318,13,0.0217,0.0213,0.0216,2.71,2.36,1.94,1.94,1.58,3.46,,,3.52
+"apple/ml-hypersim","Hypersim: A Photorealistic Synthetic Dataset for Holistic Indoor Scene Understanding",62.1,9.2,,891,10,0.0247,0.0164,0.0215,2.43,3.14,26.66,,,,,,14.54
+"yzhao062/data-mining-conferences","Ranking, acceptance rate, deadline, and publication tips",724.1,25.9,,226,4,0.0389,0.0066,0.0215,0.14,0.14,0.2,0.33,0.37,0.36,,,0.31
+"yenchenlin/nerf-pytorch","A PyTorch implementation of NeRF (Neural Radiance Fields) that reproduces the results.",287.6,3.2,,766,9,0.0258,0.0148,0.0214,2.14,2.43,2.7,2.09,1.47,,,,2.67
+"DingXiaoH/RepVGG","RepVGG: Making VGG-style ConvNets Great Again",17.6,1.3,,528,7,0.0291,0.0115,0.0214,70.43,35.29,,,,,,,29.97
+"lab-ml/nn","🧠 Minimal implementations/tutorials of deep learning papers with side-by-side notes",145.9,2.7,,530,7,0.029,0.0115,0.0213,23,15.57,8.68,4.99,,,,,3.98
+"marcotcr/checklist","Beyond Accuracy: Behavioral Testing of NLP models with CheckList",314.3,18,,1192,12,0.0221,0.0197,0.0213,2.29,2.07,2.17,2.39,3.69,,,,4.63
+"aimhubio/aim","Aim — a super-easy way to record, search and compare 1000s of ML training runs",597.2,4.4,,782,9,0.0253,0.0148,0.0212,15.14,8.57,6.44,8.23,4.21,,,,2.16
+"open-mmlab/OpenUnReID","PyTorch open-source toolbox for unsupervised or domain adaptive object re-ID.",237.8,1.8,,231,4,0.0381,0.0066,0.0212,0.71,0.86,0.66,0.85,0.86,,,,1.15
+"microsoft/DeBERTa","The implementation of DeBERTa",223.3,3.7,,323,5,0.034,0.0082,0.0212,14.57,14.57,7.23,2.64,1.48,,,,1.49
+"wvangansbeke/Unsupervised-Classification","SCAN: Learning to Classify Images without Labels (ECCV 2020), incl. SimCLR.",307.6,15.8,,541,7,0.0284,0.0115,0.021,2,1.36,1.28,1.55,1.52,,,,1.76
+"facebookresearch/rebel","An algorithm that generalizes the paradigm of self-play reinforcement learning and search to imperfect-information games.",191.3,7.3,,327,5,0.0336,0.0082,0.021,1.43,1.14,2.73,3.07,,,,,1.84
+"PeizeSun/SparseR-CNN","End-to-End Object Detection with Learnable Proposal",59.7,29.8,,790,9,0.025,0.0148,0.021,1,1.29,2.6,,,,,,14.16
+"jonbarron/website","",1431.1,0.8,,432,6,0.0305,0.0098,0.0209,1,0.93,0.82,0.9,0.77,0.63,0.5,,0.38
+"untitled-ai/self_supervised","A Pytorch-Lightning implementation of self-supervised algorithms",163.3,41.1,,236,4,0.0373,0.0066,0.0209,0.14,0.21,0.36,0.96,,,,,1.63
+"google-research/meta-dataset","A dataset of datasets for learning to learn from few examples",684.2,32,,433,6,0.0305,0.0098,0.0209,0.29,0.5,0.39,0.68,0.66,0.72,,,0.63
+"omer-dogan/whoami","Whoami is a Linux privacy tool developed to keep you anonymous at the highest level.",235.3,13.2,,803,9,0.0246,0.0148,0.0208,7.43,50.36,25.48,8.58,4.32,,,,3.4
+"subeeshvasu/Awesome-Learning-with-Label-Noise","A curated list of resources for Learning with Noisy Labels",550.5,13.6,,1091,11,0.0222,0.018,0.0207,2.29,2.21,2.01,2.58,2.5,2.27,,,1.98
+"budzianowski/multiwoz","Source code for end-to-end dialogue model from the MultiWOZ paper (Budzianowski et al. 2018, EMNLP)",839.2,12.8,,345,5,0.0319,0.0082,0.0203,0.57,0.5,0.56,0.65,0.53,0.54,0.4,,0.41
+"ClementPinard/Pytorch-Correlation-extension","Custom implementation of Corrleation Module",884.6,40.2,,247,4,0.0356,0.0066,0.0203,,0.21,0.3,0.42,0.33,0.26,0.26,,0.28
+"ruotianluo/self-critical.pytorch","Unofficial pytorch implementation for Self-critical Sequence Training for Image Captioning. and others.",1353.8,8.1,,694,8,0.0253,0.0131,0.0203,0.29,0.29,0.39,0.48,0.48,0.52,0.54,,0.51
+"yinboc/few-shot-meta-baseline","A New Meta-Baseline for Few-Shot Learning",371.9,35.7,,249,4,0.0353,0.0066,0.0202,1,0.71,0.69,0.55,0.54,,,,0.8
+"yassouali/awesome-semi-supervised-learning",":scroll: An up-to-date & curated list of awesome semi-supervised learning papers, methods & resources.",285,9.3,,456,6,0.0289,0.0098,0.0202,1.14,1.36,1.45,1.25,1.45,,,,1.61
+"werner-duvaud/muzero-general","MuZero",387.9,2.9,,981,10,0.0224,0.0164,0.0202,5.71,7.79,15.48,6.71,3.93,2.57,,,2.52
+"wandb/examples","Example deep learning projects that use wandb's features.",1084.2,4.2,,349,5,0.0315,0.0082,0.0201,1,1.21,0.62,0.81,0.84,0.73,0.46,,0.35
+"jik876/hifi-gan","HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis",95.5,5.9,,251,4,0.035,0.0066,0.0201,2,1.79,2.47,,,,,,2.91
+"huawei-noah/ghostnet","[CVPR2020] GhostNet: More Features from Cheap Operations",428.4,8.8,,1313,12,0.0201,0.0197,0.02,1.43,1.93,1.74,2.2,2.05,3.34,,,3.14
+"MILVLG/mcan-vqa","Deep Modular Co-Attention Networks for Visual Question Answering",591.7,32.8,,252,4,0.0349,0.0066,0.02,,,0.13,0.33,0.3,0.33,,,0.43
+"who0sy/jd_kill","京东茅台懂得都懂 main分支是新版本，old分支是docker之前的版本 ",11.9,9.9,,253,4,0.0348,0.0066,0.02,9.14,,,,,,,,22.9
+"LINBIT/linstor-server","High Performance Software-Defined Block Storage for container, cloud and virtualisation. Fully integrated with Docker, Kubernetes, Openstack, Proxmox etc.",1101.4,4.5,,352,5,0.0312,0.0082,0.02,,0.29,0.33,0.43,0.45,0.82,0.45,,0.36
+"DeepPavlov/convai","",1385.6,10.1,,354,5,0.0311,0.0082,0.0199,,,0.07,0.12,0.16,0.16,0.18,,0.26
+"facebookresearch/SentAugment","SentAugment is a data augmentation technique for NLP that retrieves similar sentences from a large bank of sentences. It can be used in combination with self-training and knowledge-distillation, or fo...",96.3,31.2,,254,4,0.0346,0.0066,0.0199,0.14,0.29,0.23,1.33,,,,,2.66
+"open-mmlab/mmclassification","OpenMMLab Image Classification Toolbox and Benchmark",192.3,2.9,,471,6,0.028,0.0098,0.0197,1.86,3.14,2.2,1.72,1.72,,,,2.46
+"mit-han-lab/data-efficient-gans","[NeurIPS 2020] Differentiable Augmentation for Data-Efficient GAN Training",216.3,29.7,,602,7,0.0256,0.0115,0.0196,0.57,0.86,1.18,1.94,1.93,,,,2.83
+"locuslab/deq","[NeurIPS'19] Deep Equilibrium Models",530.2,41,,362,5,0.0304,0.0082,0.0196,0.14,0.64,0.79,0.46,0.34,0.35,,,0.72
+"VinAIResearch/BERTweet","BERTweet: A pre-trained language model for English Tweets (EMNLP-2020)",256.3,41.3,,261,4,0.0337,0.0066,0.0196,,0.07,0.36,0.49,0.46,,,,1.08
+"renqianluo/NAO","Neural Architecture Optimization",814.8,6.7,,263,4,0.0334,0.0066,0.0195,0.29,0.14,0.1,0.07,0.08,0.1,0.24,,0.32
+"haotian-liu/yolact_edge","The first competitive instance segmentation approach that runs on small edge devices at real-time speeds.",25.9,0.3,,612,7,0.0251,0.0115,0.0194,4.86,7,,,,,,,24.42
+"hardmaru/estool","Evolution Strategies Tool",1176.7,20.3,,753,8,0.0234,0.0131,0.0193,0.57,0.43,0.36,0.37,0.35,0.38,0.43,,0.64
+"WXinlong/SOLO","SOLO and SOLOv2 for instance segmentation, ECCV 2020 & NeurIPS 2020.",300,32.7,,922,9,0.0215,0.0148,0.019,1.29,1.36,1.48,2.13,2.24,,,,3.08
+"WongKinYiu/ScaledYOLOv4","",64.9,1.4,,914,9,0.0216,0.0148,0.019,6.71,6.36,5.16,,,,,,14.99
+"hkchengrex/CascadePSP","[CVPR2020] CascadePSP: Toward Class-Agnostic and Very High-Resolution Segmentation via Global and Local Refinement",303.3,21.8,,383,5,0.0287,0.0082,0.0189,0.57,0.71,0.82,0.73,0.77,,,,1.34
+"mseitzer/pytorch-fid","Compute FID scores with PyTorch.",1072.5,19.2,,1087,10,0.0202,0.0164,0.0188,1.14,1.57,1.45,1.65,1.67,1.43,1.19,,1.04
+"LINBIT/drbd","LINBIT DRBD kernel module",1220.6,4.4,,387,5,0.0284,0.0082,0.0188,,0.07,0.07,0.13,0.91,0.58,0.39,,0.32
+"researchmm/TracKit","[ECCV'20] Ocean: Object-aware Anchor-Free Tracking",423.9,4.4,,392,5,0.028,0.0082,0.0186,1.14,1.36,1.22,1.13,1.42,,,,1.81
+"open-mmlab/mmdetection3d","OpenMMLab's next-generation platform for general 3D object detection.",193.8,0.8,,797,8,0.0221,0.0131,0.0186,3.86,4.14,3.06,2.61,3.17,,,,4.15
+"uncertainty-toolbox/uncertainty-toolbox","A python toolbox for predictive uncertainty quantification, calibration, metrics, and visualization",134,2.2,,797,8,0.0221,0.0131,0.0186,3.14,8.07,24.92,,,,,,19.47
+"decisionforce/TPN","[CVPR 2020] Temporal Pyramid Network for Action Recognition",310.7,5.6,,286,4,0.0307,0.0066,0.0184,0.14,0.21,0.33,0.49,0.65,,,,0.92
+"daquexian/onnx-simplifier","Simplify your onnx model",657.6,3.8,,967,9,0.0205,0.0148,0.0184,3.71,3,2.33,2.2,2.1,1.91,,,1.47
+"Alibaba-MIIL/TResNet","Official Pytorch Implementation of ""TResNet: High-Performance GPU-Dedicated Architecture"" (WACV 2021)",296.2,10.3,,287,4,0.0306,0.0066,0.0184,0.43,0.36,0.39,0.61,0.57,,,,0.98
+"facebookresearch/FixRes","This repository reproduces the results of the paper: ""Fixing the train-test resolution discrepancy"" https://arxiv.org/abs/1906.06423",569.4,22.6,,816,8,0.0216,0.0131,0.0183,0.57,0.93,0.92,0.85,1.02,1.25,,,1.5
+"Tiiiger/bert_score","BERT score for text generation",638.4,7.1,,525,6,0.0251,0.0098,0.0183,0.14,0.57,0.69,0.71,0.66,0.84,,,0.82
+"yzhangcs/parser","A collection of state-of-the-art models for Dependency Parsing, Constituency Parsing and Semantic Dependency Parsing.",832.5,1.8,,292,4,0.0301,0.0066,0.0182,1.71,1.14,0.85,0.77,0.89,0.61,0.39,,0.36
+"wtjiang98/PSGAN","PyTorch code for ""PSGAN: Pose and Expression Robust Spatial-Aware GAN for Customizable Makeup Transfer"" (CVPR 2020 Oral)",304.4,6.6,,294,4,0.0299,0.0066,0.0181,0.43,0.57,0.56,0.59,0.66,,,,0.97
+"optimass/continual_learning_papers","Relevant papers in Continual Learning",468.2,0.3,,294,4,0.0299,0.0066,0.0181,0.14,0.5,0.85,0.62,0.57,0.56,,,0.64
+"iPERDance/iPERCore","Liquid Warping GAN with Attention: A Unified Framework for Human Image Synthesis",61.3,10.8,,827,8,0.0213,0.0131,0.0181,5.43,12.29,13.15,,,,,,13.99
+"open-mmlab/mmpose","OpenMMLab Pose Estimation Toolbox and Benchmark.",193.7,0.4,,533,6,0.0247,0.0098,0.0181,3.86,2.93,2.33,2.19,2.28,,,,2.78
+"h1st-ai/h1st","The AI Application Platform We All Need. Human AND Machine Intelligence. Based on experience building AI solutions at Panasonic: robotics predictive maintenance, cold-chain energy optimization, Gigafa...",157.8,2,,683,7,0.0225,0.0115,0.018,0.29,0.36,0.53,0.58,,,,,4.35
+"activitynet/ActivityNet","This repository is intended to host tools and demos for ActivityNet",1913.5,6.6,,698,7,0.022,0.0115,0.0177,0.29,0.36,0.53,0.48,0.44,0.52,0.59,0.38,0.37
+"vivekratnavel/omniboard","Web-based dashboard for Sacred",866.9,12.7,,427,5,0.0257,0.0082,0.0176,0.29,0.14,0.1,0.2,0.23,0.28,0.46,,0.49
+"ElementAI/baal","Using approximate bayesian posteriors in deep nets for active learning",475.1,2.1,,307,4,0.0286,0.0066,0.0175,,0.21,0.33,0.25,0.32,0.47,,,0.65
+"Ha0Tang/AttentionGAN","AttentionGAN for Unpaired Image-to-Image Translation & Multi-Domain Image-to-Image Translation",558.4,5.6,,320,4,0.0275,0.0066,0.0171,0.43,0.86,0.69,0.61,0.56,0.45,,,0.57
+"mit-han-lab/gan-compression","[CVPR 2020] GAN Compression: Efficient Architectures for Interactive Conditional GANs",319,4.7,,756,7,0.0204,0.0115,0.0169,0.71,0.64,0.89,0.95,0.98,,,,2.49
+"visual-ml-notes/visual-machine-learning-notes","Machine Learning Conference & Summer School Notes.  🦄📝🎉",482.6,11.5,,479,5,0.0229,0.0082,0.0163,,0.29,0.66,0.49,0.43,0.87,,,1.11
+"deepmind/ferminet","An implementation of the Fermionic Neural Network for ab-initio electronic structure calculations",103.5,2.1,,344,4,0.0256,0.0066,0.0163,0.43,0.43,0.53,,,,,,3.84
+"uber-research/PPLM","Plug and Play Language Model implementation. Allows to steer topic and attributes of GPT-2 models.",439.2,11.4,,635,6,0.0208,0.0098,0.0162,0.43,0.86,0.72,0.96,0.89,0.93,,,1.55
+"andreas128/SRFlow","Official SRFlow training code: Super-Resolution using Normalizing Flow in PyTorch",209.4,11.2,,482,5,0.0228,0.0082,0.0162,1.43,1.21,1.08,1.64,2.55,,,,2.39
+"fartashf/vsepp","PyTorch Code for the paper ""VSE++: Improving Visual-Semantic Embeddings with Hard Negatives""",1298.1,4.3,,346,4,0.0254,0.0066,0.0162,,,0.2,0.32,0.28,0.27,0.25,,0.27
+"yinyunie/3D-Shape-Analysis-Paper-List","A list of recent papers, libraries and datasets about 3D shape/geometry analysis (by topics, updating). ",383.5,0.5,,355,4,0.0248,0.0066,0.016,1,1.07,0.92,0.87,1.01,0.96,,,0.93
+"jiwei0921/SOD-CNNs-based-code-summary-","The summary of code and paper for salient object detection with deep learning ",706.3,0.1,,354,4,0.0248,0.0066,0.016,0.29,0.79,0.72,0.72,0.89,0.67,,,0.51
+"huawei-noah/AdderNet","Code for paper "" AdderNet: Do We Really Need Multiplications in Deep Learning?""",327.6,12.9,,651,6,0.0203,0.0098,0.0159,0.57,0.36,0.56,0.96,0.81,,,,1.99
+"MegviiDetection/video_analyst","A series of basic algorithms that are useful for video understanding, including Single Object Tracking (SOT), Video Object Segmentation (VOS) and so on.",391.7,13.6,,512,5,0.0215,0.0082,0.0156,0.29,0.36,0.53,0.65,0.73,1.19,,,1.31
+"naoto0804/pytorch-AdaIN","Unofficial pytorch implementation of 'Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization' [Huang+, ICCV2017]",1146.4,22.7,,514,5,0.0214,0.0082,0.0155,1.29,0.86,0.53,0.55,0.55,0.58,0.62,,0.45
+"FateScript/CenterNet-better","An easy to understand and better performance version of CenterNet",329.7,36.8,,370,4,0.0238,0.0066,0.0155,1.14,0.93,0.82,0.62,0.58,,,,1.12
+"facebookresearch/gtn","Automatic differentiation with weighted finite-state transducers.",110.3,12.4,,370,4,0.0238,0.0066,0.0155,,0.5,0.49,0.83,,,,,3.38
+"dgasmith/opt_einsum","⚡️Optimizing einsum functions in NumPy, Tensorflow, Dask, and more with contraction order optimization.",2228.3,20,,372,4,0.0236,0.0066,0.0154,0.43,0.43,0.33,0.37,0.38,0.38,0.32,0.19,0.16
+"JDAI-CV/centerX","This repo is implemented based on detectron2 and centernet",47.6,17.6,,372,4,0.0236,0.0066,0.0154,0.86,1.14,1.32,,,,,,7.96
+"dingjiansw101/AerialDetection","",399.5,40.7,,379,4,0.0232,0.0066,0.0153,1.29,1.21,0.82,0.82,0.92,,,,1.07
+"ildoonet/pytorch-gradual-warmup-lr","Gradually-Warmup Learning Rate Scheduler for PyTorch",732.7,27.7,,525,5,0.0209,0.0082,0.0153,0.57,0.79,0.62,0.68,0.63,0.71,0.71,,0.72
+"maiot-io/zenml","ZenML: Bring Zen to your ML with reproducible pipelines",59.6,2.2,,378,4,0.0233,0.0066,0.0153,4.86,6.71,11.8,,,,,,6.53
+"huggingface/pytorch_block_sparse","Fast Block Sparse Matrices for Pytorch",198.6,6.4,,378,4,0.0233,0.0066,0.0153,,0.14,0.2,0.34,2.06,,,,1.95
+"fastai/imagenette","A smaller subset of 10 easily classified classes from Imagenet, and a little more French",683.9,7.1,,382,4,0.023,0.0066,0.0152,0.14,0.21,0.3,0.3,0.37,0.46,,,0.56
+"alexandre01/deepsvg","Official code for the paper ""DeepSVG: A Hierarchical Generative Network for Vector Graphics Animation"". Includes a PyTorch library for deep learning with SVG data.",178.9,27.1,,383,4,0.023,0.0066,0.0152,0.57,0.71,0.59,0.77,,,,,2.15
+"kdhht2334/Survey_of_Deep_Metric_Learning","A comprehensive survey of deep metric learning and related works",623.3,0.8,,385,4,0.0228,0.0066,0.0151,0.86,0.64,0.59,0.44,0.54,0.58,,,0.62
+"FlutterGen/flutter_gen","The Flutter code generator for your assets, fonts, colors, … — Get rid of all String-based APIs.",149.6,10.2,,541,5,0.0203,0.0082,0.015,0.43,0.21,0.56,0.78,,,,,4.1
+"lightly-ai/lightly","A python library for self-supervised learning.",96.4,0.2,,390,4,0.0225,0.0066,0.0149,0.57,0.57,1.02,3.68,,,,,4.08
+"kwebio/kweb-core","A lightweight Kotlin web framework for backend developers 🦆",1470.9,19.3,,548,5,0.0201,0.0082,0.0149,0.43,0.43,0.66,1.72,0.98,0.68,0.52,,0.37
+"abhishekkrthakur/tez","Tez is a super-simple and lightweight Trainer for PyTorch. It also comes with many utils that you can use to tackle over 90% of deep learning projects in PyTorch.",65.6,2.5,,398,4,0.0221,0.0066,0.0148,1.57,1.71,2.53,,,,,,6.7
+"SimmerChan/corpus","自然语言处理，知识图谱相关语料。按照Task细分，欢迎PR。",753.5,2.9,,396,4,0.0222,0.0066,0.0148,1.14,3.29,4.11,3.01,1.67,0.97,0.54,,0.53
+"FenTechSolutions/CausalDiscoveryToolbox","Package for causal inference in graphs and in the pairwise settings. Tools for graph structure recovery and dependencies are included.",1327.6,4.5,,410,4,0.0214,0.0066,0.0145,0.86,0.71,0.72,0.75,0.61,0.64,0.51,,0.36
+"vchoutas/smplx","SMPL-X",619.4,41.6,,415,4,0.0212,0.0066,0.0144,1,0.86,0.62,1.1,0.87,0.72,,,0.71
+"VITA-Group/FasterSeg","[ICLR 2020] ""FasterSeg: Searching for Faster Real-time Semantic Segmentation"" by Wuyang Chen, Xinyu Gong, Xianming Liu, Qian Zhang, Yuan Li, Zhangyang Wang",415.9,29.3,,419,4,0.021,0.0066,0.0143,0.57,0.5,1.22,0.73,0.64,0.72,,,1.02
+"Duan-JM/awesome-papers-fewshot","Collection for Few-shot Learning",497.7,10.9,,428,4,0.0205,0.0066,0.0141,0.43,0.43,0.56,0.7,0.7,0.76,,,0.86
+"HuaizhengZhang/Awsome-Deep-Learning-for-Video-Analysis","Papers, code and datasets about deep learning and multi-modal learning for video analysis",1313.7,10.4,,425,4,0.0207,0.0066,0.0141,0.86,0.71,0.49,0.45,0.44,0.45,0.55,,0.38

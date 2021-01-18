@@ -1,0 +1,684 @@
+"fullName","description","createdAgo","pushedAgo","isFork","repoStars","usersStars","rightShare","leftShare","relevance","T1W","T2W","T1M","T3M","T6M","T1Y","T2Y","T5Y","TI"
+"huggingface/transformers","🤗Transformers: State-of-the-art Natural Language Processing for Pytorch and TensorFlow 2.0.",811.4,2.1,,39449,26945,1,1,1,46.71,49,43.43,49.04,49.35,52.61,50.59,,49.1
+"google-research/bert","TensorFlow code and pre-trained models for BERT",815,36.2,,26639,6040,0.332,0.2242,0.2913,12.71,12.64,16.5,16.71,16.07,16.55,22.06,,32.72
+"hanxiao/bert-as-service","Mapping a variable-length sentence to a fixed-length vector using BERT model",797.5,16.2,,8773,2440,0.4072,0.0906,0.2467,4.43,4.14,4.54,4.87,5.19,6.31,9.71,,11.01
+"UKPLab/sentence-transformers","Sentence Embeddings with BERT & XLNet",543.5,2.2,,3910,1366,0.5115,0.0507,0.2367,6.29,7.21,6.71,8.56,8.79,8.19,,,7.22
+"pytorch/fairseq","Facebook AI Research Sequence-to-Sequence Toolkit written in Python.",1237.3,2.2,,10981,2692,0.3589,0.0999,0.2343,9.29,10.21,10.39,20.15,14.56,12.1,11.42,,9.03
+"sebastianruder/NLP-progress","Repository to track the progress in Natural Language Processing (NLP), including the datasets and the current state-of-the-art for the most common NLP tasks.",940.3,2.1,,17631,3652,0.3033,0.1355,0.2319,6.86,7.5,6.81,8.52,8.55,10.74,13.22,,18.77
+"allenai/allennlp","An open-source NLP research library, built on PyTorch.",1343.3,2.1,,9572,2197,0.336,0.0815,0.2095,3.71,3.36,3.09,5.24,4.58,5,6.48,,7.37
+"ThilinaRajapakse/simpletransformers","Transformers for Classification, NER, QA, Language Modelling, Language Generation, T5, Multi-Modal, and Conversational AI",471.7,5.3,,1987,704,0.5187,0.0261,0.1915,3.71,4.36,3.65,4.12,4.14,4.38,,,4.23
+"jadore801120/attention-is-all-you-need-pytorch","A PyTorch implementation of the Transformer model in ""Attention is All You Need"".",1313.6,5.7,,4729,1230,0.3808,0.0456,0.1877,5.14,5.14,4.34,4,3.59,3.42,4.03,,3.62
+"bojone/bert4keras","keras implement of transformers for humans",510.9,5.7,,2721,839,0.4514,0.0311,0.1851,5.29,5.29,4.73,6.66,6.35,5.48,,,5.34
+"thunlp/PLMpapers","Must-read Papers on pre-trained language models.",482.3,23.7,,2171,720,0.4855,0.0267,0.1846,1.57,2.43,2.27,2.18,1.8,2.24,,,4.52
+"jessevig/bertviz","Tool for visualizing attention in the Transformer model (BERT, GPT-2, Albert, XLNet, RoBERTa, CTRL, etc.)",763.3,15.2,,2405,763,0.4645,0.0283,0.1828,2.43,2.64,2.86,2.95,3,3.11,3.06,,3.16
+"PaddlePaddle/ERNIE","An Implementation of ERNIE For Language Understanding (including Pre-training models and Fine-tuning tools)",686.7,4.5,,3899,1047,0.3931,0.0389,0.1818,2.14,2.29,2.17,2.41,2.7,2.94,,,5.69
+"649453932/Bert-Chinese-Text-Classification-Pytorch","使用Bert，ERNIE，进行中文文本分类",552.5,41.6,,1133,431,0.5569,0.016,0.1706,1.29,2.5,2.43,3,2.6,2.36,,,2.08
+"huggingface/tokenizers","💥 Fast State-of-the-Art Tokenizers optimized for Research and Production",443.3,5.1,,4160,993,0.3495,0.0369,0.1652,2.14,3.43,2.66,3.95,4.03,7.04,,,9.47
+"ChineseGLUE/ChineseGLUE","Language Understanding Evaluation benchmark for Chinese: datasets, baselines, pre-trained models,corpus and leaderboard",470.3,14.9,,1388,477,0.5031,0.0177,0.1649,0.43,0.64,0.72,0.83,0.89,1.11,,,2.96
+"dbiir/UER-py","Open Source Pre-training Model Framework in PyTorch & Pre-trained Model Zoo",648.5,3.6,,1159,419,0.5293,0.0156,0.1635,1,2.07,1.64,2.33,1.93,1.51,,,1.79
+"namisan/mt-dnn","Multi-Task Deep Neural Networks for Natural Language Understanding",698,40.7,,1592,510,0.469,0.0189,0.1608,0.43,0.64,0.69,1.1,0.94,1.15,,,2.32
+"OpenNMT/OpenNMT-py","Open Source Neural Machine Translation in PyTorch",1425.2,4.3,,4758,1048,0.3225,0.0389,0.1593,1.57,2.29,2.56,3.05,2.72,2.89,3.35,,3.34
+"huawei-noah/Pretrained-Language-Model","Pretrained language model and its related optimization techniques developed by Huawei Noah's Ark Lab.",412.4,11.9,,1476,477,0.4731,0.0177,0.1582,2.29,2.07,1.94,2.44,2.31,2.42,,,3.59
+"google-research/text-to-text-transfer-transformer","Code for the paper ""Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer""",458.1,2.4,,3124,786,0.3684,0.0292,0.1582,2.86,2.71,2.66,2.96,2.66,4.65,,,6.83
+"tensorflow/tensor2tensor","Library of deep learning models and datasets designed to make deep learning more accessible and accelerate ML research.",1312.3,33.9,,10803,1759,0.2384,0.0653,0.1548,3.43,4.57,4.34,4,3.79,4.14,6.25,,8.24
+"bentrevett/pytorch-seq2seq","Tutorials on implementing a few sequence-to-sequence (seq2seq) models with PyTorch and TorchText.",915.5,4.3,,2447,653,0.3907,0.0242,0.1546,3,4.79,3.55,3.68,3.58,4.04,3.29,,2.7
+"tomohideshibata/BERT-related-papers","BERT-related papers",585.5,13.8,,1467,464,0.4631,0.0172,0.1545,0.86,1.07,1.02,1.65,1.7,3.03,,,2.51
+"ymcui/Chinese-ELECTRA","Pre-trained Chinese ELECTRA（中文ELECTRA预训练模型）",300.9,35.9,,780,302,0.5669,0.0112,0.1533,0.86,1.29,1.22,2.2,1.78,,,,2.6
+"google/sentencepiece","Unsupervised text tokenizer for Neural Network-based text generation.",1412.6,5.3,,4719,1000,0.3102,0.0371,0.1528,3,3,2.83,3.44,3.21,3.39,3.9,,3.34
+"PyTorchLightning/pytorch-lightning","The lightweight PyTorch wrapper for high-performance AI research. Scale your models, not the boilerplate.",659,2.1,,11450,1760,0.225,0.0653,0.149,17.71,21.93,22.75,29.01,26.06,22.48,,,17.41
+"flairNLP/flair","A very simple framework for state-of-the-art Natural Language Processing (NLP)",951.5,3.3,,9812,1581,0.2359,0.0587,0.1484,4.29,4.93,4.31,4.26,4.69,5.4,7.79,,10.36
+"microsoft/unilm","UniLM - Unified Language Model Pre-training / Pre-training for NLP and Beyond",544.8,10,,1739,497,0.4184,0.0184,0.1477,2.57,2.71,2.04,2.74,2.94,3.46,,,3.66
+"DA-southampton/NLP_ability","总结梳理自然语言处理工程师(NLP)需要积累的各方面知识，包括面试题，各种基础知识，工程能力等等，提升核心竞争力",215.9,3.6,,1471,439,0.4369,0.0163,0.146,3.29,4.86,4.27,4.96,6.04,,,,6.85
+"InsaneLife/ChineseNLPCorpus","中文自然语言处理数据集，平时做做实验的材料。欢迎补充提交合并。",778.6,31.5,,1896,501,0.3869,0.0186,0.1407,2,2.5,2.37,3.06,2.64,2.48,2.59,,2.44
+"thunlp/GNNPapers","Must-read papers on graph neural networks (GNN)",755.9,32.3,,9563,1440,0.2205,0.0534,0.1374,7.14,7.21,8.38,9.37,9.95,9.59,10.98,,12.68
+"songyingxin/NLPer-Interview","该仓库主要记录 NLP 算法工程师相关的面试题",549.9,18.5,,1139,346,0.4447,0.0128,0.1363,1,1.14,1.32,1.44,1.43,1.85,,,2.12
+"thunlp/OpenNRE"," An Open-Source Package for Neural Relation Extraction (NRE)",1421.7,2.9,,2936,641,0.3196,0.0238,0.1345,1.43,1.5,1.68,1.96,2.05,2.21,2.56,,2.07
+"makcedward/nlpaug","Data augmentation for NLP ",668.9,3.8,,1551,415,0.3917,0.0154,0.1332,2.71,3.29,2.76,3.24,3.31,3.02,,,2.43
+"FudanNLP/nlp-beginner","NLP上手教程",1390.3,13.7,,3567,720,0.2955,0.0267,0.1326,2.57,2.79,2.76,2.73,2.5,3.18,4.68,,2.57
+"nlpyang/BertSum","Code for paper Fine-tune BERT for Extractive Summarization",664.9,18.2,,943,295,0.458,0.0109,0.1317,0.86,0.64,0.62,0.66,0.81,0.98,,,1.42
+"songyouwei/ABSA-PyTorch","Aspect Based Sentiment Analysis, PyTorch Implementations.  基于方面的情感分析，使用PyTorch实现。",984.4,19.7,,1120,328,0.4288,0.0122,0.1309,1.29,1.29,1.18,1.53,1.19,1.16,1.4,,1.14
+"stanfordnlp/stanza","Official Stanford NLP Python Library for Many Human Languages",1209.7,2.1,,5104,899,0.2579,0.0334,0.1305,3,3.5,5.88,4.18,4.01,6.78,,,7.11
+"marcotcr/checklist","Beyond Accuracy: Behavioral Testing of NLP models with CheckList",314.3,18,,1187,339,0.4181,0.0126,0.1301,2.29,2.07,2.17,2.39,3.69,,,,4.63
+"fastnlp/fastNLP","fastNLP: A Modularized and Extensible NLP Framework. Currently still in incubation.",1047.4,32.6,,1967,472,0.3513,0.0175,0.1293,0.71,1.21,1.78,2.43,2.08,2.58,2.47,,1.88
+"utterworks/fast-bert","Super easy library for BERT based NLP models",640.1,31.1,,1476,387,0.3839,0.0144,0.1285,0.14,0.79,0.59,0.84,1.08,1.59,,,2.42
+"Morizeyao/GPT2-Chinese","Chinese version of GPT2 training code, using BERT tokenizer.",597.9,14.5,,3485,673,0.2827,0.025,0.1259,4.71,4.21,4.31,4.8,4.91,5.14,,,5.84
+"rusty1s/pytorch_geometric","Geometric Deep Learning Extension Library for PyTorch",1199.3,2.5,,9963,1354,0.199,0.0503,0.1258,10.57,9.93,9.27,9.49,9.88,10.33,12.29,,8.47
+"BrikerMan/Kashgari","Kashgari is a production-level NLP Transfer learning framework built on top of tf.keras for text-labeling and text-classification, includes Word2Vec, BERT, and GPT2 Language Embedding.",729.9,39.9,,2001,461,0.3373,0.0171,0.1248,1.29,1.43,1.45,1.57,1.61,1.78,,,2.76
+"huggingface/datasets","🤗 The largest hub of ready-to-use NLP datasets for ML models with fast, easy-to-use and efficient data manipulation tools",297.6,2.1,,6501,998,0.2248,0.037,0.1232,15,38.29,23.93,24.26,20.83,,,,25.68
+"airaria/TextBrewer","A PyTorch-based knowledge distillation toolkit for natural language processing",327.6,10.6,,636,211,0.4857,0.0078,0.1225,1.43,1.07,1.22,1.58,1.56,,,,1.98
+"google-research/google-research","Google Research",836.2,2.1,,15204,1730,0.1666,0.0642,0.1212,19.71,17.64,15.29,24.88,21.33,23.97,19.09,,18.21
+"THUNLP-MT/MT-Reading-List","A machine translation reading list maintained by Tsinghua Natural Language Processing Group",776.5,13.7,,1925,433,0.3293,0.0161,0.1204,0.71,1.36,1.05,1.1,1.17,1.1,1.42,,2.48
+"allenai/longformer","Longformer: The Long-Document Transformer",292.1,4.2,,936,268,0.4192,0.0099,0.1203,1.14,0.79,1.15,1.38,1.6,,,,3.35
+"didi/ChineseNLP","Datasets, SOTA results of every fields of Chinese NLP",612.8,6.7,,1129,302,0.3916,0.0112,0.1198,1.71,1.43,1.45,1.56,1.66,1.3,,,1.9
+"shibing624/pycorrector","pycorrector is a toolkit for text error correction. It was developed to facilitate the designing, comparing, and sharing of deep text error correction models.",1053.5,2.6,,1958,433,0.3238,0.0161,0.1191,3,3.07,2.99,2.79,2.84,2.87,2.34,,1.86
+"dmlc/dgl","Python package built to ease deep learning on graph, on top of existing DL frameworks.",1003.4,2.4,,6507,951,0.214,0.0353,0.1174,7.57,8.5,8.65,7.81,7.41,7.66,7.34,,7.19
+"thu-coai/CDial-GPT"," A Large-scale Chinese Short-Text Conversation Dataset and Chinese pre-training dialog models ",223.5,19.7,,518,175,0.4946,0.0065,0.1167,0.71,1.29,1.25,1.97,2.79,,,,2.34
+"pytorch/text","Data loaders and abstractions for text and NLP",1498,2.1,,2618,515,0.288,0.0191,0.1166,0.86,1.07,1.05,1.35,1.48,1.51,1.72,,1.79
+"Separius/awesome-sentence-embedding"," A curated list of pretrained sentence and word embedding models",769.3,39.2,,1751,392,0.3278,0.0145,0.1159,0.86,1.57,1.61,1.17,1.04,1.1,1.65,,2.28
+"yunjey/pytorch-tutorial","PyTorch Tutorial for Deep Learning Researchers",1409.7,27.7,,19369,1942,0.1468,0.0721,0.1158,8.14,10,9.67,12.04,11.87,12.71,14.51,,13.75
+"ZhuiyiTechnology/pretrained-models","Open Language Pre-trained Model Zoo",370.8,20.7,,435,154,0.5183,0.0057,0.1153,0.86,1.29,1.02,1.25,0.87,1.12,,,1.17
+"fuzhenxin/Style-Transfer-in-Text","Paper List for Style Transfer in Text",1050.8,23.7,,981,263,0.3925,0.0098,0.1147,2.71,1.79,1.35,1.07,0.96,0.93,1.05,,0.96
+"fighting41love/funNLP","中英文敏感词、语言检测、中外手机/电话归属地/运营商查询、名字推断性别、手机号抽取、身份证抽取、邮箱抽取、中日文人名库、中文缩写库、拆字词典、词汇情感值、停用词、反动词表、暴恐词表、繁简体转换、英文模拟中文发音、汪峰歌词生成器、职业名称词库、同义词库、反义词库、否定词库、汽车品牌词库、汽车零件词库、连续英文切割、各种中文词向量、公司名字大全、古诗词库、IT词库、财经词库、成语词库、地名词库、历史名...",880.5,26.2,,27963,2456,0.1286,0.0911,0.1146,32.14,32.21,29.85,31.76,32.31,33.03,34.23,,31.83
+"Tiiiger/bert_score","BERT score for text generation",638.4,7.1,,524,173,0.4834,0.0064,0.1144,0.14,0.57,0.69,0.71,0.66,0.84,,,0.82
+"msgi/nlp-journey","Documents, papers and codes related to  Natural Language Processing, including Topic Model, Word Embedding, Named Entity Recognition, Text Classificatin, Text Generation, Text Similarity, Machine Tran...",636.5,3.6,,1257,309,0.3599,0.0115,0.1142,0.57,0.64,0.43,0.64,0.67,1.24,,,2.11
+"pytorch/pytorch","Tensors and Dynamic neural networks in Python with strong GPU acceleration",1618.8,2.1,,45497,3369,0.1084,0.125,0.1137,27,27.29,25.48,28.45,31.42,29.97,31.16,,28.18
+"attardi/wikiextractor","A tool for extracting plain text from Wikipedia dumps",2128.5,19.2,,2495,486,0.2852,0.018,0.1136,1.29,1.29,0.95,1.41,1.48,1.56,1.76,1.32,1.17
+"danqi/acl2020-openqa-tutorial","ACL2020 Tutorial: Open-Domain Question Answering",268.4,16.4,,477,161,0.4942,0.006,0.1136,1.29,1.57,1.22,1.24,1.11,,,,1.79
+"karpathy/minGPT","A minimal PyTorch re-implementation of the OpenAI GPT (Generative Pretrained Transformer) training",153.7,18.5,,5673,830,0.2142,0.0308,0.1122,4.57,3.71,2.93,3.24,,,,,37.26
+"QData/TextAttack","TextAttack 🐙  is a Python framework for adversarial attacks, data augmentation, and model training in NLP",461,2.3,,1182,292,0.3617,0.0108,0.1122,1.43,1.86,1.68,2.74,3.07,,,,4.31
+"yongzhuo/Keras-TextClassification","中文长文本分类、短句子分类、多标签分类、两句子相似度（Chinese Text Classification of Keras NLP, multi-label classify, or sentence classify, long or short），字词句向量嵌入层（embeddings）和网络层（graph）构建基类，FastText，TextCNN，CharCNN，TextRNN,  R...",584.4,29.3,,866,236,0.399,0.0088,0.1119,1,1.43,1.32,1.34,1.25,1.39,,,1.5
+"pytorch/examples","A set of examples around pytorch in Vision, Text, Reinforcement Learning, etc.",1607.9,4.2,,15228,1595,0.1533,0.0592,0.1116,7,7.79,9.11,10.66,9.93,10.78,11.39,,9.48
+"PAIR-code/lit","The Language Interpretability Tool: Interactively analyze NLP models for model understanding in an extensible and framework agnostic interface.",173.4,4.1,,2329,453,0.2848,0.0168,0.1109,2,2.29,1.81,3.48,,,,,14.8
+"yandexdataschool/nlp_course","YSDA course in Natural Language Processing",862.6,34.1,,6559,901,0.2011,0.0334,0.1105,4.43,4.29,3.95,3.52,4.03,3.94,5.18,,7.62
+"microsoft/nlp-recipes","Natural Language Processing Best Practices & Examples",653.3,11.1,,5347,783,0.2144,0.0291,0.1102,2.14,1.71,1.41,1.95,2.24,5.4,,,8.34
+"DA-southampton/Tech_Aarticle","深度学习模型在各大公司实战落地细节解读：主要是通过阅读各种实战文章，梳理模型落地的工程细节，涉及到搜索/推荐/自然语言处理。",221.5,32.7,,823,223,0.3967,0.0083,0.1093,0.86,2.86,2.6,1.93,2.96,,,,3.73
+"doccano/doccano","Open source text annotation tool for machine learning practitioner.",984.7,2.4,,4144,656,0.2318,0.0243,0.1093,16.86,10.79,6.38,5.27,4.88,5.16,5.13,,4.21
+"facebookresearch/faiss","A library for efficient similarity search and clustering of dense vectors.",1440.3,2.5,,12165,1320,0.1589,0.049,0.1074,11.71,11.86,10.82,11.53,10.59,9.85,9.33,,8.51
+"bharathgs/Awesome-pytorch-list","A comprehensive list of pytorch related content on github,such as different models,implementations,helper libraries,tutorials etc.",1418.3,13.7,,11377,1250,0.1609,0.0464,0.1063,4.43,5.5,8.32,6.6,5.91,7.64,8.81,,8.03
+"NVIDIA/Megatron-LM","Ongoing research training transformer language models at scale, including: BERT & GPT-2",668.3,5.1,,1719,354,0.3015,0.0131,0.106,3.43,2.43,1.64,2.03,1.75,1.56,,,2.58
+"facebookresearch/fastText","Library for fast text representation and classification.",1646.4,2.4,,22128,1933,0.1279,0.0717,0.1055,3.86,4.21,4.11,4.98,4.9,5.44,7.39,,13.61
+"shenweichen/DeepCTR","Easy-to-use,Modular and Extendible package of deep-learning based CTR models for search and recommendation.",1198.7,8.6,,4416,658,0.2181,0.0244,0.1051,4.43,4.57,4.14,4.44,4.5,4.73,5.38,,3.88
+"thunlp/FewRel","A Large-Scale Few-Shot Relation Extraction Dataset",876,12.7,,502,151,0.4404,0.0056,0.1028,0.43,0.57,0.46,0.53,0.46,0.45,0.61,,0.61
+"Maluuba/nlg-eval","Evaluation code for various unsupervised automated metrics for Natural Language Generation.",1300.3,5.3,,794,204,0.3762,0.0076,0.1025,,0.07,0.33,0.36,0.5,0.58,0.65,,0.61
+"PaddlePaddle/Research","novel deep learning research works with PaddlePaddle",339.6,12.8,,546,159,0.4263,0.0059,0.1024,0.57,1,0.95,1.19,1.18,,,,1.63
+"NVIDIA/DeepLearningExamples","Deep Learning Examples",991.3,3.9,,5292,719,0.1989,0.0267,0.1018,5.29,5.43,4.64,5.64,6.09,6.51,6.94,,5.38
+"lucidrains/reformer-pytorch","Reformer, the efficient Transformer, in Pytorch",374.1,37.3,,1314,284,0.3164,0.0105,0.1017,2.71,2.36,1.94,1.94,1.58,3.46,,,3.52
+"huggingface/neuralcoref","✨Fast Coreference Resolution in spaCy with Neural Networks",1294.5,19.1,,2165,394,0.2664,0.0146,0.1012,0.86,1,0.82,1.03,1.01,1.2,1.59,,1.68
+"stanfordnlp/GloVe","GloVe model for distributed word representation",1965.3,11.2,,5163,700,0.1985,0.026,0.1008,2.43,2.07,1.64,2.24,2.26,2.36,2.72,2.75,2.63
+"GanjinZero/awesome_Chinese_medical_NLP","中文医学NLP公开资源整理：术语集/语料库/词向量/预训练模型/知识图谱/命名实体识别/QA/信息抽取/模型/论文/etc",445.9,18.7,,530,153,0.4226,0.0057,0.1006,0.71,0.86,0.95,1.19,1.33,1.23,,,1.19
+"nyu-mll/jiant","jiant is an NLP toolkit",944.2,3.2,,1091,248,0.3328,0.0092,0.1006,0.71,0.57,0.62,0.94,0.98,1.06,1.13,,1.18
+"google-research/pegasus","",298.8,9.6,,919,220,0.3505,0.0082,0.1002,0.71,0.86,1.28,1.15,1.74,,,,3.08
+"slundberg/shap","A game theoretic approach to explain the output of any machine learning model.",1517.2,2.1,,11408,1176,0.1509,0.0436,0.0998,9.29,10.43,8.98,10.78,10.73,10.72,11.24,,7.54
+"huggingface/knockknock","🚪✊Knock Knock: Get notified when your training ends with only two additional lines of code",669.4,8.7,,1946,358,0.2693,0.0133,0.0988,0.29,2.36,1.55,1.64,1.98,2.02,,,2.91
+"facebookresearch/ParlAI","A framework for training and evaluating AI models on a variety of openly available dialogue datasets.",1364.3,2.1,,6911,832,0.1763,0.0309,0.0987,2.57,2.64,3.06,2.73,2.89,4.91,4.07,,5.1
+"google-research/language","Shared repository for open-sourced projects from the Google AI Language team.",825,4.2,,815,199,0.3575,0.0074,0.0982,1,0.79,0.85,0.7,1.26,1.14,1.01,,0.99
+"explosion/spacy-transformers","🛸 Use pretrained transformers like BERT, XLNet and GPT-2 in spaCy",541.2,3.6,,869,207,0.3487,0.0077,0.0978,0.86,0.57,0.53,0.54,0.59,0.86,,,1.61
+"deepset-ai/FARM",":house_with_garden: Fast & easy transfer learning for NLP. Harvesting language models for the industry. Focus on Question Answering.",550.4,5.3,,1072,237,0.3237,0.0088,0.0973,0.57,0.57,0.82,0.95,1.24,1.63,,,1.95
+"fastai/fastai","The fastai deep learning library",1226.3,2.5,,20279,1672,0.1207,0.0621,0.0967,7.57,7,7.2,7.88,11.5,10.18,13.21,,16.56
+"facebookresearch/LASER","Language-Agnostic SEntence Representations",942.4,9.2,,2690,434,0.2362,0.0161,0.0965,0.43,0.64,1.28,1.3,1.05,1.57,3.45,,2.88
+"tensorflow/models","Models and examples built with TensorFlow",1808.9,2.2,,68330,3747,0.0803,0.1391,0.0964,16.14,18.64,25.48,21.63,21.42,23.52,31.93,,37.81
+"google/trax","Trax — Deep Learning with Clear Code and Speed",470.4,2.1,,5566,697,0.1833,0.0259,0.0955,6.86,6.36,5.42,5.67,5.87,13.35,,,11.92
+"NVIDIA/apex","A PyTorch Extension:  Tools for easy mixed precision and distributed training in Pytorch",1000.3,3,,4949,644,0.1905,0.0239,0.0954,3.14,3.64,3.39,4.02,4.19,4.87,5.76,,4.96
+"deepset-ai/haystack",":mag: Transformers at scale for question answering & neural search. Using NLP via a modular Retriever-Reader-Pipeline. Supporting DPR, Elasticsearch, HuggingFace's Modelhub... ",430.6,3.4,,1256,255,0.2972,0.0095,0.0943,2.43,2.64,2.6,3.92,4.45,3.39,,,2.92
+"iwangjian/Paper-Reading","Paper reading list in natural language processing, including dialogue systems and text generation related topics.",913.4,11.6,,496,135,0.3985,0.005,0.0926,,,0.13,0.18,0.19,0.3,0.66,,0.54
+"ivan-bilan/The-NLP-Pandect","A comprehensive reference for all topics related to Natural Language Processing",231.4,12.1,,993,212,0.3126,0.0079,0.0917,1,1.43,2.1,1.92,4.75,,,,4.31
+"TsinghuaAI/CPM-Generate","Chinese Pre-Trained Language Models (CPM-LM) Version-I",65.6,24.4,,763,178,0.3415,0.0066,0.0916,2.29,2.07,1.68,,,,,,11.98
+"pliang279/awesome-multimodal-ml","Reading list for research topics in multimodal machine learning",601,2.1,,1648,296,0.263,0.011,0.0913,7.14,6.29,4.08,3.39,3,2.76,,,2.86
+"explosion/spaCy","💫 Industrial-strength Natural Language Processing (NLP) with Python and Cython",2390.4,2.1,,18031,1459,0.1185,0.0541,0.0912,8.43,7.5,6.67,7.17,7.26,7.54,8.91,9.19,7.63
+"facebookresearch/SentEval","A python tool for evaluating the quality of sentence embeddings.",1340.1,18.1,,1486,276,0.2719,0.0102,0.091,0.43,0.79,0.95,0.66,0.67,0.65,0.81,,1.14
+"rwightman/pytorch-image-models","PyTorch image models, scripts, pretrained weights -- (SE)ResNet/ResNeXT, DPN, EfficientNet, MixNet, MobileNet-V3/V2, MNASNet, Single-Path NAS, FBNet, and more",715.8,9.1,,6594,739,0.1641,0.0274,0.0904,22.71,26.07,21.6,18.94,13.54,12.3,,,10.54
+"keon/awesome-nlp",":book: A curated list of resources dedicated to Natural Language Processing (NLP)",1874.5,2.4,,11426,1063,0.1362,0.0395,0.0902,5,4.21,3.95,4.32,4.71,4.97,5.95,6.14,6.1
+"facebookresearch/pytext","A natural language modeling framework based on PyTorch",901,3.2,,6116,701,0.1678,0.026,0.0901,0.86,0.93,0.99,1.15,1.27,1.55,2.76,,7.65
+"sogou/SogouMRCToolkit","This toolkit was designed for the fast and efficient development of modern machine comprehension models, including both published models and original prototypes.",658.6,31.9,,691,163,0.3454,0.006,0.0895,0.14,0.21,0.23,0.26,0.28,0.3,,,1.05
+"microsoft/DeepSpeed","DeepSpeed is a deep learning optimization library that makes distributed training easy, efficient, and effective.",360.2,2.2,,3928,516,0.1923,0.0192,0.0892,5.43,4.86,3.58,4.26,6.98,,,,11.43
+"deepmipt/DeepPavlov","An open source library for deep learning end-to-end dialog systems and chatbots.",1157.4,2.5,,4939,601,0.1782,0.0223,0.0891,1.57,1.71,1.61,2.68,2.79,3.08,3.35,,4.37
+"naganandy/graph-based-deep-learning-literature","links to conference publications in graph-based deep learning",1143.4,2.3,,2657,396,0.2182,0.0147,0.0888,2.71,2.29,2.2,2.81,2.66,3.36,3.3,,2.4
+"dmmiller612/bert-extractive-summarizer","Easy to use extractive text summarization with BERT",617.3,20.2,,559,140,0.3667,0.0052,0.0888,0.57,0.64,0.79,1,1.02,1.13,,,0.91
+"apachecn/nlp-pytorch-zh","《Natural Language Processing with PyTorch》中文翻译",556.6,13.6,,573,142,0.3628,0.0053,0.0887,0.14,0.43,0.39,0.62,0.7,0.9,,,1.03
+"imcaspar/gpt2-ml","GPT2 for Multiple Languages, including pretrained models. GPT2 多语言支持, 15亿参数中文预训练模型",439.9,20.4,,988,204,0.3023,0.0076,0.0886,1,1,1.35,1.76,1.87,1.78,,,2.25
+"seriousran/awesome-qa","😎 A curated list of the Question Answering (QA)",912.9,4,,574,142,0.3622,0.0053,0.0886,0.86,0.86,0.76,0.53,0.48,0.6,0.71,,0.64
+"HIT-SCIR/ltp","Language Technology Platform",3518.4,6.7,,3083,431,0.2047,0.016,0.0875,1.86,2,1.97,2.51,2.42,2.1,1.82,1.51,0.88
+"declare-lab/conv-emotion","This repo contains implementation of different architectures for emotion recognition in conversations.",809,17.9,,606,145,0.3503,0.0054,0.0872,0.14,0.64,0.62,0.81,0.79,0.84,0.73,,0.75
+"SamLynnEvans/Transformer","Transformer seq2seq model, program that can build a language translator from parallel corpus",852.6,35,,626,148,0.3461,0.0055,0.087,1.43,1.5,0.99,0.71,0.56,0.58,0.73,,0.75
+"rasbt/deeplearning-models","A collection of various deep learning architectures, models, and tips",592.3,21.2,,13854,1163,0.1229,0.0432,0.0867,3,3.57,4.08,4.15,6.48,8.01,,,23.43
+"uber-research/PPLM","Plug and Play Language Model implementation. Allows to steer topic and attributes of GPT-2 models.",439.2,11.4,,635,149,0.3435,0.0055,0.0866,0.43,0.86,0.72,0.96,0.89,0.93,,,1.55
+"Tencent/TurboTransformers","a fast and user-friendly runtime for transformer inference (Bert, Albert, GPT2, Decoders, etc) on CPU and GPU.",272.6,3.9,,726,163,0.3287,0.006,0.0865,0.57,1,1.22,1.44,1.88,,,,2.68
+"kpu/kenlm","KenLM: Faster and Smaller Language Model Queries",3351.3,18,,1402,250,0.2611,0.0093,0.0859,1.29,1,1.02,1.17,1.13,1.14,1.07,0.72,0.42
+"npubird/KnowledgeGraphCourse","东南大学《知识图谱》研究生课程",689.4,17.7,,2098,327,0.2282,0.0121,0.0857,2.43,2.36,1.64,2.1,2.21,2.4,,,3.05
+"PaddlePaddle/models","Pre-trained and Reproduced Deep Learning Models （『飞桨』官方模型库，包含多种学术前沿和工业场景验证的深度学习模型）",1368.4,2.6,,5569,623,0.1638,0.0231,0.0853,3,2.64,3.32,4.21,4.12,4.97,6.81,,4.07
+"abhshkdz/ai-deadlines",":alarm_clock: AI conference deadline countdowns ",1521,2.4,,3060,413,0.1976,0.0153,0.0842,3.71,4.07,2.86,2.98,2.65,2.47,2.65,,2.03
+"RaRe-Technologies/gensim","Topic Modelling for Humans",3629.7,2.1,,11594,1001,0.1264,0.0371,0.084,4.29,4.07,3.85,4.09,3.72,3.81,4.6,5.25,3.2
+"facebookresearch/detectron2","Detectron2 is FAIR's next-generation platform for object detection and segmentation.",500.1,2.3,,14515,1160,0.117,0.0431,0.0839,15,15.86,15.42,16.88,16.72,20.17,,,29.11
+"facebookresearch/PyTorch-BigGraph","Generate embeddings from large-scale graph-structured data.",839.1,2.1,,2643,373,0.2066,0.0138,0.0838,0.86,1.07,1.32,1.51,1.94,1.86,,,4.03
+"eriklindernoren/PyTorch-GAN","PyTorch implementations of Generative Adversarial Networks.",1002.4,11.3,,8399,801,0.1396,0.0297,0.0833,8.29,8.86,8.68,9.36,9.21,8.92,8.79,,8.39
+"lixin4ever/Conference-Acceptance-Rate","Acceptance rates for the major AI conferences",1185.5,4.5,,1560,259,0.2431,0.0096,0.0828,3,1.79,1.32,1.6,1.5,1.43,1.7,,1.54
+"horovod/horovod","Distributed training framework for TensorFlow, Keras, PyTorch, and Apache MXNet.",1257.2,2.3,,10700,932,0.1275,0.0346,0.0825,3.71,5.07,4.8,6.04,6.48,6.7,8.08,,8.52
+"hankcs/HanLP","Natural Language Processing for the next decade. Tokenization, Part-of-Speech Tagging, Named Entity Recognition, Syntactic & Semantic Dependency Parsing, Document Classification",2292.7,2.2,,21835,1493,0.1001,0.0554,0.0822,8.43,10.93,9.96,10.73,10.51,12.3,15.98,11.57,10.29
+"allenai/scispacy","A full spaCy pipeline and models for scientific/biomedical documents.",846.1,6,,777,161,0.3034,0.006,0.082,0.43,0.5,0.56,0.76,0.78,1.04,1.05,,0.94
+"shenweichen/DeepCTR-Torch","【PyTorch】Easy-to-use,Modular and Extendible package of deep-learning based CTR models.",499.5,18.4,,901,177,0.2876,0.0066,0.0817,2.71,2.21,1.97,2.16,1.76,1.52,,,1.81
+"amaiya/ktrain","ktrain is a Python library that makes deep learning and AI more accessible and easier to apply",711.3,8.9,,713,152,0.3121,0.0056,0.0817,0.29,0.43,0.99,0.96,1.27,1.63,,,1.2
+"google/jax","Composable transformations of Python+NumPy programs: differentiate, vectorize, JIT to GPU/TPU, and more",815.1,2.1,,11062,941,0.1245,0.0349,0.0815,9.43,12.36,12.59,13.37,11.35,13.73,11.45,,13.94
+"facebookresearch/mmf","A modular framework for vision & language multimodal research from Facebook AI Research (FAIR)",935.8,2.3,,4045,477,0.1726,0.0177,0.0808,2,1.57,1.94,1.93,2.15,3.2,4.68,,4.47
+"espnet/espnet","End-to-End Speech Processing Toolkit",1132,2.2,,3323,412,0.1815,0.0153,0.0796,4.43,4.79,4.5,4.47,4.27,4.29,3.5,,2.94
+"dennybritz/reinforcement-learning","Implementation of Reinforcement Learning Algorithms. Python, OpenAI Gym, Tensorflow. Exercises and Solutions to accompany Sutton's Book and David Silver's course.",1607.3,26.4,,16088,1178,0.1072,0.0437,0.0795,6.14,6.71,5.92,7.33,7.91,7.76,9.67,,10.27
+"DeepGraphLearning/LiteratureDL4Graph","A comprehensive collection of recent papers on graph deep learning",577.7,28,,2737,361,0.1931,0.0134,0.0794,1.14,2,3.78,1.76,1.3,1.32,,,4.75
+"streamlit/streamlit","Streamlit — The fastest way to build data apps in Python",513,2.1,,12578,996,0.1159,0.037,0.0792,14.86,16.93,14.14,13.26,14.55,17.39,,,24.58
+"ddangelov/Top2Vec","Top2Vec learns jointly embedded topic, document and word vectors.",303.3,9,,847,164,0.2835,0.0061,0.0789,2.29,2.21,2.43,2.63,4.2,,,,2.89
+"keras-team/keras","Deep Learning for humans",2123,2.2,,50520,2506,0.0726,0.093,0.0788,8.57,9.21,9.17,8.54,11.45,14.06,20.16,25.73,23.81
+"smilelight/lightNLP","基于Pytorch和torchtext的自然语言处理深度学习框架。",723.7,34.5,,729,148,0.2972,0.0055,0.0786,,0.07,0.1,0.24,0.34,0.63,,,1.08
+"OpenNMT/OpenNMT-tf","Neural machine translation and sequence learning using TensorFlow",1172.5,4.4,,1196,206,0.2522,0.0076,0.0785,0.43,0.5,0.46,0.45,0.54,0.72,0.85,,1.02
+"lucidrains/vit-pytorch","Implementation of Vision Transformer, a simple way to achieve SOTA in vision classification with only a single transformer encoder, in Pytorch",106,5.4,,2220,310,0.2044,0.0115,0.0783,19.86,48.79,31,17.23,,,,,21.18
+"RasaHQ/rasa","💬   Open source machine learning framework to automate text- and voice-based conversations: NLU, dialogue management, connect to Slack, Facebook, and more - Create chatbots and voice assistants",1556.5,2.2,,10532,872,0.1212,0.0324,0.0781,5.86,7.5,7.13,7.33,7.3,8.72,8.58,,6.8
+"albumentations-team/albumentations","Fast image augmentation library and easy to use wrapper around other libraries. Documentation:  https://albumentations.ai/docs/ Paper about library: https://www.mdpi.com/2078-2489/11/2/125",956.9,2.7,,7066,667,0.1382,0.0248,0.078,8.43,9.71,8.55,9.05,8.31,8.01,7.63,,7.41
+"ddbourgin/numpy-ml","Machine learning, in numpy",652.1,20.1,,9435,806,0.1251,0.0299,0.0776,15.57,14.57,8.25,5.82,4.15,4.01,,,14.71
+"kk7nc/Text_Classification","Text Classification Algorithms: A Survey",927,41.2,,1229,206,0.2454,0.0076,0.0771,1.29,1.07,0.99,1.3,1.53,1.33,1.68,,1.33
+"fastai/fastbook","The fastai book, published as Jupyter Notebooks",324.2,5.3,,11349,900,0.1161,0.0334,0.0766,11.43,16,14.1,19.01,26.32,,,,35.13
+"chiphuyen/machine-learning-systems-design","A booklet on machine learning systems design with exercises",420,13.2,,5541,553,0.1461,0.0205,0.0759,5,4.14,3.78,5.38,5.43,6.05,,,13.23
+"dmlc/xgboost","Scalable, Portable and Distributed Gradient Boosting (GBDT, GBRT or GBM) Library,  for Python, R, Java, Scala, C++ and more. Runs on single machine, Hadoop, Spark, Dask, Flink and DataFlow",2537.3,2.2,,20399,1316,0.0945,0.0488,0.0758,5.86,5.29,4.9,5.83,6.26,7.06,8.56,10.08,8.19
+"chatopera/Synonyms",":herb: 中文近义词：聊天机器人，智能问答工具包",1210.6,14.8,,3415,400,0.1715,0.0148,0.0758,3,3.14,1.94,2.16,2.2,2.18,2.58,,2.83
+"GaoQ1/rasa_chatbot_cn","building a chinese dialogue system based on the newest version of rasa(基于最新版本rasa搭建的对话系统)",885.8,23.6,,690,137,0.2907,0.0051,0.0755,0.57,0.79,0.62,0.55,0.62,0.62,0.88,,0.81
+"HarisIqbal88/PlotNeuralNet","Latex code for making neural networks diagrams",908.3,14.7,,11349,882,0.1138,0.0327,0.0751,75.43,99.21,54.41,23,14.63,11.33,15.14,,13.99
+"EthicalML/awesome-production-machine-learning","A curated list of awesome open source libraries to deploy, monitor, version and scale your machine learning",886.4,2.4,,7573,667,0.1289,0.0248,0.0744,8.29,10.43,9.99,10.09,20.83,13.96,10.16,,8.72
+"dreamquark-ai/tabnet","PyTorch implementation of TabNet paper : https://arxiv.org/pdf/1908.07442.pdf",458.5,5.1,,735,141,0.2809,0.0052,0.0743,3.14,2.57,2.37,3,2.37,1.92,,,1.65
+"moses-smt/mosesdecoder","Moses, the machine translation system",3439.1,33.7,,1267,201,0.2323,0.0075,0.074,0.57,0.86,0.62,0.59,0.52,0.49,0.55,0.5,0.37
+"chenyuntc/pytorch-book","PyTorch tutorials and fun projects including neural talk, neural style, poem writing, anime generation (《深度学习框架PyTorch：入门与实战》)",1334.7,26.7,,8427,712,0.1237,0.0264,0.0739,2.57,3.5,3.62,4.9,5.04,5.47,7.18,,7.55
+"NiuTrans/ABigSurvey","A collection of 400+ survey papers on Natural Language Processing (NLP) and Machine Learning (ML)",184.7,34.9,,1123,185,0.2412,0.0069,0.0738,2.29,2.43,2.93,7.7,5.41,,,,6.11
+"optuna/optuna","A hyperparameter optimization framework",1061.7,2.5,,3904,424,0.159,0.0157,0.0735,6,6.29,5.82,6.05,6.59,6.1,4.74,,3.68
+"dair-ai/ml-visuals","🎨 ML Visuals contains figures and templates which you can reuse and customize to improve your scientific writing.",245.4,8.5,,3694,406,0.1609,0.0151,0.0731,39.57,105.29,59.01,21.59,11.92,,,,15.14
+"floodsung/Deep-Learning-Papers-Reading-Roadmap","Deep Learning papers reading roadmap for anyone who are eager to learn this amazing tech!",1556.5,4.8,,29092,1603,0.0807,0.0595,0.0729,7.71,8.14,7.89,8.37,15.08,11.77,11.75,,18.71
+"lancopku/pkuseg-python","pkuseg多领域中文分词工具; The pkuseg toolkit for multi-domain Chinese word segmentation",896.7,7.4,,5235,507,0.1418,0.0188,0.0723,2.14,2.21,2.01,1.95,1.86,2.18,3.86,,5.85
+"dmlc/gluon-nlp","NLP made easy",1019.1,2.6,,2209,284,0.1882,0.0105,0.0719,0.14,0.79,0.62,0.8,0.85,0.92,1.41,,2.2
+"aymericdamien/TensorFlow-Examples","TensorFlow Tutorial and Examples for Beginners (support TF v1 & v2)",1894.4,19.2,,39688,1943,0.0717,0.0721,0.0718,9.29,9.5,8.94,9.53,10.75,12.35,17.28,21.35,20.96
+"microsoft/recommenders","Best Practices on Recommendation Systems",851.6,3,,8977,720,0.1174,0.0267,0.0717,4.43,5.36,5.26,6.51,7.1,6.24,12.06,,10.64
+"scutan90/DeepLearning-500-questions","深度学习500问，以问答形式对常用的概率知识、线性代数、机器学习、深度学习、计算机视觉等热点问题进行阐述，以帮助自己及有需要的读者。 全书分为18个章节，50余万字。由于水平有限，书中不妥之处恳请广大读者批评指正。   未完待续............ 如有意合作，联系scutjy2015@163.com                     版权所有，违权必究       Tan 2018.0...",935.7,13.7,,41937,2004,0.07,0.0744,0.0714,10,11.43,11.05,12.58,14.88,17.78,36.43,,44.88
+"microsoft/LightGBM","A fast, distributed, high performance gradient boosting (GBT, GBDT, GBRT, GBM or MART) framework based on decision tree algorithms, used for ranking, classification and many other machine learning tas...",1626.8,2.1,,12057,874,0.1061,0.0324,0.0714,4.86,5,4.5,4.85,4.9,5.22,6.42,,7.75
+"nshepperd/gpt-2","Code for the paper ""Language Models are Unsupervised Multitask Learners""",686.1,34.5,1,870,150,0.2524,0.0056,0.0709,0.57,0.64,0.43,0.56,0.82,0.78,,,1.27
+"marcotcr/lime","Lime: Explaining the predictions of any machine learning classifier",1769.1,5.3,,8323,671,0.118,0.0249,0.0703,3.29,3.43,3.25,3.86,3.65,3.92,4.59,,4.73
+"lihanghang/NLP-Knowledge-Graph","自然语言处理、知识图谱、对话系统三大技术研究与应用。",719.5,14.5,,864,148,0.2508,0.0055,0.0702,0.57,0.86,1.05,0.93,0.9,1.12,,,1.22
+"fastnlp/fitlog","fitlog是一款在深度学习训练中用于辅助用户记录日志和管理代码的工具",655.6,3.4,,824,143,0.2541,0.0053,0.0699,1.71,1.21,1.45,1.39,1.18,2.21,,,1.26
+"ShangtongZhang/reinforcement-learning-an-introduction","Python Implementation of Reinforcement Learning: An Introduction",1587.3,5.3,,9846,743,0.1105,0.0276,0.0696,5.57,5.43,5.36,5.21,5.17,5.7,6.15,,6.29
+"pytorch/ignite","High-level library to help with training and evaluating neural networks in PyTorch flexibly and transparently.",1151.3,3.4,,3210,352,0.1605,0.0131,0.0696,0.57,1.14,0.92,1.53,1.71,2.23,2.77,,2.79
+"jason718/awesome-self-supervised-learning","A curated list of awesome self-supervised methods",1072.9,12.2,,3294,358,0.1591,0.0133,0.0696,2.86,4.07,3.81,4.6,4.98,5.26,4.04,,3.07
+"benedekrozemberczki/awesome-graph-classification","A collection of important graph embedding, classification and representation learning papers with implementations.",918.5,12.3,,3939,403,0.1498,0.015,0.0696,1,1.79,1.61,2.08,1.9,3.07,5.05,,4.31
+"hongleizhang/RSPapers","Must-read papers on Recommender System.",1083.4,13.9,,3050,340,0.1632,0.0126,0.0695,4.43,7.36,4.96,4.18,4.04,3.42,3.29,,2.82
+"pytorch/vision","Datasets, Transforms and Models specific to Computer Vision",1530,2.1,,8148,653,0.1173,0.0242,0.0693,8.71,7.07,6.71,8.03,8.01,8.01,7.78,,5.56
+"skorch-dev/skorch","A scikit-learn compatible neural network library that wraps PyTorch",1280,19.4,,3728,387,0.152,0.0144,0.0693,2.14,2.14,2.24,2.18,2.32,2.8,2.72,,2.92
+"lukemelas/EfficientNet-PyTorch","A PyTorch implementation of EfficientNet",598.8,20.3,,5334,491,0.1348,0.0182,0.0692,5,5,4.73,4.9,5.01,6.02,,,8.92
+"JohnSnowLabs/spark-nlp","State of the Art Natural Language Processing",1211.2,2.1,,1835,240,0.1915,0.0089,0.0689,2.71,3.79,2.99,2.22,2.85,2.49,1.83,,1.52
+"ml-jku/hopfield-layers","Hopfield Networks is All You Need",192.6,41.4,,995,160,0.2354,0.0059,0.0689,0.57,0.93,1.18,1.36,5.44,,,,5.2
+"salesforce/WikiSQL","A large annotated semantic parsing corpus for developing natural language interfaces.",1255,17.9,,936,153,0.2393,0.0057,0.0689,0.29,0.21,0.2,0.32,0.48,0.55,0.75,,0.76
+"google-research/vision_transformer","",88.5,2.2,,1498,209,0.2043,0.0078,0.0688,11.14,14.07,10.39,,,,,,17.16
+"catalyst-team/catalyst","Accelerated deep learning R&D",881.7,3.3,,2384,285,0.175,0.0106,0.0687,2.57,2.71,2.2,1.8,2.16,2.84,2.74,,2.73
+"d2l-ai/d2l-en","Interactive deep learning book with code, math, and discussions. Available in multi-frameworks. Adopted at 175 universities.",832,2.1,,8539,663,0.1137,0.0246,0.0683,12.57,13.93,11.08,9.05,12.55,13.57,10.37,,10.29
+"Atcold/pytorch-Deep-Learning","Deep Learning (with PyTorch)",923.5,3.7,,4337,422,0.1425,0.0157,0.0683,3.71,5.86,7.17,12.89,10.3,8.48,5,,4.72
+"facebookresearch/dlrm","An implementation of a deep learning recommendation model (DLRM)",614.9,6.5,,2488,290,0.1706,0.0108,0.068,0.71,1,0.89,1.06,1.42,1.96,,,4.25
+"pytorch/captum","Model interpretability and understanding for PyTorch",509.3,2.1,,2060,255,0.1812,0.0095,0.0678,2.57,3.07,2.5,2.87,2.72,3.11,,,4.06
+"ageron/handson-ml2","A series of Jupyter notebooks that walk you through the fundamentals of Machine Learning and Deep Learning in Python using Scikit-Learn, Keras and TensorFlow 2.",740.8,12.9,,12470,845,0.0992,0.0314,0.0676,31.57,25.36,19.46,19.77,21.05,19.11,16.95,,16.86
+"czy36mengfei/tensorflow2_tutorials_chinese","tensorflow2中文教程，持续更新(当前版本:tensorflow2.0)，tag: tensorflow 2.0 tutorials",680.5,39.8,,6632,553,0.1221,0.0205,0.0674,4,3.43,3.09,4.23,4.55,6.27,,,9.76
+"baidu/lac","百度NLP：分词，词性标注，命名实体识别",930.9,2.7,,2099,257,0.1793,0.0095,0.0673,2.14,2.5,2.6,3.07,3.15,3.12,2.06,,2.26
+"dsgiitr/d2l-pytorch","This project reproduces the book Dive Into Deep Learning (www.d2l.ai), adapting the code from MXNet into PyTorch.",617.8,8.2,,3555,365,0.1503,0.0135,0.0673,1.14,0.86,0.95,1.45,1.68,3.04,,,5.77
+"harvardnlp/pytorch-struct","Fast, general, and tested differentiable structured prediction in PyTorch",510.2,2.1,,875,143,0.2393,0.0053,0.0672,0.29,0.43,0.36,0.38,0.48,1.08,,,1.72
+"open-mmlab/mmdetection","OpenMMLab Detection Toolbox and Benchmark",879.7,2.4,,13321,876,0.0963,0.0325,0.067,16.29,17.14,15.09,14.93,14.82,14.81,15.52,,15.48
+"jindongwang/transferlearning","Everything about Transfer Learning and Domain Adaptation--迁移学习",1358.5,4.3,,6509,542,0.1219,0.0201,0.0668,5,5.71,5.49,6.04,5.59,5.46,5.69,,4.8
+"tensorflow/tensorflow","An Open Source Machine Learning Framework for Everyone",1898.9,2.1,,152451,4399,0.0422,0.1633,0.0663,35.71,35.43,36.39,42.73,40.82,42.21,53.31,75.49,80.44
+"victoresque/pytorch-template","PyTorch deep learning projects made easy.",1042,33.8,,2287,267,0.1709,0.0099,0.0661,2,2.29,2.4,2.19,2.27,2.22,2.14,,2.2
+"pytorch/tutorials","PyTorch tutorials.",1570,2.2,,4611,426,0.1353,0.0158,0.0661,4.14,3.93,3.75,3.75,3.46,3.98,3.82,,3.04
+"interpretml/interpret","Fit interpretable models. Explain blackbox machine learning. ",625.8,2.1,,3387,345,0.1491,0.0128,0.0658,2.14,2.43,2.01,3.08,3.12,3.1,,,5.42
+"NVIDIA/NeMo","NeMo: a toolkit for conversational AI",531.2,2.1,,2313,266,0.1684,0.0099,0.0655,2.71,2.21,2.14,2.97,4.66,3.6,,,4.44
+"spotify/annoy","Approximate Nearest Neighbors in C++/Python optimized for memory usage and loading/saving to disk",2848.1,23.7,,8030,609,0.111,0.0226,0.0653,4.14,4,3.65,4.16,4.45,4.53,4.68,4,2.82
+"datawhalechina/competition-baseline","数据科学竞赛各种baseline代码、思路分享",411.7,25.4,,1794,224,0.1828,0.0083,0.0652,1.57,1.71,2.24,3.98,4.11,3.43,,,4.37
+"jina-ai/jina","An easier way to build neural search in the cloud",339.3,2.1,,1852,228,0.1802,0.0085,0.0651,3.57,4.5,6.41,5.98,5.78,,,,5.54
+"p-christ/Deep-Reinforcement-Learning-Algorithms-with-PyTorch","PyTorch implementations of deep reinforcement learning algorithms and environments",863.5,2.4,,3175,326,0.1503,0.0121,0.0649,2.71,2.93,3.35,3.12,3.27,3.29,3.98,,4.17
+"KevinMusgrave/pytorch-metric-learning","The easiest way to use deep metric learning in your application. Modular, flexible, and extensible. Written in PyTorch.",452.3,2.4,,2632,287,0.1596,0.0107,0.0648,4.43,4.93,4.27,4.73,5.07,6.19,,,5.84
+"tensorflow/lingvo","Lingvo",908.1,2.1,,2188,253,0.1693,0.0094,0.0646,0.29,0.71,0.79,1.02,0.96,0.98,2.85,,2.66
+"lyhue1991/eat_tensorflow2_in_30_days","Tensorflow2.0 🍎🍊 is delicious, just eat it! 😋😋",337.6,7.9,,8105,605,0.1093,0.0225,0.0645,14.14,10.79,7.76,6.97,17.75,,,,24.32
+"stanfordnlp/CoreNLP","Stanford CoreNLP: A Java suite of core NLP tools.",2761.1,7.1,,7746,586,0.1108,0.0217,0.0643,2.14,2.14,2.14,2.45,2.67,2.72,3.03,3.53,2.81
+"cgnorthcutt/cleanlab","The standard package for machine learning with noisy labels and finding mislabeled data in Python.",982.9,7.4,,1416,188,0.1944,0.007,0.0642,2.71,2,1.71,1.96,2.16,2.08,1.91,,1.47
+"mlflow/mlflow","Open source platform for the machine learning lifecycle",957.3,2.1,,8178,603,0.108,0.0224,0.0639,8.86,6.36,6.05,7.35,7.1,7.04,7.32,,8.55
+"microsoft/nni","An open source AutoML toolkit for automate machine learning lifecycle, including feature engineering, neural architecture search, model compression and hyper-parameter tuning.",961.8,2.1,,8689,627,0.1056,0.0233,0.0638,5.57,5.86,6.41,14.85,12.42,10.11,10.47,,9.88
+"pytorch/serve","Model Serving on PyTorch",472.9,4.9,,1509,194,0.1882,0.0072,0.0634,2.29,2.14,2.4,2.49,2.75,4.13,,,3.2
+"chihming/awesome-network-embedding","A curated list of network embedding techniques.",1512.6,40.6,,2241,252,0.1646,0.0094,0.0634,0.14,0.21,0.56,0.6,0.67,0.77,1.62,,1.48
+"OpenMined/PySyft","A library for answering questions using data you cannot see",1279.1,2.1,,6753,525,0.1138,0.0195,0.0632,3.71,4.43,3.88,4.34,5.06,6.62,5.94,,5.28
+"visenger/awesome-mlops","A curated list of references for MLOps ",320.5,4.4,,3619,346,0.14,0.0128,0.0631,14.57,14.5,10.03,10.64,18.3,,,,11.34
+"datawhalechina/pumpkin-book","《机器学习》（西瓜书）公式推导解析，在线阅读地址：https://datawhalechina.github.io/pumpkin-book",757.8,3.5,,16118,935,0.0849,0.0347,0.063,7.86,8,8.19,10.32,12.09,17.21,22.08,,21.48
+"lutzroeder/netron","Visualizer for neural network, deep learning, and machine learning models",3675.5,2.8,,12932,807,0.0914,0.0299,0.063,15.86,16.36,17.33,15.06,14.95,14.61,14.22,7.08,3.52
+"openai/CLIP","Contrastive Language-Image Pretraining",32.5,5,,1320,176,0.1952,0.0065,0.0628,58.14,,,,,,,,119.59
+"deepmind/deepmind-research","This repository contains implementations and illustrative code to accompany DeepMind publications",733.6,10,,4727,406,0.1257,0.0151,0.062,6.86,7.93,9.8,25.75,17.18,11.21,,,9.31
+"SeanNaren/deepspeech.pytorch","Speech Recognition using DeepSpeech2.",1468.7,5.1,,1561,194,0.182,0.0072,0.062,0.57,0.71,0.59,0.93,0.99,1.04,1.11,,1.09
+"ray-project/ray","An open source framework that provides a simple, universal API for building distributed applications. Ray is packaged with RLlib, a scalable reinforcement learning library, and Tune, a scalable hyperp...",1545.2,2.1,,14458,854,0.0865,0.0317,0.0619,13.29,16.21,12.79,11.56,12.38,12.53,12.87,,9.5
+"openai/gym","A toolkit for developing and comparing reinforcement learning algorithms.",1726.4,3.4,,23201,1169,0.0738,0.0434,0.0618,12.71,12.79,10.32,10.08,11.29,11.3,11.91,,13.45
+"wzhe06/Ad-papers","Papers on Computational Advertising",1624.6,26,,2928,294,0.147,0.0109,0.0618,1.57,2.14,1.87,1.88,1.97,2.22,2.63,,1.8
+"dkozlov/awesome-knowledge-distillation","Awesome Knowledge Distillation",1419.4,32.4,,2305,251,0.1594,0.0093,0.0618,1.14,1.07,1.32,1.83,1.69,1.75,2.2,,1.63
+"arogozhnikov/einops","Deep learning operations reinvented (for pytorch, tensorflow, jax and others)",849,8.2,,2161,239,0.1619,0.0089,0.0616,6.57,7.64,7.76,6.71,7.25,3.98,2.32,,2.67
+"d2l-ai/d2l-zh","《动手学深度学习》：面向中文读者、能运行、可讨论。中英文版被全球175所大学采用教学。",1243.8,2.7,,19716,1044,0.0775,0.0387,0.0615,10,9.5,8.32,9.85,10.35,11.74,18.97,,16.01
+"junyanz/pytorch-CycleGAN-and-pix2pix","Image-to-Image Translation in PyTorch",1370.6,29.4,,14055,829,0.0864,0.0308,0.0613,7.43,8.21,8.55,9.88,9.56,9.45,10.54,,10.26
+"deepwel/Chinese-Annotator","Annotator for Chinese Text Corpus (UNDER DEVELOPMENT) 中文文本标注工具",1165.9,11.9,,1127,154,0.2001,0.0057,0.0611,0.57,0.57,0.39,0.61,0.59,0.54,0.71,,0.97
+"lucidrains/DALLE-pytorch","Implementation / replication of DALL-E, OpenAI's Text to Image Transformer, in Pytorch",12.1,2.1,,1679,200,0.1744,0.0074,0.0608,80.86,,,,,,,,152.39
+"eriklindernoren/Keras-GAN","Keras implementations of Generative Adversarial Networks.",1286.3,11.3,,7795,554,0.1041,0.0206,0.0607,3,3,2.63,3.28,3.67,4.31,6.09,,6.1
+"openai/baselines","OpenAI Baselines: high-quality implementations of reinforcement learning algorithms",1334.9,15.1,,11024,699,0.0928,0.0259,0.0606,6.29,5.36,4.67,4.96,5.4,5.72,6.5,,8.27
+"fastai/course-v3","The 3rd edition of course.fast.ai",829.2,11.2,,4685,394,0.1231,0.0146,0.0605,0.86,0.86,1.05,0.94,1.61,3.03,5.61,,5.66
+"hyperopt/hyperopt","Distributed Asynchronous Hyperparameter Optimization in Python",3421.1,9.2,,5339,429,0.1176,0.0159,0.0604,3.14,2.64,2.83,2.76,2.93,3.27,3.39,2.59,1.56
+"pytorch/xla","Enabling PyTorch on Google TPU",804,2.3,,1166,155,0.1946,0.0058,0.0603,1,1.14,0.92,1.22,1.36,1.55,1.46,,1.45
+"AakashKumarNain/annotated_research_papers","This repo contains annotated research papers that I found really good and useful",182.2,33.3,,1562,189,0.1771,0.007,0.0603,1.14,1.14,1.51,2.22,,,,,8.63
+"kmario23/deep-learning-drizzle","Drench yourself in Deep Learning, Reinforcement Learning, Machine Learning, Computer Vision, and NLP by learning from these exciting lectures!!",783.9,10,,8949,600,0.0982,0.0223,0.0599,4.86,4.57,3.91,5.59,4.73,5.18,12.27,,12.25
+"pycaret/pycaret","An open-source, low-code machine learning library in Python",421.2,2.2,,2840,279,0.1438,0.0104,0.0599,3.71,4.5,5.95,5.14,8.96,7.78,,,7.41
+"locuslab/TCN","Sequence modeling benchmarks and temporal convolutional networks",1052,19.3,,2669,268,0.147,0.0099,0.0598,2.14,1.93,1.48,1.92,2.08,1.73,1.79,,2.55
+"GokuMohandas/madewithml","Learn how to responsibly deliver value with applied ML.",804.8,12,,25317,1197,0.0692,0.0444,0.0597,5.71,4.07,3.85,5.57,5.57,6.84,16.15,,32.15
+"elyase/awesome-gpt3","",179.5,6.3,,2797,276,0.1445,0.0102,0.0597,4.29,5.21,3.78,4.24,,,,,15.7
+"jbesomi/texthero","Text preprocessing, representation and visualization from zero to hero.",286.4,39.3,,2058,223,0.1586,0.0083,0.0593,4.43,3,1.91,1.7,2.58,,,,7.7
+"fmfn/BayesianOptimization","A Python implementation of global optimization with gaussian processes.",2417.6,24.5,,4790,390,0.1192,0.0145,0.0591,2.86,3.14,2.76,2.88,2.98,3.1,3.62,2.59,1.99
+"dragen1860/Deep-Learning-with-TensorFlow-book","深度学习入门开源书，基于TensorFlow 2.0案例实战。Open source Deep Learning book, based on TensorFlow 2.0 framework.",581.7,11.7,,10940,677,0.0906,0.0251,0.0591,8.57,7.14,6.51,7.46,8.79,12.47,,,24.99
+"udacity/deep-learning-v2-pytorch","Projects and exercises for the latest Deep Learning ND program https://www.udacity.com/course/deep-learning-nanodegree--nd101",866.2,16.6,,3899,339,0.1273,0.0126,0.0589,2.14,2.14,2.14,2.33,2.35,3.61,4.06,,4.51
+"qubvel/segmentation_models.pytorch","Segmentation models with pretrained backbones. PyTorch.",688.3,22.7,,2695,265,0.144,0.0098,0.0588,5.29,6.07,5.52,5.11,4.55,4,,,4.08
+"pandas-profiling/pandas-profiling","Create HTML profiling reports from pandas DataFrame objects",1835,3.6,,6572,480,0.1069,0.0178,0.0588,3.71,4.64,4.24,5.67,6.41,6.79,6.84,3.6,3.59
+"jettify/pytorch-optimizer","torch-optimizer -- collection of optimizers for Pytorch",380.9,3.9,,1623,188,0.1696,0.007,0.0586,2.57,3.43,3.91,5.91,3.97,,,,4.56
+"keras-team/autokeras","AutoML library for deep learning",1155,13.7,,7692,530,0.1009,0.0197,0.0585,2.14,2.29,1.81,2.43,2.96,3.67,4.85,,6.74
+"heartexlabs/label-studio","Label Studio is a multi-type data labeling and annotation tool with standardized output format",578.9,2.1,,3961,340,0.1257,0.0126,0.0584,7.14,5.79,5.36,4.93,4.5,5,,,6.95
+"scikit-learn/scikit-learn","scikit-learn: machine learning in Python",3806.6,2.1,,43725,1678,0.0562,0.0623,0.0582,12.71,12.93,12.95,14.33,14.18,15.15,16.67,19.35,11.49
+"fossasia/visdom","A flexible tool for creating, organizing, and sharing visualizations of live, rich data. Supports Torch and Numpy.",1453.2,9,,7938,537,0.099,0.0199,0.058,4.43,6.29,4.27,3.29,3,3.06,3.74,,5.61
+"eugeneyan/applied-ml","📚 Papers and blogs by organizations sharing their work on data science & machine learning in production.",197.2,24.3,,4932,389,0.1155,0.0144,0.0577,4.14,4.93,16.96,9.12,26.87,,,,25.28
+"google-research/simclr","SimCLRv2 - Big Self-Supervised Models are Strong Semi-Supervised Learners",313.3,30,,1821,200,0.1608,0.0074,0.0576,3.86,3.5,2.76,3.73,4.37,,,,5.83
+"scikit-learn-contrib/imbalanced-learn"," A Python Package to Tackle the Curse of Imbalanced Datasets in Machine Learning",2346.8,25.5,,4961,388,0.1145,0.0144,0.0574,2.43,2.86,2.33,2.26,2.42,2.53,2.75,2.64,2.12
+"matterport/Mask_RCNN","Mask R-CNN for object detection and instance segmentation on Keras and TensorFlow",1186.1,30.1,,19234,958,0.0729,0.0356,0.0574,7.43,7.43,7.04,8.22,11.45,11.27,13.68,,16.29
+"subeeshvasu/Awesome-Learning-with-Label-Noise","A curated list of resources for Learning with Noisy Labels",550.5,13.6,,1086,141,0.1901,0.0052,0.0573,2.29,2.21,2.01,2.58,2.5,2.27,,,1.98
+"microsoft/hummingbird","Hummingbird compiles trained ML models into tensor computation for faster inference.",311.1,4,,2159,222,0.1505,0.0082,0.0571,4,7.21,11.24,4.94,3.34,,,,8.4
+"dangkhoasdc/awesome-ai-residency","List of AI Residency Programs",1006.8,31.5,,1348,162,0.1759,0.006,0.057,1.57,1.57,1.61,1.41,1.62,1.28,1.39,,1.37
+"nalepae/pandarallel","A simple and efficient tool to parallelize Pandas operations on all available CPUs",679.5,32.4,,1324,159,0.1758,0.0059,0.0567,0.71,0.93,1.08,1.47,1.64,2.02,,,2.02
+"ahkarami/Deep-Learning-in-Production","In this repository, I will share some useful notes and references about deploying deep learning-based models in production.",990.6,6.7,,2647,252,0.1394,0.0094,0.0567,2.86,2.57,2.1,7.42,4.76,3.5,3.3,,2.72
+"syhw/wer_are_we","Attempt at tracking states of the arts and recent results (bibliography) on speech recognition.",1991.4,27.2,,1528,174,0.1667,0.0065,0.0565,0.29,0.79,0.72,0.87,0.85,0.93,1.02,0.81,0.77
+"openai/spinningup","An educational resource to help anyone learn deep reinforcement learning.",802.1,3.7,,5631,415,0.1079,0.0154,0.0564,2.71,3.57,3.58,3.74,4.2,5.38,4.99,,7.03
+"clovaai/deep-text-recognition-benchmark","Text recognition (optical character recognition) with deep learning methods.",655.7,27.5,,1993,207,0.1521,0.0077,0.0563,2.14,2.21,1.94,2.32,2.57,2.81,,,3.05
+"cortexlabs/cortex","Run inference at scale",724.8,2.2,,7206,489,0.0994,0.0181,0.0563,4.14,4,5.29,6.5,9.07,13,,,10.04
+"apachecn/pytorch-doc-zh","Pytorch 中文文档",1105.6,26.6,,2796,259,0.1356,0.0096,0.0561,1.57,1.57,2.07,2.17,2.37,2.66,3.32,,2.53
+"yzhao062/pyod","A Python Toolbox for Scalable Outlier Detection (Anomaly Detection)",1202.1,2.1,,4039,327,0.1185,0.0121,0.0554,5.29,5.14,5.19,4.19,4.14,3.55,4.18,,3.38
+"rtqichen/torchdiffeq","Differentiable ODE solvers with full GPU support and O(1)-memory backpropagation.",795.3,10.1,,3309,286,0.1265,0.0106,0.0554,1,1.29,1.45,1.81,1.74,1.73,2.44,,4.16
+"IntelLabs/nlp-architect","A model library for exploring state-of-the-art deep learning topologies and techniques for optimizing Natural Language Processing neural networks",976.1,2.1,,2575,240,0.1365,0.0089,0.0549,1.14,0.86,0.66,0.82,0.81,0.87,1.23,,2.64
+"keras-team/keras-tuner","Hyperparameter tuning for humans",591.1,25.2,,2205,215,0.1428,0.008,0.0546,0.71,1.14,1.05,0.99,1.29,1.66,,,3.74
+"iterative/dvc","🦉Data Version Control | Git for Data & Models",1415.7,2.4,,7065,466,0.0966,0.0173,0.0545,6.29,6.14,5.82,6.68,7.13,7.63,7.38,,5.13
+"apachecn/AiLearning","AiLearning: 机器学习 - MachineLearning - ML、深度学习 - DeepLearning - DL、自然语言处理 NLP",1422.6,15.5,,28578,1182,0.0606,0.0439,0.0544,11.14,11.64,10.52,14.51,15.75,17.49,28.61,,20.25
+"modin-project/modin","Modin: Speed up your Pandas workflows by changing a single line of code",941.1,2.3,,5614,399,0.1041,0.0148,0.0543,2.86,3.79,3.06,3.08,3.56,4.31,6.42,,5.97
+"jwyang/faster-rcnn.pytorch","A faster pytorch implementation of faster r-cnn",1263.2,24.6,,5993,415,0.1014,0.0154,0.0541,3.14,2.86,2.93,3.45,3.24,3.79,4.95,,5.28
+"lmcinnes/umap","Uniform Manifold Approximation and Projection",1295.9,6.1,,4426,337,0.1115,0.0125,0.0538,8.29,5.21,3.52,2.72,2.49,2.51,3,,3.44
+"NVIDIA/tacotron2","Tacotron 2 - PyTorch implementation with faster-than-realtime inference",990.2,32.5,,2409,224,0.1361,0.0083,0.0536,3.14,2.43,2.24,2.47,2.72,2.92,2.42,,2.44
+"bentoml/BentoML","Model Serving Made Easy",656.9,2.4,,2079,202,0.1423,0.0075,0.0534,2.86,2.79,2.73,3.13,3.85,3.67,,,3.18
+"tensorflow/addons","Useful extra functionality for TensorFlow 2.x maintained by SIG-addons",783,2.2,,1163,137,0.1725,0.0051,0.0533,1.71,1.79,1.38,1.45,1.34,1.53,1.58,,1.49
+"paperswithcode/releasing-research-code","Tips for releasing research code in Machine Learning (with official NeurIPS 2020 recommendations)",318.4,4.7,,1353,152,0.1645,0.0056,0.0533,3,2.5,1.58,1.7,1.6,,,,4.26
+"fengdu78/deeplearning_ai_books","deeplearning.ai（吴恩达老师的深度学习课程笔记及资源）",1136.6,24.8,,12540,668,0.078,0.0248,0.0532,5.14,5.64,5.39,7.01,6.86,8.3,10.86,,11.05
+"SmirkCao/Lihang","Statistical learning methods, 统计学习方法(第2版)[李航]  [笔记, 代码, notebook, 参考文献, Errata, lihang]",943.4,21.8,,4036,313,0.1135,0.0116,0.0531,3.43,3.79,2.79,2.68,2.97,3.74,5.4,,4.72
+"IDSIA/sacred","Sacred is a tool to help you configure, organize, log and reproduce experiments developed at IDSIA.",2484.2,2.2,,3264,271,0.1216,0.0101,0.0531,1.86,1.93,1.48,1.96,1.81,2.1,2.48,1.7,1.42
+"TheAlgorithms/Python","All Algorithms implemented in Python",1646.6,2.4,,97316,2599,0.0391,0.0965,0.0528,44,59.29,93.5,96.6,105.02,92.59,107.04,,59.53
+"Delta-ML/delta","DELTA is a deep learning based natural language and speech processing platform.",599.6,29.7,,1367,151,0.1617,0.0056,0.0527,0.71,0.79,0.46,0.76,0.69,0.86,,,2.29
+"fchollet/ARC","The Abstraction and Reasoning Corpus",440,37.1,,1429,155,0.1588,0.0058,0.0527,0.43,0.71,0.53,0.77,0.76,1.7,,,3.26
+"eriklindernoren/ML-From-Scratch","Machine Learning From Scratch. Bare bones NumPy implementations of machine learning models and algorithms with a focus on accessibility. Aims to cover everything from linear regression to deep learnin...",1442.5,27.1,,18729,863,0.0675,0.032,0.0526,3.71,5.36,5.33,7.01,13.24,10.57,11.4,,13.1
+"kaldi-asr/kaldi","kaldi-asr/kaldi is the official location of the Kaldi project.",2099.3,2.2,,9995,567,0.0831,0.021,0.0525,5.57,5.5,4.87,5.13,4.76,5.43,6.93,5.29,4.78
+"roboticcam/machine-learning-notes","My continuously updated Machine Learning, Probabilistic Models and Deep Learning notes and demos (2000+ slides)  我不间断更新的机器学习，概率模型和深度学习的讲义(2000+页)和视频链接",1067.3,11.5,,4377,326,0.109,0.0121,0.0524,3.14,2.86,2.33,2.38,2.47,2.49,3.49,,4.12
+"graphdeeplearning/benchmarking-gnns","Repository for benchmarking graph neural networks",320.8,4.7,,1198,137,0.1674,0.0051,0.0523,2,2.29,2.01,1.94,1.84,,,,3.74
+"nltk/nltk","NLTK Source",4150.5,5.2,,9546,548,0.084,0.0203,0.0523,2.14,2,2.17,2.77,2.96,3.1,3.34,3.74,2.3
+"awslabs/autogluon","AutoGluon: AutoML for Text, Image, and Tabular Data",538.2,2.1,,2910,248,0.1248,0.0092,0.0523,1.71,3.93,3.09,2.53,2.48,3.48,,,5.42
+"yandexdataschool/Practical_RL","A course in reinforcement learning in the wild",1455.3,4.4,,4308,321,0.1091,0.0119,0.0521,2.71,2.07,1.78,1.76,1.8,1.93,2.26,,2.96
+"khangich/machine-learning-interview","Machine Learning Interviews from FAAG, Snapchat, LinkedIn. ",159.7,6.1,,1511,160,0.155,0.0059,0.0521,4.86,6.36,16.57,7.28,,,,,9.56
+"microsoft/computervision-recipes","Best Practices, code samples, and documentation for Computer Vision.",706.3,3.4,,7414,460,0.0908,0.0171,0.052,2.57,3.57,2.99,4.09,25.13,19.43,,,10.53
+"tensorflow/docs","TensorFlow documentation",1011.1,2.8,,4223,316,0.1096,0.0117,0.052,2.71,3.21,3.52,3.81,3.83,4.27,5.23,,4.84
+"deep-learning-with-pytorch/dlwpt-code","Code for the book Deep Learning with PyTorch by Eli Stevens, Luca Antiga, and Thomas Viehmann.",1023,20,,2370,209,0.1291,0.0078,0.0507,3.29,3.93,3.02,2.96,3.86,4.6,3.16,,2.38
+"google/dopamine","Dopamine is a research framework for fast prototyping of reinforcement learning algorithms. ",906.6,12.8,,9268,517,0.0817,0.0192,0.0504,1.71,1.57,1.35,1.68,2.09,2.25,3.55,,10.62
+"google/automl","Google Brain AutoML",311.8,6.7,,3693,279,0.1106,0.0104,0.0503,3.14,3.29,2.83,3.41,4.47,,,,11.91
+"nnzhan/Awesome-Graph-Neural-Networks","Paper Lists for Graph Neural Networks",748.8,7.7,,1252,136,0.159,0.005,0.0502,1.29,1.21,1.41,1.45,1.34,1.35,1.7,,1.68
+"ultralytics/yolov5","YOLOv5 in PyTorch > ONNX > CoreML > TFLite",244.8,2.1,,7852,460,0.0858,0.0171,0.0501,28.29,35.29,28.27,26.83,25.65,,,,33.63
+"NVIDIA/OpenSeq2Seq","Toolkit for efficient experimentation with Speech Recognition, Text2Speech and NLP",1227.1,3.5,,1350,142,0.154,0.0053,0.0501,0.43,0.43,0.33,0.66,0.65,0.64,1.07,,1.1
+"clovaai/CRAFT-pytorch","Official implementation of Character Region Awareness for Text Detection (CRAFT)",593.7,9.3,,1768,170,0.1408,0.0063,0.05,2.29,2.07,1.45,2.07,2.09,2.45,,,3.03
+"tensorflow/tpu","Reference models and tools for Cloud TPUs.",1286,6,,4090,297,0.1063,0.011,0.0499,1.43,2.07,2.04,2.49,2.67,3.4,4.76,,3.22
+"qubvel/efficientnet","Implementation of EfficientNet model. Keras and TensorFlow Keras.",598.1,38.7,,1660,163,0.1438,0.006,0.0499,1.57,1.71,1.28,1.63,1.77,2.32,,,2.78
+"zhaoxin94/awesome-domain-adaptation","A collection of AWESOME things about domian adaptation",980.9,2.8,,2535,215,0.1242,0.008,0.0498,2.86,2.79,3.19,2.78,3.12,2.91,2.92,,2.63
+"microsoft/tensorwatch","Debugging, monitoring and visualization for Python Machine Learning and Data Science",613.6,2.2,,3003,241,0.1175,0.0089,0.0497,0.86,0.71,0.76,0.78,0.9,1.24,,,4.91
+"facebookresearch/SlowFast","PySlowFast: video understanding codebase from FAIR for reproducing state-of-the-art video models.",516,10.2,,3263,254,0.114,0.0094,0.0496,3.29,3.36,2.83,3.15,3.28,4.09,,,7.27
+"facebookresearch/pytorch3d","PyTorch3D is FAIR's library of reusable components for deep learning with 3D data",450.9,2.6,,4227,301,0.1043,0.0112,0.0496,4.29,4.29,3.95,4.84,4.64,11.58,,,11.47
+"rapidsai/cuml","cuML - RAPIDS Machine Learning Library ",829.3,2.1,,1882,176,0.1369,0.0065,0.0496,1.29,1.21,1.71,2.27,2.41,2.37,2.19,,2.27
+"AntixK/PyTorch-VAE","A Collection of Variational Autoencoders (VAE) in PyTorch.",373.5,20.3,,1513,152,0.1471,0.0056,0.0495,4.71,4.5,3.52,4.16,3.96,,,,4.2
+"microsoft/dowhy","DoWhy is a Python library for causal inference that supports explicit modeling and testing of causal assumptions. DoWhy is based on a unified language for causal inference, combining causal graphical ...",962.4,24.3,,2595,217,0.1224,0.0081,0.0495,2.86,2.5,2.33,3.34,3.05,3.04,2.79,,2.72
+"instillai/TensorFlow-Course",":satellite: Simple and ready-to-use tutorials for TensorFlow ",838.2,27.1,,15389,710,0.0675,0.0263,0.0493,4,3.86,3.58,5.16,4.99,5.03,9.29,,18.38
+"pytorch/botorch","Bayesian optimization in PyTorch",902,2.2,,1812,170,0.1374,0.0063,0.0492,0.43,0.93,1.12,1,0.99,1.08,,,2.89
+"EpistasisLab/tpot","A Python Automated Machine Learning tool that optimizes machine learning pipelines using genetic programming.",1902.1,5.4,,7741,446,0.0844,0.0166,0.0491,2,2.07,1.91,2.4,2.77,3.21,3.75,4,4.09
+"zzw922cn/awesome-speech-recognition-speech-synthesis-papers","Speech synthesis, voice conversion, self-supervised learning, music generation,Automatic Speech Recognition, Speaker Verification, Speech Synthesis, Language Modeling",1360.3,7.4,,1732,165,0.1395,0.0061,0.0491,1.14,1,1.02,1.19,1.25,1.2,1.29,,1.28
+"alteryx/featuretools","An open source python library for automated feature engineering",1227.1,2.1,,5331,345,0.0947,0.0128,0.0486,1.86,2.07,2.1,2.12,2.24,2.45,3.4,,4.35
+"utkuozbulak/pytorch-cnn-visualizations","Pytorch implementation of convolutional neural network visualization techniques",1184.7,4.4,,5081,334,0.0962,0.0124,0.0486,5.14,4.43,3.72,4.48,4.65,4.76,5.05,,4.31
+"TeamHG-Memex/eli5","A library for debugging/inspecting machine learning classifiers and explaining their predictions",1586,5.4,,2269,195,0.1258,0.0072,0.0485,1,1.5,1.41,1.3,1.13,1.27,1.58,,1.43
+"karpathy/micrograd","A tiny scalar-valued autograd engine and a neural net library on top of it with PyTorch-like API",279.8,30.5,,1547,151,0.1429,0.0056,0.0485,1.86,2.5,3.16,5.8,3.23,,,,5.55
+"onnx/onnx","Open standard for machine learning interoperability",1228.8,2.1,,9630,510,0.0775,0.0189,0.0484,4.29,4.57,4.54,5.59,5.39,5.57,6.2,,7.84
+"awslabs/gluon-ts","Probabilistic time series modeling in Python",613.3,2.3,,1670,158,0.1385,0.0059,0.0484,1.86,2.29,2.01,2.17,2.03,2.24,,,2.75
+"vaexio/vaex"," Out-of-Core DataFrames for Python, ML, visualize and explore big tabular data at a billion rows per second 🚀",2304.6,2.4,,5620,353,0.092,0.0131,0.048,5,5.86,4.83,5.29,5.82,8.27,6.56,,3.12
+"tqdm/tqdm","A Fast, Extensible Progress Bar for Python and CLI",2055.4,5.4,,17079,739,0.0633,0.0274,0.0479,10.71,15.14,12.99,11.66,11.13,11.9,11.96,8.3,8.31
+"aws/amazon-sagemaker-examples","Example notebooks that show how to apply machine learning, deep learning and reinforcement learning in Amazon SageMaker",1182.7,2.3,,4707,313,0.0974,0.0116,0.0479,4,4.14,3.88,4.27,4.52,5.02,4.73,,4.02
+"Roshanson/TextInfoExp","自然语言处理实验（sougou数据集），TF-IDF，文本分类、聚类、词向量、情感识别、关系抽取等",1420.7,18.1,,1327,134,0.1478,0.005,0.0478,0.57,0.57,0.46,0.3,0.26,0.32,0.59,,0.94
+"mml-book/mml-book.github.io","Companion webpage to the book ""Mathematics For Machine Learning""",1136.5,3.5,,8181,451,0.0807,0.0167,0.0477,5.71,6.14,5.92,8.87,10.81,10.05,9.19,,7.21
+"uber/causalml","Uplift modeling and causal inference with machine learning algorithms",558.9,4.1,,1556,149,0.1402,0.0055,0.0476,3,2.43,2.37,2.31,2.25,2.44,,,2.8
+"karpathy/arxiv-sanity-preserver","Web interface for browsing, search and filtering recent arxiv submissions",1877.8,13.9,,4166,285,0.1002,0.0106,0.0474,2.43,2.57,2.1,1.84,1.9,1.99,2.2,2.21,2.22
+"erikbern/ann-benchmarks","Benchmarks of approximate nearest neighbor libraries in Python",2061.4,3,,2000,175,0.1281,0.0065,0.0474,4.71,2.93,2.2,1.78,1.97,1.76,1.75,1.07,0.97
+"AlexeyAB/darknet","YOLOv4v / Scaled-YOLOv4 - Neural Networks for Object Detection (Windows and Linux version of Darknet )",1507.5,8.9,1,14619,658,0.0659,0.0244,0.0473,15.71,16.64,15.12,16.43,17.1,23.6,16.18,,9.72
+"sladesha/Reflection_Summary","算法理论基础知识应知应会",445.3,39.5,,1432,139,0.1421,0.0052,0.0472,1.71,1.36,1.35,2.89,7.25,3.86,,,3.23
+"ChristosChristofidis/awesome-deep-learning","A curated list of awesome Deep Learning tutorials, projects and communities.",2207.2,20.3,,16478,709,0.063,0.0263,0.0471,5.14,5.86,6.84,6.27,6.31,6.29,8.17,8.34,7.47
+"catboost/catboost","A fast, scalable, high performance Gradient Boosting on Decision Trees library, used for ranking, classification, regression and other machine learning tasks for Python, R, Java, C++. Supports computa...",1279.8,2.1,,5640,345,0.0896,0.0128,0.0468,2.14,1.57,1.64,2.35,2.3,2.64,2.96,,4.41
+"jphall663/awesome-machine-learning-interpretability","A curated list of awesome machine learning interpretability resources.",941.4,2.4,,1991,172,0.1265,0.0064,0.0468,1.57,1.29,1.45,1.48,1.51,1.48,2.2,,2.12
+"zylo117/Yet-Another-EfficientDet-Pytorch","The pytorch re-implement of the official efficientdet with SOTA performance in real time and pretrained weights.",286.9,26.6,,4376,290,0.097,0.0108,0.0467,3.14,3.57,3.22,3.99,4.56,,,,15.36
+"tensorflow/serving","A flexible, high-performance serving system for machine learning models",1818.1,2.1,,4826,309,0.0937,0.0115,0.0466,1.86,1.43,1.32,1.85,1.9,2.08,2.59,,2.69
+"christophM/interpretable-ml-book","Book about interpretable machine learning",1397.7,6.2,,3347,242,0.1059,0.009,0.0466,1.57,1.36,1.68,2.39,2.46,3.55,3.93,,2.5
+"facebook/prophet","Tool for producing high quality forecasts for time series data that has multiple seasonality with linear or non-linear growth.",1523.9,3.1,,12107,568,0.0687,0.0211,0.0464,7,5.64,5.62,6.27,5.75,6.11,6.88,,8.27
+"drivendata/cookiecutter-data-science","A logical, reasonably standardized, but flexible project structure for doing and sharing data science work.",1906.2,17.4,,4130,278,0.0985,0.0103,0.0464,4.29,3.86,2.76,3.11,3.22,3.89,3.35,,2.38
+"qubvel/segmentation_models","Segmentation models with pretrained backbones. Keras and TensorFlow Keras.",957.4,35.4,,2867,217,0.1108,0.0081,0.0463,3.71,3.21,2.6,2.74,2.64,2.9,3.35,,3.27
+"NVIDIA/TensorRT","TensorRT is a C++ library for high performance inference on NVIDIA GPUs and deep learning accelerators.",626.1,3.6,,3209,234,0.1068,0.0087,0.0463,4.86,4.36,4.11,3.93,3.96,3.82,,,5.55
+"tensorflow/hub","A library for transfer learning by reusing parts of TensorFlow models.",1042.7,2.3,,2678,208,0.1137,0.0077,0.0463,0.86,0.79,0.99,1.17,1.36,1.81,2.04,,2.57
+"microsoft/onnxruntime","ONNX Runtime: cross-platform, high performance ML inferencing and training accelerator",799.9,2.1,,3921,267,0.0997,0.0099,0.0462,4.57,6.21,5.1,6.14,7.47,6.39,4.76,,4.94
+"pyro-ppl/pyro","Deep universal probabilistic programming with Python and PyTorch",1311.8,2.1,,6679,380,0.0833,0.0141,0.0461,2,1.71,1.71,2.03,2.25,2.35,2.69,,5.12
+"facebookresearch/wav2letter","Facebook AI Research's Automatic Speech Recognition Toolkit ",1154.3,6.1,,5596,336,0.0879,0.0125,0.0459,1.71,1.71,1.91,2.29,2.17,2.69,3.41,,4.89
+"minimaxir/textgenrnn","Easily train your own text-generating neural network of any size and complexity on any text dataset with a few lines of code.",1259.9,23.8,,4219,278,0.0965,0.0103,0.0458,1.14,1.43,1.45,1.79,1.88,2.31,3.37,,3.35
+"allegroai/clearml","ClearML - Auto-Magical Suite of tools to streamline your ML workflow. Experiment Manager, ML-Ops and Data-Management",587.6,4.5,,2105,174,0.121,0.0065,0.0457,2.43,3.5,2.99,3.12,2.95,2.89,,,3.59
+"deepinsight/insightface","Face Analysis Project on MXNet",1235,2.9,,8393,438,0.0764,0.0163,0.0457,6.14,6.86,6.35,7.7,8,7.1,8.34,,7.36
+"lmoroney/dlaicourse","Notebooks for learning deep learning",698.4,12.4,,4546,290,0.0934,0.0108,0.0455,5.14,5.21,4.5,4.48,5.66,6.9,,,6.67
+"astooke/rlpyt","Reinforcement Learning in PyTorch",630.2,13.1,,1782,155,0.1273,0.0058,0.0455,1.43,1.21,1.25,1.06,1.45,1.76,,,3.16
+"awesomedata/awesome-public-datasets","A topic-centric list of HQ open datasets.",2250.7,12.9,,42766,1292,0.0442,0.0479,0.0454,16.14,16.64,15.85,16.75,16.3,16.81,17.95,19.83,19.05
+"tensorflow/datasets","TFDS is a collection of datasets ready to use with TensorFlow, Jax, ...",860.1,2.1,,2615,200,0.112,0.0074,0.0453,1.86,2.07,1.78,2.1,2.36,2.48,3.22,,3.05
+"alan-turing-institute/sktime","A unified framework for machine learning with time series",803.4,2.1,,3436,239,0.1018,0.0089,0.0452,5,6.86,24.92,10.86,10.99,8.18,,,5.15
+"rasbt/mlxtend","A library of extension and helper modules for Python's data analysis and machine learning libraries.",2348.9,8.1,,3281,232,0.1035,0.0086,0.0452,1.43,1.07,1.05,1.53,1.72,1.68,1.86,1.69,1.4
+"stellargraph/stellargraph","StellarGraph - Machine Learning on Graphs",1010.7,2.5,,1723,151,0.1283,0.0056,0.0452,1.43,1.57,1.64,1.64,1.79,2.31,2.02,,1.72
+"hill-a/stable-baselines","A fork of OpenAI Baselines, implementations of reinforcement learning algorithms",930.4,3.6,1,2780,207,0.109,0.0077,0.0451,2.86,3.43,2.66,2.71,2.76,3.33,3.19,,2.99
+"magenta/magenta","Magenta: Music and Art Generation with Machine Intelligence",1718.2,4.9,,16181,670,0.0606,0.0249,0.0451,4.14,4.29,4.11,5.18,5.33,5.22,6.21,,9.48
+"eriklindernoren/PyTorch-YOLOv3","Minimal PyTorch implementation of YOLOv3",972.3,2.2,,5577,330,0.0866,0.0122,0.0451,2.71,4.21,4.18,4.84,4.66,5.94,6.38,,5.74
+"quark0/darts","Differentiable architecture search for convolutional and recurrent networks",937.8,14.9,,3162,226,0.1046,0.0084,0.0451,1.43,1.36,1.25,1.41,1.57,1.65,2.14,,3.38
+"NiuTrans/MTBook","《机器翻译：统计建模与深度学习方法 (第二版)》肖桐 朱靖波 著 - Machine Translation: Statistical Modeling and Deep Learning Methods (2nd Edition)",261.7,6.4,,1810,155,0.1254,0.0058,0.045,0.71,0.71,0.99,0.88,1.02,,,,7.27
+"ShangtongZhang/DeepRL","Modularized Implementation of Deep RL Algorithms in PyTorch",1368.2,34,,2280,181,0.1162,0.0067,0.0449,1.43,1.64,1.61,1.4,1.28,1.53,1.73,,1.67
+"tensorflow/lucid","A collection of infrastructure and tools for research in neural network interpretability.",1088.3,5.7,,4030,263,0.0955,0.0098,0.0447,0.71,1,1.38,1.6,1.61,2.02,2.85,,3.72
+"automl/auto-sklearn","Automated Machine Learning with scikit-learn",2026.3,2.3,,5151,310,0.0881,0.0115,0.0447,3.71,4.43,2.96,2.78,2.84,2.79,3.1,2.69,2.56
+"google-research/arxiv-latex-cleaner","arXiv LaTeX Cleaner: Easily clean the LaTeX code of your paper to submit to arXiv",740.7,7.4,,2006,165,0.1204,0.0061,0.0446,2,1.5,1.45,1.44,2.25,2.5,2.56,,2.71
+"cs231n/cs231n.github.io","Public facing notes page",2204.7,12.2,,7992,415,0.076,0.0154,0.0446,1.71,2.14,2.1,2.42,2.64,3.07,3.54,4.08,3.63
+"wandb/client","🔥 A tool for visualizing and tracking your machine learning experiments. This repo contains the CLI and Python API.",1395.8,2.1,,2617,196,0.1097,0.0073,0.0445,3.86,4.57,4.8,3.62,2.76,3.51,3.55,,2.11
+"facebookresearch/hydra","Hydra is a framework for elegantly configuring complex applications",585.2,2.1,,3543,241,0.0996,0.0089,0.0445,9.14,11.21,11.61,6.78,5.65,5.58,,,6.29
+"mozilla/DeepSpeech","DeepSpeech is an open source embedded (offline, on-device) speech-to-text engine which can run in real time on devices ranging from a Raspberry Pi 4 to high power GPU servers.",1690.4,5.2,,16310,666,0.0598,0.0247,0.0445,9.57,10.21,9.63,10.5,10.66,10.24,10.4,,9.66
+"danielegrattarola/spektral","Graph Neural Networks with Keras and Tensorflow 2.",731.5,4.6,,1576,140,0.1301,0.0052,0.0445,0.86,1.14,1.05,1.78,1.86,2.87,,,2.17
+"josephmisiti/awesome-machine-learning","A curated list of awesome Machine Learning frameworks, libraries and software.",2378.2,4.4,,47896,1361,0.0416,0.0505,0.0444,14.29,13.93,11.93,12.21,13.98,14.77,15.75,21.62,20.15
+"asappresearch/sru","Training RNNs as Fast as CNNs (https://arxiv.org/abs/1709.02755)",1238.1,9.2,,1867,156,0.1223,0.0058,0.0443,0.57,0.5,0.49,0.46,0.38,0.39,0.49,,1.52
+"lyhue1991/eat_pytorch_in_20_days","Pytorch🍊🍉   is delicious, just eat it! 😋😋",204.6,12.9,,2021,164,0.1188,0.0061,0.0442,5.29,4.36,3.68,3.92,10.21,,,,9.93
+"ludwig-ai/ludwig","Ludwig is a toolbox that allows to train and evaluate deep learning models without the need to write code.",752,4.8,,7433,390,0.0768,0.0145,0.0441,2.43,2.86,2.93,3.46,3.45,3.68,,,10.54
+"Hvass-Labs/TensorFlow-Tutorials","TensorFlow Tutorials with YouTube Videos",1666.4,2.1,,8643,432,0.0732,0.016,0.0441,2.29,2.43,1.94,1.92,1.98,2.34,3.72,,5.25
+"Mikoto10032/DeepLearning","深度学习入门教程, 优秀文章, Deep Learning Tutorial",1014.3,10.5,,4422,276,0.0914,0.0102,0.044,5.71,7.07,6.58,7.06,6.58,6.12,5.75,,4.44
+"tzutalin/labelImg","🖍️ LabelImg is a graphical image annotation tool and label object bounding boxes in images",1949.9,8.3,,13075,566,0.0634,0.021,0.0439,8.71,9.71,9.93,10.52,10.26,10.24,10.43,7.16,6.77
+"mozilla/TTS",":robot: :speech_balloon: Deep learning for Text to Speech  (Discussion forum: https://discourse.mozilla.org/c/tts)",1090.4,4.6,,3055,215,0.103,0.008,0.0439,4.14,3.79,3.62,3.95,3.94,3.81,3.38,,2.81
+"ultralytics/yolov3","YOLOv3 in PyTorch > ONNX > CoreML > TFLite",875.6,3.8,,6537,356,0.0797,0.0132,0.0438,5.29,5.93,6.21,7.5,7.61,9.16,8.11,,7.48
+"nl8590687/ASRT_SpeechRecognition","A Deep-Learning-Based Chinese Speech Recognition System 基于深度学习的中文语音识别系统",1413.4,2.7,,3732,245,0.0961,0.0091,0.0438,5.43,4.71,4.11,3.86,3.55,3.78,4.5,,2.65
+"explosion/thinc","🔮 A refreshing functional take on deep learning, compatible with your favorite libraries",2285.3,12.9,,2151,169,0.115,0.0063,0.0437,0.71,1.14,1.12,0.91,0.99,2.59,1.78,1.16,0.96
+"lexfridman/mit-deep-learning","Tutorials, assignments, and competitions for MIT Deep Learning related courses.",1471,2.1,,8262,414,0.0734,0.0154,0.0436,3,3.79,2.99,3.46,3.48,4.51,7.04,,5.63
+"nmslib/nmslib","Non-Metric Space Library (NMSLIB): An efficient similarity search library and a toolkit for evaluation of k-NN methods for generic non-metric spaces.",2748.5,7.4,,2253,174,0.1131,0.0065,0.0436,1.14,1.07,1.02,1.19,1.19,1.38,1.42,1.21,0.86
+"MrGemy95/Tensorflow-Project-Template","A best practice for tensorflow project template architecture. ",1092.2,25.4,,3340,226,0.0991,0.0084,0.0435,0.86,0.43,0.66,0.59,0.66,0.75,1.11,,3.1
+"rapidsai/cudf","cuDF - GPU DataFrame Library",1351.8,2.1,,3598,238,0.0968,0.0088,0.0435,2.14,2.29,2.04,2.9,3.51,3.43,3.55,,2.67
+"NVlabs/stylegan2","StyleGAN2 - Official TensorFlow Implementation",418.1,35.7,,6811,362,0.0778,0.0134,0.0433,8.29,8.86,8.19,10.62,10.41,12.42,,,16.33
+"blue-yonder/tsfresh","Automatic extraction of relevant features from time series:",1544.5,2.9,,5295,304,0.0841,0.0113,0.0431,3.29,2.93,2.6,2.35,2.28,2.46,2.71,,3.43
+"kojino/120-Data-Science-Interview-Questions","Answers to 120 commonly asked data science interview questions.",1131.9,14.2,,2357,177,0.1099,0.0066,0.043,2.14,2.21,1.97,1.8,1.78,1.9,2.67,,2.16
+"tiangolo/fastapi","FastAPI framework, high performance, easy to learn, fast to code, ready for production",771.6,2.2,,25938,873,0.0493,0.0324,0.0429,48.86,46.5,51.45,44.9,44.88,49.57,35.46,,33.9
+"carpedm20/ENAS-pytorch","PyTorch implementation of ""Efficient Neural Architecture Search via Parameters Sharing""",1067.8,39.2,,2368,177,0.1094,0.0066,0.0429,0.86,0.93,0.62,0.78,0.68,0.9,1.4,,2.22
+"thu-ml/tianshou","An elegant PyTorch deep reinforcement learning platform.",1007,2.5,,2427,180,0.1086,0.0067,0.0429,3.43,3.21,3.29,3.43,3.62,6.57,3.29,,2.41
+"facebookresearch/hiplot","HiPlot makes understanding high dimensional data easy",436.4,6.6,,1882,152,0.1182,0.0056,0.0428,5.29,7.57,12.95,6.3,3.63,,,,5.35
+"tamarott/SinGAN","Official pytorch implementation of the paper: ""SinGAN: Learning a Generative Model from a Single Natural Image""",519,25.6,,2707,193,0.1044,0.0072,0.0428,0.29,1.07,1.08,1.26,1.5,1.77,,,5.43
+"heykeetae/Self-Attention-GAN","Pytorch implementation of Self-Attention Generative Adversarial Networks (SAGAN)",965.7,37.7,,1865,150,0.1178,0.0056,0.0427,1,1.07,1.38,1.37,1.35,1.26,1.6,,1.93
+"amusi/Deep-Learning-Interview-Book","深度学习面试宝典（含数学、机器学习、深度学习、计算机视觉、自然语言处理和SLAM等方向）",573.4,31.4,,2459,180,0.1072,0.0067,0.0425,2.71,3.5,3.75,3.53,3.55,4.08,,,4.29
+"academicpages/academicpages.github.io","Github Pages template for academic personal websites, forked from mmistakes/minimal-mistakes",1585.5,2.4,,3710,237,0.0935,0.0088,0.0425,4.57,4.57,4.24,4.38,4.02,4.02,3.57,,2.38
+"cornellius-gp/gpytorch","A highly efficient and modular implementation of Gaussian Processes in PyTorch",1318.4,2.3,,2248,169,0.1101,0.0063,0.0424,0.86,1.36,1.35,1.28,1.28,1.39,1.76,,1.71
+"onnx/models","A collection of pre-trained, state-of-the-art models in the ONNX format ",1200,2.3,,3077,208,0.099,0.0077,0.0423,3.86,3.79,3.52,3.72,3.58,3.43,3.29,,2.57
+"huseinzol05/Stock-Prediction-Models","Gathers machine learning and deep learning models for Stock forecasting including trading bots and simulations",1126.5,12.6,,3126,209,0.0979,0.0078,0.0421,3.86,5.71,5.98,5.32,4.98,4.94,4.2,,2.79
+"kornia/kornia","Open Source Differentiable Computer Vision Library for PyTorch",879.6,2.1,,3508,226,0.0943,0.0084,0.0421,2.29,3.43,3.09,5.81,5.19,5.03,4.19,,4.19
+"iterative/cml","♾️ CML - Continuous Machine Learning | CI/CD for ML",326.7,3.4,,2111,161,0.1117,0.006,0.0421,3.57,2.36,2.3,2.62,4.45,,,,7.1
+"tensorflow/agents","TF-Agents is a library for Reinforcement Learning in TensorFlow",793,3,,1760,142,0.1181,0.0053,0.042,1.86,1.57,1.38,1.55,1.54,1.82,2.28,,2.27
+"tensorpack/tensorpack","A Neural Net Training Interface on TensorFlow, with focus on speed + flexibility",1850,25,,5893,319,0.0793,0.0118,0.042,1.71,1.71,1.68,1.83,1.85,2.27,3.45,,3.36
+"apachecn/Interview","Interview = 简历指南 + LeetCode + Kaggle",1192.6,15.5,,6731,348,0.0757,0.0129,0.042,1.86,1.93,1.74,2.1,3.16,4.62,6.64,,5.66
+"borisbanushev/stockpredictionai","       In this noteboook I will create a complete process for predicting stock price movements. Follow along and we will achieve some pretty good results. For that purpose we will use a Generative Adv...",739.7,19.2,,2709,188,0.1016,0.007,0.0417,1.86,2.21,2.2,2.02,2.24,2.36,3.45,,3.67
+"pjreddie/darknet","Convolutional Neural Networks",2473.7,3.6,,19767,705,0.0522,0.0262,0.0415,10,10.5,9.04,9.52,9.5,10.99,12.13,10.76,8.27
+"louisfb01/Best_AI_paper_2020","A curated list of the latest breakthroughs in AI by release date with a clear video explanation, link to a more in-depth article, and code",28.3,17.4,,1749,140,0.1172,0.0052,0.0415,11.29,17.14,,,,,,,64.85
+"fastai/nbdev","Create delightful python projects using Jupyter Notebooks",426.3,3.3,,2496,177,0.1038,0.0066,0.0414,6.71,4.5,3.48,7.48,4.72,4.91,,,5.9
+"ikostrikov/pytorch-a2c-ppo-acktr-gail","PyTorch implementation of Advantage Actor Critic (A2C), Proximal Policy Optimization (PPO), Scalable trust-region method for deep reinforcement learning using Kronecker-factored approximation (ACKTR) ...",1244.3,15.3,,2239,165,0.1079,0.0061,0.0414,1.57,1.43,1.45,1.72,1.39,1.6,1.64,,1.82
+"gradio-app/gradio","Create UIs for prototyping your machine learning model in 3 minutes",760.6,23.8,,1904,147,0.113,0.0055,0.0413,2.14,2.07,2.93,2.31,5.85,4.79,,,2.73
+"labuladong/fucking-algorithm","刷算法全靠套路，认准 labuladong 就够了！English version supported! Crack LeetCode, not only how, but also why. ",333.6,4.8,,79730,1773,0.0326,0.0658,0.0412,163,133.79,122.1,166.47,174.79,,,,240.5
+"fengdu78/Coursera-ML-AndrewNg-Notes","吴恩达老师的机器学习课程个人笔记",1170.6,11.7,,20357,712,0.0512,0.0264,0.0411,13.71,17.14,15.91,15.74,15.08,17.26,18.99,,17.42
+"seungeunrho/minimalRL","Implementations of basic RL algorithms with minimal lines of codes! (pytorch based)",635.5,29.9,,1685,134,0.1164,0.005,0.0408,2.86,2.07,1.71,1.56,1.39,1.15,,,2.7
+"amusi/AI-Job-Notes","AI算法岗求职攻略（涵盖准备攻略、刷题指南、内推和AI公司清单等资料）",706.5,11.6,,2594,179,0.101,0.0066,0.0407,1.86,1.79,1.94,1.56,1.88,2.25,,,3.68
+"wainshine/Chinese-Names-Corpus","中文人名语料库。人名生成器。中文姓名,姓氏,名字,称呼,日本人名,翻译人名,英文人名。可用于中文分词、人名实体识别。",1501.3,23.9,,2643,181,0.1003,0.0067,0.0407,1.86,2.29,2.1,2.39,2.15,1.85,2.05,,1.81
+"bytedance/byteps","A high performance and generic framework for distributed DNN training",572.7,5.8,,2654,181,0.0998,0.0067,0.0406,2.71,4.79,2.93,2.76,2.27,1.85,,,4.64
+"deepmind/open_spiel","OpenSpiel is a collection of environments and algorithms for research in general reinforcement learning and search/planning in games.",545.4,2.5,,2543,176,0.1013,0.0065,0.0406,2,1.64,2.99,2.06,1.64,1.88,,,5
+"facebookresearch/nevergrad","A Python toolbox for performing gradient-free optimization",789,2.3,,2792,187,0.0981,0.0069,0.0405,1.14,1.29,1.48,1.18,1.17,1.46,1.68,,3.68
+"kenshohara/3D-ResNets-PyTorch","3D ResNets for Action Recognition (CVPR 2018)",1221.5,18.9,,2671,180,0.0987,0.0067,0.0403,2.71,2.57,2.3,2.47,2.38,2.32,2.42,,2.19
+"mrgloom/awesome-semantic-segmentation",":metal: awesome-semantic-segmentation",1933.6,41.9,,7602,362,0.0697,0.0134,0.0402,3.57,4.21,4.57,5.46,5.67,5.51,6.7,,4.25
+"apache/incubator-mxnet","Lightweight, Portable, Flexible Distributed/Mobile Deep Learning with Dynamic, Mutation-aware Dataflow Dep Scheduler; for Python, R, Julia, Scala, Go, Javascript and more",2089.3,2.1,,19222,666,0.0507,0.0247,0.0399,1.86,2.43,2.3,2.78,2.81,3.35,5.12,9.4,9.45
+"quantumblacklabs/kedro","A Python framework for creating reproducible, maintainable and modular data science code.",640.6,2.5,,3296,206,0.0915,0.0076,0.0399,2.14,2.29,2.4,3.13,3.74,4.12,,,5.26
+"arXivTimes/arXivTimes","repository to research & share the machine learning articles",1544.8,31.4,,3421,211,0.0903,0.0078,0.0399,1.29,1.21,1.05,1.1,1.21,1.27,1.91,,2.23
+"davidsandberg/facenet","Face recognition using Tensorflow",1801.1,32.7,,11439,469,0.06,0.0174,0.0397,3.14,3.79,3.42,3.92,3.97,4.76,6.57,,6.36
+"HIPS/autograd","Efficiently computes derivatives of numpy code.",2246.3,20.2,,5085,273,0.0786,0.0101,0.0397,1,1,1.41,1.64,1.58,1.79,2.53,2.44,2.26
+"AliaksandrSiarohin/first-order-model","This repository contains the source code for the paper First Order Motion Model for Image Animation ",403.8,25.2,,9034,400,0.0648,0.0148,0.0396,7.29,7.29,8.42,10.94,23.17,24.71,,,22.44
+"VowpalWabbit/vowpal_wabbit","Vowpal Wabbit is a machine learning system which pushes the frontier of machine learning with techniques such as online, hashing, allreduce, reductions, learning2search, active, and interactive learni...",4188.2,2.1,,7399,349,0.0691,0.013,0.0396,2.14,2.07,1.91,1.9,1.7,1.82,2.05,2.48,1.77
+"jameslyons/python_speech_features","This library provides common speech features for ASR including MFCCs and filterbank energies.",2635.9,17.4,,1829,138,0.1105,0.0051,0.0396,0.14,0.21,0.49,0.69,0.75,0.91,1.05,0.93,0.7
+"jantic/DeOldify","A Deep Learning based project for colorizing and restoring old images (and video!)",809,4.1,,12596,495,0.0575,0.0184,0.0393,6.29,7.93,10.09,9.92,10.47,11.06,10.85,,15.61
+"fastai/fastpages","An easy to use blogging platform, with enhanced support for Jupyter Notebooks.",349.8,6.9,,2076,148,0.1044,0.0055,0.0391,3.86,3.36,3.48,3.69,4.16,,,,5.97
+"podgorskiy/ALAE","[CVPR2020] Adversarial Latent Autoencoders ",677.2,41.4,,2840,182,0.0938,0.0068,0.0391,2.29,1.86,1.55,2.18,2.28,,,,10.4
+"jakevdp/PythonDataScienceHandbook","Python Data Science Handbook: full text in Jupyter Notebooks",1621.4,33.8,,27620,828,0.0439,0.0307,0.039,14.29,15.57,13.41,20.05,18.18,17.68,20.36,,17.05
+"ageitgey/face_recognition","The world's simplest facial recognition api for Python and the command line",1416.1,29.5,,38147,1026,0.0394,0.0381,0.039,15.71,16.07,16.34,18.08,17.33,20.43,25.77,,27.03
+"amdegroot/ssd.pytorch","A PyTorch Implementation of Single Shot MultiBox Detector",1439.9,13.3,,4113,233,0.0829,0.0086,0.039,2.29,2.07,2.1,2.22,2.13,2.73,3.45,,2.93
+"probml/pyprobml","Python code for ""Machine learning: a probabilistic perspective"" (2nd edition)",1614.3,2.1,,2778,179,0.0943,0.0066,0.0389,14.57,41.21,34.52,12.81,6.87,4.01,3.17,,1.73
+"facebookresearch/ReAgent","A platform for Reasoning systems (Reinforcement Learning, Contextual Bandits, etc.)",1270.3,3.1,,2748,177,0.0943,0.0066,0.0389,1.86,1.43,1.61,1.13,1.18,1.27,1.61,,2.25
+"shreyashankar/gpt3-sandbox","The goal of this project is to enable users to create cool web demos using the newly released OpenAI GPT-3 API with just a few lines of Python.",182.7,11.7,,1849,136,0.1077,0.005,0.0387,1.86,2.57,2.07,2.37,,,,,10.23
+"PaddlePaddle/Paddle","PArallel Distributed Deep LEarning: Machine Learning Framework from Industrial Practice （『飞桨』核心框架，深度学习&机器学习高性能单机、分布式训练和跨平台部署）",1616.7,2.4,,13818,515,0.0546,0.0191,0.0385,8.29,7.93,8.65,9.15,11.4,9.16,8.33,,8.55
+"CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers","aka ""Bayesian Methods for Hackers"": An introduction to Bayesian methods + probabilistic programming with a computation/understanding-first, mathematics-second point of view. All in pure Python ;)  ",2925.3,13.1,,22422,712,0.0465,0.0264,0.0385,7.29,7.57,6.05,5.7,5.79,6.78,8.18,7.54,7.67
+"qqwweee/keras-yolo3","A Keras implementation of YOLOv3 (Tensorflow backend)",1020.8,24.7,,6515,312,0.0701,0.0116,0.0385,3.29,2.79,2.4,2.98,3.23,4.38,6.08,,6.39
+"osmr/imgclsmob","Sandbox for training deep learning networks",923.5,2.3,,1960,140,0.1046,0.0052,0.0385,1.14,2.36,2.33,2.37,2.1,2.56,2.45,,2.19
+"tyiannak/pyAudioAnalysis","Python Audio Analysis Library: Feature Extraction, Classification, Segmentation and Applications",2335.5,4.7,,3685,212,0.0842,0.0079,0.0383,2.43,3.07,3.22,2.71,2.38,2.48,2.33,1.97,1.6
+"NVlabs/imaginaire","NVIDIA PyTorch GAN library with distributed and mixed precision support",186.9,19,,1932,138,0.1046,0.0051,0.0382,2.57,3.14,2.96,4.66,10.54,,,,10.43
+"Lyken17/pytorch-OpCounter","Count the MACs / FLOPs of your PyTorch model.",1087.7,16.3,,2332,155,0.0973,0.0058,0.038,4.86,3.43,2.63,2.89,2.8,2.87,3.06,,2.18
+"Netflix/metaflow","Build and manage real-life data science projects with ease.",488.3,5.7,,3988,222,0.0815,0.0082,0.0379,2.57,2.29,4.57,4.08,3.42,3.57,,,9.72
+"cleverhans-lab/cleverhans","An adversarial example library for constructing attacks, building defenses, and benchmarking both",1586,4.2,,4890,252,0.0754,0.0094,0.0377,1.57,1.57,1.12,1.6,1.56,1.6,2.22,,3.09
+"sherjilozair/char-rnn-tensorflow"," Multi-layer Recurrent Neural Networks (LSTM, RNN) for character-level language models in Python using Tensorflow ",1878.5,24.7,,2626,167,0.0931,0.0062,0.0377,,0.14,0.16,0.16,0.16,0.22,0.43,1.31,1.4
+"dmlc/gluon-cv","Gluon CV Toolkit",1056.9,2.7,,4476,237,0.0775,0.0088,0.0375,3.43,3.57,2.96,2.66,2.67,3.14,4.03,,4.4
+"donnemartin/data-science-ipython-notebooks","Data science Python notebooks: Deep learning (TensorFlow, Theano, Caffe, Keras), scikit-learn, Kaggle, big data (Spark, Hadoop MapReduce, HDFS), matplotlib, pandas, NumPy, SciPy, Python essentials, AW...",2186.2,27.1,,20063,643,0.0469,0.0239,0.0375,4.43,5.79,5.13,5.5,6.53,6.92,8.08,8.68,9.19
+"rougier/numpy-100","100 numpy exercises (with solutions)",2427.8,12.6,,6219,292,0.0687,0.0108,0.0371,8.14,9.5,7.69,5.17,4.69,4.59,5.44,3.28,2.56
+"tensorlayer/tensorlayer","Deep Learning and Reinforcement Learning Library for Scientists and Engineers 🔥",1685.3,11.7,,6455,299,0.0678,0.0111,0.0371,1.29,1.71,1.32,1.82,1.9,1.96,2.74,,3.83
+"PaddlePaddle/PaddleHub","Awesome pre-trained models toolkit based on PaddlePaddle.（180+ models including Image, Text, Audio and Video with Easy Inference & Serving deployment)",758.7,4.6,,4422,233,0.0771,0.0086,0.0371,7.71,7.79,9.83,30.24,17.5,11.05,,,6.9
+"scikit-optimize/scikit-optimize","Sequential model-based optimization with a  `scipy.optimize` interface",1764.1,12.1,,2004,137,0.1001,0.0051,0.0371,0.57,0.71,0.69,0.88,0.94,1.12,1.19,,1.14
+"3b1b/manim","Animation engine for explanatory math videos",2128.2,2.1,,29679,826,0.0407,0.0307,0.037,21.29,25.14,25.12,41.57,34.53,37.49,32.72,16.26,14.11
+"Vay-keen/Machine-learning-learning-notes","周志华《机器学习》又称西瓜书是一本较为全面的书籍，书中详细介绍了机器学习领域不同类型的算法(例如：监督学习、无监督学习、半监督学习、强化学习、集成降维、特征选择等)，记录了本人在学习过程中的理解思路与扩展知识点，希望对新人阅读西瓜书有所帮助！",1030.7,39.9,,4809,245,0.0746,0.0091,0.037,3.86,3.5,3.32,3.4,4.07,4.21,6.37,,4.68
+"CMU-Perceptual-Computing-Lab/openpose","OpenPose: Real-time multi-person keypoint detection library for body, face, hands, and foot estimation",1364.4,2.3,,19815,629,0.0465,0.0233,0.0369,11.14,11.14,9.8,11.33,11.31,12.01,12.93,,14.57
+"dunovank/jupyter-themes","Custom Jupyter Notebook Themes",2230,32.6,,8097,346,0.0626,0.0128,0.0369,3.71,3.64,3.91,3.88,3.62,4.15,4.72,4.41,4.09
+"great-expectations/great_expectations","Always know what to expect from your data.",1225,2.1,,3418,193,0.0827,0.0072,0.0367,9.43,8.36,5.33,6.25,6.82,6.26,4.2,,2.8
+"iperov/DeepFaceLab","DeepFaceLab is the leading software for creating deepfakes.",958.4,4.5,,22856,685,0.0439,0.0254,0.0366,19.43,19.14,19.27,29.85,27.01,30.63,30.13,,23.88
+"poloclub/cnn-explainer","Learning Convolutional Neural Networks with Interactive Visualization.",441,41.3,,5136,252,0.0718,0.0094,0.0365,2.29,2.14,2.01,2.9,3.44,,,,17.53
+"jinwchoi/awesome-action-recognition","A curated list of action recognition and related area resources",1578.3,41.9,,2854,171,0.0877,0.0063,0.0365,1.86,1.57,1.68,1.83,1.8,2.12,2.39,,1.81
+"NVIDIA/DALI","A library containing both highly optimized building blocks and an execution engine for data pre-processing in deep learning applications",961.1,2.2,,3033,177,0.0854,0.0066,0.0364,1.86,1.86,1.78,2.07,2.13,2.3,2.9,,3.22
+"sloria/TextBlob","Simple, Pythonic, text processing--Sentiment analysis, part-of-speech tagging, noun phrase extraction, translation, and more.",2758.2,6.4,,7484,324,0.0634,0.012,0.0364,0.86,1.21,1.32,2.27,2.1,2.27,2.39,2.67,2.72
+"jbhuang0604/awesome-computer-vision","A curated list of awesome computer vision resources",2193.3,5.4,,13548,480,0.0519,0.0178,0.0363,39.71,22.14,13.71,7.89,6.41,5.67,6.21,6.91,6.19
+"carpedm20/DCGAN-tensorflow","A tensorflow implementation of ""Deep Convolutional Generative Adversarial Networks""",1864.9,11.8,,6765,302,0.0654,0.0112,0.0363,0.43,0.43,0.62,1.06,1.12,1.38,2.38,3.68,3.67
+"tensorflow/probability","Probabilistic reasoning and statistical analysis in TensorFlow",1182,2.1,,3200,183,0.0837,0.0068,0.0363,0.71,1.14,1.35,1.42,1.46,1.65,2.25,,3
+"lcdevelop/ChatBotCourse","自己动手做聊天机器人教程",1669.9,24.8,,4905,243,0.0725,0.009,0.0362,2,1.86,1.64,1.7,1.58,1.87,2.38,,2.95
+"gunthercox/ChatterBot","ChatterBot is a machine learning, conversational dialog engine for creating chat bots",2303.4,14.9,,10722,407,0.0556,0.0151,0.036,3.43,3.71,3.48,4.01,3.9,3.96,4.81,5.68,4.81
+"ResidentMario/missingno","Missing data visualization module for Python.",1757.4,20.3,,2601,158,0.0889,0.0059,0.036,0.43,0.71,1.25,1.42,1.5,1.84,1.78,,1.48
+"deepfakes/faceswap","Deepfakes Software For All",1125.6,4.1,,33906,875,0.0378,0.0325,0.0359,11.86,11.5,11.21,14.39,14.81,15.88,34.97,,30.16
+"chineseocr/chineseocr","yolo3+ocr",992.4,10.8,,3772,202,0.0784,0.0075,0.0359,3.14,3.07,2.93,3.34,3.64,4.14,4.54,,3.81
+"tensortrade-org/tensortrade","An open source reinforcement learning framework for training, evaluating, and deploying robust trading agents.",537.1,11.1,,2173,140,0.0943,0.0052,0.0359,6,6.79,6.28,3.68,2.68,3.57,,,4.06
+"suragnair/alpha-zero-general","A clean implementation based on AlphaZero for any game in any framework + tutorial + Othello/Gobang/TicTacToe/Connect4 and more",1143.9,4.9,,2186,140,0.0938,0.0052,0.0358,1.29,1.43,1.87,2.14,1.8,1.59,1.56,,1.94
+"tensorflow/examples","TensorFlow examples",916.1,3.7,,4464,225,0.0738,0.0084,0.0358,5.43,5.21,4.64,5.36,5.23,6.05,,,6.35
+"wkentaro/labelme","Image Polygonal Annotation with Python (polygon, rectangle, circle, line, point and image-level flag annotation).",1714.5,4.7,,6032,275,0.0667,0.0102,0.0357,5.29,5.43,5.23,5.64,5.77,5.95,5.89,,3.52
+"tensorflow/tensorboard","TensorFlow's Visualization Toolkit",1343.2,2.1,,5116,245,0.0701,0.0091,0.0355,0.71,1.21,1.25,1.67,2.24,2.16,3.06,,3.89
+"deepchem/deepchem","Democratizing Deep-Learning for Drug Discovery, Quantum Chemistry, Materials Science and Biology",1942,2.4,,2660,158,0.087,0.0059,0.0355,4.57,3.21,2.86,2.36,2.42,2.33,1.87,,1.47
+"milesial/Pytorch-UNet","PyTorch implementation of the U-Net for image semantic segmentation with high quality images",1250.5,13.7,,3396,186,0.0802,0.0069,0.0354,4.71,4.43,4.37,5.07,4.5,4.18,3.7,,2.73
+"Tianxiaomo/pytorch-YOLOv4","PyTorch ,ONNX and TensorRT implementation of YOLOv4",267.6,5.5,,2544,153,0.0881,0.0057,0.0354,5.71,5.86,4.77,6.28,7.5,,,,9.57
+"virgili0/Virgilio","Your new Mentor for Data Science E-Learning.",677.2,7.4,,12935,452,0.0512,0.0168,0.0353,1.57,2.21,2.07,1.83,2.16,2.76,,,19.18
+"PaddlePaddle/PaddleOCR","Awesome multilingual OCR toolkits based on PaddlePaddle （practical ultra lightweight OCR system, provide data annotation and synthesis tools, support training and deployment among server, mobile, embe...",254.6,4.5,,8394,339,0.0591,0.0126,0.0353,18.43,23.64,30.61,45.14,38.39,,,,33.13
+"AMAI-GmbH/AI-Expert-Roadmap","Roadmap to becoming an Artificial Intelligence Expert in 2021",85.1,5.3,,8758,347,0.058,0.0129,0.0351,17.71,20.36,64.44,,,,,,110.27
+"seatgeek/fuzzywuzzy","Fuzzy String Matching in Python",3481.2,29.2,,7764,319,0.0602,0.0118,0.035,3.57,3.71,2.99,4.33,3.93,3.94,3.82,3.15,2.23
+"JaidedAI/EasyOCR","Ready-to-use OCR with 80+ supported languages and all popular writing scripts including Latin, Chinese, Arabic, Devanagari, Cyrillic and etc.",309.5,3.8,,9968,375,0.0551,0.0139,0.0348,25,21.71,15.81,17.24,21.66,,,,32.44
+"google/mediapipe","Cross-platform, customizable ML solutions for live and streaming media.",584.2,11.9,,10592,390,0.0539,0.0145,0.0348,12.14,13.29,14.37,15.67,15.89,17.66,,,18.28
+"microsoft/qlib","Qlib is an AI-oriented quantitative investment platform, which aims to realize the potential, empower the research, and create the value of AI technologies in quantitative investment. With Qlib, you c...",156.7,3.5,,3657,192,0.0769,0.0071,0.0348,14.86,20.14,27.72,33.79,,,,,29.96
+"NLPIR-team/NLPIR","",2085.7,3.9,,2873,163,0.0831,0.006,0.0346,0.71,1.14,0.92,0.95,0.98,1.05,1.38,1.5,1.38
+"apachecn/fe4ml-zh",":book: [译] 面向机器学习的特征工程",976.4,24.7,,2159,134,0.0909,0.005,0.0346,1,0.79,0.56,0.87,0.99,1.1,1.99,,2.22
+"lazyprogrammer/machine_learning_examples","A collection of machine learning examples and tutorials.",2362,5.8,,5789,259,0.0655,0.0096,0.0345,2.43,2.93,2.89,3.01,3.27,4.69,4.77,3.17,2.95
+"susanli2016/Machine-Learning-with-Python","Python code for common Machine Learning Algorithms",1332.6,25.6,,2812,160,0.0833,0.0059,0.0345,2.43,2.14,2.14,2.08,2.1,2.25,2.72,,2.34
+"apache/tvm","Open deep learning compiler stack for cpu, gpu and specialized accelerators",1558.1,2.1,,6177,270,0.064,0.01,0.0345,3.86,4,3.68,4.09,3.92,3.81,4.97,,4.57
+"cool-RR/PySnooper","Never use print for debugging again",640.4,20.2,,14146,469,0.0485,0.0174,0.0345,3,3,3.19,4.2,3.47,3.41,,,22.26
+"kubeflow/kubeflow","Machine Learning Toolkit for Kubernetes",1144.2,3.6,,9843,368,0.0547,0.0137,0.0345,4.86,5.07,4.93,4.35,4.35,4.78,5.97,,8.61
+"aamini/introtodeeplearning","Lab Materials for MIT 6.S191: Introduction to Deep Learning",1085.2,14.8,,2935,164,0.0818,0.0061,0.0344,1.29,1.79,2.24,2.97,3.33,4.81,3.34,,2.71
+"NVIDIA/nvidia-docker","Build and run Docker containers leveraging NVIDIA GPUs",1901.2,13.5,,12443,429,0.0505,0.0159,0.0344,6,6.14,5.03,5.82,6.44,6.98,7.29,6.67,6.55
+"pandas-dev/pandas","Flexible and powerful data analysis / manipulation library for Python, providing labeled data structures similar to R data.frame objects, statistical functions, and much more",3799.9,2.1,,28069,732,0.0382,0.0272,0.0341,16.29,16.21,15.25,14.28,14.03,15.04,15.01,12.6,7.39
+"rafaelpadilla/Object-Detection-Metrics","Most popular metrics used to evaluate object detection algorithms.",970.3,9.4,,3218,173,0.0787,0.0064,0.0341,3.43,4.36,3.48,3.28,3.21,3.47,3.55,,3.32
+"DistrictDataLabs/yellowbrick","Visual analysis and diagnostic tools to facilitate machine learning model selection.",1705.4,2.2,,3071,166,0.0791,0.0062,0.0339,1.57,1.64,1.38,1.26,1.56,1.53,1.94,,1.8
+"numpy/numpy","The fundamental package for scientific computing with Python.",3779,2.2,,15961,498,0.0457,0.0185,0.0338,6.86,7.71,8.68,9.86,10.24,9.73,9.71,7.5,4.23
+"azl397985856/leetcode"," LeetCode Solutions: A Record of My Problem Solving Journey.( leetcode题解，记录自己的leetcode解题之路。)",1024.6,2.5,,39293,906,0.0338,0.0336,0.0337,24.57,28.14,24.72,25.86,28.59,39.21,,,59.58
+"endymecy/awesome-deeplearning-resources","Deep Learning and deep reinforcement learning research papers and some codes",1511.8,5.7,,2350,138,0.086,0.0051,0.0335,0.43,0.5,0.62,0.6,0.62,0.78,0.92,,1.56
+"dask/dask","Parallel computing with task scheduling",2205.2,2.1,,7760,304,0.0574,0.0113,0.0334,4.43,4.29,4.54,4.77,4.9,4.66,5.28,4.01,3.52
+"Yorko/mlcourse.ai","Open Machine Learning Course",1420.6,14,,7391,294,0.0582,0.0109,0.0333,3.14,2.79,2.24,2.25,2.52,2.7,5.85,,5.21
+"ieee8023/covid-chestxray-dataset","We are building an open database of COVID-19 cases with chest X-ray or CT images.",338,7.3,,2511,143,0.0834,0.0053,0.0333,0.86,1.29,1.58,1.81,1.95,,,,7.84
+"milvus-io/milvus","An open source embedding vector similarity search engine powered by Faiss, NMSLIB and Annoy",489.7,2.9,,4891,223,0.0668,0.0083,0.0333,3.86,4.14,4.73,7.65,6.72,6.51,,,10.01
+"twintproject/twint","An advanced Twitter scraping & OSINT tool written in Python that doesn't use Twitter's API, allowing you to scrape a user's followers, following, Tweets and more while evading most API limitations.",1317.4,18,,9036,335,0.0543,0.0124,0.0332,11,10.57,9.44,9.44,16.71,16.29,11.15,,7.11
+"fo40225/tensorflow-windows-wheel","Tensorflow prebuilt binary for Windows",1118.7,31.7,,3184,167,0.0768,0.0062,0.0332,2,1.57,1.48,1.88,1.92,2.35,2.89,,2.9
+"geohot/tinygrad","You like pytorch? You like micrograd? You love tinygrad! ❤️ ",91.3,7.8,,3969,193,0.0712,0.0072,0.0332,8.14,10.57,14.79,,,,,,44.06
+"FederatedAI/FATE","An Industrial Grade Federated Learning Framework",724.6,2.5,,2695,148,0.0804,0.0055,0.0329,3.86,3.57,2.96,4.1,3.78,3.9,,,3.73
+"networkx/networkx","Network Analysis in Python",3787,3,,8495,316,0.0545,0.0117,0.0326,5.86,5.5,4.96,5.44,5.22,5.11,4.86,3.72,2.25
+"codelucas/newspaper","News, full-text, and article metadata extraction in Python 3. Advanced docs:",2610.6,14.3,,10595,365,0.0504,0.0135,0.0325,4.29,3.29,3.65,4.22,4.66,4.69,4.72,4.39,4.1
+"tensorforce/tensorforce","Tensorforce: a TensorFlow library for applied reinforcement learning",1400.3,18.5,,2839,151,0.0779,0.0056,0.0324,0.57,0.79,0.82,0.75,0.79,0.91,1.06,,2.03
+"pymc-devs/pymc3","Probabilistic Programming in Python: Bayesian Modeling and Probabilistic Machine Learning with Theano",4275.6,2.1,,5488,234,0.0624,0.0087,0.0324,2.14,2.14,2.01,2.2,2.08,2.16,2.34,2.33,1.28
+"NathanUA/U-2-Net","The code for our newly accepted paper in Pattern Recognition 2020: ""U^2-Net: Going Deeper with Nested U-Structure for Salient Object Detection.""",258.3,7,,3809,182,0.07,0.0068,0.0322,5.57,6,7.4,26.37,15.83,,,,14.81
+"MVIG-SJTU/AlphaPose","Real-Time and Accurate Full-Body Multi-Person Pose Estimation&Tracking System",1096.9,7.4,,4736,211,0.0652,0.0078,0.0321,2.14,3.36,3.12,3.82,3.5,3.53,3.68,,4.37
+"Unity-Technologies/ml-agents","Unity Machine Learning Agents Toolkit",1227.1,2.1,,10224,350,0.0501,0.013,0.032,11.86,11.21,10.06,7.72,7.03,7.73,7.69,,8.4
+"jwasham/coding-interview-university","A complete computer science study plan to become a software engineer.",1686.9,3.3,,153509,2115,0.0202,0.0785,0.0318,90.43,111.71,218.53,182.71,167.78,162.33,114.3,,93.24
+"spmallick/learnopencv","Learn OpenCV  : C++ and Python Examples",2161.7,4.3,,12934,407,0.0461,0.0151,0.0318,9.71,9.93,8.94,9.19,9.16,11.03,12.02,7.05,6.03
+"tuna/thuthesis","LaTeX Thesis Template for Tsinghua University",3415.6,3.4,,2816,147,0.0764,0.0055,0.0318,1.43,1.93,2.27,1.86,1.54,2.51,2.35,1.41,0.82
+"connorferster/handcalcs","Python library for converting Python calculations into rendered latex.",333.9,35.1,,3007,154,0.075,0.0057,0.0318,4.29,3.86,3.06,4.09,16.35,,,,9.87
+"GoogleCloudPlatform/training-data-analyst","Labs and demos for courses for GCP Training (http://cloud.google.com/training).",1736.1,2.3,,4617,204,0.0647,0.0076,0.0317,2.29,2.86,2.99,3.74,4.35,4.41,4.07,,2.66
+"databricks/koalas","Koalas: pandas API on Apache Spark",745.1,2.1,,2579,138,0.0783,0.0051,0.0315,2.14,1.79,1.74,1.72,1.77,2.48,,,3.9
+"cupy/cupy","A NumPy-compatible array library accelerated by CUDA",1538.6,2.1,,4778,207,0.0634,0.0077,0.0314,1.86,2.36,2.01,2.67,2.77,2.74,3.06,,3.11
+"amitness/learning","Becoming better at data science every day",1148.3,2.5,,2774,143,0.0755,0.0053,0.0311,1.43,2.43,2.07,1.98,10.9,6.03,3.76,,2.42
+"plaidml/plaidml","PlaidML is a framework for making deep learning work everywhere.",1251.9,2.2,,3969,181,0.0668,0.0067,0.031,2,2.07,2.3,2.65,2.48,3.32,3.12,,3.35
+"statsmodels/statsmodels","Statsmodels: statistical modeling and econometrics in Python",3507.3,2.4,,5910,235,0.0582,0.0087,0.0309,3.71,3.93,3.45,3.57,3.46,3.75,3.38,2.6,1.69
+"leoxiaobin/deep-high-resolution-net.pytorch","The project is an official implementation of our CVPR2019 paper ""Deep High-Resolution Representation Learning for Human Pose Estimation""",692.9,31.7,,2970,149,0.0734,0.0055,0.0309,1.57,1.43,1.71,2.17,2.35,2.38,,,4.29
+"aimacode/aima-python","Python implementation of algorithms from Russell And Norvig's ""Artificial Intelligence - A Modern Approach""",1812,7,,5298,217,0.06,0.0081,0.0308,3.29,3.07,2.7,2.78,3.07,2.85,2.75,,2.97
+"snipsco/snips-nlu","Snips Python library to extract meaning from text",1439.3,24.5,,3434,162,0.0691,0.006,0.0306,0.43,0.64,0.82,0.75,0.82,0.95,1.62,,3.26
+"1adrianb/face-alignment",":fire: 2D and 3D Face alignment library build using pytorch ",1220.1,18.3,,4606,196,0.0623,0.0073,0.0305,3.14,2.57,2.73,3.04,3.12,3.32,3.2,,3.79
+"yahoo/TensorFlowOnSpark","TensorFlowOnSpark brings TensorFlow programs to Apache Spark clusters.",1458.2,25.1,,3616,167,0.0676,0.0062,0.0305,0.43,0.57,0.62,0.54,0.61,0.79,1.12,,2.52
+"deezer/spleeter","Deezer source separation library including pretrained models.",479.3,2.4,,15294,436,0.0417,0.0162,0.0304,11,10.79,9.9,11.07,11.67,16.25,,,34.13
+"vinta/awesome-python","A curated list of awesome Python frameworks, libraries, software and resources",2396.1,6.5,,92505,1445,0.0229,0.0536,0.0304,39.43,43.93,45.57,58.3,49.16,43.33,47.57,41.94,38.64
+"ipython-contrib/jupyter_contrib_nbextensions","A collection of various notebook extensions for Jupyter",2745.3,4.1,,4471,191,0.0625,0.0071,0.0303,1.14,1.43,1.35,1.34,1.29,1.57,2.13,2.24,1.63
+"MorvanZhou/tutorials","机器学习相关教程",1694.4,26.1,,8794,299,0.0498,0.0111,0.0302,3.71,3.43,3.22,3.43,3.48,4.07,5.45,,5.23
+"willmcgugan/rich","Rich is a Python library for rich text and beautiful formatting in the terminal.",434.4,2.4,,20367,523,0.0376,0.0194,0.0302,44.57,82.57,86.53,79.69,58.33,55.82,,,52.28
+"nteract/papermill","📚 Parameterize, execute, and analyze notebooks",1291.3,6.4,,3870,173,0.0654,0.0064,0.0301,1.86,2.57,2.27,2.54,2.65,2.93,3.56,,3.01
+"cvxgrp/cvxpy","A Python-embedded modeling language for convex optimization problems.",2757,2.4,,3009,146,0.071,0.0054,0.0301,1.86,1.64,1.81,2.39,2.07,2.02,2.06,1.46,1.11
+"CyC2018/CS-Notes",":books: 技术面试必备基础知识、Leetcode、计算机操作系统、计算机网络、系统设计、Java、Python、C++",1069.4,4.5,,119256,1686,0.0207,0.0626,0.0299,90.57,108.57,80.42,79.25,77.63,89.69,102.65,,111.68
+"MLEveryday/100-Days-Of-ML-Code","100-Days-Of-ML-Code中文版",896.4,4.6,,16055,443,0.0404,0.0164,0.0299,2.29,2.64,2.86,3.57,3.44,4.03,14.55,,17.93
+"dbolya/yolact","A simple, fully convolutional model for real-time instance segmentation.",936.1,14.3,,3448,157,0.0667,0.0058,0.0296,3.71,3.57,2.99,2.59,2.62,3.23,4.72,,3.69
+"ujjwalkarn/Machine-Learning-Tutorials","machine learning and deep learning tutorials, articles and other resources ",1954.4,29.7,,10980,340,0.0453,0.0126,0.0296,3.29,4.07,3.95,3.54,3.62,3.64,3.84,5.11,5.69
+"plotly/plotly.py","The interactive graphing library for Python (includes Plotly Express) :sparkles:",2614.8,3.9,,8651,289,0.0489,0.0107,0.0295,9,8.5,7.33,7.66,7.57,7.65,5.98,4.48,3.32
+"ashishpatel26/500-AI-Machine-learning-Deep-learning-Computer-vision-NLP-Projects-with-code","500 AI Machine learning Deep learning Computer vision NLP Projects with code",15.5,11.1,,3095,145,0.0686,0.0054,0.0294,69.29,221.36,,,,,,,215.31
+"PaddlePaddle/VisualDL","Deep Learning Visualization Toolkit（『飞桨』深度学习可视化工具 ）",1124.5,2.6,,3186,148,0.068,0.0055,0.0294,1.29,0.79,5.56,3.11,3.75,2.34,1.7,,2.84
+"mwouts/jupytext","Jupyter Notebooks as Markdown Documents, Julia, Python or R scripts",947.8,2.3,,4209,177,0.0616,0.0066,0.0293,8.43,10.93,5.98,3.89,3.08,3.16,3.87,,4.45
+"meetshah1995/pytorch-semseg","Semantic Segmentation Architectures Implemented in PyTorch",1397.1,19.7,,2973,141,0.0694,0.0052,0.0293,0.71,0.93,0.82,1.52,1.42,1.48,2.13,,2.31
+"amueller/word_cloud","A little word cloud generator in Python",2996,18.8,,7797,267,0.0501,0.0099,0.0292,3.43,2.93,3.09,3.3,3.23,3.89,3.92,3.82,2.6
+"amusi/daily-paper-computer-vision","记录每天整理的计算机视觉/深度学习/机器学习相关方向的论文",978.3,4.5,,4335,180,0.0608,0.0067,0.0291,3.14,2.86,2.73,2.96,3.07,3.41,3.62,,4.44
+"academic/awesome-datascience",":memo: An awesome Data Science repository to learn and apply for real world problems.",2388.7,6.5,,15128,411,0.0398,0.0153,0.0289,4.29,6.21,5.52,9.7,9.47,12.08,8.6,7.32,6.38
+"microsoft/ai-edu","AI education materials for Chinese students, teachers and IT professionals.",793.8,2.5,,8701,283,0.0476,0.0105,0.0288,3.71,3.86,4.6,5.16,4.41,4.8,11.8,,11.25
+"OlafenwaMoses/ImageAI","A python library built to empower developers to build applications and systems  with self-contained Computer Vision capabilities",1035,12.9,,5765,214,0.0543,0.0079,0.0286,4,12,7.5,4.81,3.97,4.12,5.08,,5.59
+"afatcoder/LeetcodeTop","汇总各大互联网公司容易考察的高频leetcode题🔥",200.8,5.4,,5251,200,0.0558,0.0074,0.0285,20.43,16.21,13.71,14.9,27.73,,,,26.35
+"handong1587/handong1587.github.io","",1982.6,3.5,,3059,139,0.0665,0.0052,0.0284,0.29,0.5,0.49,0.57,0.45,0.62,1.36,1.67,1.61
+"daviddao/awful-ai","😈Awful AI is a curated list to track current scary usages of AI - hoping to raise awareness",1027.3,13.4,,5393,202,0.0548,0.0075,0.0282,2.43,2.86,2.3,4.7,12.83,6.95,4.67,,5.26
+"psf/black","The uncompromising Python code formatter",1040.2,2.1,,19155,469,0.0358,0.0174,0.0281,11.71,12.5,10.88,11.73,14.15,14.24,16.7,,18.44
+"gto76/python-cheatsheet","Comprehensive Python Cheatsheet",1088.8,4.1,,18196,451,0.0363,0.0167,0.028,20.43,18.93,18.81,30.21,27.73,22.38,24.3,,17.7
+"openvinotoolkit/cvat","Powerful and efficient Computer Vision Annotation Tool (CVAT)",933.4,2.2,,4765,184,0.0565,0.0068,0.0279,5,4.5,4.24,5.37,5.38,5.04,5.05,,5.13
+"ranaroussi/yfinance","Yahoo! Finance market data downloader (+faster Pandas Datareader)",1337.6,2.1,,3894,160,0.0602,0.0059,0.0278,10.14,9.5,8.98,7.57,8.98,8.5,5.05,,2.92
+"lawlite19/MachineLearning_Python","机器学习算法python实现",1553.3,32.7,,3576,151,0.0618,0.0056,0.0278,2.14,2.57,2.37,2.88,2.78,2.73,3.03,,2.32
+"apache/spark","Apache Spark - A unified analytics engine for large-scale data processing",2518.7,2.1,,28530,600,0.0308,0.0223,0.0277,8.43,8.71,8.28,9.22,10.67,11.08,12.36,12.15,11.34
+"chinese-poetry/chinese-poetry","The most comprehensive database of Chinese poetry 🧶最全中华古诗词数据库,  唐宋两朝近一万四千古诗人,  接近5.5万首唐诗加26万宋诗.  两宋时期1564位词人，21050首词。 ",1598.8,2.9,,30906,625,0.0296,0.0232,0.0273,6.43,7.79,7.46,10.53,9.13,13.18,25.9,,19.48
+"plotly/dash","Analytical Web Apps for Python, R, Julia, and Jupyter. No JavaScript Required.",2109.9,2.2,,13703,363,0.0388,0.0135,0.0273,8.14,7.36,6.58,7.89,7.79,8.83,8.8,7.47,6.5
+"opencv/opencv","Open Source Computer Vision Library",3104.6,2.2,,51643,875,0.0248,0.0325,0.0271,29.14,29.21,27.65,28.15,31.62,30.27,29.84,24.32,16.65
+"h2oai/h2o-3","H2O is an Open Source, Distributed, Fast & Scalable Machine Learning Platform: Deep Learning, Gradient Boosting (GBM) & XGBoost, Random Forest, Generalized Linear Modeling (GLM with Elastic Net), K-Me...",2512.3,2.1,,5158,188,0.0534,0.007,0.0271,1,1.36,1.94,1.84,1.68,1.85,2.1,2.44,2.16
+"andkret/Cookbook","The Data Engineering Cookbook",679.1,3.1,,8059,253,0.046,0.0094,0.0271,4.29,4.14,4.18,4.19,5.34,6.26,,,13.13
+"jupyterlab/jupyterlab","JupyterLab computational environment.",1689.2,2.2,,10688,304,0.0416,0.0113,0.0269,5.43,7.43,5.39,4.28,4.12,4.22,5.29,,6.34
+"cjlin1/libsvm","",2686.4,10.7,,3847,153,0.0582,0.0057,0.0268,1,1,0.99,1.11,0.9,1.05,1.23,1.55,1.43
+"google/python-fire","Python Fire is a library for automatically generating command line interfaces (CLIs) from absolutely any Python object.",1426.1,4.6,,18516,436,0.0345,0.0162,0.0268,5.43,5.93,6.25,8.37,7.47,7.39,7.92,,13
+"WillKoehrsen/Data-Analysis","Data Science Using Python",1404.2,6,,3507,143,0.0597,0.0053,0.0266,1.86,2.29,1.97,1.75,1.87,2.39,3.18,,3.15
+"microsoft/SPTAG","A distributed approximate nearest neighborhood search (ANN) library which provides a high quality vector index build, search and distributed online serving toolkits for large scale vector search scena...",858.5,2.5,,3842,152,0.0579,0.0056,0.0266,0.57,0.36,0.33,0.38,0.64,0.76,5.15,,5.13
+"jiaaro/pydub","Manipulate audio with a simple and easy high level interface",3548.2,3.4,,5040,181,0.0526,0.0067,0.0265,2.57,2.71,2.37,2.66,2.79,2.86,2.66,2.1,1.42
+"tesseract-ocr/tesseract","Tesseract Open Source OCR Engine (main repository)",2350.2,2.1,,38251,695,0.0266,0.0258,0.0263,19.43,19.14,17.79,17.33,16.48,17.05,20.89,19.63,16.29
+"ufoym/deepo","Set up deep learning environment in a single command line.",1178.5,13.9,,5891,199,0.0495,0.0074,0.0263,1.86,1.71,1.45,1.44,1.49,1.84,2.08,,5
+"CSSEGISandData/COVID-19","Novel Coronavirus (COVID-19) Cases, provided by JHU CSSE",348.1,2.1,,25377,526,0.0303,0.0195,0.0262,14,13.5,11.67,13.83,13.32,,,,73.53
+"tensorflow/tfjs-models","Pretrained models for TensorFlow.js",1020.1,2.1,,8159,247,0.0443,0.0092,0.0262,5,8.57,7.76,8.85,8.73,9.23,8.77,,8.02
+"senguptaumd/Background-Matting","Background Matting: The World is Your Green Screen",305.2,30.5,,4010,153,0.0559,0.0057,0.0261,2.14,2.5,2.86,3.21,3.99,,,,13.86
+"altair-viz/altair","Declarative statistical visualization library for Python",1947.9,5.3,,6337,208,0.0481,0.0077,0.0261,3.57,3.71,3.42,3.47,3.7,4.8,4.44,3.43,3.26
+"chainer/chainer","A flexible framework of neural networks for deep learning",2053.8,4.6,,5519,186,0.0493,0.0069,0.0256,0.86,0.79,0.82,0.88,0.83,0.99,1.65,2.47,2.69
+"DEAP/deap","Distributed Evolutionary Algorithms in Python",2433.2,2.4,,4036,150,0.0544,0.0056,0.0255,0.86,0.93,1.28,1.83,1.85,1.98,2.13,1.99,1.66
+"norvig/pytudes","Python programs, usually short, of considerable difficulty, to perfect particular skills.",1418.8,17.7,,15058,359,0.0349,0.0133,0.0253,33,53.21,27.48,11.72,7.34,6.78,5.27,,10.63
+"alievk/avatarify","Avatars for Zoom, Skype and other video-conferencing apps.",286.2,2.4,,9712,268,0.0404,0.0099,0.0253,6.86,6.29,6.28,6.25,8.15,,,,34.06
+"Delgan/loguru","Python logging made (stupidly) simple",1251.3,17.7,,7894,233,0.0432,0.0086,0.0252,7.71,8.07,8.48,8.35,8.21,7,7.17,,10.25
+"pyecharts/pyecharts","🎨 Python Echarts Plotting Library",1305.9,25.8,,10379,278,0.0392,0.0103,0.0251,6,5.86,5.82,6.01,6.06,7.32,8.23,,8.12
+"JuliaLang/julia","The Julia Programming Language",3559.7,2.1,,31586,580,0.0269,0.0215,0.025,15.43,15.5,19.07,21.61,20.5,19.38,17.65,14.04,8.88
+"wesm/pydata-book","Materials and IPython notebooks for ""Python for Data Analysis"" by Wes McKinney, published by O'Reilly Media",3123.2,10.1,,14156,339,0.0351,0.0126,0.0249,8.29,9.14,7.92,7.95,8.19,8.99,9.4,7.08,4.54
+"leisurelicht/wtfpython-cn","wtfpython的中文翻译/施工结束/ 能力有限，欢迎帮我改进翻译",799.6,31.6,,10985,286,0.0381,0.0106,0.0249,2,1.86,2.47,3.22,3.17,3.94,8.55,,14.07
+"BYVoid/OpenCC","Conversion between Traditional and Simplified Chinese",3839.5,7.6,,5278,174,0.0483,0.0065,0.0248,1.43,2.07,2.47,2.45,2.46,2.66,2.63,2.31,1.38
+"grandyang/leetcode","Provide all my solutions and explanations in Chinese for all the Leetcode coding problems.",598.3,14.1,,4877,164,0.0492,0.0061,0.0245,3.14,3.14,3.02,3.67,7.49,6.28,,,8.17
+"Tencent/ncnn","ncnn is a high-performance neural network inference framework optimized for the mobile platform",1297.5,2.6,,10672,275,0.0377,0.0102,0.0244,7.86,7.64,8.09,9.85,8.43,7.63,7.46,,8.39
+"karpathy/neuraltalk","NeuralTalk is a Python+numpy project for learning Multimodal Recurrent Neural Networks that describe images with sentences.",2243,26.1,,5178,169,0.0478,0.0063,0.0243,0.43,0.43,0.43,0.39,0.47,0.42,0.53,1.13,2.31
+"alibaba/MNN","MNN is a blazing fast, lightweight deep learning framework, battle-tested by business-critical use cases in Alibaba",643.7,3.9,,5240,171,0.0478,0.0063,0.0243,6.57,5.64,5.1,6.2,5.19,5.18,,,8.41
+"apache/airflow","Apache Airflow - A platform to programmatically author, schedule, and monitor workflows",2106.2,2.1,,20055,417,0.0304,0.0155,0.0243,17.14,18.93,16.18,17.37,15.04,13.73,13.28,10.13,9.77
+"facebookresearch/pifuhd","High-Resolution 3D Human Digitization from A Single Image.",501.2,35.2,,6360,194,0.0447,0.0072,0.0243,4.29,4.93,6.38,35.11,20.25,,,,29.1
+"tiangolo/typer","Typer, build great CLIs. Easy to code. Based on Python type hints.",390.5,4.1,,4167,144,0.0506,0.0053,0.0239,18,28.64,33.86,16.34,12.22,9.97,,,10.73
+"quantopian/zipline","Zipline, a Pythonic Algorithmic Trading Library",3012.3,30.4,,13104,308,0.0344,0.0114,0.0238,7.57,7.29,7.43,12.38,9.3,7.89,7.06,5.76,4.35
+"wowchemy/wowchemy-hugo-modules","📝 The website builder for Hugo. Build and deploy a beautiful website in minutes!",1727.1,3,,5317,168,0.0463,0.0062,0.0237,2.86,3.21,3.16,3.19,3.61,4.42,4.46,,3.09
+"bokeh/bokeh","Interactive Data Visualization in the browser, from  Python",3219.3,2.2,,14517,326,0.0329,0.0121,0.0236,4.43,5.5,4.9,5.44,4.99,5.62,8.14,6.11,4.51
+"ZuzooVn/machine-learning-for-software-engineers","A complete daily plan for studying to become a machine learning engineer.",1561.1,23.6,,24658,463,0.0275,0.0172,0.0235,5.71,6.57,5.36,4.58,5,4.85,6.09,,15.81
+"faif/python-patterns","A collection of design patterns/idioms in Python",3147.1,15.2,,27023,490,0.0265,0.0182,0.0234,14.57,15.29,16.77,11.62,11.21,11.15,12.25,10.99,8.59
+"ouyanghuiyu/chineseocr_lite","超轻量级中文ocr，支持竖排文字识别, 支持ncnn推理 ( dbnet(1.8M) + crnn(2.5M) + anglenet(378KB)) 总模型仅4.7M",325.6,2.8,,6214,184,0.0434,0.0068,0.0234,5.71,5.29,5.36,5.5,6.29,,,,19.19
+"Uberi/speech_recognition","Speech recognition module for Python, supporting several engines and APIs, online and offline.",2461.8,25.6,,5351,166,0.0454,0.0062,0.0234,2.14,2.21,2.43,2.51,2.48,2.63,2.66,2.73,2.18
+"posquit0/Awesome-CV",":page_facing_up: Awesome CV is LaTeX template for your outstanding job application",2191.6,13.1,,12554,291,0.0339,0.0108,0.0232,9.14,8.79,8.19,7.9,8.04,8.02,8.85,6.71,6.06
+"jupyter/jupyter","Jupyter metapackage for installation, docs and chat",2054.1,4.4,,11598,275,0.0347,0.0102,0.0231,8.57,8.29,7.17,6.51,6.57,7.2,7.31,6.3,5.65
+"wilsonfreitas/awesome-quant","A curated list of insanely awesome libraries, packages and resources for Quants (Quantitative Finance)",1936.6,28.1,,5487,166,0.0443,0.0062,0.023,9.14,8.79,8.52,7.28,6.84,7.03,4.94,,3.3
+"taichi-dev/taichi","Productive & portable programming language for high-performance, sparse & differentiable computing on CPUs & GPUs",1515.6,2.6,,12786,291,0.0333,0.0108,0.0229,3.71,3.43,4.11,5.26,7.34,9.49,15.68,,8.52
+"polynote/polynote","A better notebook for Scala (and more)",736,2.1,,4090,134,0.048,0.005,0.0226,0.57,0.86,0.56,1.22,1.8,1.9,,,5.62
+"PrefectHQ/prefect","The easiest way to automate your data",933.1,2.1,,5709,168,0.0431,0.0062,0.0226,6.14,6.5,5.62,6.06,15.69,11.47,7.82,,6.32
+"formulahendry/955.WLB","955 不加班的公司名单 - 工作 955，work–life balance (工作与生活的平衡)",662,2.6,,23658,421,0.0261,0.0156,0.022,25.14,32.79,20.58,15.77,25.65,15.47,,,35.81
+"GoogleCloudPlatform/python-docs-samples","Code samples used on cloud.google.com",2085,2.1,,4686,143,0.0447,0.0053,0.022,1.71,1.43,1.81,2.17,2.24,2.78,3.17,2.55,2.26
+"python/cpython","The Python programming language",1437.2,2.2,,35621,548,0.0225,0.0203,0.0217,20.29,22.43,21.14,20.33,19.93,20.45,20.22,,24.81
+"scipy/scipy","Scipy library main repository",3602.2,2.2,,7833,199,0.0372,0.0074,0.0217,3.14,2.43,2.63,3.22,3.17,3.55,3.73,3.29,2.18
+"deepmind/lab","A customisable 3D platform for agent-based AI research",1509.4,2.5,,6382,172,0.0395,0.0064,0.0215,1.14,1.14,1.15,1.4,1.21,1.22,1.4,,4.25
+"huihut/interview","📚 C/C++ 技术面试基础知识总结，包括语言、程序库、数据结构、算法、系统、网络、链接装载库等知识及面试经验、招聘、内推等信息。This repository is a summary of the basic knowledge of recruiting job seekers and beginners in the direction of C/C++ technology, incl...",1073.6,32.7,,16365,318,0.0284,0.0118,0.0212,16.29,18.07,16.96,16.81,18.67,20.98,19.38,,15.62
+"James-Yu/LaTeX-Workshop","Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",1483.6,2.3,,6857,177,0.0378,0.0066,0.0211,6.57,6.5,5.85,7.04,6.18,6.28,6.53,,4.63
+"numba/numba","NumPy aware dynamic Python compiler using LLVM",3237.5,2.3,,5971,161,0.0395,0.006,0.0211,2.43,2.64,3.19,3.12,3.08,3.25,3.22,2.4,1.85
+"mementum/backtrader","Python Backtesting library for trading strategies",2199.7,12.6,,5411,152,0.0411,0.0056,0.0211,8.14,8.86,8.22,7.17,6.37,6.19,4.73,2.89,2.66
+"commaai/openpilot","openpilot is an open source driver assistance system. openpilot performs the functions of Automated Lane Centering and Adaptive Cruise Control for over 85 supported car makes and models.",1515.9,2.1,,22017,384,0.0255,0.0143,0.021,19,19.21,19.1,52.34,35.71,24.51,17.96,,14.6
+"pybind/pybind11","Seamless operability between C++11 and Python",2023.2,2.1,,8529,203,0.0348,0.0075,0.0209,5.43,5.43,4.67,5.11,5.98,5.76,5.73,4.24,4.22
+"spotify/luigi","Luigi is a Python module that helps you build complex pipelines of batch jobs. It handles dependency resolution, workflow management, visualization etc. It also comes with Hadoop support built in. ",3041.4,2.1,,14117,284,0.0295,0.0105,0.0209,5.57,4.43,3.55,3.76,3.75,4.24,4.99,5.72,4.64
+"carla-simulator/carla","Open-source simulator for autonomous driving research.",1181.6,3.6,,5468,150,0.0402,0.0056,0.0208,5.43,5.93,4.73,5.01,4.49,4.83,4.85,,4.66
+"apachecn/apachecn-algo-zh","ApacheCN 数据结构与算法译文集",1206.8,10.3,,10191,227,0.0326,0.0084,0.0207,0.29,0.64,0.95,1.15,0.89,0.75,4.09,,9.88
+"AtsushiSakai/PythonRobotics","Python sample codes for robotics algorithms.",1763.6,2.4,,11204,237,0.031,0.0088,0.0204,10.14,9.29,8.88,9.5,9.45,9.34,9.76,,8.58
+"gzc/CLRS",":notebook:Solutions to Introduction to Algorithms",2602.7,12.7,,6941,173,0.0365,0.0064,0.0204,2.86,2.64,2.89,2.63,2.48,2.39,3.21,3.73,3.36
+"tensorflow/playground","Play with neural networks!",1749.2,30.3,,9622,214,0.0326,0.0079,0.0203,1.14,1.71,1.97,2.78,2.67,2.64,2.79,,5.53
+"python-visualization/folium","Python Data. Leaflet.js Maps. ",2810.8,2.1,,5085,139,0.04,0.0052,0.0203,1.43,1.93,1.68,1.86,1.79,1.99,2.16,2.1,1.81
+"Ewenwan/MVision","机器人视觉 移动机器人 VS-SLAM ORB-SLAM2 深度学习目标检测 yolov3 行为检测 opencv  PCL 机器学习 无人驾驶",1211.7,35.7,,5282,142,0.0394,0.0053,0.0202,4.14,3.71,3.68,3.88,3.7,4.14,5.72,,4.88
+"mwaskom/seaborn","Statistical data visualization using matplotlib",3135.2,2.1,,7989,186,0.0341,0.0069,0.02,2.43,3.07,3.19,3.25,3.34,3.64,3.43,2.98,2.88
+"davisking/dlib","A toolkit for making real world machine learning and data analysis applications in C++",2546,2.3,,9801,212,0.0317,0.0079,0.0199,3.29,3.14,3.48,3.73,3.39,3.96,4.91,5.22,3.93
+"CopyTranslator/CopyTranslator","Foreign language reading and translation assistant based on copy and translate.",974.8,11.9,,10260,219,0.0313,0.0081,0.0199,10.43,10.86,11.24,11.44,10.42,12.05,12.33,,10.55
+"python-poetry/poetry","Python dependency management and packaging made easy.",1054.4,2.3,,13504,261,0.0283,0.0097,0.0198,9.71,11.21,10.82,11.63,12.2,13.75,14.65,,12.82
+"kon9chunkit/GitHub-Chinese-Top-Charts",":cn: GitHub中文排行榜，帮助你发现高分优秀中文项目、更高效地吸收国人的优秀经验成果；榜单每周更新一次，敬请关注！",500.9,17.4,,27661,414,0.0219,0.0154,0.0195,24,21.79,22.78,25.64,28.66,38.97,,,55.43
+"eclipse/deeplearning4j","Eclipse Deeplearning4j, ND4J, DataVec and more - deep learning & linear algebra for Java/Scala with GPUs + Spark",2608.9,39.6,,11916,237,0.0291,0.0088,0.0195,2.43,1.79,1.58,1.61,1.67,1.9,2.86,5.61,4.59
+"keon/algorithms","Minimal examples of data structures and algorithms in Python",1522.1,2.4,,18549,313,0.0247,0.0116,0.0192,7.57,6.79,6.12,7.15,6.5,6.21,7.19,,12.2
+"owainlewis/awesome-artificial-intelligence","A curated list of Artificial Intelligence (AI) courses, books, video lectures and papers.",2182.6,21.6,,5897,146,0.0362,0.0054,0.0192,2.57,2.14,2.33,2.27,2.45,2.24,2.3,2.6,2.7
+"tensorflow/swift","Swift for TensorFlow",999.2,2.1,,5859,145,0.0362,0.0054,0.0192,1.71,1.71,1.68,1.9,1.78,2.38,3.71,,5.88
+"microsoft/AirSim","Open source simulator for autonomous vehicles built on Unreal Engine / Unity, from Microsoft AI & Research",1434,2.3,,11163,222,0.0291,0.0082,0.0191,6.57,5.57,4.87,4.84,4.76,5.18,6.41,,7.8
+"dabeaz-course/practical-python","Practical Python Programming (course by @dabeaz)",238.2,23.9,,6951,162,0.0341,0.006,0.0191,3.43,3.36,3.12,14.63,11.19,,,,29.89
+"jupyter/docker-stacks","Ready-to-run Docker images containing Jupyter applications",2013.3,2.3,,5627,140,0.0364,0.0052,0.019,1.71,2.86,2.63,2.61,2.67,2.91,2.93,3,2.8
+"ossu/data-science",":bar_chart: Path to a free self-taught education in Data Science!",1673.4,28.3,,10665,213,0.0292,0.0079,0.0189,118.43,64.36,34.29,19.76,17.31,10.61,7.11,,6.42
+"OI-wiki/OI-wiki",":star2: Wiki of OI / ICPC for everyone. （某大型游戏线上攻略，内含炫酷算术魔法）",921.9,2.5,,6702,155,0.0339,0.0058,0.0188,13.29,12,9.99,8.81,8.16,8.12,7.71,,7.29
+"alex000kim/nsfw_data_scraper","Collection of scripts to aggregate image data for the purposes of training an NSFW Image Classifier",737.9,37.5,,10585,210,0.029,0.0078,0.0187,1.57,1.93,2.1,2.51,2.7,2.58,9.08,,14.37
+"amix/vimrc","The ultimate Vim configuration (vimrc)",3155.3,22.5,,23605,353,0.0219,0.0131,0.0185,11.43,10.79,9.67,9.19,9.14,10.15,10.67,10.52,7.49
+"matplotlib/matplotlib","matplotlib: plotting with Python",3620.9,2.1,,12931,236,0.0267,0.0088,0.0184,4.43,5.71,5.92,6.07,6.6,6.88,6.45,5.51,3.57
+"mahmoud/awesome-python-applications","💿 Free software that works great, and also happens to be open-source Python. ",795.7,23.3,,12301,227,0.027,0.0084,0.0183,4.29,4,3.75,4.47,5.32,5.13,9.32,,15.74
+"Light-City/CPlusPlusThings","C++那些事",553.6,19.5,,9003,184,0.0299,0.0068,0.0183,19.57,16.57,15.48,17.6,17.77,24.52,,,16.38
+"testerSunshine/12306","12306智能刷票，订票",1341.5,6.8,,29321,402,0.0201,0.0149,0.0182,31.86,28.07,17.13,8.35,7.17,5.93,33.34,,26.56
+"jhao104/proxy_pool","Python爬虫代理IP池(proxy pool)",1514.4,10.1,,11526,208,0.0264,0.0077,0.0175,8.29,8.21,7.86,7.82,8.04,8.16,9.17,,7.66
+"tweepy/tweepy","Twitter for Python!",4213.8,2.2,,7437,155,0.0305,0.0058,0.0175,3.71,3.07,3.32,3.06,3.17,2.95,2.66,2.49,1.77
+"wangzheng0822/algo","数据结构和算法必知必会的50个代码实现",846.8,16.9,,17656,272,0.0226,0.0101,0.0173,7.43,8.21,9.37,10.86,10.8,12.57,21.54,,21.01
+"wenyan-lang/wenyan","文言文編程語言 A programming language for the ancient Chinese.",406.1,36.8,,16903,265,0.023,0.0098,0.0173,4.14,3.79,3.72,3.96,5.51,8.74,,,42.5
+"google/or-tools","Google's Operations Research tools:",2157.9,2.4,,6497,139,0.0313,0.0052,0.0172,3.57,2.86,3.48,3.69,3.67,4.72,4.28,3.1,3.02
+"vnpy/vnpy","基于Python的开源量化交易平台开发框架",2148.8,2.4,,13768,228,0.0242,0.0085,0.0171,13.57,13.43,13.05,9.45,8.54,8.84,9.28,7.28,6.41
+"fivethirtyeight/data","Data and code behind the articles and graphics at FiveThirtyEight",2498.4,3.9,,14397,234,0.0238,0.0087,0.017,3.14,3.64,3.32,4.72,4.62,4.39,4.28,6.86,5.77
+"yidao620c/python3-cookbook","《Python Cookbook》 3rd Edition Translation",2343.9,25.7,,8875,169,0.0279,0.0063,0.017,3.14,3.5,3.45,4.7,4.23,4.22,5.06,4.49,3.98
+"TheAlgorithms/C-Plus-Plus","Collection of various algorithms in mathematics, machine learning, computer science and physics implemented in C++ for educational purposes.",1646.6,2.3,,9803,180,0.0269,0.0067,0.0169,8.86,13.43,11.44,12.3,12.85,16.38,12.32,,6
+"coder2gwy/coder2gwy","互联网首份程序员考公指南，由3位已经进入体制内的前大厂程序员联合献上。",18.4,2.5,,7832,154,0.0288,0.0057,0.0168,1140.43,579.43,,,,,,,512.2
+"tensorflow/tfjs","A WebGL accelerated JavaScript library for training and deploying ML models.",1049.8,2.1,,14509,232,0.0234,0.0086,0.0168,7.43,7,5.56,5.56,5.73,6.09,6.43,,13.88
+"menzi11/BullshitGenerator"," Needs to generate some texts to test if my GUI rendering codes good or not. so I made this.",447.3,21.8,,14373,227,0.0231,0.0084,0.0165,3.71,3.57,3.98,3.18,3.78,6.22,,,32.27
+"PKUanonym/REKCARC-TSC-UHT","清华大学计算机系课程攻略 Guidance for courses in Department of Computer Science and Technology, Tsinghua University",653.8,5.8,,16044,242,0.0221,0.009,0.0164,7.43,8.07,7.86,10.56,8.84,12.37,,,24.6
+"QSCTech/zju-icicles","浙江大学课程攻略共享计划",1664.3,2.5,,20289,282,0.0203,0.0105,0.0163,11.14,10.79,9.47,14.33,11.65,14.99,25.05,,12.2
+"jupyter/notebook","Jupyter Interactive Notebook",2110.7,3.2,,7942,151,0.0278,0.0056,0.0163,2.43,3.36,3.02,3.62,3.58,3.66,3.97,4.02,3.77
+"mingrammer/diagrams",":art: Diagram as Code for prototyping cloud system architectures",350.4,9.3,,12205,199,0.0239,0.0074,0.0162,28.71,33.36,36,21.95,37.4,,,,35.02
+"geekcomputers/Python","My Python Examples",3336.6,11.6,,20148,276,0.0201,0.0102,0.016,11.43,11.57,12.53,14.05,12.57,12.29,15.47,10.84,6.04
+"joke2k/faker","Faker is a Python package that generates fake data for you.",2988,2.3,,11948,191,0.0234,0.0071,0.0157,8.71,8.36,7.73,14.56,10.05,8.04,6.8,4.8,4
+"cookiecutter/cookiecutter","A command-line utility that creates projects from cookiecutters (project templates), e.g. Python package projects, VueJS projects.",2744.2,5.8,,13635,208,0.0223,0.0077,0.0156,7.29,7.86,7.23,7.25,7.19,7.74,7.15,6.06,4.97
+"yemount/pose-animator","",293.6,30.6,,7646,139,0.0266,0.0052,0.0154,5.43,4.86,3.91,4.67,4.15,,,,30.19
+"gpakosz/.tmux","🇫🇷 Oh my tmux! My self-contained, pretty & versatile tmux configuration made with ❤️",3069.4,5.8,,13166,200,0.0222,0.0074,0.0154,8,8.07,7.1,7.96,7.95,9.47,9.59,6.87,4.71
+"halfrost/LeetCode-Go","✅ Solutions to LeetCode by Go, 100% test coverage, runtime beats 100% / LeetCode 题解",1280,2.3,,12855,197,0.0224,0.0073,0.0154,97.71,120.43,88.83,52.3,62.36,32.25,17.64,,10.14
+"bbfamily/abu","阿布量化交易系统(股票，期权，期货，比特币，机器学习) 基于python的开源量化交易，量化投资架构",1581.3,25.9,,7250,134,0.0271,0.005,0.0154,8.14,8.71,6.71,4.76,4.24,4.32,5.28,,4.63
+"dipakkr/A-to-Z-Resources-for-Students","✅  Curated list of resources for college students ",853.5,25.2,,11870,182,0.0224,0.0068,0.0151,4.43,7.86,6.44,5.16,8.33,6.83,10.3,,14
+"ShiqiYu/libfacedetection","An open source library for face detection in images. The face detection speed can reach 1000FPS. ",2189.7,23.9,,9958,159,0.0234,0.0059,0.0148,1.57,1.79,2.17,2.32,2.31,5.89,10.45,5.13,4.58
+"heibaiying/BigData-Notes","大数据入门指南  :star:",679.9,41.7,,8752,146,0.0244,0.0054,0.0148,6.57,8.21,7.2,8.03,8.59,10.05,,,14.88
+"python-telegram-bot/python-telegram-bot","We have made you a wrapper you can't refuse",2021.3,2.2,,13413,191,0.0208,0.0071,0.0145,17,14.79,12.03,16.66,13.57,12,9.59,7.16,6.65
+"coursera-dl/coursera-dl","Script for downloading Coursera.org videos and naming them.",3224.1,14.2,,8261,137,0.0243,0.0051,0.0144,1.43,2,1.91,1.71,2.01,2.27,2.12,3.07,2.56
+"python/mypy","Optional static typing for Python 3 and 2 (PEP 484)",2963.4,2.3,,9731,153,0.023,0.0057,0.0144,8.57,6.86,5.85,5.75,5.68,5.95,6.36,4.89,3.29
+"iamadamdev/bypass-paywalls-chrome","Bypass Paywalls web browser extension for Chrome and Firefox.",1016.1,3.1,,12335,177,0.021,0.0066,0.0143,24.29,25.79,22.92,25.11,30.76,27.16,16.62,,12.18
+"mission-peace/interview","Interview questions",2373.1,2.5,,9361,138,0.0216,0.0051,0.0134,4.86,4.29,3.85,3.31,4.18,4.75,4.83,4.87,3.99
+"google/yapf","A formatter for Python files",2132.2,27.9,,11380,157,0.0202,0.0058,0.0133,3.57,3.57,3.39,3.44,3.53,3.99,4.36,4.71,5.34
