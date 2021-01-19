@@ -37,8 +37,8 @@ const SEARCH_HYPER_PARAMS = {
   related_users_max_stars: 200,
   relevant_filters: [
     {fn: (rs: RepoRefStats) => !rs.isArchived, reason: 'archived (old)'},
-    {fn: (rs: RepoRefStats) => rs.leftShare >= 0.005, reason: 'left share < 0.5%'},
-    {fn: (rs: RepoRefStats) => rs.rightShare >= 0.02, reason: 'right share < 2%'},
+    {fn: (rs: RepoRefStats) => rs.leftShare >= 0.4, reason: 'left share < 0.4%'},
+    {fn: (rs: RepoRefStats) => rs.rightShare >= 3.0, reason: 'right share < 3%'},
     {fn: (rs: RepoRefStats) => rs.pushedAgo < 42, reason: 'no activity in the last 6 weeks'},
   ],
 }
@@ -320,8 +320,8 @@ interface RepoRefStats {
   repoStars: number,
   // dynamic (computed based on the analysis)
   usersStars: number,
-  leftShare: number,
-  rightShare: number,
+  leftShare: number,  // percent
+  rightShare: number, // percent
   relevance: number,
   // NOTE: Statistics are added subsequently, for export to CSV reasons
 }
