@@ -228,8 +228,8 @@ export class GitHubAnalyzer {
             repoStars: r.stargazerCount,
             // dynamic, to be populated later
             usersStars: 0,
-            rightShare: undefined,
             leftShare: undefined,
+            rightShare: undefined,
             relevance: undefined,
           }
         }
@@ -317,8 +317,8 @@ interface RepoRefStats {
   repoStars: number,
   // dynamic (computed based on the analysis)
   usersStars: number,
-  rightShare: number,
   leftShare: number,
+  rightShare: number,
   relevance: number,
   // NOTE: Statistics are added subsequently, for export to CSV reasons
 }
