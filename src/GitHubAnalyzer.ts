@@ -246,8 +246,8 @@ export class GitHubAnalyzer {
     const shareAdjustment = validUsersCount ? (usersCount / validUsersCount) : 1;
     const popularReposRefs: RepoRefStats[] = Object.values(repoStatsAccumulator);
     for (let repo of popularReposRefs) {
-      repo.rightShare = roundToDecimals(shareAdjustment * repo.usersStars / repo.repoStars, 4);
       repo.leftShare = roundToDecimals(shareAdjustment * repo.usersStars / usersCount, 4);
+      repo.rightShare = roundToDecimals(shareAdjustment * repo.usersStars / repo.repoStars, 4);
       repo.relevance = roundToDecimals(Math.pow(repo.rightShare * repo.rightShare * repo.leftShare, 1 / 3), 4);
     }
 
