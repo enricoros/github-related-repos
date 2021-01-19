@@ -246,9 +246,12 @@ export class GitHubAnalyzer {
     const shareAdjustment = validUsersCount ? (usersCount / validUsersCount) : 1;
     const popularReposRefs: RepoRefStats[] = Object.values(repoStatsAccumulator);
     for (let repo of popularReposRefs) {
-      repo.leftShare = roundToDecimals(shareAdjustment * repo.usersStars / usersCount, 4);
-      repo.rightShare = roundToDecimals(shareAdjustment * repo.usersStars / repo.repoStars, 4);
-      repo.relevance = roundToDecimals(Math.pow(repo.rightShare * repo.rightShare * repo.leftShare, 1 / 3), 4);
+      const leftShare = shareAdjustment * repo.usersStars / usersCount;
+      const rightShare = shareAdjustment * repo.usersStars / repo.repoStars;
+      const relevance = Math.pow(rightShare * rightShare * leftShare, 1 / 3);
+      repo.leftShare = roundToDecimals(100 * leftShare, 2);
+      repo.rightShare = roundToDecimals(100 * rightShare, 2);
+      repo.relevance = roundToDecimals(100 * relevance, 2);
     }
 
     // sort top starred repos for the provided group of users
