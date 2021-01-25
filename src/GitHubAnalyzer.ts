@@ -22,6 +22,7 @@ import {statComputeSlope, statGetBounds, XYPoint} from "./Statistics";
 const VERBOSE_LOGIC = false;
 const WRITE_OUTPUT_FILES = true;
 const DEFAULT_TTL = 7 * 2 * 24 * 60 * 60;
+const DEFAULT_HISTOGRAM_MONTHS = 36;
 const STAT_INTERVALS = [
   {name: 'T1W', weekMinus: 7},
   {name: 'T2W', weekMinus: 7 * 2},
@@ -109,6 +110,7 @@ export class GitHubAnalyzer {
 
     // 4. Process all Relevant repos
     log(`\n>> Finding starrings of ${relevantCount} repositories (most starred by the ${userLogins.length} users of '${initialRepoId}')`);
+    const statRepos = [];
     for (let i = 0; i < relevantCount; i++) {
       const repo = relevantRepos[i];
 
@@ -131,9 +133,6 @@ export class GitHubAnalyzer {
       log(` - last star was ${Math.round((unixTimeProgramStart - xMax) / 3600)} hours ago (#${yMax}), ` +
         `the first (#${yMin}) was ${roundToDecimals((unixTimeProgramStart - xMin) / 3600 / 24 / 365, 2)} years ago`);
 
-      // TODO: could do weekly samplings here of each repo, to plot trend lines, exported as a separate output
-
-
       // compute interval stats, and add them to the repo object
       const intervalStats = {};
       for (const interval of STAT_INTERVALS) {
@@ -141,12 +140,22 @@ export class GitHubAnalyzer {
         const left = (interval.weekMinus === -1) ? xMin : right - secondsPerDay * interval.weekMinus;
         repo[interval.name] = intervalStats[interval.name] = statComputeSlope(xyList, left, right, xMin, interval.name);
       }
+
+      // find stars at specific time intervals
+      const tDeltaMonthly = secondsPerDay * 365 / 12;
+      for (let month = -DEFAULT_HISTOGRAM_MONTHS; month <= 0; month++) {
+        let tSample = unixTimeStartOfWeek + tDeltaMonthly * month;
+        repo[`T${month}`] = interpolateY(xyList, tSample, repo.fullName);
+      }
+
+      // done with this repo
+      statRepos.push(repo);
     }
     // remove unused attributes for the export
     const unusedAttributes = ['isArchived'];
-    relevantRepos.forEach(r => unusedAttributes.forEach(u => delete r[u]));
+    relevantRepos.forEach(r => statRepos.forEach(u => delete r[u]));
     if (WRITE_OUTPUT_FILES)
-      fs.writeFileSync(`out-${outFileName}-stats.csv`, (new JSONParser()).parse(relevantRepos));
+      fs.writeFileSync(`out-${outFileName}-stats.csv`, (new JSONParser()).parse(statRepos));
   }
 
   /// Parsers of GitHub GQL data into our own data types
@@ -308,6 +317,39 @@ export class GitHubAnalyzer {
     return repoMinInfo;
   }
 
+}
+
+function interpolateLinear(prev: XYPoint, next: XYPoint, x: number) {
+  if (prev.x == next.x)
+    return next.y;
+  const alpha = (x - prev.x) / (next.x - prev.x);
+  return Math.round(prev.y * (1 - alpha) + next.y * (alpha));
+}
+
+function interpolateY(xyList: XYPoint[], x: number, debugName: string) {
+  if (xyList.length < 10) {
+    log('W: interpolateY on an almost empty list, returning 0');
+    return 0;
+  }
+  const first = xyList[0];
+  if (x <= first.x)
+    return 0;
+  const last = xyList[xyList.length - 1];
+  if (x > last.x) {
+    const tenStarsBefore = xyList[xyList.length - 9]
+    return interpolateLinear(tenStarsBefore, last, x);
+  }
+  for (let prevIdx: number = xyList.length - 1; prevIdx >= 0; prevIdx--) {
+    const prev = xyList[prevIdx];
+    if (x > prev.x) {
+      if (prevIdx == xyList.length - 1)
+        return prev.y;
+      const next = xyList[prevIdx + 1];
+      return interpolateLinear(prev, next, x);
+    }
+  }
+  log(`W: interpolateY: issue finding the interval for ${x} on ${debugName}`);
+  return -1;
 }
 
 const verboseFilterList = (list: any[], filterFn, reason): any[] => {
