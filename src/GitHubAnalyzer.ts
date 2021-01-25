@@ -33,6 +33,15 @@ const STAT_INTERVALS = [
   {name: 'T5Y', weekMinus: 365 * 5},
   {name: 'TI', weekMinus: -1}, // special: -1 means xMin
 ];
+const NOISE_REPOS = [
+  "CyC2018/CS-Notes",
+  "TheAlgorithms/Python",
+  "awesomedata/awesome-public-datasets",
+  "coder2gwy/coder2gwy",
+  "jwasham/coding-interview-university",
+  "labuladong/fucking-algorithm",
+  "vinta/awesome-python",
+];
 
 const SEARCH_HYPER_PARAMS = {
   related_users_max_stars: 200,
@@ -107,6 +116,10 @@ export class GitHubAnalyzer {
       const starrings = await this.getRepoStarringsASCCached(repo.fullName);
       if (starrings.length < 10) {
         log(`W: issues finding stars(t) of '${repo.fullName}: ${starrings?.length}`);
+        continue;
+      }
+      if (NOISE_REPOS.includes(repo.fullName)) {
+        log(`I: skipping ${repo.fullName} because it's noise for the current analysis`);
         continue;
       }
 
