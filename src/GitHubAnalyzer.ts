@@ -21,6 +21,7 @@ import {statComputeSlope, statGetBounds, XYPoint} from "./Statistics";
 // Configuration of this module
 const VERBOSE_LOGIC = false;
 const WRITE_OUTPUT_FILES = true;
+const DEFAULT_TTL = 7 * 2 * 24 * 60 * 60;
 const STAT_INTERVALS = [
   {name: 'T1W', weekMinus: 7},
   {name: 'T2W', weekMinus: 7 * 2},
@@ -42,6 +43,7 @@ const SEARCH_HYPER_PARAMS = {
     {fn: (rs: RepoRefStats) => rs.pushedAgo < 42, reason: 'no activity in the last 6 weeks'},
   ],
 }
+
 
 
 export class GitHubAnalyzer {
@@ -118,6 +120,7 @@ export class GitHubAnalyzer {
 
       // TODO: could do weekly samplings here of each repo, to plot trend lines, exported as a separate output
 
+
       // compute interval stats, and add them to the repo object
       const intervalStats = {};
       for (const interval of STAT_INTERVALS) {
@@ -143,7 +146,7 @@ export class GitHubAnalyzer {
   }
 
   private getRepoStarringsDESCCached = async (owner, name): Promise<Starring[]> =>
-    await this.redisCache.cachedGetJSON(`starrings-${owner}/${name}`, 3600 * 24 * 14,
+    await this.redisCache.cachedGetJSON(`starrings-${owner}/${name}`, DEFAULT_TTL,
       async () => await this.getRepoStarringsDecreasing(owner, name));
 
   private async getRepoStarringsDecreasing(owner: string, name: string): Promise<Starring[]> {
@@ -260,7 +263,7 @@ export class GitHubAnalyzer {
   }
 
   private getUserStarredReposCached = async (login, starsMaximum): Promise<GQL.RepoMinInfo[]> =>
-    await this.redisCache.cachedGetJSON(`user-starred-${login}-${starsMaximum}`, 3600 * 24 * 14,
+    await this.redisCache.cachedGetJSON(`user-starred-${login}-${starsMaximum}`, DEFAULT_TTL,
       async () => await this.getUserStarredRepos(login, starsMaximum));
 
   private async getUserStarredRepos(login: string, starsMaximum: number): Promise<GQL.RepoMinInfo[]> {
