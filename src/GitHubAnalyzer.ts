@@ -43,6 +43,7 @@ const NOISE_REPOS = [
   "labuladong/fucking-algorithm",
   "vinta/awesome-python",
 ];
+const REMOVE_CSV_ATTRIBUTES = ['isArchived'];
 
 const SEARCH_HYPER_PARAMS = {
   related_users_max_stars: 200,
@@ -151,9 +152,9 @@ export class GitHubAnalyzer {
       // done with this repo
       statRepos.push(repo);
     }
+
     // remove unused attributes for the export
-    const unusedAttributes = ['isArchived'];
-    relevantRepos.forEach(r => statRepos.forEach(u => delete r[u]));
+    statRepos.forEach(r => REMOVE_CSV_ATTRIBUTES.forEach(u => delete r[u]));
     if (WRITE_OUTPUT_FILES)
       fs.writeFileSync(`out-${outFileName}-stats.csv`, (new JSONParser()).parse(statRepos));
   }
