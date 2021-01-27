@@ -12,6 +12,7 @@ This project uses the [GitHub GraphQL API](https://docs.github.com/en/graphql) t
 _Users_ of GitHub.
 
 #### Changelog
+* Jan 27, 2021: Added 10 fields, reduced API usage, increased caching
 * Jan 17, 2021: Migrated to the GraphQL API
 
 ## Running
