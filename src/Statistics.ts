@@ -36,7 +36,6 @@ export const statGetBounds = (xyList: XYPoint[], checkMonotonic: boolean = true)
   return bounds;
 }
 
-
 export function statClip(xyList: XYPoint[], left?: number, right?: number, bottom?: number, top?: number, reason?: string): XYPoint[] {
   const initialListSize = xyList.length;
   const filteredList = xyList.filter(xy => {
@@ -55,7 +54,6 @@ export function statClip(xyList: XYPoint[], left?: number, right?: number, botto
   }
   return filteredList;
 }
-
 
 export function statComputeSlope(xyList: XYPoint[], left: number, right: number, leftFirst: number, name: string): number | undefined {
   // if the interval extends to the left of actual data, can't compute the real slope for the interval
@@ -79,4 +77,38 @@ export function statComputeSlope(xyList: XYPoint[], left: number, right: number,
   }
   // round the slope to 2 decimals
   return roundToDecimals(dY_stars / dX_days, 2);
+}
+
+
+export function interpolateLinear(prev: XYPoint, next: XYPoint, x: number) {
+  if (prev.x == next.x)
+    return next.y;
+  const alpha = (x - prev.x) / (next.x - prev.x);
+  return Math.round(prev.y * (1 - alpha) + next.y * (alpha));
+}
+
+export function interpolateY(xyList: XYPoint[], x: number, debugName: string) {
+  if (xyList.length < 10) {
+    log('W: interpolateY on an almost empty list, returning 0');
+    return 0;
+  }
+  const first = xyList[0];
+  if (x <= first.x)
+    return 0;
+  const last = xyList[xyList.length - 1];
+  if (x > last.x) {
+    const tenStarsBefore = xyList[xyList.length - 9]
+    return interpolateLinear(tenStarsBefore, last, x);
+  }
+  for (let prevIdx: number = xyList.length - 1; prevIdx >= 0; prevIdx--) {
+    const prev = xyList[prevIdx];
+    if (x > prev.x) {
+      if (prevIdx == xyList.length - 1)
+        return prev.y;
+      const next = xyList[prevIdx + 1];
+      return interpolateLinear(prev, next, x);
+    }
+  }
+  log(`W: interpolateY: issue finding the interval for ${x} on ${debugName}`);
+  return -1;
 }

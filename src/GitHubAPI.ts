@@ -14,6 +14,7 @@ import assert from "assert";
 
 // Configuration of this module
 const VERBOSE_FETCHES = false;
+const DANGER_DISABLE_SLEEP = false;
 
 // Generate your Personal Access Token here: https://github.com/settings/tokens
 const GITHUB_PA_TOKEN = process.env.GITHUB_PA_TOKEN || '';
@@ -31,52 +32,102 @@ const gqlQueries = require('./github-queries.graphql')
  * NOTE: keep in sync with github-queries.graphql (!!!)
  */
 export namespace GQL {
+  // repo name -> stars count
   export interface RepoStarsCount {
     repository: {
       stargazerCount: number,
     }
   }
 
-  export interface StarringsForRepo {
+  // all users (and timestamps) that starred a specific repo [paginated]
+  export interface RepoStarrings {
     repository: {
       stargazers: {
-        pageInfo: PageInfoCommon,
+        pageInfo: CommonPageInfo,
         edges: {
           starredAt: string,
         }[],
         nodes: {
+          id: string,
           login: string,
         }[],
       },
     },
   }
 
-  export interface StarringsForUser {
+  // all repos starred by a user [paginated]
+  export interface UserStarredRepos {
     user: {
-      starredRepositories: {
-        totalCount: number,
-        edges: {
-          starredAt: string,
-          node: RepoMinInfo,
-        }[],
-        pageInfo: PageInfoCommon,
-      },
+      starredRepositories: CommonRepoStarring,
     },
   }
 
-  export interface RepoMinInfo {
+  // all repos starred by a user list [outer list sub-slicing, plus inner pagination]
+  export interface UserListStarredRepos {
+    nodes: {
+      login: string,
+      starredRepositories: CommonRepoStarring,
+    }[],
+  }
+
+  // RepoID[] -> advanced repository information[]
+  export interface RepoListDetails {
+    nodes: RepoAdvanced[],
+  }
+
+  //// Common parts
+
+  interface CommonRepoStarring {
+    totalCount: number,
+    edges: {
+      starredAt: string,
+      node: RepoBasic,
+    }[],
+    pageInfo: CommonPageInfo,
+  }
+
+  interface RepoBasic {
+    id: string,
     nameWithOwner: string,
     isArchived: boolean,
     isFork: boolean,
-    isDisabled: boolean,
-    isPrivate: boolean,
-    description: string,
     createdAt: string,
     pushedAt: string,
     stargazerCount: number,
   }
 
-  export interface PageInfoCommon {
+  interface RepoAdvanced extends RepoBasic {
+    description: string,
+    watchers: {
+      totalCount: number,
+    },
+    forkCount: number,
+    issues: {
+      totalCount: number,
+    },
+    pullRequests: {
+      totalCount: number,
+    },
+    releases: {
+      totalCount: number,
+    },
+    repositoryTopics: {
+      totalCount: number,
+      nodes: {
+        topic: {
+          name: string,
+        }
+      }[],
+    },
+    mentionableUsers: {
+      totalCount: number,
+    },
+    assignableUsers: {
+      totalCount: number,
+    },
+  }
+
+  interface CommonPageInfo {
     endCursor: string,
     hasNextPage: boolean,
   }
@@ -122,11 +173,12 @@ export class GitHubAPI {
     const axiosRequestConfig = {
       headers: Object.assign({}, GitHubAPI.defaultHeaders, extraHeaders || {}),
     }
+    const fetchStart = Date.now();
     try {
-      const fetchStart = Date.now();
+      if (VERBOSE_FETCHES) process.stdout.write(` ${path}: `);
       const axiosResponse: AxiosResponse = await this.axiosInstance.get(path, axiosRequestConfig);
       const fetchElapsed = Date.now() - fetchStart;
-      if (VERBOSE_FETCHES) log(` ${path}: ${fetchElapsed} ms`);
+      if (VERBOSE_FETCHES) process.stdout.write(`${fetchElapsed} ms\n`);
       GitHubAPI.validateAxiosResponse(axiosResponse, path);
       await GitHubAPI.handleGitHubRateLimiter(axiosResponse.headers, path, fetchElapsed);
       return {
@@ -135,13 +187,14 @@ export class GitHubAPI {
         status: axiosResponse.status,
       };
     } catch (e) {
-      return GitHubAPI.handleAxiosException(e, path);
+      return GitHubAPI.handleAxiosException(e, path, Date.now() - fetchStart);
     }
   }
 
   /// GraphQL -- High Order functions
 
-  gqlRepoStarsCount = async (owner: string, name: string) =>
+  gqlRepoStarsCount = async (owner: string, name: string)
+    : Promise<GQL.RepoStarsCount> =>
     await this.queryGraphQL<GQL.RepoStarsCount>({
       query: gqlQueries,
       operationName: 'RepoStarsCount',
@@ -151,10 +204,11 @@ export class GitHubAPI {
       }
     });
 
-  gqlStarringsForRepo = async (owner: string, name: string, cursorAfter?: string) =>
-    await this.queryGraphQL<GQL.StarringsForRepo>({
+  gqlRepoStarrings = async (owner: string, name: string, cursorAfter?: string)
+    : Promise<GQL.RepoStarrings> =>
+    await this.queryGraphQL<GQL.RepoStarrings>({
       query: gqlQueries,
-      operationName: 'StarringsForRepo',
+      operationName: 'RepoStarrings',
       variables: {
         owner,
         name,
@@ -162,24 +216,46 @@ export class GitHubAPI {
       }
     });
 
-  gqlStarringsForUser = async (login: string, cursorAfter?: string) =>
-    await this.queryGraphQL<GQL.StarringsForUser>({
+  gqlUserStarredRepos = async (login: string, cursorAfter?: string)
+    : Promise<GQL.UserStarredRepos> =>
+    await this.queryGraphQL<GQL.UserStarredRepos>({
       query: gqlQueries,
-      operationName: 'StarringsForUser',
+      operationName: 'UserStarredRepos',
       variables: {
         login,
         after: cursorAfter,
       }
     });
 
+  gqlUserListStarredRepos = async (userIDs: string[])
+    : Promise<GQL.UserListStarredRepos> =>
+    await this.queryGraphQL<GQL.UserListStarredRepos>({
+      query: gqlQueries,
+      operationName: 'UserListStarredRepos',
+      variables: {
+        ids: userIDs,
+      }
+    });
+
+  gqlRepoListDetails = async (repoIDs: string[])
+    : Promise<GQL.RepoListDetails> =>
+    await this.queryGraphQL<GQL.RepoListDetails>({
+      query: gqlQueries,
+      operationName: 'RepoListDetails',
+      variables: {
+        ids: repoIDs,
+      }
+    });
+
   static async gqlMultiPageDataHelper<T>(
     dataQueryAsync: (lastCursor?: string) => Promise<T>,
     dataAccumulator: (data: T) => boolean,  // true to continue the fetch, false to stop
-    cursorUpdate: (data: T) => [hasMoreData: boolean, nextCursor: string]
+    cursorUpdate: (data: T) => [hasMoreData: boolean, nextCursor: string],
+    firstCursor?: string
   ): Promise<void> {
     // let pageIdx = 1;
     let hasMoreData: boolean = true;
-    let lastCursor: string = undefined;
+    let lastCursor: string = firstCursor;
     while (hasMoreData) {
       // log(`\n - fetching page ${pageIdx++}`);
       const data = await dataQueryAsync(lastCursor);
@@ -204,11 +280,12 @@ export class GitHubAPI {
     const axiosRequestConfig = {
       headers: Object.assign({}, GitHubAPI.defaultHeaders, extraHeaders || {}),
     }
+    const fetchStart = Date.now();
     try {
-      const fetchStart = Date.now();
+      if (VERBOSE_FETCHES) process.stdout.write(` ${path}: `);
       const axiosResponse: AxiosResponse = await this.axiosInstance.post(path, qlQuery, axiosRequestConfig);
       const fetchElapsed = Date.now() - fetchStart;
-      if (VERBOSE_FETCHES) log(` ${path}: ${fetchElapsed} ms`);
+      if (VERBOSE_FETCHES) process.stdout.write(`${fetchElapsed} ms\n`);
       GitHubAPI.validateAxiosResponse(axiosResponse, path);
       await GitHubAPI.handleGitHubRateLimiter(axiosResponse.headers, path, fetchElapsed);
       // GraphQL-specific
@@ -216,7 +293,7 @@ export class GitHubAPI {
         return null;
       return axiosResponse.data['data'];
     } catch (e) {
-      return GitHubAPI.handleAxiosException(e, path);
+      return GitHubAPI.handleAxiosException(e, path, Date.now() - fetchStart);
     }
   }
 
@@ -255,9 +332,14 @@ export class GitHubAPI {
           forcedDelayMs = 1000 * secondsRemaining + 1000;
         }
         if (forcedDelayMs > 0) {
-          await new Promise(resolve => setTimeout(resolve, forcedDelayMs))
-          if (VERBOSE_FETCHES)
-            log(`   ...slept ${forcedDelayMs} ms (${callsRemaining} left for ${secondsRemaining}s)`);
+          if (DANGER_DISABLE_SLEEP) {
+            if (VERBOSE_FETCHES)
+              log(`   ...SKIP sleeping for ${forcedDelayMs} ms (${callsRemaining} left for ${secondsRemaining}s)`);
+          } else {
+            await new Promise(resolve => setTimeout(resolve, forcedDelayMs))
+            if (VERBOSE_FETCHES)
+              log(`   ...slept ${forcedDelayMs} ms (${callsRemaining} left for ${secondsRemaining}s)`);
+          }
         }
       } else
         err(`GitHubAPI.safeRequest: bad rate limiter (${callsRemaining}, in ${secondsRemaining}s) for: ${path}`)
@@ -268,7 +350,7 @@ export class GitHubAPI {
   /**
    * Explains an Axios Exception
    */
-  private static handleAxiosException(e: any, path): null {
+  private static handleAxiosException(e: any, path, callDuration: number): null {
     // handle Axios errors
     if (e.response) {
       const axiosError = e as AxiosError;
@@ -279,13 +361,13 @@ export class GitHubAPI {
       else if (axiosError.response.status === 451)
         log(`GitHubAPI.safeRequest: 451: ${path} repo access blocked (dmca?). ret: null.`);
       else
-        err(`GitHubAPI.safeRequest: ${axiosError.response.status}: ${path} GET error:`, e);
+        err(`GitHubAPI.safeRequest: ${axiosError.response.status}: ${path} GET error (${callDuration} ms):`, e);
       if (axiosError?.response?.data)
         log(`server-response:`, axiosError?.response?.data);
       return null;
     }
     // handle other errors
-    err(`GitHubAPI.safeRequest: ${path} GET (non-Axios) error:`, e);
+    err(`GitHubAPI.safeRequest: ${path} GET (non-Axios) error (${callDuration} ms):`, e);
     return null;
   }
 

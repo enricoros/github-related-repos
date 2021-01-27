@@ -1,37 +1,41 @@
+# repo owner/name -> stars count
 query RepoStarsCount ($owner: String!, $name: String!) {
   repository(name: $name, owner: $owner) {
     stargazerCount
   }
 }
-query StarringsForRepo ($owner: String!, $name: String!, $after: String) {
+
+# repo owner/name -> Starring[] (paginated)
+query RepoStarrings ($owner: String!, $name: String!, $after: String) {
   repository(name: $name, owner: $owner) {
     stargazers(first: 100, orderBy: {field: STARRED_AT, direction: DESC}, after: $after) {
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
       edges {
         starredAt
       }
       nodes {
+        id
         login
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
       }
     }
   }
 }
-query StarringsForUser ($login: String!, $after: String) {
+
+# Login -> Repo(basic)[] (paginated)
+query UserStarredRepos ($login: String!, $after: String) {
   user(login: $login) {
     starredRepositories(first: 100, orderBy: {field: STARRED_AT, direction: DESC}, after: $after) {
       totalCount
       edges {
         starredAt
         node {
+          id
           nameWithOwner
           isArchived
           isFork
-          isDisabled
-          isPrivate
-          description
           createdAt
           pushedAt
           stargazerCount
@@ -40,6 +44,76 @@ query StarringsForUser ($login: String!, $after: String) {
       pageInfo {
         endCursor
         hasNextPage
+      }
+    }
+  }
+}
+# User ID[] -> Starring(basic)[][] (outer split, inner pagination)
+query UserListStarredRepos($ids: [ID!]!) {
+  nodes(ids: $ids) {
+    ... on User {
+      login
+      starredRepositories(first: 100, orderBy: {field: STARRED_AT, direction: DESC}) {
+        totalCount
+        edges {
+          starredAt
+          node {
+            id
+            nameWithOwner
+            isArchived
+            isFork
+            createdAt
+            pushedAt
+            stargazerCount
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}
+
+# repo
+query RepoListDetails ($ids: [ID!]!) {
+  nodes(ids: $ids) {
+    ... on Repository {
+      id
+      nameWithOwner
+      description
+      isArchived
+      isFork
+      createdAt
+      pushedAt
+      stargazerCount
+      watchers {
+        totalCount
+      }
+      forkCount
+      issues {
+        totalCount
+      }
+      pullRequests {
+        totalCount
+      }
+      releases {
+        totalCount
+      }
+      repositoryTopics(first: 100) {
+        totalCount
+        nodes {
+          topic {
+            name
+          }
+        }
+      }
+      mentionableUsers {
+        totalCount
+      }
+      assignableUsers {
+        totalCount
       }
     }
   }

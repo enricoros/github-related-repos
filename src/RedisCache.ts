@@ -28,12 +28,22 @@ interface PromisifiedRedis extends Omitted, Commands<Promise<boolean>> {
 export class RedisCache {
   private readonly redisClient: PromisifiedRedis;
   private readonly scopeName: string;
+  private readonly defaultTTL: number;
 
-  constructor(scopeName: string) {
+  constructor(scopeName: string, defaultTTL?: number) {
     this.scopeName = scopeName;
+    this.defaultTTL = defaultTTL || 24 * 60 * 60; // 1 day if not specified
     this.redisClient = createRedisClient(REDIS_PORT, REDIS_HOST);
     this.redisClient.on("error", err => console.log('RedisCache: redis client error:', err));
   }
+
+  /**
+   * Simplified cache wrapper
+   * @param uniqueKey Unique ID of the cached object
+   * @param producer An Async function that resolves the object, if missing from the cache
+   */
+  getJSON = async <T>(uniqueKey: string, producer: () => Promise<T>): Promise<T> =>
+    await this.cachedGetJSON<T>(uniqueKey, this.defaultTTL, producer);
 
   /**
    * Cache wrapper for JSON objects, up to a certain TTL
@@ -42,7 +52,7 @@ export class RedisCache {
    * @param objectResolver An Async function that resolves the object, if missing from the cache
    * @param cacheTransformer (optional) Re-processes (and saves) cached objects - used from time to time to migrate/clean the DB
    */
-  async cachedGetJSON<T>(uid: string, ttl: number, objectResolver: () => Promise<T>, cacheTransformer?: (input: object) => object): Promise<T> {
+  private async cachedGetJSON<T>(uid: string, ttl: number, objectResolver: () => Promise<T>, cacheTransformer?: (input: object) => object): Promise<T> {
     const key = `cache:${this.scopeName}:${uid}`;
     const currentUnixTime = ~~(Date.now() / 1000);
 
