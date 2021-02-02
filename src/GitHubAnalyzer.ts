@@ -86,7 +86,8 @@ export class GitHubAnalyzer {
     }
 
     // 2. Related repos: Users[] -> Accumulate user's Starred repos
-    log(`\n** Found ${colors.red(userIDs.length.toString())} users that starred '${initialRepoFullName}'. Next, finding all the starred repos of those users...`);
+    log(`\n** Found ${colors.red(userIDs.length.toString())} users that starred '${colors.cyan(initialRepoFullName)}'. ` +
+      `Next, finding all the ${colors.green('starred repos')} of those users...`);
     let relatedRepos: RepoInfo[];
     {
       relatedRepos = await this.redisCache.getJSON(`ga_related_repos-${initialRepoFullName}-${SEARCH_HYPER_PARAMS.related_users_max_stars}`,
@@ -237,7 +238,14 @@ export class GitHubAnalyzer {
       // get starrings for a block of users
       const partUserIDs = userIDs.slice(from, from + listPartitionSize)
         .filter(userID => !BROKEN_USER_IDS.includes(userID));
-      log(` - Fetching (up to ${maxStarsPerUser} stars each) for ${partUserIDs.length} users ${colors.red((from + 1).toString())}-${from + partUserIDs.length}/${usersTotal} ...`);
+      {
+        const partSize = partUserIDs.length;
+        const userFrom = from + 1;
+        const userTo = from + partSize;
+        const percentComplete = roundToDecimals((100 * userTo / usersTotal), 1);
+        log(` - Fetching stars (100 each, then integrate up to ${colors.green(maxStarsPerUser.toString())}) for ${partSize} users ` +
+          `${colors.red(userFrom.toString())}-${userTo}/${usersTotal} (${percentComplete}%)...`);
+      }
 
       const cacheKey = `${_repoFullName}-${usersTotal}-${from + 1}-${from + partUserIDs.length}`;
       const gqlUserStarredRepos = await this.redisCache.getJSON(`gql_user_list_starred_repos-${cacheKey}`,
@@ -268,6 +276,8 @@ export class GitHubAnalyzer {
               return false;
             }
             user.starredRepositories.edges.push(...data.user.starredRepositories.edges);
+            if (VERBOSE_LOGIC) log(`   - upped ${data.user.starredRepositories.edges.length} additional stars ` +
+              `(total: ${colors.green(user.starredRepositories.edges.length.toString())}) for user '${user.login}'`);
             return true;
           },
           (data) => [
@@ -277,6 +287,8 @@ export class GitHubAnalyzer {
           user.starredRepositories.pageInfo.endCursor
         );
       }
+      if (VERBOSE_LOGIC) log(`   < skipped ${gqlUserStarredRepos.nodes.length - userStarredRepos.length} users that exceeded the ` +
+        `${colors.green(maxStarsPerUser.toString())} stars limit (hyper-parameter of this search)`);
 
       // unroll users[]repos[] to RepoInfo(s)
       for (let user of userStarredRepos) {
