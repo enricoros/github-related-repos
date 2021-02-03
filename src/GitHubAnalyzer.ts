@@ -43,6 +43,10 @@ const NOISE_REPOS = [
   "labuladong/fucking-algorithm",
   "vinta/awesome-python",
 ];
+const NOISE_REPOS_NAME_PARTS = [
+  'fuck',
+  'awesome',
+];
 const REMOVE_CSV_ATTRIBUTES = ['id', 'isArchived'];
 
 const SEARCH_HYPER_PARAMS = {
@@ -52,7 +56,8 @@ const SEARCH_HYPER_PARAMS = {
     {fn: (rs: RepoInfo) => rs.leftShare >= 0.4, reason: 'left share < 0.4%'},
     {fn: (rs: RepoInfo) => rs.rightShare >= 3.0, reason: 'right share < 3%'},
     {fn: (rs: RepoInfo) => rs.pushedAgo < 42, reason: 'no activity in the last 6 weeks'},
-    // {fn: (rs, idx) => idx < 700, reason: 'stop at project 700'},
+    {fn: (rs: RepoInfo) => NOISE_REPOS_NAME_PARTS.find(noise => rs.fullName.indexOf(noise) !== -1) === undefined, reason: 'noise names'},
+    {fn: (rs, idx) => idx < 100, reason: 'stop at project 100'},
   ],
 }
 
@@ -87,7 +92,7 @@ export class GitHubAnalyzer {
 
     // 2. Related repos: Users[] -> Accumulate user's Starred repos
     log(`\n** Found ${colors.red(userIDs.length.toString())} users that starred '${colors.cyan(initialRepoFullName)}'. ` +
-      `Next, finding all the ${colors.green('starred repos')} of those users...`);
+      `Next, finding all the ${colors.yellow('starred repos')} of those users, limited by ${colors.magenta('related_users_max_stars')}...`);
     let relatedRepos: RepoInfo[];
     {
       relatedRepos = await this.redisCache.getJSON(`ga_related_repos-${initialRepoFullName}-${SEARCH_HYPER_PARAMS.related_users_max_stars}`,
@@ -100,7 +105,7 @@ export class GitHubAnalyzer {
 
     // 3. Find Relevant repos, by filtering all Related repos
     log(`\n** Discovered ${colors.bold.white(relatedRepos.length.toString())} related repos to '${initialRepoFullName}'. Next, narrowing down ` +
-      `${colors.bold('relevant')} repos, according to ${colors.yellow('relevant_filters')}...`);
+      `${colors.bold('relevant')} repos, according to ${colors.magenta('relevant_filters')}...`);
     let relevantRepos: RepoInfo[], relevantCount: number;
     {
       relevantRepos = relatedRepos.slice();
@@ -113,7 +118,7 @@ export class GitHubAnalyzer {
     }
 
     // 4. Get more complete information about the interesting repositories
-    log(`\n>> Finding ${colors.yellow('repository details')} for ${relevantCount} relevant repositories`);
+    log(`\n>> Finding ${colors.cyan('repository details')} for ${colors.cyan(relevantCount.toString())} relevant repositories`);
     await this.addDetailedRepoInfo(relevantRepos);
 
     // 5. Process all Relevant repos
@@ -206,7 +211,7 @@ export class GitHubAnalyzer {
             userLogin: s.nodes[i].login,
           });
         }
-        if (VERBOSE_LOGIC) log(` + fetched ${allStarrings.length} stars (over ${stargazersCount})...`);
+        if (VERBOSE_LOGIC) log(` + fetched ${allStarrings.length} stars / ${stargazersCount}...`);
         return true;
       },
       (data) => [
@@ -243,8 +248,8 @@ export class GitHubAnalyzer {
         const userFrom = from + 1;
         const userTo = from + partSize;
         const percentComplete = roundToDecimals((100 * userTo / usersTotal), 1);
-        log(` - Fetching stars (100 each, then integrate up to ${colors.green(maxStarsPerUser.toString())}) for ${partSize} users ` +
-          `${colors.red(userFrom.toString())}-${userTo}/${usersTotal} (${percentComplete}%)...`);
+        log(` - Fetching stars (up to 100 each, then integrate to ${colors.yellow(maxStarsPerUser.toString())}) for ${partSize} users ` +
+          `${colors.red(userFrom.toString())}-${userTo} / ${usersTotal} (${percentComplete}%)...`);
       }
 
       const cacheKey = `${_repoFullName}-${usersTotal}-${from + 1}-${from + partUserIDs.length}`;
@@ -257,8 +262,7 @@ export class GitHubAnalyzer {
       }
 
       // filter out users for which the starring will exceed the maximum
-      const userStarredRepos = gqlUserStarredRepos.nodes.filter(
-        user => user.starredRepositories.totalCount <= maxStarsPerUser);
+      const userStarredRepos = gqlUserStarredRepos.nodes.filter(user => user.starredRepositories.totalCount <= maxStarsPerUser);
       usersExceedMax += gqlUserStarredRepos.nodes.length - userStarredRepos.length;
       usersValid += userStarredRepos.length;
 
@@ -276,8 +280,8 @@ export class GitHubAnalyzer {
               return false;
             }
             user.starredRepositories.edges.push(...data.user.starredRepositories.edges);
-            if (VERBOSE_LOGIC) log(`   - upped ${data.user.starredRepositories.edges.length} additional stars ` +
-              `(total: ${colors.green(user.starredRepositories.edges.length.toString())}) for user '${user.login}'`);
+            if (VERBOSE_LOGIC) log(`   - upped ${colors.yellow(data.user.starredRepositories.edges.length.toString())} additional stars ` +
+              `(total: ${colors.yellow(user.starredRepositories.edges.length.toString())}) for user '${user.login}'`);
             return true;
           },
           (data) => [
@@ -287,8 +291,8 @@ export class GitHubAnalyzer {
           user.starredRepositories.pageInfo.endCursor
         );
       }
-      if (VERBOSE_LOGIC) log(`   < skipped ${gqlUserStarredRepos.nodes.length - userStarredRepos.length} users that exceeded the ` +
-        `${colors.green(maxStarsPerUser.toString())} stars limit (hyper-parameter of this search)`);
+      if (VERBOSE_LOGIC) log(`   < skipped ${gqlUserStarredRepos.nodes.length - userStarredRepos.length} users that exceeded ` +
+        `${colors.magenta('related_users_max_stars')}: ${colors.yellow(maxStarsPerUser.toString())}`);
 
       // unroll users[]repos[] to RepoInfo(s)
       for (let user of userStarredRepos) {
@@ -326,6 +330,9 @@ export class GitHubAnalyzer {
         }
       }
     }
+    log(` < skipped a total of ${colors.red(usersExceedMax.toString())} users (over ${usersTotal}) for exceeding the ` +
+      `max-stars-per-user hyper-parameter. Using ${colors.red(usersValid.toString())} valid users.`);
+
 
     // compute dynamic statistics fields, for the current analysis
     const shareAdjustment = usersValid ? (usersTotal / usersValid) : 1;
