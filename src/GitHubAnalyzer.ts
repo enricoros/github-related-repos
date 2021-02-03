@@ -31,9 +31,7 @@ const STAT_INTERVALS = [
   {name: 'T5Y', weekMinus: 365 * 5},
   {name: 'TI', weekMinus: -1}, // special: -1 means xMin
 ];
-const BROKEN_USER_IDS = [
-  'MDQ6VXNlcjQyMTgzMzI2',
-];
+const BROKEN_USER_IDS = ['MDQ6VXNlcjQyMTgzMzI2',];
 const NOISE_REPOS = [
   "CyC2018/CS-Notes",
   "TheAlgorithms/Python",
@@ -43,12 +41,7 @@ const NOISE_REPOS = [
   "labuladong/fucking-algorithm",
   "vinta/awesome-python",
 ];
-const NOISE_REPOS_NAME_PARTS = [
-  'fuck',
-  'awesome',
-];
-const REMOVE_CSV_ATTRIBUTES = ['id', 'isArchived'];
-
+const NOISE_REPOS_NAME_PARTS = ['fuck', 'awesome',];
 const SEARCH_HYPER_PARAMS = {
   related_users_max_stars: 200,
   relevant_filters: [
@@ -56,10 +49,11 @@ const SEARCH_HYPER_PARAMS = {
     {fn: (rs: RepoInfo) => rs.leftShare >= 0.4, reason: 'left share < 0.4%'},
     {fn: (rs: RepoInfo) => rs.rightShare >= 3.0, reason: 'right share < 3%'},
     {fn: (rs: RepoInfo) => rs.pushedAgo < 42, reason: 'no activity in the last 6 weeks'},
-    {fn: (rs: RepoInfo) => NOISE_REPOS_NAME_PARTS.find(noise => rs.fullName.indexOf(noise) !== -1) === undefined, reason: 'noise names'},
-    {fn: (rs, idx) => idx < 100, reason: 'stop at project 100'},
+    {fn: (rs: RepoInfo) => NOISE_REPOS_NAME_PARTS.find(noise => rs.fullName.indexOf(noise) !== -1) === undefined, reason: 'noisy names'},
+    {fn: (rs, idx) => idx < 200, reason: 'stop at project 200'},
   ],
 }
+const REMOVE_CSV_ATTRIBUTES = ['id', 'isArchived'];
 
 
 export class GitHubAnalyzer {
