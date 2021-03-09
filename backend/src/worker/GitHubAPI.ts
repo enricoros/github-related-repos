@@ -1,16 +1,15 @@
 /**
- * GitHubAPI: simple class for accessing REST APIs from GitHub.
+ * GitHubAPI: low-lever accessor for the GraphQL GitHub API
  *
- * A bit too tangled for now, but cleaning it is not the highest priority.
- *
- * Uses Axios for REST API calls.
+ * Data retrieval is implemented via parametric GraphQL queries, defined in
+ * 'github-queries.graphql' and inlined in this file, including parameter setting.
  */
 
 import 'graphql-import-node-as-string';
+import assert from "assert";
 import axios, {AxiosError, AxiosInstance, AxiosResponse} from "axios";
 import {Agent as HttpsAgent} from "https";
 import {err, log, unixTimeNow} from "./Utils";
-import assert from "assert";
 
 // Configuration of this module
 const VERBOSE_FETCHES = false;
@@ -137,11 +136,12 @@ export namespace GQL {
  * Response from the REST GET API
  * Specialized interface definitions have been removed from this file when transitioning to GraphQL
  */
-export interface ShortResponse<T = any> {
+
+/*export interface ShortResponse<T = any> {
   data: T;
   status: number;
   headers: any;
-}
+}*/
 
 
 export class GitHubAPI {
@@ -165,30 +165,6 @@ export class GitHubAPI {
     const tokens: string[] = repoFullName.split('/');
     assert(tokens.length === 2, `repoFullNameToParts: expecting 2 owner/repo as repoFullName: ${repoFullName}`);
     return {owner: tokens[0], name: tokens[1]};
-  }
-
-  /// REST API - low level function
-
-  async getREST<T>(path: string, extraHeaders?: Object): Promise<ShortResponse<T>> {
-    const axiosRequestConfig = {
-      headers: Object.assign({}, GitHubAPI.defaultHeaders, extraHeaders || {}),
-    }
-    const fetchStart = Date.now();
-    try {
-      if (VERBOSE_FETCHES) process.stdout.write(` ${path}: `);
-      const axiosResponse: AxiosResponse = await this.axiosInstance.get(path, axiosRequestConfig);
-      const fetchElapsed = Date.now() - fetchStart;
-      if (VERBOSE_FETCHES) process.stdout.write(`${fetchElapsed} ms\n`);
-      GitHubAPI.validateAxiosResponse(axiosResponse, path);
-      await GitHubAPI.handleGitHubRateLimiter(axiosResponse.headers, path, fetchElapsed);
-      return {
-        data: axiosResponse.data,
-        headers: axiosResponse.headers,
-        status: axiosResponse.status,
-      };
-    } catch (e) {
-      return GitHubAPI.handleAxiosException(e, path, Date.now() - fetchStart);
-    }
   }
 
   /// GraphQL -- High Order functions
@@ -268,7 +244,31 @@ export class GitHubAPI {
     }
   }
 
-  // Private functions
+  /// REST API - low level function
+
+  /*async getREST<T>(path: string, extraHeaders?: Object): Promise<ShortResponse<T>> {
+    const axiosRequestConfig = {
+      headers: Object.assign({}, GitHubAPI.defaultHeaders, extraHeaders || {}),
+    }
+    const fetchStart = Date.now();
+    try {
+      if (VERBOSE_FETCHES) process.stdout.write(` ${path}: `);
+      const axiosResponse: AxiosResponse = await this.axiosInstance.get(path, axiosRequestConfig);
+      const fetchElapsed = Date.now() - fetchStart;
+      if (VERBOSE_FETCHES) process.stdout.write(`${fetchElapsed} ms\n`);
+      GitHubAPI.validateAxiosResponse(axiosResponse, path);
+      await GitHubAPI.handleGitHubRateLimiter(axiosResponse.headers, path, fetchElapsed);
+      return {
+        data: axiosResponse.data,
+        headers: axiosResponse.headers,
+        status: axiosResponse.status,
+      };
+    } catch (e) {
+      return GitHubAPI.handleAxiosException(e, path, Date.now() - fetchStart);
+    }
+  }*/
+
+  /// Private functions ///
 
   /**
    * Performs a GraphQL query - which is just a POST with some GraphQL validation of the response
@@ -297,7 +297,7 @@ export class GitHubAPI {
     }
   }
 
-  // Static Helpers
+  /// Static Helpers ///
 
   private static validateAxiosResponse(axiosResponse: AxiosResponse, path: string) {
     if (axiosResponse.status !== 200)

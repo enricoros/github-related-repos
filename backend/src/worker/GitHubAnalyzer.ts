@@ -1,9 +1,7 @@
 /**
- * GitHubAnalyzer: classes and utility functions for GitHub.
+ * GitHubAnalyzer: workflows for retrieving structured information from GitHub.
  *
  * A bit too tangled for now, but cleaning it is not the highest priority.
- *
- * Uses Axios for REST API calls.
  */
 
 import assert from "assert";
