@@ -1,5 +1,5 @@
 {
-  "name": "github-analyzer-backend",
+  "name": "github-kpis-backend",
   "version": "1.0.0",
   "description": "Discover repositories that relate to a target, and understand their growth\n\n",
   "private": false,
