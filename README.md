@@ -12,6 +12,7 @@ This project uses the [GitHub GraphQL API](https://docs.github.com/en/graphql) t
 _Users_ of GitHub.
 
 #### Changelog
+* Mar  8, 2021: Separated the worker and CLI into backend/src
 * Jan 27, 2021: Added 10 fields, reduced API usage, increased caching
 * Jan 17, 2021: Migrated to the GraphQL API
 
@@ -32,7 +33,7 @@ which case you can follow these instructions:
    ```
 1. Either: use the downloaded 'ts-node' executable to transpile TS -> JS and Run in node directly:
    ```shell
-   ./node_modules/.bin/ts-node src/github-analyzer.ts
+   ./node_modules/.bin/ts-node backend/src/analyzer-cli.ts
    ```
 1. Or: compile TypeScript to JavaScript and run it with ```Node.JS```, for instance:
    ```shell
@@ -43,22 +44,22 @@ which case you can follow these instructions:
 On both 3. or 4 above, for finding related repositories, for example to 'github/roadmap', use the following options:
 
 ```shell
-src/github-analyzer.ts related --repo github/roadmap
+backend/src/analyzer-cli.ts related --repo github/roadmap
 ```
 
-## Configuration
+## Worker Configuration
 
-All the source code is in the [src](src) folder. The following can be edited to configure the application:
+All the source code is in the [backend/src](backend/src) folder. The following can be edited to configure the application:
 
-* [src/github-analyzer.ts](src/github-analyzer.ts) for  ```repoFullName```, the name of the target repository
-* [src/GitHubAnalyzer.ts](src/GitHubAnalyzer.ts) for ```WRITE_OUTPUT_FILES``` and a couple of debug flags and more importantly for _ranking_
+* [backend/src/analyzer-cli.ts](backend/src/analyzer-cli.ts) for  ```repoFullName```, the name of the target repository
+* [backend/src/worker/GitHubAnalyzer.ts](backend/src/worker/GitHubAnalyzer.ts) for ```WRITE_OUTPUT_FILES``` and a couple of debug flags and more importantly for _ranking_
   and _
   filtering_ criteria.
 
-### Advanced: Filtering & Ranking
+### Advanced: Worker Filtering & Ranking
 
 Sorry it's all in the code so far, but basically you want to change the ```HYPER_PARAMS``` variable
-inside [src/GitHubAnalyzer.ts](src/GitHubAnalyzer.ts) for changing filtering criteria, followed by the function that
+inside [backend/src/worker/GitHubAnalyzer.ts](backend/src/worker/GitHubAnalyzer.ts) for changing filtering criteria, followed by the function that
 sets ```repo.relevance``` in the ```resolveUsersStarredRepos(...)``` function.
 
 ## Acknowledgements

@@ -5,9 +5,9 @@
 import colors from "colors";
 import yargs from "yargs";
 import {hideBin} from "yargs/helpers";
-import {GitHubAPI} from "./GitHubAPI";
-import {GitHubAnalyzer} from "./GitHubAnalyzer";
-import {log, unixTimeProgramElapsed} from "./Utils";
+import {GitHubAPI} from "./worker/GitHubAPI";
+import {GitHubAnalyzer} from "./worker/GitHubAnalyzer";
+import {log, unixTimeProgramElapsed} from "./worker/Utils";
 
 
 async function findRelatedRepositories(repoFullName: string) {
