@@ -72,7 +72,7 @@ export interface ScanProgressType {
   error?: string,     // if this is set while done, this will contain the details about the error
 }
 
-export const defaultProgress = (operation: string = 'related'): ScanProgressType => ({
+export const createNoProgress = (operation: string = 'related'): ScanProgressType => ({
   operation,
   done: false, running: true,
   progress: 0, s_idx: 0, s_count: 5, t_start: unixTimeNow(),
@@ -95,7 +95,7 @@ export class GitHubAnalyzer {
     const {repoFullName: initialRepoFullName, maxStarsPerUser} = configuration;
 
     // initialize progress
-    const progress = defaultProgress();
+    const progress = createNoProgress();
     const updateProgress = (update: Partial<ScanProgressType>) => {
       if (progressCallback) {
         Object.assign(progress, update);

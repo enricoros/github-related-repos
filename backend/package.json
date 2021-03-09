@@ -4,7 +4,7 @@
   "description": "Discover repositories that relate to a target, and understand their growth\n\n",
   "private": false,
   "scripts": {
-    "tsc": "../node_modules/.bin/tsc"
+    "tsc": "./node_modules/.bin/tsc"
   },
   "keywords": [],
   "author": "Enrico Ros",
@@ -13,14 +13,19 @@
     "async-redis": "^1.1.7",
     "axios": "^0.21.1",
     "colors": "^1.4.0",
+    "express": "^4.17.1",
     "graphql-import-node-as-string": "0.0.4",
     "json2csv": "^5.0.6",
+    "socket.io": "^3.1.2",
     "typescript": "^4.2.3",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@types/async-redis": "^1.1.1",
     "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.32",
+    "@types/socket.io": "^2.1.13",
     "@types/yargs": "^16.0.0",
     "ts-node": "^9.1.1"
   }
