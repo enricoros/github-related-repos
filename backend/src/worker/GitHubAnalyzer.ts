@@ -10,7 +10,7 @@ import fs from "fs";
 import {Parser as JSONParser} from "json2csv";
 import {RedisCache} from "./RedisCache";
 import {GitHubAPI, GQL} from "./GitHubAPI";
-import {err, log, roundToDecimals, secondsPerDay, unixTimeFromISOString, unixTimeProgramStart, unixTimeStartOfWeek} from "./Utils";
+import {err, log, roundToDecimals, secondsPerDay, unixTimeFromISOString, unixTimeNow, unixTimeProgramStart, unixTimeStartOfWeek} from "./Utils";
 import {interpolateY, statComputeSlope, statGetBounds, XYPoint} from "./Statistics";
 
 // Configuration of this module
@@ -41,7 +41,6 @@ const NOISE_REPOS = [
 ];
 const NOISE_REPOS_NAME_PARTS = ['fuck', 'awesome',];
 const SEARCH_HYPER_PARAMS = {
-  related_users_max_stars: 200,
   relevant_filters: [
     {fn: (rs: RepoInfo) => !rs.isArchived, reason: 'archived (old)'},
     {fn: (rs: RepoInfo) => rs.leftShare >= 0.4, reason: 'left share < 0.4%'},
@@ -53,6 +52,34 @@ const SEARCH_HYPER_PARAMS = {
 }
 const REMOVE_CSV_ATTRIBUTES = ['id', 'isArchived'];
 
+/** Details about this scan **/
+export interface ScanConfigurationType {
+  repoFullName: string,
+  maxStarsPerUser: number,
+}
+
+/** Communicates progress during the operation **/
+export interface ScanProgressType {
+  operation: string,  // kind of operation (const per Scan)
+  done: boolean,      // false: not processed yet, true: done
+  running: boolean,   // false: stopped, true: in progress
+  progress: number,   // could be more granular than (phase / (phases-1))
+  s_idx: number,      // current phase (0 ... total - 1)
+  s_count: number,    // total phases
+  t_start: number,    // start time
+  t_elapsed: number,  // seconds elapsed since the start
+  t_eta: number,      // expected time remaining
+  error?: string,     // if this is set while done, this will contain the details about the error
+}
+
+export const defaultProgress = (operation: string = 'related'): ScanProgressType => ({
+  operation,
+  done: false, running: true,
+  progress: 0, s_idx: 0, s_count: 5, t_start: unixTimeNow(),
+  t_elapsed: 0, t_eta: 0,
+  error: undefined,
+});
+
 
 export class GitHubAnalyzer {
   private readonly githubAPI: GitHubAPI;
@@ -63,12 +90,22 @@ export class GitHubAnalyzer {
     this.redisCache = new RedisCache('gh-analyzer', DEFAULT_TTL);
   }
 
-  async findAndAnalyzeRelatedRepos(initialRepoFullName: string) {
-    const outFileName = initialRepoFullName.replace('/', '_').replace('.', '_')
-      + '-' + SEARCH_HYPER_PARAMS.related_users_max_stars;
+  async findAndAnalyzeRelatedRepos(configuration: ScanConfigurationType, progressCallback?: (progress: ScanProgressType) => void) {
+    // read configuration
+    const {repoFullName: initialRepoFullName, maxStarsPerUser} = configuration;
+
+    // initialize progress
+    const progress = defaultProgress();
+    const updateProgress = (update: Partial<ScanProgressType>) => {
+      if (progressCallback) {
+        Object.assign(progress, update);
+        progressCallback(progress);
+      }
+    }
 
     // 1. Repo -> Users[]
     log(`*** Resolving Users that starred '${colors.cyan(initialRepoFullName)}' ...`);
+    const outFileName = `${initialRepoFullName.replace('/', '_').replace('.', '_')}-${maxStarsPerUser}`;
     let userIDs: string[];
     {
       const {owner: repoOwner, name: repoName} = GitHubAPI.repoFullNameToParts(initialRepoFullName);
@@ -84,11 +121,11 @@ export class GitHubAnalyzer {
 
     // 2. Related repos: Users[] -> Accumulate user's Starred repos
     log(`\n** Found ${colors.red(userIDs.length.toString())} users that starred '${colors.cyan(initialRepoFullName)}'. ` +
-      `Next, finding all the ${colors.yellow('starred repos')} of those users, limited by ${colors.magenta('related_users_max_stars')}...`);
+      `Next, finding all the ${colors.yellow('starred repos')} of those users, limited by ${colors.magenta('maxStarsPerUser')}...`);
     let relatedRepos: RepoInfo[];
     {
-      relatedRepos = await this.redisCache.getJSON(`ga_related_repos-${initialRepoFullName}-${SEARCH_HYPER_PARAMS.related_users_max_stars}`,
-        async () => await this.getStarredRepoBasicsForUserIDs(userIDs, SEARCH_HYPER_PARAMS.related_users_max_stars, initialRepoFullName));
+      relatedRepos = await this.redisCache.getJSON(`ga_related_repos-${initialRepoFullName}-${maxStarsPerUser}`,
+        async () => await this.getStarredRepoBasicsForUserIDs(userIDs, maxStarsPerUser, initialRepoFullName));
       if (!relatedRepos || relatedRepos.length < 1)
         return log(`W: issues finding related repos`);
       if (WRITE_OUTPUT_FILES)
@@ -284,7 +321,7 @@ export class GitHubAnalyzer {
         );
       }
       if (VERBOSE_LOGIC) log(`   < skipped ${gqlUserStarredRepos.nodes.length - userStarredRepos.length} users that exceeded ` +
-        `${colors.magenta('related_users_max_stars')}: ${colors.yellow(maxStarsPerUser.toString())}`);
+        `${colors.magenta('maxStarsPerUser')}: ${colors.yellow(maxStarsPerUser.toString())}`);
 
       // unroll users[]repos[] to RepoInfo(s)
       for (let user of userStarredRepos) {

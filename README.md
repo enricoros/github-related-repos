@@ -16,13 +16,14 @@ _Users_ of GitHub.
 * Jan 27, 2021: Added 10 fields, reduced API usage, increased caching
 * Jan 17, 2021: Migrated to the GraphQL API
 
-## Running
+## Backend
 
 This is a Node.JS application written in TypeScript; you can use your favorite IDE to Load and run it, or proceed from the command line, in
-which case you can follow these instructions:
+which case you can follow these instructions (from the ```backend``` folder):
 
 1. Install the required code dependencies (axios, json2csv, redis, yargs) by running:
    ```shell
+   cd backend
    npm install
    ```
 1. Set your GitHub Personal Access Token. If missing, create one on: https://github.com/settings/tokens
@@ -33,7 +34,7 @@ which case you can follow these instructions:
    ```
 1. Either: use the downloaded 'ts-node' executable to transpile TS -> JS and Run in node directly:
    ```shell
-   ./node_modules/.bin/ts-node backend/src/analyzer-cli.ts
+   ./node_modules/.bin/ts-node src/analyzer-cli.ts
    ```
 1. Or: compile TypeScript to JavaScript and run it with ```Node.JS```, for instance:
    ```shell
