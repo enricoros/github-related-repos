@@ -10,8 +10,18 @@ import fs from "fs";
 import {Parser as JSONParser} from "json2csv";
 import {RedisCache} from "./RedisCache";
 import {GitHubAPI, GQL} from "./GitHubAPI";
-import {err, log, roundToDecimals, secondsPerDay, unixTimeFromISOString, unixTimeNow, unixTimeProgramStart, unixTimeStartOfWeek} from "./Utils";
+import {
+  err,
+  log,
+  roundToDecimals,
+  secondsPerDay,
+  unixTimeFromISOString,
+  unixTimeNow,
+  unixTimeProgramStart,
+  unixTimeStartOfWeek
+} from "./Utils";
 import {interpolateY, statComputeSlope, statGetBounds, XYPoint} from "./Statistics";
+import {ProgressType, RequestType} from "../../../common/SharedTypes";
 
 // Configuration of this module
 const VERBOSE_LOGIC = false;
@@ -52,30 +62,10 @@ const SEARCH_HYPER_PARAMS = {
 }
 const REMOVE_CSV_ATTRIBUTES = ['id', 'isArchived'];
 
-/** Details about this scan **/
-export interface ScanConfigurationType {
-  repoFullName: string,
-  maxStarsPerUser: number,
-}
 
-/** Communicates progress during the operation **/
-export interface ScanProgressType {
-  operation: string,  // kind of operation (const per Scan)
-  done: boolean,      // false: not processed yet, true: done
-  running: boolean,   // false: stopped, true: in progress
-  progress: number,   // could be more granular than (phase / (phases-1))
-  s_idx: number,      // current phase (0 ... total - 1)
-  s_count: number,    // total phases
-  t_start: number,    // start time
-  t_elapsed: number,  // seconds elapsed since the start
-  t_eta: number,      // expected time remaining
-  error?: string,     // if this is set while done, this will contain the details about the error
-}
-
-export const createNoProgress = (operation: string = 'related'): ScanProgressType => ({
-  operation,
-  done: false, running: true,
-  progress: 0, s_idx: 0, s_count: 5, t_start: unixTimeNow(),
+export const createNoProgress = (): ProgressType => ({
+  done: false, running: false,
+  progress: 0, s_idx: 0, s_count: 1, t_start: unixTimeNow(),
   t_elapsed: 0, t_eta: 0,
   error: undefined,
 });
@@ -90,18 +80,26 @@ export class GitHubAnalyzer {
     this.redisCache = new RedisCache('gh-analyzer', DEFAULT_TTL);
   }
 
-  async findAndAnalyzeRelatedRepos(configuration: ScanConfigurationType, progressCallback?: (progress: ScanProgressType) => void) {
+  async executeAsync(request: RequestType, progressCallback?: (progress: ProgressType) => void) {
+    switch (request.operation) {
+      case 'relatives':
+        return await this.findAndAnalyzeRelatedRepos(request, progressCallback);
+      default:
+        err(`GitHubAnalyzer.executeAsync: operation ${request.operation} not supported`);
+    }
+  }
+
+  private async findAndAnalyzeRelatedRepos(request: RequestType, progressCallback?: (progress: ProgressType) => void) {
     // read configuration
-    const {repoFullName: initialRepoFullName, maxStarsPerUser} = configuration;
+    const {repoFullName: initialRepoFullName, maxStarsPerUser} = request;
 
     // initialize progress
-    const progress = createNoProgress();
-    const updateProgress = (update: Partial<ScanProgressType>) => {
-      if (progressCallback) {
-        Object.assign(progress, update);
-        progressCallback(progress);
-      }
+    const progress: ProgressType = createNoProgress();
+    const updateProgress = (update: Partial<ProgressType>) => {
+      Object.assign(progress, update);
+      progressCallback && progressCallback(progress);
     }
+    updateProgress({running: true, s_idx: 0, s_count: 5});
 
     // 1. Repo -> Users[]
     log(`*** Resolving Users that starred '${colors.cyan(initialRepoFullName)}' ...`);
@@ -118,6 +116,7 @@ export class GitHubAnalyzer {
       userIDs = starrings.map(starring => starring.userId);
       userIDs.forEach(id => assert(typeof id === 'string'));
     }
+    updateProgress({s_idx: 1});
 
     // 2. Related repos: Users[] -> Accumulate user's Starred repos
     log(`\n** Found ${colors.red(userIDs.length.toString())} users that starred '${colors.cyan(initialRepoFullName)}'. ` +
@@ -131,6 +130,7 @@ export class GitHubAnalyzer {
       if (WRITE_OUTPUT_FILES)
         fs.writeFileSync(`out-${outFileName}-related.csv`, (new JSONParser()).parse(relatedRepos));
     }
+    updateProgress({s_idx: 2});
 
     // 3. Find Relevant repos, by filtering all Related repos
     log(`\n** Discovered ${colors.bold.white(relatedRepos.length.toString())} related repos to '${initialRepoFullName}'. Next, narrowing down ` +
@@ -145,10 +145,12 @@ export class GitHubAnalyzer {
       // if (WRITE_OUTPUT_FILES)
       //   fs.writeFileSync(`out-${outFileName}-relevant.csv`, (new JSONParser()).parse(relevantRepos));
     }
+    updateProgress({s_idx: 3});
 
     // 4. Get more complete information about the interesting repositories
     log(`\n>> Finding ${colors.cyan('repository details')} for ${colors.cyan(relevantCount.toString())} relevant repositories`);
     await this.addDetailedRepoInfo(relevantRepos);
+    updateProgress({s_idx: 4});
 
     // 5. Process all Relevant repos
     log(`\n>> Finding ${colors.yellow('stars history')} of ${relevantCount} relevant repositories (most starred by the ${userIDs.length} users of '${initialRepoFullName}')`);
@@ -195,11 +197,15 @@ export class GitHubAnalyzer {
       // done with this repo
       statRepos.push(repo);
     }
+    updateProgress({s_idx: 5});
 
     // remove unused attributes for the export
     statRepos.forEach(r => REMOVE_CSV_ATTRIBUTES.forEach(u => delete r[u]));
     if (WRITE_OUTPUT_FILES)
       fs.writeFileSync(`out-${outFileName}-stats.csv`, (new JSONParser()).parse(statRepos));
+
+    // tell the calling function we reached the end successfully
+    return true;
   }
 
   /// Parsers of GitHub GQL data into our own data types

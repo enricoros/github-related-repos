@@ -14,7 +14,8 @@ async function findRelatedRepositories(repoFullName: string) {
   log(`== ${colors.bold.cyan('GitHub-Analyzer')}: finding related repositories to ${colors.cyan(repoFullName)} ==\n`);
   const ghAPI = new GitHubAPI();
   const crawler = new GitHubAnalyzer(ghAPI);
-  await crawler.findAndAnalyzeRelatedRepos({
+  await crawler.executeAsync({
+    operation: 'relatives',
     repoFullName,
     maxStarsPerUser: 200,
   });

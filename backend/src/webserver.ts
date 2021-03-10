@@ -1,10 +1,14 @@
+/**
+ * This web server performs analysis requested by any client, and returns the results.
+ */
 import {createServer, Server} from "http";
 import {ClientCommProxyType, ServerConnectionEventsType, SocketApiServer} from "./server/SocketApiServer";
 import {GitHubAPI} from "./worker/GitHubAPI";
-import {createNoProgress, GitHubAnalyzer, ScanConfigurationType, ScanProgressType} from "./worker/GitHubAnalyzer";
+import {createNoProgress, GitHubAnalyzer} from "./worker/GitHubAnalyzer";
 import {err, log, printAppRoutes} from "./server/util";
 import {unixTimeNow} from "./worker/Utils";
-
+import {ProgressType, RequestType, ResultType, ServerStatusType} from "../../common/SharedTypes";
+import {generateId} from "base64id";
 
 // Module Configuration - API_HOST, API_PORT are overridable by the Environment
 const API_HOST = process.env.API_HOST || 'localhost';
@@ -14,116 +18,139 @@ const API_PATH_CATCH_ALL = '/api/*';
 const PUBLIC_DOMAIN = 'www.githubkpis.com';
 
 
-/**
- * Synchronize this with the Client
- */
-export interface ScanType {
-  configuration: ScanConfigurationType,
-  progress: ScanProgressType,
-  requesterUid: string,
-  outputFile: string,
-}
-
-
 class Main implements ServerConnectionEventsType {
-  private readonly socketApiServer: SocketApiServer;
+  public readonly socketApiServer: SocketApiServer;
   private readonly socketSendAll: (messageName: string, payload: any) => any;
   private readonly gitHubAnalyzer: GitHubAnalyzer;
 
-  // state
-  private isScanning: Boolean = false;
-  private readonly scansCompleted: ScanType[] = [];
-  private readonly scansQueue: ScanType[] = [];
+  // server-side state
+  private readonly operationsList: ResultType[] = [];
+  private readonly serverStatus: ServerStatusType = {
+    clientsCount: 0,
+    isRunning: false,
+    opQueueFull: false,
+  }
 
   constructor(httpServer: Server) {
     this.socketApiServer = new SocketApiServer(API_PATH_SIO, PUBLIC_DOMAIN, httpServer, this as ServerConnectionEventsType);
     this.socketSendAll = this.socketApiServer.sendAll;
-
-    // create the Analyzer for GitHub
-    const graphQLApi = new GitHubAPI();
-    this.gitHubAnalyzer = new GitHubAnalyzer(graphQLApi);
+    this.gitHubAnalyzer = new GitHubAnalyzer(new GitHubAPI());
   }
 
   /// Connection/Disconnection Events ///
 
   clientConnected(socketUid: string, clientComm: ClientCommProxyType): void {
     // receive client messages
-    clientComm.onClientMessage('@ghk/related/start', (conf: ScanConfigurationType) => this.addRelatedScan(conf, socketUid));
+    clientComm.onClientMessage('@ghk/op/add', conf => this.queueOperation(conf, socketUid, clientComm));
 
-    // -> client: current configuration
-    clientComm.sendToClient('@ghk:scans-former', this.scansCompleted);
-    clientComm.sendToClient('@ghk:scans-queue', this.scansQueue);
+    // -> client: full status
+    this.updateServerStatus({clientsCount: this.serverStatus.clientsCount + 1});
+    clientComm.sendToClient('@ghk:ops-list', this.operationsList);
   }
 
   clientDisconnected(socketUid: string, reason: any): void {
-    // NOP
+    // -> clients: one disconnected
+    this.updateServerStatus({clientsCount: this.serverStatus.clientsCount - 1});
   }
+
+  /// Misc ///
+
+  private pendingOpsCount = () => this.operationsList.filter((op) => !op.progress.done).length;
 
   /// Client Operations ///
 
-  private addRelatedScan(conf: ScanConfigurationType, socketUid: string) {
-    // TODO: Conf Validation
-    // ...
+  private queueOperation(conf: RequestType, socketUid: string, clientComm: ClientCommProxyType) {
+    if (this.pendingOpsCount() >= 5)
+      return clientComm.sendToClient('@ghk:message', 'Cannot add more. Wait for the current queue to clear.')
 
-    // TODO: find a previous scan with the same configuration, and eventually replace it
-    // this.nextScans.find()
+    // create a new UID
+    let uid = null;
+    const existingUIDs: string[] = this.operationsList.map(op => op.uid);
+    while (uid == null || existingUIDs.includes(uid)) uid = generateId();
 
-    // enqueue scan
-    this.scansQueue.push({
-      configuration: conf,
+    // create the new operation
+    const operation: ResultType = {
+      uid: uid,
+      request: conf,
       progress: createNoProgress(),
       requesterUid: socketUid,
-      outputFile: undefined,
-    });
-    this.notifyScansQueue();
-    this.tryStartNextScan();
-  }
-
-  private startNextScan() {
-    // sanity checks
-    if (this.isScanning) return err(`startNextScan: called while already scanning (${this.scansQueue.length} items in queue)`);
-    if (this.scansQueue.length < 1) return err(`startNextScan: with 0 scan configurations in line`);
-
-    // scan the first element
-    this.isScanning = true;
-    const scan: ScanType = this.scansQueue.shift();
-    const scanRepoName = scan.configuration.repoFullName;
-    const scanStartTime = unixTimeNow();
-
-    // notification callback
-    const scanProgressCallback = (progress: ScanProgressType) => {
-      log('got progress', progress);
-      scan.progress = progress;
-      this.notifyScansQueue();
+      outputFile: null,
     }
 
+    // prepend to the list
+    this.operationsList.unshift(operation);
+    this.notifyListChanged();
+
+    // update the queue status (shall implement update-on-change only)
+    this.updateServerStatus({opQueueFull: this.pendingOpsCount() >= 5});
+
+    // start the operation if not busy
+    if (!this.serverStatus.isRunning)
+      this.startNextOperation();
+  }
+
+  private startNextOperation() {
+    if (this.serverStatus.isRunning)
+      return err('startNextOperation: already running something else. FIX THIS');
+
+    // find the next operation to start
+    const operation = this.operationsList.slice().reverse().find(op => !op.progress.done && !op.progress.running);
+    if (!operation)
+      return log(`startNextOperation: no more operations to be started in the queue right now (${this.operationsList.length} total)`);
+
+    // server: notify running
+    this.updateServerStatus({isRunning: true});
+
+    // set the operation to a running state
+    operation.progress.done = false;
+    operation.progress.running = true;
+    this.notifyOperationChanged(operation);
+
+    // for finding the time elapsed
+    const startTime = unixTimeNow();
+
+    // 4 callbacks invokes asynchronously after the async operation is started
+    const onProgress = (progress: ProgressType) => {
+      operation.progress = progress;
+      this.notifyOperationChanged(operation);
+    };
+    const onFulfilled = (value: any) => {
+      log(`\nAnalysis of '${operation.request.repoFullName}' complete in ${unixTimeNow() - startTime} seconds:`, value);
+    };
+    const onRejected = (reason: any) => {
+      err(`\nERROR: Analysis of '${operation.request.repoFullName}' FAILED after ${unixTimeNow() - startTime} seconds, because:`, reason);
+    };
+    const andFinally = () => {
+      // operation: done & stopped
+      operation.progress.done = true;
+      operation.progress.running = false;
+      this.notifyOperationChanged(operation);
+
+      // server: notify not running
+      this.updateServerStatus({isRunning: false});
+
+      // start another operation (if there's any in line)
+      this.startNextOperation();
+    };
+
     // long-lasting function (up to a day)
-    this.gitHubAnalyzer.findAndAnalyzeRelatedRepos(scan.configuration, scanProgressCallback)
-      .then(value => {
-        // handle completed
-        log(value);
-        log(`\nAnalysis of '${scanRepoName}' complete in ${unixTimeNow() - scanStartTime} seconds.\n`);
-      })
-      .catch(reason => {
-        // handle errors
-        err(`\nERROR: Analysis of '${scanRepoName}' FAILED after ${unixTimeNow() - scanStartTime} seconds, because: ${reason}\n`)
-      })
-      .finally(() => {
-        // start another scan if the queue is waiting
-        this.isScanning = false;
-        this.tryStartNextScan();
-      });
+    this.gitHubAnalyzer.executeAsync(operation.request, onProgress)
+      .then(onFulfilled).catch(onRejected).finally(andFinally);
   }
 
   /// Private ///
 
-  private tryStartNextScan = () => !this.isScanning && this.scansQueue.length > 0 && this.startNextScan();
-  private notifyScansQueue = () => this.socketSendAll('@ghk:scans-queue', this.scansQueue);
-  private notifyScansCompleted = () => this.socketSendAll('@ghk:scans-former', this.scansCompleted);
+  private notifyListChanged = () =>
+    this.socketSendAll('@ghk:ops-list', this.operationsList);
+  private notifyOperationChanged = (operation: ResultType) =>
+    this.socketSendAll('@ghk:op-update', operation);
+  private updateServerStatus = (update: Partial<ServerStatusType>) =>
+    this.updateAndNotify(this.serverStatus, '@ghk:status', update);
 
-  /// Misc ///
-
-  getSocketIoServer = () => this.socketApiServer.getSocketIoServer();
+  private updateAndNotify = <T>(target: T, messageName: string, update: Partial<T>): void => {
+    Object.assign(target, update);
+    this.socketSendAll(messageName, target);
+  }
 }
 
 
@@ -137,4 +164,4 @@ expressApp.get(API_PATH_CATCH_ALL, (req, res) => setTimeout(() => res.send({erro
 const main = new Main(httpServer);
 
 httpServer.listen(API_PORT, API_HOST, () =>
-  printAppRoutes('github-kpis-webserver', httpServer, expressApp, main.getSocketIoServer()));
+  printAppRoutes('github-kpis-webserver', httpServer, expressApp, main.socketApiServer.getSocketIoServer()));
