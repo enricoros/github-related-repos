@@ -1,10 +1,10 @@
 import React from "react";
 import {
   Box, Button, Card, CardActions, CardContent, CircularProgress,
-  Container, Grid, IconButton, Typography, makeStyles,
+  Container, Grid, Typography, makeStyles,
 } from "@material-ui/core";
-import ClearIcon from "@material-ui/icons/Clear";
 import EqualizerIcon from '@material-ui/icons/Equalizer';
+import ReactTimeAgo from 'react-time-ago'
 import clsx from "clsx";
 
 import {connector} from "../logic/Connector";
@@ -72,20 +72,24 @@ function ResultCard({classes, op}: { classes, op: ResultType }) {
       <Box>
         <Typography variant="subtitle2">
           {(!op.progress.running && !op.progress.done) ? 'Queued' : 'Started'} on {new Date(op.progress.t_start * 1000).toLocaleString()}
+          &nbsp;(<ReactTimeAgo date={new Date(op.progress.t_start * 1000)}/>)
         </Typography>
         {op.progress.t_end > 0 && <Typography variant="subtitle2">
-          Ended on {new Date(op.progress.t_end * 1000).toLocaleString()}
+          Ended <ReactTimeAgo date={new Date(op.progress.t_end * 1000)}/>
         </Typography>}
-        <Typography variant="subtitle2" color="textSecondary">
-          {op.uid}
-        </Typography>
+        {op.progress.t_elapsed > 0 && <Typography variant="subtitle2">
+          Duration: {op.progress.t_elapsed / 60} minutes
+        </Typography>}
+        {/*<Typography variant="subtitle2" color="textSecondary">*/}
+        {/*  {op.uid}*/}
+        {/*</Typography>*/}
       </Box>
 
     </CardContent>
-    <CardActions disableSpacing={true}>
-      <Button size="medium" color="primary">CSV ↓</Button>
-      <Button size="medium" color="primary">View</Button>
-      <IconButton size="medium"><ClearIcon color="disabled"/></IconButton>
+    <CardActions>
+      <Button size="medium" color="primary" disabled={true}>Explore</Button>
+      <Button size="medium" color="primary" disabled={true}>Download</Button>
+      {/*{!op.progress.running && <IconButton size="medium"><ClearIcon color="disabled"/></IconButton>}*/}
     </CardActions>
   </Card>;
 }

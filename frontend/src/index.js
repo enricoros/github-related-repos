@@ -4,6 +4,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import {ThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {App} from './App';
 
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+
+TimeAgo.addDefaultLocale(en)
+
 const theme = createMuiTheme({
   palette: {
     primary: {
