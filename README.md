@@ -12,7 +12,9 @@ This project uses the [GitHub GraphQL API](https://docs.github.com/en/graphql) t
 _Users_ of GitHub.
 
 #### Changelog
-* Mar  8, 2021: Separated the worker and CLI into backend/src
+* Mar 10, 2021: Added a react-material-typescript frontend
+* Mar  9, 2021: Added a node/express web server as backend 
+* Mar  8, 2021: Separated the worker and CLI into the backend/src
 * Jan 27, 2021: Added 10 fields, reduced API usage, increased caching
 * Jan 17, 2021: Migrated to the GraphQL API
 
