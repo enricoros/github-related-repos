@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
   resultsContainer: {
     borderRadius: theme.spacing(1),
     boxShadow: '0px 4px 30px 0px #e0e0e0',
-    paddingBottom: theme.spacing(2),
     paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(3),
   },
   resultCard: {
     display: 'flex',
@@ -71,9 +71,12 @@ function ResultCard({classes, op}: { classes, op: ResultType }) {
       {/*</Box>*/}
       <Box>
         <Typography variant="subtitle2">
-          Started on {new Date(op.progress.t_start * 1000).toLocaleString()}
+          {(!op.progress.running && !op.progress.done) ? 'Queued' : 'Started'} on {new Date(op.progress.t_start * 1000).toLocaleString()}
         </Typography>
-        <Typography variant="subtitle2">
+        {op.progress.t_end > 0 && <Typography variant="subtitle2">
+          Ended on {new Date(op.progress.t_end * 1000).toLocaleString()}
+        </Typography>}
+        <Typography variant="subtitle2" color="textSecondary">
           {op.uid}
         </Typography>
       </Box>

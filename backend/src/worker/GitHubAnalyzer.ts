@@ -65,8 +65,8 @@ const REMOVE_CSV_ATTRIBUTES = ['id', 'isArchived'];
 
 export const createNoProgress = (): ProgressType => ({
   done: false, running: false,
-  progress: 0, s_idx: 0, s_count: 1, t_start: unixTimeNow(),
-  t_elapsed: 0, t_eta: 0,
+  progress: 0, s_idx: 0, s_count: 1,
+  t_start: unixTimeNow(), t_end: 0, t_elapsed: 0, t_eta: 0,
   error: undefined,
 });
 
@@ -99,7 +99,7 @@ export class GitHubAnalyzer {
       Object.assign(progress, update);
       progressCallback && progressCallback(progress);
     }
-    updateProgress({running: true, s_idx: 0, s_count: 5});
+    updateProgress({running: true, s_idx: 0, s_count: 5, t_start: unixTimeNow()});
 
     // 1. Repo -> Users[]
     log(`*** Resolving Users that starred '${colors.cyan(initialRepoFullName)}' ...`);
@@ -203,6 +203,10 @@ export class GitHubAnalyzer {
     statRepos.forEach(r => REMOVE_CSV_ATTRIBUTES.forEach(u => delete r[u]));
     if (WRITE_OUTPUT_FILES)
       fs.writeFileSync(`out-${outFileName}-stats.csv`, (new JSONParser()).parse(statRepos));
+
+    // last progress update
+    const t_end = unixTimeNow();
+    updateProgress({t_end, t_elapsed: t_end - progress.t_start});
 
     // tell the calling function we reached the end successfully
     return true;

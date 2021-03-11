@@ -36,6 +36,7 @@ export interface ProgressType {
   s_idx: number,            // current phase (0 ... total - 1)
   s_count: number,          // total phases
   t_start: number,          // start time
+  t_end: number,            // end time
   t_elapsed: number,        // seconds elapsed since the start
   t_eta: number,            // expected time remaining
   error?: string,           // if this is set while done, this will contain the details about the error
