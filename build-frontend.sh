@@ -11,7 +11,7 @@ echo " and installing on $INSTALL_DIR. Edit this script to change."
 git pull || return
 
 # Build
-docker build -f Dockerfile-frontend -t githubkpis-frontend .
+docker build -f frontend.Dockerfile -t githubkpis-frontend .
 
 # Install
 mkdir -p "$INSTALL_DIR"
