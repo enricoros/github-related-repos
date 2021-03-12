@@ -86,6 +86,7 @@ export class GitHubAnalyzer {
         return await this.findAndAnalyzeRelatedRepos(request, progressCallback);
       default:
         err(`GitHubAnalyzer.executeAsync: operation ${request.operation} not supported`);
+        return false;
     }
   }
 
@@ -109,8 +110,10 @@ export class GitHubAnalyzer {
       const {owner: repoOwner, name: repoName} = GitHubAPI.repoFullNameToParts(initialRepoFullName);
       const starrings: Starring[] = await this.redisCache.getJSON(`ga_repo_starrings-${repoOwner}/${repoName}`,
         async () => await this.getRepoStarringsDescending(repoOwner, repoName));
+      if (starrings === null)
+        throw(`not a valid repository`);
       if (starrings.length < 10)
-        return log(`W: issues finding stars(t) of '${initialRepoFullName}: ${starrings?.length}`);
+        throw(`cannot find related repos. low number of stars (${starrings?.length})`);
       // if (WRITE_OUTPUT_FILES)
       //   fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
       userIDs = starrings.map(starring => starring.userId);
@@ -126,7 +129,7 @@ export class GitHubAnalyzer {
       relatedRepos = await this.redisCache.getJSON(`ga_related_repos-${initialRepoFullName}-${maxStarsPerUser}`,
         async () => await this.getStarredRepoBasicsForUserIDs(userIDs, maxStarsPerUser, initialRepoFullName));
       if (!relatedRepos || relatedRepos.length < 1)
-        return log(`W: issues finding related repos`);
+        throw(`issue finding related repositories from ${userIDs.length} users`);
       if (WRITE_OUTPUT_FILES)
         fs.writeFileSync(`out-${outFileName}-related.csv`, (new JSONParser()).parse(relatedRepos));
     }
@@ -220,10 +223,14 @@ export class GitHubAnalyzer {
     // get the total number of stars only at the beginning (could be in the paged query, but then it would be live and slow)
     const repoStarsCount = await this.redisCache.getJSON(`gql_repo_stars_count-${owner}/${name}`,
       async () => await this.githubAPI.gqlRepoStarsCount(owner, name));
-    const stargazersCount = repoStarsCount.repository.stargazerCount;
+
+    // safety check: null = not a valid repo
+    if (repoStarsCount === null)
+      return null;
 
     // extract Starrings
     const allStarrings: Starring[] = [];
+    const stargazersCount = repoStarsCount.repository.stargazerCount;
     let descendingN = stargazersCount;
     await GitHubAPI.gqlMultiPageDataHelper(
       async lastCursor => await this.redisCache.getJSON(`gql_repo_starrings-${owner}/${name}-${stargazersCount}-${lastCursor || 'first'}`,

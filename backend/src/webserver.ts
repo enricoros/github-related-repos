@@ -119,6 +119,7 @@ class Main implements ServerConnectionEventsType {
     };
     const onRejected = (reason: any) => {
       err(`\nERROR: Analysis of '${operation.request.repoFullName}' FAILED after ${unixTimeNow() - startTime} seconds, because:`, reason);
+      operation.progress.error = (reason || '<unknown>').toString();
     };
     const andFinally = () => {
       // operation: done & stopped
