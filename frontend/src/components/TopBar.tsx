@@ -1,5 +1,5 @@
 import React from "react";
-import {AppBar, Box, CircularProgress, Toolbar, Tooltip, Typography} from "@material-ui/core";
+import {AppBar, Box, CircularProgress, Hidden, Toolbar, Tooltip, Typography} from "@material-ui/core";
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import WarningRoundedIcon from "@material-ui/icons/WarningRounded";
 
@@ -66,11 +66,13 @@ export function TopBar() {
   }
 
   // Top bar full layout
-  return <AppBar position="relative" elevation={0}>
+  return <AppBar position="relative" elevation={0} style={{backgroundColor: '#26272f'}}>
     <Toolbar>
-      <Box mr={2} display="flex" alignItems="center">
-        <AssessmentIcon fontSize="default"/>
-      </Box>
+      <Hidden smDown>
+        <Box mr={1} display="flex" alignItems="center">
+          <AssessmentIcon style={{fontSize: '3em'}}/>
+        </Box>
+      </Hidden>
       <Typography variant="h5" color="inherit" noWrap style={{fontWeight: 200}}>
         GitHub Projects Analyzer
       </Typography>
