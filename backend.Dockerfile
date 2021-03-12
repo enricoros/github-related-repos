@@ -31,4 +31,4 @@ ENV API_HOST=0.0.0.0 \
     API_PORT=1996
 
 # specify run command executable
-CMD node src/index.js
+CMD node src/webserver.js
