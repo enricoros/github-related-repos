@@ -22,6 +22,10 @@ mkdir -p "$INSTALL_DIR"
 docker create -ti --name githubkpis-frontend-dummy githubkpis-frontend:latest bash
 docker cp githubkpis-frontend-dummy:/app/build/. "$INSTALL_DIR"
 docker rm -f githubkpis-frontend-dummy
+
 # verify the files to be present
-ls -d "$INSTALL_DIR"
-ls -l "$INSTALL_DIR"
+echo "Contents of:"
+ls -d --color=yes "$INSTALL_DIR"
+echo
+ls -l --color=yes "$INSTALL_DIR"
+echo
