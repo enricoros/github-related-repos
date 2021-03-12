@@ -1,7 +1,7 @@
 # Backend API, serving the websocket messages
 #
 #  Build:    docker build -f backend.Dockerfile -t githubkpis-api .
-#  Run:      docker run --rm -it --name githubkpis-api -p 127.0.0.1:1996:1996 -v githubkpis-backend:/data --env-file=githubkpis.env.pvt githubkpis-api
+#  Run:      docker run --rm -it --name githubkpis-api -p 127.0.0.1:1996:1996 -v githubkpis-backend:/data --env-file=backend.env githubkpis-api
 #
 #  note: customize microservice providers addresses in the environment file (if it
 #        doesn't exist, copy from the template). if services are in local docker
@@ -32,4 +32,3 @@ ENV API_HOST=0.0.0.0 \
 
 # specify run command executable
 CMD node src/index.js
-
