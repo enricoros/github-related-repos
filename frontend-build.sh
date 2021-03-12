@@ -11,14 +11,16 @@ echo " and installing on $INSTALL_DIR. Edit this script to change."
 git pull || return
 
 # Build
+cp -a frontend.Dockerfile.dockerignore .dockerignore
 docker build -f frontend.Dockerfile -t githubkpis-frontend .
+rm -f .dockerignore
 
 # Install
 mkdir -p "$INSTALL_DIR"
 #rm -fr "$INSTALL_DIR"
 # instantiate a container and extract the files into the installation directory
 docker create -ti --name githubkpis-frontend-dummy githubkpis-frontend:latest bash
-docker cp githubkpis-frontend-dummy:/app/build "$INSTALL_DIR"
+docker cp githubkpis-frontend-dummy:/app/build/. "$INSTALL_DIR"
 docker rm -f githubkpis-frontend-dummy
 # verify the files to be present
 ls -d "$INSTALL_DIR"

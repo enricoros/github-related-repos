@@ -1,6 +1,7 @@
 .git/
 backend/
 examples/
+.dockerignore
 .gitignore
 LICENSE
 README.md
