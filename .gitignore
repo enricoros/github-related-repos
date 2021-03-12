@@ -105,3 +105,4 @@ dist
 
 # Extra - Enrico
 .idea/
+backend.env
