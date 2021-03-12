@@ -1,24 +1,49 @@
 import React from "react";
-import {
-  Box, Container, FormControl, IconButton, InputLabel, makeStyles,
-  MenuItem, Paper, Select, TextField, Typography
-} from "@material-ui/core";
+import {Box, Button, Container, Grid, IconButton, Paper, TextField, Typography, makeStyles} from "@material-ui/core";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import {connector} from "../logic/Connector";
 
-// CSS for this component
+
 const useStyles = makeStyles((theme) => ({
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+  heroHeadline: {
+    fontWeight: 200,
+    marginBottom: theme.spacing(6),
   },
-  heroParamsPane: {
-    padding: theme.spacing(1, 1.5),
+  operationLink: {
+    color: theme.palette.secondary.dark,
+    // cursor: 'pointer',
+    // textDecoration: 'underline 0.3rem dotted',
+    // textDecorationColor: theme.palette.secondary.dark,
+  },
+  prefContainers: {
+    // flexGrow: 1,
+    marginBottom: theme.spacing(2),
   },
 }));
+
+
+const PrefLabel = (props: { title: string, subTitle: string, disabled?: boolean }) =>
+  <Grid item xs={12} sm={5} style={props.disabled ? {color: 'lightgray'} : {}}>
+    <Typography variant="body1">{props.title}</Typography>
+    {props.subTitle && <Typography variant="caption" color="textPrimary">{props.subTitle}</Typography>}
+  </Grid>;
+
+const PrefString = ({str, setStr, updateCb}: { str, setStr?, updateCb? }) =>
+  <Grid item xs={12} sm={7}>
+    <TextField type="text" disabled={setStr === undefined} inputProps={{spellCheck: 'false'}}
+               value={str} onChange={event => setStr && setStr(event.target.value)}/>
+    {updateCb && <Button onClick={updateCb}>Update</Button>}
+  </Grid>;
+
+const PrefInt = ({label, value, setValue}) =>
+  <Grid item xs={12} sm={7}>
+    <TextField label={label} type="number" disabled={setValue === undefined}
+               value={value} onChange={event => setValue && setValue(event.target.value)}/>
+  </Grid>;
+
 
 export function NewOperation() {
   const classes = useStyles();
@@ -26,93 +51,76 @@ export function NewOperation() {
   // UI state
   const [repoName, setRepoName] = React.useState<string>('');
   const [maxStarsPerUser, setMaxStarsPerUser] = React.useState<number>(200);
-  const [openAdvanced, setOpenAdvanced] = React.useState<boolean>(false);
+  const [openPrefPane, setOpenPrefPane] = React.useState<boolean>(false);
 
   const repoNameValid = () => repoName.split('/').length === 2 && !repoName.endsWith('/');
   const ready = repoNameValid();
 
-  function startRelativesOperation() {
-    if (!repoNameValid()) {
-      // else:  // TODO: UI-warning
-      //   console.log('Text too short:', text);
-    } else {
-      connector.sendNewOperation({
-        operation: 'relatives',
-        repoFullName: repoName,
-        maxStarsPerUser: 200,
-      });
-    }
-  }
+  const startClicked = () => {
+    if (!ready) return;
+    connector.sendNewOperation({
+      operation: 'relatives',
+      repoFullName: repoName,
+      maxStarsPerUser: maxStarsPerUser,
+    });
+  };
 
-  return <div className={classes.heroContent}>
-    <Container component="main" maxWidth="lg">
-      {/* Title */}
-      <Typography component="h2" variant="h3" align="center" color="textPrimary" gutterBottom style={{fontWeight: 200}}>
-        Find related GitHub repositories
-      </Typography>
+  return <Box mt={8} mb={6}><Container maxWidth="md">
 
-      {/* Tab 1: Related */}
-      <Box>
+    {/* Headline with Operation Selector */}
+    <Typography variant="h3" color="textPrimary" align="center" className={classes.heroHeadline}>
+      Find <Box display="inline" className={classes.operationLink}>related</Box> GitHub repositories
+    </Typography>
 
-        <Box display="flex" flexDirection="row">
-          <Box flexGrow={1}>
-            <TextField label="Repository Name" placeholder="e.g. huggingface/transformers"
-                       variant="outlined" fullWidth value={repoName}
-                       onChange={t => setRepoName(t.target.value)}
-                       onKeyPress={ev => ev.key === 'Enter' && startRelativesOperation()}
-                       InputProps={{
-                         endAdornment: (
-                           <IconButton onClick={() => setOpenAdvanced(!openAdvanced)}>
-                             {openAdvanced ? <ArrowDropUpIcon/> : <ArrowDropDownIcon/>}
-                           </IconButton>
-                         ),
-                       }}/>
-          </Box>
-
-          <IconButton color="primary" size="medium" disabled={!ready} style={{paddingLeft: '24px', paddingRight: '24px'}}
-                      onClick={() => startRelativesOperation()}>
-            Scan &nbsp; <PlayCircleFilledIcon fontSize="default" style={{color: !ready ? 'lightgray' : 'green'}}/>
-          </IconButton>
-        </Box>
-
-        {/* Relatives - Advanced Configuration */}
-        {openAdvanced && <Paper elevation={6} className={classes.heroParamsPane}>
-          <Box>
-            <Typography variant={"subtitle2"} color="textSecondary">
-              Related Scan - Advanced configuration
-            </Typography>
-            <Box style={{marginLeft: '1em'}}>
-<pre>
-  text = {JSON.stringify(repoName, null, 2)}<br/>
-  lr = 0.07<br/>
-  ...<br/>
-  repetitions = {maxStarsPerUser}
-</pre>
-            </Box>
-          </Box>
-          <FormControl variant="outlined" style={{minWidth: '100px'}}>
-            <InputLabel id="next-gen-repeat-label">Repeat</InputLabel>
-            <Select labelId="next-gen-repeat-label" label="Repeat"
-                    value={maxStarsPerUser}
-                    onChange={e => setMaxStarsPerUser(parseInt(String(e.target.value || '1')))}>
-              <MenuItem value={1}>x1</MenuItem>
-              <MenuItem value={2}>x2</MenuItem>
-              <MenuItem value={5}>x5</MenuItem>
-              <MenuItem value={10}>x10</MenuItem>
-              <MenuItem value={20}>x20</MenuItem>
-              <MenuItem value={50}>x50</MenuItem>
-              <MenuItem value={100}>x100</MenuItem>
-            </Select>
-          </FormControl>
-        </Paper>}
-
+    {/* Repo Name & Start button */}
+    <Box display="flex" flexDirection="row" flexWrap="wrap" style={{placeContent: 'center'}}>
+      <Box flexGrow={1}>
+        <TextField label="GitHub Repository Name" variant="outlined" fullWidth style={{minWidth: '12em'}}
+                   placeholder="e.g. huggingface/transformers" value={repoName} onChange={t => setRepoName(t.target.value)}
+                   onKeyPress={ev => ev.key === 'Enter' && startClicked()}
+                   InputProps={{
+                     endAdornment: <IconButton size="small" color="secondary"
+                                               onClick={() => setOpenPrefPane(!openPrefPane)}>{openPrefPane ?
+                       <ArrowDropUpIcon fontSize="large"/> : <ArrowDropDownIcon fontSize="large"/>}</IconButton>
+                   }}/>
       </Box>
+      <Button variant="text" color="primary" size="large" disabled={!ready} style={{padding: '0 1rem'}}
+              onClick={() => startClicked()} endIcon={<PlayArrowIcon style={{fontSize: '2rem'}}/>}>
+        Begin Scan
+      </Button>
+    </Box>
 
-      <Box mt={4} mb={4}/>
+    {/* Advanced Properties Panel */}
+    {openPrefPane && <Box flexGrow={1}>
+      <Paper elevation={2} style={{backgroundColor: '#f8f8f8', padding: 0}}>
+        <Box padding={1}>
+          <Typography variant="subtitle2" color="secondary" align="center">
+            Advanced configuration
+          </Typography>
+        </Box>
+        <Box padding={2}>
+          <Grid container className={classes.prefContainers} spacing={3}>
+            <PrefLabel title="Repository" subTitle="Org/Name for the project"/>
+            <PrefString str={repoName}/>
+          </Grid>
+          <Grid container className={classes.prefContainers} spacing={3}>
+            <PrefLabel title="Max User Stars" subTitle="Ignore users with more than these stars"/>
+            <PrefInt label="Stars" value={maxStarsPerUser} setValue={setMaxStarsPerUser}/>
+          </Grid>
+          {/*<Grid container className={classes.prefContainers} spacing={3}>*/}
+          {/*  <PrefLabel title="Source" subTitle="Kind of analysis"/>*/}
+          {/*  <PrefButtonInt names={['Relatives']} int={theme} setInt={setTheme} color="secondary"/>*/}
+          {/*</Grid>*/}
+        </Box>
+      </Paper>
+    </Box>}
 
-      <Typography variant="subtitle2" align="center" color="textSecondary" paragraph>
-        This is a prototype.
+    {/* Disclaimer */}
+    <Box mt={4}>
+      <Typography variant="body1" color="textSecondary" align="center">
+        This web application is a prototype.
       </Typography>
-    </Container>
-  </div>;
+    </Box>
+
+  </Container></Box>;
 }

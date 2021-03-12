@@ -60,10 +60,15 @@ function ResultCard({classes, op}: { classes, op: ResultType }) {
         </Typography>
       </Box>
       <Box display="flex" alignItems="baseline">
-        <Typography>
+        <Typography component="div">
           {progressElement}
         </Typography>
       </Box>
+      {op.progress.error && <Box>
+        <Typography color="error">
+          {op.progress.error}
+        </Typography>
+      </Box>}
       {/*<Box>*/}
       {/*  <pre>*/}
       {/*  {JSON.stringify(op, null, '  ')}*/}
@@ -106,28 +111,28 @@ export function Results() {
   }, []);
 
   // Group by Operation
-  // @ts-ignore
-  // const operationsGroups = [...new Set(resultsList.map(result => result.request.operation))];
-  // console.log(operationsGroups);
+  const operationsGroups = Array.from(new Set(resultsList.map(result => result.request.operation)));
 
   return <>
-    <Container maxWidth="lg" className={classes.resultsContainer}>
-      <Box display="flex" mb={1} mt={1}>
-        <Box mr={2} mt="auto" mb="auto" display="flex" alignItems="center">
-          <EqualizerIcon color="primary"/>
+    {operationsGroups.map(opName =>
+      <Container key={'op-group-' + opName} maxWidth="lg" className={classes.resultsContainer}>
+        <Box display="flex" mb={1} mt={1}>
+          <Box mr={2} mt="auto" mb="auto" display="flex" alignItems="center">
+            <EqualizerIcon color="primary"/>
+          </Box>
+          <Typography variant="h6" color="textSecondary">
+            Latest <Typography variant="h6" color="primary" display="inline">{opName}</Typography>
+          </Typography>
         </Box>
-        <Typography variant="h6" color="primary">
-          Latest results
-        </Typography>
-      </Box>
 
-      <Grid container spacing={4}>
-        {resultsList.map((result: ResultType) =>
-          <Grid key={`result-${result.uid}`} item xs={12} sm={6} md={4} lg={3}>
-            <ResultCard classes={classes} op={result}/>
-          </Grid>
-        )}
-      </Grid>
-    </Container>
+        <Grid container spacing={2}>
+          {resultsList.filter(result => result.request.operation === opName).map((result: ResultType) =>
+            <Grid key={`result-${result.uid}`} item xs={12} sm={6} md={4} lg={3}>
+              <ResultCard classes={classes} op={result}/>
+            </Grid>
+          )}
+        </Grid>
+      </Container>
+    )}
   </>;
 }

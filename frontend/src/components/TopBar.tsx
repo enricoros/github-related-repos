@@ -71,8 +71,8 @@ export function TopBar() {
       <Box mr={2} display="flex" alignItems="center">
         <AssessmentIcon fontSize="default"/>
       </Box>
-      <Typography variant="h6" color="inherit" noWrap>
-        GitHub KPIs
+      <Typography variant="h5" color="inherit" noWrap>
+        GitHub Projects Analyzer
       </Typography>
 
       <Box flexGrow={1}/> {/* Expander */}
