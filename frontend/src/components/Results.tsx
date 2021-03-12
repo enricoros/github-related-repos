@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  Box, Button, Card, CardActions, CardContent, CircularProgress,
-  Container, Grid, Typography, makeStyles,
-} from "@material-ui/core";
+import {Box, Button, Card, CardActions, CardContent, CircularProgress, Container, Grid, Typography, makeStyles,} from "@material-ui/core";
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import ReactTimeAgo from 'react-time-ago'
 import clsx from "clsx";
@@ -40,56 +37,42 @@ function ResultCard({classes, op}: { classes, op: ResultType }) {
   let cardExtraClass = null;
   let progressElement: JSX.Element = null;
   if (op.progress.running) {
-    progressElement = <><CircularProgress color="secondary" size="1rem"/>&nbsp; Running ({op.progress.s_idx}/{op.progress.s_count})</>;
+    progressElement = <>
+      <Typography>
+        Started <ReactTimeAgo date={new Date(op.progress.t_start * 1000)}/>
+      </Typography>
+      <Typography variant="subtitle2">
+        Running ({op.progress.s_idx}/{op.progress.s_count})
+      </Typography>
+    </>;
     cardExtraClass = classes.resultRunning;
   } else if (op.progress.done) {
+    progressElement = <Typography>
+      {op.progress.error ? 'Failed' : 'Completed'} {op.progress.t_end > 0 && <ReactTimeAgo date={new Date(op.progress.t_end * 1000)}/>}
+    </Typography>;
   } else {
-    progressElement = <>Queued</>;
+    progressElement = <Typography>
+      Queued <ReactTimeAgo date={new Date(op.progress.t_start * 1000)}/>
+    </Typography>;
     cardExtraClass = classes.resultQueued;
   }
 
-
   return <Card variant="outlined" className={clsx(classes.resultCard, cardExtraClass)}>
     <CardContent className={classes.resultCardContent}>
-      <Box>
-        <Typography variant="h6">
-          {op.request.repoFullName}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          ({op.request.operation.toUpperCase()})
-        </Typography>
-      </Box>
-      <Box display="flex" alignItems="baseline">
-        <Typography component="div">
-          {progressElement}
-        </Typography>
-      </Box>
-      {op.progress.error && <Box>
-        <Typography color="error">
-          {op.progress.error}
-        </Typography>
-      </Box>}
-      {/*<Box>*/}
-      {/*  <pre>*/}
-      {/*  {JSON.stringify(op, null, '  ')}*/}
-      {/*  </pre>*/}
-      {/*</Box>*/}
-      <Box>
-        <Typography variant="subtitle2">
-          {(!op.progress.running && !op.progress.done) ? 'Queued' : 'Started'} on {new Date(op.progress.t_start * 1000).toLocaleString()}
-          &nbsp;(<ReactTimeAgo date={new Date(op.progress.t_start * 1000)}/>)
-        </Typography>
-        {op.progress.t_end > 0 && <Typography variant="subtitle2">
-          Ended <ReactTimeAgo date={new Date(op.progress.t_end * 1000)}/>
-        </Typography>}
-        {op.progress.t_elapsed > 0 && <Typography variant="subtitle2">
-          Duration: {op.progress.t_elapsed / 60} minutes
-        </Typography>}
-        {/*<Typography variant="subtitle2" color="textSecondary">*/}
-        {/*  {op.uid}*/}
-        {/*</Typography>*/}
-      </Box>
-
+      <Typography variant="button" gutterBottom component="div">
+        {op.progress.running && <CircularProgress color="secondary" size="1rem" style={{marginRight: '0.5rem'}}/>}
+        {op.request.repoFullName}
+      </Typography>
+      {op.progress.error && <Typography color="error">
+        {op.progress.error}
+      </Typography>}
+      {progressElement}
+      {/*{op.progress.t_elapsed > 0 && <Typography variant="subtitle2">*/}
+      {/*  Duration: {op.progress.t_elapsed / 60} minutes*/}
+      {/*</Typography>}*/}
+      {/*<Typography variant="subtitle2" color="textSecondary">*/}
+      {/*  {op.uid}*/}
+      {/*</Typography>*/}
     </CardContent>
     <CardActions>
       <Button size="medium" color="primary" disabled={true}>Explore</Button>
@@ -98,6 +81,10 @@ function ResultCard({classes, op}: { classes, op: ResultType }) {
     </CardActions>
   </Card>;
 }
+
+const operationNameMap = {
+  'relatives': 'related',
+};
 
 export function Results() {
   const classes = useStyles();
@@ -114,6 +101,13 @@ export function Results() {
   const operationsGroups = Array.from(new Set(resultsList.map(result => result.request.operation)));
 
   return <>
+    {operationsGroups.length < 1 && <Box paddingTop={4} paddingBottom={4} style={{background: 'aliceblue'}}>
+      <Container>
+        <Typography variant="h5">
+          Nothing to see yet.
+        </Typography>
+      </Container>
+    </Box>}
     {operationsGroups.map(opName =>
       <Container key={'op-group-' + opName} maxWidth="lg" className={classes.resultsContainer}>
         <Box display="flex" mb={1} mt={1}>
@@ -121,7 +115,7 @@ export function Results() {
             <EqualizerIcon color="primary"/>
           </Box>
           <Typography variant="h6" color="textSecondary">
-            Latest <Typography variant="h6" color="primary" display="inline">{opName}</Typography>
+            Latest <Typography variant="h6" color="primary" display="inline">{operationNameMap[opName] || 'experiments'}</Typography>
           </Typography>
         </Box>
 

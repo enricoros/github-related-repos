@@ -13,19 +13,18 @@ export function App() {
       <main>
         <NewOperation/>
         <Results/>
-      </main>
-      <section style={{backgroundColor: '#20ab77'}}>
-        <Container>
-          <Box mt={8} mb={8}>
-            <Typography gutterBottom>
-              What it does
-            </Typography>
-            <Typography gutterBottom>
+
+        <Box mt={8} mb={6}>
+          <Container>
+            <Typography variant="h4" style={{fontWeight: 200}}>
               Instructions
             </Typography>
-          </Box>
-        </Container>
-      </section>
+            <Typography style={{fontWeight: 200}}>
+              Where we are going we don't need instructions.
+            </Typography>
+          </Container>
+        </Box>
+      </main>
       <Footer/>
     </React.Fragment>
   );

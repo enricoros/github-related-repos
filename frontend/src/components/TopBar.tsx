@@ -71,7 +71,7 @@ export function TopBar() {
       <Box mr={2} display="flex" alignItems="center">
         <AssessmentIcon fontSize="default"/>
       </Box>
-      <Typography variant="h5" color="inherit" noWrap>
+      <Typography variant="h5" color="inherit" noWrap style={{fontWeight: 200}}>
         GitHub Projects Analyzer
       </Typography>
 

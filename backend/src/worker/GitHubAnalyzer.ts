@@ -81,16 +81,15 @@ export class GitHubAnalyzer {
   }
 
   async executeAsync(request: RequestType, progressCallback?: (progress: ProgressType) => void) {
-    switch (request.operation) {
-      case 'relatives':
-        return await this.findAndAnalyzeRelatedRepos(request, progressCallback);
-      default:
-        err(`GitHubAnalyzer.executeAsync: operation ${request.operation} not supported`);
-        return false;
-    }
+    if (request.operation === 'relatives')
+      return await this.analyzeRelated(request, progressCallback);
+    throw(`Operation ${request.operation} not supported`);
   }
 
-  private async findAndAnalyzeRelatedRepos(request: RequestType, progressCallback?: (progress: ProgressType) => void) {
+  /**
+   * Relatives Scan
+   */
+  private async analyzeRelated(request: RequestType, progressCallback?: (progress: ProgressType) => void) {
     // read configuration
     const {repoFullName: initialRepoFullName, maxStarsPerUser} = request;
 
@@ -111,9 +110,9 @@ export class GitHubAnalyzer {
       const starrings: Starring[] = await this.redisCache.getJSON(`ga_repo_starrings-${repoOwner}/${repoName}`,
         async () => await this.getRepoStarringsDescending(repoOwner, repoName));
       if (starrings === null)
-        throw(`not a valid repository`);
+        throw(`Not a valid repository`);
       if (starrings.length < 10)
-        throw(`cannot find related repos. low number of stars (${starrings?.length})`);
+        throw(`Cannot find related repos. low number of stars (${starrings?.length})`);
       // if (WRITE_OUTPUT_FILES)
       //   fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
       userIDs = starrings.map(starring => starring.userId);
@@ -129,7 +128,7 @@ export class GitHubAnalyzer {
       relatedRepos = await this.redisCache.getJSON(`ga_related_repos-${initialRepoFullName}-${maxStarsPerUser}`,
         async () => await this.getStarredRepoBasicsForUserIDs(userIDs, maxStarsPerUser, initialRepoFullName));
       if (!relatedRepos || relatedRepos.length < 1)
-        throw(`issue finding related repositories from ${userIDs.length} users`);
+        throw(`Issue finding related repositories from ${userIDs.length} users`);
       if (WRITE_OUTPUT_FILES)
         fs.writeFileSync(`out-${outFileName}-related.csv`, (new JSONParser()).parse(relatedRepos));
     }
