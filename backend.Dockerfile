@@ -1,7 +1,8 @@
 # Backend API, serving the websocket messages
 #
-#  Build:    docker build -f backend.Dockerfile -t githubkpis-api .
-#  Run:      docker run --rm -it --name githubkpis-api --link githubkpis-redis -p 127.0.0.1:1996:1996 --env-file=backend.env githubkpis-api
+#  Build:       docker build -f backend.Dockerfile -t githubkpis-api .
+#  Run redis:   docker run --rm -d --name githubkpis-redis -v githubkpis-redis:/data  redis:buster
+#  Run:         docker run --rm -it --name githubkpis-api --link githubkpis-redis -p 127.0.0.1:1996:1996 --env-file=backend.env githubkpis-api
 #
 #  note: customize microservice providers addresses in the environment file (if it
 #        doesn't exist, copy from the template). if services are in local docker
