@@ -17,7 +17,7 @@ rm -f .dockerignore
 
 # Install
 mkdir -p "$INSTALL_DIR"
-#rm -fr "$INSTALL_DIR"
+rm -fr "$INSTALL_DIR/static"
 # instantiate a container and extract the files into the installation directory
 docker create -ti --name githubkpis-frontend-dummy githubkpis-frontend:latest bash
 docker cp githubkpis-frontend-dummy:/app/build/. "$INSTALL_DIR"
