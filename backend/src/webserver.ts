@@ -3,7 +3,6 @@
  */
 import {createServer, Server} from "http";
 import {ClientCommProxyType, ServerConnectionEventsType, SocketApiServer} from "./server/SocketApiServer";
-import {GitHubAPI} from "./worker/GitHubAPI";
 import {createNoProgress, GitHubAnalyzer} from "./worker/GitHubAnalyzer";
 import {err, log, printAppRoutes} from "./server/util";
 import {unixTimeNow} from "./worker/Utils";
@@ -34,7 +33,7 @@ class Main implements ServerConnectionEventsType {
   constructor(httpServer: Server) {
     this.socketApiServer = new SocketApiServer(API_PATH_SIO, PUBLIC_DOMAIN, httpServer, this as ServerConnectionEventsType);
     this.socketSendAll = this.socketApiServer.sendAll;
-    this.gitHubAnalyzer = new GitHubAnalyzer(new GitHubAPI());
+    this.gitHubAnalyzer = new GitHubAnalyzer();
   }
 
   /// Connection/Disconnection Events ///

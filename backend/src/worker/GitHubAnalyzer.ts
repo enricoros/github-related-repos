@@ -4,7 +4,6 @@
  * A bit too tangled for now, but cleaning it is not the highest priority.
  */
 
-import assert from "assert";
 import colors from "colors";
 import fs from "fs";
 import {Parser as JSONParser} from "json2csv";
@@ -75,8 +74,8 @@ export class GitHubAnalyzer {
   private readonly githubAPI: GitHubAPI;
   private readonly redisCache: RedisCache;
 
-  constructor(githubAPI: GitHubAPI) {
-    this.githubAPI = githubAPI;
+  constructor() {
+    this.githubAPI = new GitHubAPI();
     this.redisCache = new RedisCache('gh-analyzer', DEFAULT_TTL);
   }
 
@@ -116,7 +115,6 @@ export class GitHubAnalyzer {
       // if (WRITE_OUTPUT_FILES)
       //   fs.writeFileSync(`out-${outFileName}-starrings.json`, JSON.stringify(starrings, null, 2));
       userIDs = starrings.map(starring => starring.userId);
-      userIDs.forEach(id => assert(typeof id === 'string'));
     }
     updateProgress({s_idx: 1});
 
@@ -129,8 +127,8 @@ export class GitHubAnalyzer {
         async () => await this.getStarredRepoBasicsForUserIDs(userIDs, maxStarsPerUser, initialRepoFullName));
       if (!relatedRepos || relatedRepos.length < 1)
         throw(`Issue finding related repositories from ${userIDs.length} users`);
-      if (WRITE_OUTPUT_FILES)
-        fs.writeFileSync(`out-${outFileName}-related.csv`, (new JSONParser()).parse(relatedRepos));
+      // if (WRITE_OUTPUT_FILES)
+      //   fs.writeFileSync(`out-${outFileName}-related.csv`, (new JSONParser()).parse(relatedRepos));
     }
     updateProgress({s_idx: 2});
 
@@ -241,11 +239,20 @@ export class GitHubAnalyzer {
           return false;
         }
         const s = data.repository.stargazers;
-        assert(s.edges.length === s.nodes.length, `Expected as many users as stars ${s.nodes.length}, ${s.edges.length}`);
+        // if nodes and edges don't match, there's been some issue
+        if (s.edges.length !== s.nodes.length) {
+          err(` < skipping repo '${owner}/${name}' because edge/nodes count don't match (${s.edges.length}/${s.nodes.length})`);
+          return false;
+        }
         for (let i = 0; i < s.edges.length; i++) {
           // sometimes a node (user) can be null.. maybe deleted in the meantime?
           if (!s.edges[i] || !s.nodes[i]) {
             err(` < skipping starring ${allStarrings.length + i} of repo '${owner}/${name}' (${!s.edges[i]}, ${!s.nodes[i]})`);
+            continue;
+          }
+          // sanity check
+          if (typeof s.nodes[i].id !== 'string') {
+            err(` < skipping starring: id not a string`, s.nodes[i])
             continue;
           }
           allStarrings.push({
