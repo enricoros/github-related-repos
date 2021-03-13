@@ -43,11 +43,8 @@ const BROKEN_USER_IDS = ['MDQ6VXNlcjQyMTgzMzI2',];
 const NOISE_REPOS = [
   "CyC2018/CS-Notes",
   "TheAlgorithms/Python",
-  "awesomedata/awesome-public-datasets",
   "coder2gwy/coder2gwy",
   "jwasham/coding-interview-university",
-  "labuladong/fucking-algorithm",
-  "vinta/awesome-python",
 ];
 const NOISE_REPOS_NAME_PARTS = ['fuck', 'awesome',];
 const SEARCH_HYPER_PARAMS = {
@@ -55,7 +52,7 @@ const SEARCH_HYPER_PARAMS = {
     {fn: (rs: RepoInfo) => !rs.isArchived, reason: 'archived (old)'},
     {fn: (rs: RepoInfo) => rs.leftShare >= 0.4, reason: 'left share < 0.4%'},
     {fn: (rs: RepoInfo) => rs.rightShare >= 3.0, reason: 'right share < 3%'},
-    {fn: (rs: RepoInfo) => rs.pushedAgo < 42, reason: 'no activity in the last 6 weeks'},
+    {fn: (rs: RepoInfo) => rs.pushedAgo < 6 * 7, reason: 'no activity in the last 6 weeks'},
     {fn: (rs: RepoInfo) => NOISE_REPOS_NAME_PARTS.find(noise => rs.fullName.indexOf(noise) !== -1) === undefined, reason: 'noisy names'},
     {fn: (rs, idx) => idx < 200, reason: 'stop at project 200'},
   ],
