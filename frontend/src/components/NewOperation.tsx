@@ -4,6 +4,8 @@ import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
+import GitHubButton from 'react-github-btn'
+
 import {connector} from "../logic/Connector";
 
 
@@ -123,9 +125,10 @@ export function NewOperation() {
 
       {/* Github Star button */}
       <Typography variant="body1" color="textSecondary" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-        Be meta and &nbsp; <a className="github-button" href="https://github.com/enricoros/github-analyzer"
-                              data-icon="octicon-star" data-size="large"
-                              data-show-count="true" aria-label="Star enricoros/github-analyzer on GitHub">Star</a> &nbsp; me.
+        Be meta and &nbsp;
+        <GitHubButton href="https://github.com/enricoros/github-analyzer" data-icon="octicon-star" data-size="large" data-show-count="true"
+                      aria-label="Star enricoros/github-analyzer on GitHub">Star</GitHubButton>
+        &nbsp; me.
       </Typography>
     </Box>
 
