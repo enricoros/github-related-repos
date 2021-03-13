@@ -107,7 +107,7 @@ export class GitHubAnalyzer {
     let userIDs: string[];
     {
       const {owner: repoOwner, name: repoName} = GitHubAPI.repoFullNameToParts(initialRepoFullName);
-      const starrings: Starring[] = await this.redisCache.getJSON(`ga_repo_starrings-${repoOwner}/${repoName}`,
+      const starrings: Starring[] = await this.redisCache.getJSON(`ga_repo_starrings-${repoOwner}/${repoName}`, undefined,
         async () => await this.getRepoStarringsDescending(repoOwner, repoName));
       if (starrings === null)
         throw(`Not a valid repository`);
@@ -125,7 +125,7 @@ export class GitHubAnalyzer {
       `Next, finding all the ${colors.yellow('starred repos')} of those users, limited by ${colors.magenta('maxStarsPerUser')}...`);
     let relatedRepos: RepoInfo[];
     {
-      relatedRepos = await this.redisCache.getJSON(`ga_related_repos-${initialRepoFullName}-${maxStarsPerUser}`,
+      relatedRepos = await this.redisCache.getJSON(`ga_related_repos-${initialRepoFullName}-${maxStarsPerUser}`, undefined,
         async () => await this.getStarredRepoBasicsForUserIDs(userIDs, maxStarsPerUser, initialRepoFullName));
       if (!relatedRepos || relatedRepos.length < 1)
         throw(`Issue finding related repositories from ${userIDs.length} users`);
@@ -166,7 +166,7 @@ export class GitHubAnalyzer {
         log(` < skipping ${repo.fullName} because it's noise for the current analysis`);
         continue;
       }
-      const starrings: Starring[] = (await this.redisCache.getJSON(`ga_repo_starrings-${repoOwner}/${repoName}`,
+      const starrings: Starring[] = (await this.redisCache.getJSON(`ga_repo_starrings-${repoOwner}/${repoName}`, undefined,
         async () => await this.getRepoStarringsDescending(repoOwner, repoName))).reverse();
       if (starrings.length < 10) {
         log(`W: issues finding stars(t) of '${repo.fullName}: ${starrings?.length}`);
@@ -220,7 +220,7 @@ export class GitHubAnalyzer {
 
   private async getRepoStarringsDescending(owner: string, name: string): Promise<Starring[]> {
     // get the total number of stars only at the beginning (could be in the paged query, but then it would be live and slow)
-    const repoStarsCount = await this.redisCache.getJSON(`gql_repo_stars_count-${owner}/${name}`,
+    const repoStarsCount = await this.redisCache.getJSON(`gql_repo_stars_count-${owner}/${name}`, undefined,
       async () => await this.githubAPI.gqlRepoStarsCount(owner, name));
 
     // safety check: null = not a valid repo
@@ -232,7 +232,7 @@ export class GitHubAnalyzer {
     const stargazersCount = repoStarsCount.repository.stargazerCount;
     let descendingN = stargazersCount;
     await GitHubAPI.gqlMultiPageDataHelper(
-      async lastCursor => await this.redisCache.getJSON(`gql_repo_starrings-${owner}/${name}-${stargazersCount}-${lastCursor || 'first'}`,
+      async lastCursor => await this.redisCache.getJSON(`gql_repo_starrings-${owner}/${name}-${stargazersCount}-${lastCursor || 'first'}`, undefined,
         async () => await this.githubAPI.gqlRepoStarrings(owner, name, lastCursor)),
       (data) => {
         // if the data is Null, there probably was an error with the API - in this case, we consider this an [] user
@@ -298,7 +298,7 @@ export class GitHubAnalyzer {
       }
 
       const cacheKey = `${_repoFullName}-${usersTotal}-${from + 1}-${from + partUserIDs.length}`;
-      const gqlUserStarredRepos = await this.redisCache.getJSON(`gql_user_list_starred_repos-${cacheKey}`,
+      const gqlUserStarredRepos = await this.redisCache.getJSON(`gql_user_list_starred_repos-${cacheKey}`, undefined,
         async () => await this.githubAPI.gqlUserListStarredRepos(partUserIDs));
       if (!gqlUserStarredRepos) {
         err(` < skipping users ${from + 1}-${from + partUserIDs.length} because of an API error. check manually the following users:`,
@@ -317,7 +317,7 @@ export class GitHubAnalyzer {
           continue;
         usersMultiPage++;
         await GitHubAPI.gqlMultiPageDataHelper(
-          async lastCursor => await this.redisCache.getJSON(`gql_user_starred_repos-${user.login}-${lastCursor}`,
+          async lastCursor => await this.redisCache.getJSON(`gql_user_starred_repos-${user.login}-${lastCursor}`, undefined,
             async () => await this.githubAPI.gqlUserStarredRepos(user.login, lastCursor)),
           (data: GQL.UserStarredRepos) => {
             if (!data) {
@@ -414,7 +414,7 @@ export class GitHubAnalyzer {
       const partRepoIDs = partRepos.map(repo => repo.id);
 
       // fetch details, in batches
-      const repoListDetails: GQL.RepoListDetails = await this.redisCache.getJSON(`gql_repo_list_details-${partRepoIDs.length}-${reposTotal}-${partRepoIDs[0]}-${partRepoIDs[partRepoIDs.length - 1]}`,
+      const repoListDetails: GQL.RepoListDetails = await this.redisCache.getJSON(`gql_repo_list_details-${partRepoIDs.length}-${reposTotal}-${partRepoIDs[0]}-${partRepoIDs[partRepoIDs.length - 1]}`, undefined,
         async () => await this.githubAPI.gqlRepoListDetails(partRepoIDs));
       if (!repoListDetails) {
         err(` < skipping ADVANCED details for repositories ${from + 1}-${from + partRepoIDs.length} because of an API error. check manually the following repositories:`,

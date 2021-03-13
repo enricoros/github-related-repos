@@ -39,10 +39,11 @@ export class RedisCache {
   /**
    * Simplified cache wrapper
    * @param uniqueKey Unique ID of the cached object
+   * @param expiration The expiration of uniqueKey, in seconds
    * @param producer An Async function that resolves the object, if missing from the cache
    */
-  getJSON = async <T>(uniqueKey: string, producer: () => Promise<T>): Promise<T> =>
-    await this.cachedGetJSON<T>(uniqueKey, this.defaultTTL, producer);
+  getJSON = async <T>(uniqueKey: string, expiration: number = undefined, producer: () => Promise<T>): Promise<T> =>
+    await this.cachedGetJSON<T>(uniqueKey, expiration || this.defaultTTL, producer);
 
   /**
    * Cache wrapper for JSON objects, up to a certain TTL
@@ -58,41 +59,10 @@ export class RedisCache {
     if (cachedValue !== null)
       return JSON.parse(cachedValue);
 
-    // perform conversion from the previous format
-    const CONVERT_OLD_KEYS = true;
-    if (CONVERT_OLD_KEYS) {
-      const oldKey = `cache:${this.scopeName}:${uid}`;
-      const currentUnixTime = ~~(Date.now() / 1000);
-
-      // use the cached object, if present and fresh
-      let test = await this.redisClient.hgetall(oldKey);
-      if (test !== null) {
-        const ts: number = parseInt(test['ts']);
-        // if the ttl isn't expired yet, return the cached JSON object
-        if ((ts + ttl) > currentUnixTime) {
-          const resultString = test['object'];
-          if (!resultString)
-            console.error(`RedisCache: error retrieving object for ${oldKey}`);
-          let result = JSON.parse(resultString);
-
-          // save in the new format
-          const remainingTtl = Math.min(ttl, (ts + ttl) - currentUnixTime);
-          await this.redisClient.set(key, resultString, 'EX', remainingTtl);
-
-          // delete the old key
-          await this.redisClient.del(oldKey);
-
-          return result;
-        }
-      }
-    }
-
     // resolve the non-cached result (and bail if null)
     const result: T = await objectResolver();
-    if (result == null) {
-      // NOTE: shall we save this in the cache, so the resolved is not re-invoked?
-      return result;
-    }
+    if (result == null)
+      return result;  // NOTE: shall we save this in the cache, so the resolved is not re-invoked?
 
     // save to cache
     await this.redisClient.set(key, JSON.stringify(result), 'EX', ttl);
