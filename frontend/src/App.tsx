@@ -4,7 +4,7 @@ import {Results} from "./components/Results";
 import {Footer} from "./components/Footer";
 import {NewOperation} from "./components/NewOperation";
 import {TopBar} from "./components/TopBar";
-import {Box, Container, Typography} from "@material-ui/core";
+import {Box, Container, Link, Typography} from "@material-ui/core";
 
 export function App() {
   return (
@@ -24,6 +24,18 @@ export function App() {
             </Typography>
           </Container>
         </Box>
+
+        <Box mt={8} mb={6}>
+          <Container>
+            <Typography variant="h5" style={{fontWeight: 200}}>
+              Related Projects
+            </Typography>
+            <Typography variant="h6" style={{fontWeight: 200}}>
+              <Link href="https://gitstar-ranking.com/">Gitstar Ranking</Link>
+            </Typography>
+          </Container>
+        </Box>
+
       </main>
       <Footer/>
     </React.Fragment>

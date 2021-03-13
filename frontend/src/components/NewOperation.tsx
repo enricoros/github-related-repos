@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Button, Container, Grid, IconButton, Paper, TextField, Typography, makeStyles} from "@material-ui/core";
+import {Box, Button, Container, Grid, IconButton, makeStyles, Paper, TextField, Typography} from "@material-ui/core";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -115,10 +115,17 @@ export function NewOperation() {
       </Paper>
     </Box>}
 
-    {/* Disclaimer */}
     <Box mt={4}>
+      {/* Disclaimer */}
       <Typography variant="body1" color="textSecondary" align="center">
         This web application is a prototype.
+      </Typography>
+
+      {/* Github Star button */}
+      <Typography variant="body1" color="textSecondary" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        Be meta and &nbsp; <a className="github-button" href="https://github.com/enricoros/github-analyzer"
+                              data-icon="octicon-star" data-size="large"
+                              data-show-count="true" aria-label="Star enricoros/github-analyzer on GitHub">Star</a> &nbsp; me.
       </Typography>
     </Box>
 

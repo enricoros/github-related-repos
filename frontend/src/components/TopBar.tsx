@@ -80,9 +80,7 @@ export function TopBar() {
       <Box flexGrow={1}/> {/* Expander */}
 
       <Box display="flex" flexDirection="row" alignItems="center" alignContent="middle">
-        <Box display="flex" flexDirection="row" alignItems="center">
-          {statusElement}
-        </Box>
+        {statusElement}
 
         {/* Settings Button */}
         {/*<IconButton aria-describedby="settings-popover" style={{marginLeft: '1rem'}} onClick={e => openSettings(e)}>*/}
