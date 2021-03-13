@@ -26,7 +26,7 @@ import {ProgressType, RequestType} from "../../../common/SharedTypes";
 // Configuration of this module
 const VERBOSE_LOGIC = false;
 const WRITE_OUTPUT_FILES = true;
-const DEFAULT_TTL = 7 * 2 * 24 * 60 * 60;
+const DEFAULT_TTL = 7 * 24 * 60 * 60;
 const DEFAULT_HISTOGRAM_MONTHS = 12 * 4;
 const STAT_INTERVALS = [
   {name: 'T1W', weekMinus: 7},

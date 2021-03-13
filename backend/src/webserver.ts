@@ -60,7 +60,7 @@ class Main implements ServerConnectionEventsType {
   /// Client Operations ///
 
   private queueOperation(conf: RequestType, socketUid: string, clientComm: ClientCommProxyType) {
-    if (this.pendingOpsCount() >= 5)
+    if (this.pendingOpsCount() >= 10)
       return clientComm.sendToClient('@ghk:message', 'Cannot add more. Wait for the current queue to clear.')
 
     // create a new UID

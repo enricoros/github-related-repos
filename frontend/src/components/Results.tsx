@@ -114,7 +114,7 @@ export function Results() {
           <Box mr={2} mt="auto" mb="auto" display="flex" alignItems="center">
             <EqualizerIcon color="primary"/>
           </Box>
-          <Typography variant="h6" color="textSecondary">
+          <Typography variant="h6" color="textSecondary" component="div">
             Latest <Typography variant="h6" color="primary" display="inline">{operationNameMap[opName] || 'experiments'}</Typography>
           </Typography>
         </Box>
