@@ -27,6 +27,7 @@ const VERBOSE_LOGIC = false;
 const WRITE_OUTPUT_FILES = true;
 const DEFAULT_TTL = 7 * 24 * 60 * 60;
 const DEFAULT_HISTOGRAM_MONTHS = 12 * 4;
+const MIN_STARS_PER_REPO = 100;  // do not consider any repo below this
 const STAT_INTERVALS = [
   {name: 'T1W', weekMinus: 7},
   {name: 'T2W', weekMinus: 7 * 2},
@@ -201,7 +202,7 @@ export class GitHubAnalyzer {
 
     // remove unused attributes for the export
     statRepos.forEach(r => REMOVE_CSV_ATTRIBUTES.forEach(u => delete r[u]));
-    if (WRITE_OUTPUT_FILES)
+    if (WRITE_OUTPUT_FILES && statRepos.length)
       fs.writeFileSync(`out-${outFileName}-stats.csv`, (new JSONParser()).parse(statRepos));
 
     // last progress update
@@ -350,6 +351,8 @@ export class GitHubAnalyzer {
       for (let user of userStarredRepos) {
         for (let repo of user.starredRepositories.edges) {
           const r = repo.node;
+          if (r.stargazerCount < MIN_STARS_PER_REPO)
+            continue;
           const repoID = r.id;
           if (!repoMap.hasOwnProperty(repoID)) {
             repoMap[repoID] = {
@@ -390,7 +393,7 @@ export class GitHubAnalyzer {
     const shareAdjustment = usersValid ? (usersTotal / usersValid) : 1;
     const basicRepoInfoList = Object.values(repoMap);
     for (let repo of basicRepoInfoList) {
-      if (repo.stars < 1) {
+      if (repo.stars < MIN_STARS_PER_REPO) {
         log(` < skipping repo ${repo.fullName} that has ${repo.stars} stars, and ${repo.usersStars} references`);
         continue;
       }
